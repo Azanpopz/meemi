@@ -178,7 +178,7 @@ async def get_settings(group_id):
     
 async def save_group_settings(group_id, key, value):
     current = await get_settings(group_id)
-    current[key] = redirected_env(value) if key == "redirect_to"  else value   
+    current[key] = value
     temp.SETTINGS[group_id] = current
     await db.update_settings(group_id, current)
     
