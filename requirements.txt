@@ -9,7 +9,7 @@ bs4
 imdbpy==2021.4.18
 aiofiles
 telegraph
-pyrogram
+
 youtube_search_python
 youtube_search
 ytthumb
@@ -41,3 +41,12 @@ pyrogram<=1.4.16
 googletrans==3.1.0a0
 pymongo
 dnspython
+
+
+
+pyrogram>=2.0.30
+
+bs4
+git+https://github.com/Joelkb/cinemagoer
+Heroku3
+search_engine_parser
