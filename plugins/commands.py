@@ -423,7 +423,6 @@ async def delete_all_index_confirm(bot, message):
 
 
 @Client.on_message(filters.command('settings'))
-async@Client.on_message(filters.command('settings'))
 async def settings(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
