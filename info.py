@@ -6,7 +6,8 @@ from Script import script
 
 import re
 from os import environ
-
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
