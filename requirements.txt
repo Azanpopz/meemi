@@ -44,7 +44,7 @@ dnspython
 
 
 
-pyrogram>=2.0.30
+pyrogram<=1.4.16
 
 bs4
 git+https://github.com/Joelkb/cinemagoer
