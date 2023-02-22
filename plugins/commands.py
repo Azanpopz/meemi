@@ -423,6 +423,7 @@ async def delete_all_index_confirm(bot, message):
 
 
 @Client.on_message(filters.command('settings'))
+async@Client.on_message(filters.command('settings'))
 async def settings(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -457,14 +458,13 @@ async def settings(client, message):
             and str(userid) not in ADMINS
     ):
         return
-    
-    settings = await get_settings(grp_id)
 
+    settings = await get_settings(grp_id)
     try:
-        if settings['max_btn']:
+        if settings['auto_delete']:
             settings = await get_settings(grp_id)
     except KeyError:
-        await save_group_settings(grp_id, 'max_btn', False)
+        await save_group_settings(grp_id, 'auto_delete', True)
         settings = await get_settings(grp_id)
     if 'is_shortlink' not in settings.keys():
         await save_group_settings(grp_id, 'is_shortlink', False)
