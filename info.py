@@ -112,6 +112,15 @@ IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False))
 CHAT_ID = [int(app_chat_id) if id_pattern.search(app_chat_id) else app_chat_id for app_chat_id in environ.get('CHAT_ID', '0').split()]
 TEXT = environ.get("APPROVED_WELCOME_TEXT", "Hello {mention}\nWelcome To {title}\n\nYour request has been approved")
 APPROVED = environ.get("APPROVED_WELCOME", "on").lower()
+    CAPTION = """
+•───────────────────•
+📁 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑵𝒂𝒎𝒆 : {file_name}
+🧲 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑺𝒊𝒛𝒆 : {file_size}
+✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » <a href='https://t.me/CinemaKovilakam_Group'>@CinemaKovilakam</a>
+✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » @at3movies
+◈ ━━━━━━━━ ● ━━━━━━━ ◈"""
+
+
 
 # Others
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
