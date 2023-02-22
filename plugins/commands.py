@@ -474,7 +474,6 @@ async def settings(client, message):
 
     if settings is not None:
         buttons = [
-            [buttons = [
             [
                 InlineKeyboardButton(
                     'Filter Button',
