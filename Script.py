@@ -357,3 +357,8 @@ Elsa
 ✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » <a href='https://t.me/CinemaKovilakam_Group'>@CinemaKovilakam</a>
 ✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » @at3movies
 ◈ ━━━━━━━━ ● ━━━━━━━ ◈"""
+
+
+
+    LOGO = """
+𝑺𝒕𝒂𝒓𝒕𝒊𝒏𝒈.......🥵"""
