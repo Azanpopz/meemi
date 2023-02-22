@@ -347,3 +347,13 @@ Elsa
 <b>Tʜɪs ᴍᴏᴅᴜʟᴇ ɪs ᴛᴏ ғɪɴᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴄᴏᴜɴᴛʀɪᴇs</b>
 • /country [𝖼𝗈𝗎𝗇𝗍𝗋𝗒 𝗇𝖺𝗆𝖾] 
 𝖤𝗑𝖺𝗆𝗉𝗅𝖾 :- <code>/country India</code>"""
+
+
+
+    CAPTION = """
+•───────────────────•
+📁 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑵𝒂𝒎𝒆 : {file_name}
+🧲 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑺𝒊𝒛𝒆 : {file_size}
+✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » <a href='https://t.me/CinemaKovilakam_Group'>@CinemaKovilakam</a>
+✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » @at3movies
+◈ ━━━━━━━━ ● ━━━━━━━ ◈"""
