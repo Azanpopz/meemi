@@ -1,6 +1,6 @@
 import os
 import asyncio
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 from pyrogram.types import Message, User, ChatJoinRequest
 from info import CHAT_ID, APPROVED 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -23,5 +23,5 @@ async def autoapprove(client, message: ChatJoinRequest):
             message.from_user.id, 
             photo='https://telegra.ph/file/13c860f7ef9f90e9e07cb.jpg', 
             caption=caption, 
-            reply_markup=markup
+            parse_mode=enums.ParseMode.HTML
         )
