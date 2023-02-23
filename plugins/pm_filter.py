@@ -1846,7 +1846,7 @@ async def manual_filters(client, message, text=False):
                 try:
                     if fileid == "None":
                         if btn == "[]":
-                            elsa = await client.send_message(
+                            joelkb = await client.send_message(
                                 group_id, 
                                 reply_text, 
                                 disable_web_page_preview=True,
@@ -1864,15 +1864,13 @@ async def manual_filters(client, message, text=False):
                                     await auto_filter(client, message)
                             try:
                                 if settings['auto_delete']:
-                                    await asyncio.sleep(600)
-                                    await elsa.delete()
+                                    await joelkb.delete()
                             except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_delete', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_delete']:
-                                    await asyncio.sleep(600)
-                                    await elsa.delete()
+                                    await joelkb.delete()
 
                         else:
                             button = eval(btn)
@@ -1895,14 +1893,12 @@ async def manual_filters(client, message, text=False):
                                     await auto_filter(client, message)
                             try:
                                 if settings['auto_delete']:
-                                    await asyncio.sleep(600)
                                     await hmm.delete()
                             except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_delete', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_delete']:
-                                    await asyncio.sleep(600)
                                     await hmm.delete()
 
                     elif btn == "[]":
@@ -1924,14 +1920,12 @@ async def manual_filters(client, message, text=False):
                                 await auto_filter(client, message)
                         try:
                             if settings['auto_delete']:
-                                await asyncio.sleep(600)
                                 await oto.delete()
                         except KeyError:
                             grpid = await active_connection(str(message.from_user.id))
                             await save_group_settings(grpid, 'auto_delete', True)
                             settings = await get_settings(message.chat.id)
                             if settings['auto_delete']:
-                                await asyncio.sleep(600)
                                 await oto.delete()
 
                     else:
@@ -1953,14 +1947,12 @@ async def manual_filters(client, message, text=False):
                                 await auto_filter(client, message)
                         try:
                             if settings['auto_delete']:
-                                await asyncio.sleep(600)
                                 await dlt.delete()
                         except KeyError:
                             grpid = await active_connection(str(message.from_user.id))
                             await save_group_settings(grpid, 'auto_delete', True)
                             settings = await get_settings(message.chat.id)
                             if settings['auto_delete']:
-                                await asyncio.sleep(600)
                                 await dlt.delete()
 
                 except Exception as e:
@@ -2019,10 +2011,11 @@ async def global_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id
-                        )                       
+                        )
 
                 except Exception as e:
                     logger.exception(e)
                 break
     else:
         return False
+
