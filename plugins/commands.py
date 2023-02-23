@@ -467,6 +467,12 @@ async def settings(client, message):
 
     settings = await get_settings(grp_id)
     try:
+        if settings['max_btn']:
+            settings = await get_settings(grp_id)
+    except KeyError:
+        await save_group_settings(grp_id, 'max_btn', False)
+        settings = await get_settings(grp_id):
+    except KeyError:
         if settings['auto_delete']:
             settings = await get_settings(grp_id)
     except KeyError:
