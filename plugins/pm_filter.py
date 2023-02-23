@@ -1469,19 +1469,20 @@ async def auto_filter(client, msg, spoll=False):
             return
         if len(message.text) < 100:
             search = message.text
-            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
+            files, offset, total_results = await get_search_results(message.chat.id ,search.lower(), offset=0, filter=True)
             if not files:
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
-                    await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
+                    if NO_RESULTS_MSG:
+                        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
                     return
         else:
             return
     else:
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
-        settings = await get_settings(message.chat.id)
+    settings = await get_settings(message.chat.id)
     if 'is_shortlink' in settings.keys():
         ENABLE_SHORTLINK = settings['is_shortlink']
     else:
@@ -1493,7 +1494,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        text=f"▫️{get_size(file.file_size)} ⊳ {file.file_name}", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                 ]
                 for file in files
@@ -1517,7 +1518,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                        text=f"▫️{get_size(file.file_size)} ⊳ {file.file_name}", callback_data=f'{pre}#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -1536,15 +1537,17 @@ async def auto_filter(client, msg, spoll=False):
                 ]
                 for file in files
             ]
-    btn.insert(0, 
-        [
-            InlineKeyboardButton(f' ♀️ {search} ♀️ ', 'qinfo')
-        ]
-    )
-    btn.insert(1, 
-         [
-             InlineKeyboardButton(f'ɪɴꜰᴏ', 'reqinfo'),
-           ]
+
+    try:
+        key = f"{message.chat.id}-{message.id}"
+        BUTTONS[key] = search
+        if settings['auto_delete']:
+            btn.insert(0, 
+                [
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
+                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
+                ]
             )
 
         else:
@@ -1569,7 +1572,7 @@ async def auto_filter(client, msg, spoll=False):
                 ]
             )
 
-    else:
+        else:
             btn.insert(0, 
                 [
                     InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
@@ -1577,6 +1580,7 @@ async def auto_filter(client, msg, spoll=False):
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
             )
+    
 
     btn.insert(0, [
         InlineKeyboardButton(f'⛔️ ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/New_Movies_Fastly')
