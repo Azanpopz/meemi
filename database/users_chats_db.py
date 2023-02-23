@@ -119,8 +119,6 @@ class Database:
             'welcome': MELCOW_NEW_USERS,
             'auto_delete': AUTO_DELETE,
             'template': IMDB_TEMPLATE,
-            'auto_ffilter': AUTO_FFILTER,
-            'max_btn': MAX_BTN,
             'shortlink': SHORTLINK_URL,
             'shortlink_api': SHORTLINK_API,
             'is_shortlink': IS_SHORTLINK
