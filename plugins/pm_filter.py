@@ -1569,7 +1569,7 @@ async def auto_filter(client, msg, spoll=False):
                 ]
             )
 
-        else:
+    else:
             btn.insert(0, 
                 [
                     InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
