@@ -4,11 +4,6 @@ from pyrogram.errors.exceptions.bad_request_400 import QueryIdInvalid
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQuery
 from database.ia_filterdb import get_search_results
 from utils import is_subscribed, get_size, temp
-from util import is_subscribed, get_size, temp
-from database.ia import get_search_results
-
-
-
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 
 logger = logging.getLogger(__name__)
