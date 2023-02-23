@@ -362,3 +362,9 @@ Elsa
 
     LOGO = """
 𝑺𝒕𝒂𝒓𝒕𝒊𝒏𝒈.......🥵"""
+
+
+
+    USER_DETAILS = "<b>PM FROM:</b>\nName: {} {}\nId: {}\nUname: @{}\nScam: {}\nRestricted: {}\nStatus: {}\nDc Id: {}"
+    PM_TXT_ATT = "<b>Message from:</b> {}\n<b>Name:</b> {}\n\n{}"
+    PM_MED_ATT = "<b>Message from:</b> {} \n<b>Name:</b> {}"
