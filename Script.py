@@ -286,7 +286,7 @@ Elsa
 
     IMDB_TEMPLATE_TXT = """
 𝐇𝐞𝐲 {message.from_user.mention}, 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐭𝐡𝐞 𝐫𝐞𝐬𝐮𝐥𝐭 𝐟𝐨𝐫 𝐲𝐨𝐮𝐫 {query} 
-<b>🏷 𝐓𝐢𝐭𝐥𝐞 : {title}
+🏷 𝐓𝐢𝐭𝐥𝐞 : {title}
 
 🎭 𝐆𝐞𝐧𝐫𝐞𝐬 : {genres}
 
@@ -300,8 +300,7 @@ Elsa
 
 🎛 𝐂𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬 : <code>{countries}</code>
  
-𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©{message.chat.title}</b>
-"""
+𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©{message.chat.title}"""
 
     CUSTOM_FILE_CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
 
