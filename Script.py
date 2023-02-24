@@ -293,7 +293,7 @@ Elsa
 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {runtime} Minutes 
 📆 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐈𝐧𝐟𝐨 : {release_date} 
 🎛 𝐂𝐨𝐮𝐧𝐭𝐫𝐢𝐞𝐬 : <code>{countries}</code> 
-𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©{message.chat.title}
+𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©{message.chat.title}</b>
 """
 
     CUSTOM_FILE_CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
