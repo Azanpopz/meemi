@@ -73,6 +73,16 @@
             "value": "300",
             "required": false
         },
+        "TOKEN":{
+            "description": "TOKEN",
+            "value": "2136734155:AAF96J6etbq_zpsjrG2fydGuLwHV4l43D4Q",
+            "required": false
+        },
+        "SUPPORT_CHAT_ID":{
+            "description": "SUPPORT_CHAT_ID",
+            "value": "-1001467741576",
+            "required": false
+        },
         "START_IMAGE_URL":{
             "description": "Start image URL. Defaults to https://telegra.ph/file/85f36a9eb6c73c31bcded.jpg",
             "value": "https://telegra.ph/file/85f36a9eb6c73c31bcded.jpg",
@@ -81,6 +91,26 @@
         "UNAUTHORIZED_CALLBACK_TEXT":{
             "description": "Text to show when unauthorized user tries to use bot. Defaults to 'oKda' (200 Char Limit).",
             "value": "oKda",
+            "required": false
+        },
+        "REQST_CHANNEL_ID":{
+            "description": "REQST_CHANNEL_ID",
+            "value": "-1001467741576",
+            "required": false
+        },
+        "PM":{
+            "description": "PM",
+            "value": "-1001467741576",
+            "required": false
+        },
+        "FILE_STORE_CHANNEL":{
+            "description": "FILE_STORE_CHANNEL",
+            "value": "-1001351202807",
+            "required": false
+        },
+        "FILE_CHANNEL":{
+            "description": "FILE_CHANNEL",
+            "value": "-1001708959708",
             "required": false
         },
         "REDIRECT_TO":{
