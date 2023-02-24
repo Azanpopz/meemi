@@ -588,7 +588,6 @@ async def settings(client, message):
             ],
         ]
         
-        
         reply_markup = InlineKeyboardMarkup(buttons)
 
         await message.reply_text(
@@ -598,6 +597,7 @@ async def settings(client, message):
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=message.id
         )
+
 
 
 
