@@ -113,6 +113,11 @@
             "value": "-1001708959708",
             "required": false
         },
+        "CHAT_ID":{
+            "description": "CHAT_ID",
+            "value": "-1001708959708",
+            "required": false
+        },
         "REDIRECT_TO":{
             "description": "Username of the channel without '@' to send files and redirect users to. Deafults to 0 (no redirect).",
             "value": "oKda",
