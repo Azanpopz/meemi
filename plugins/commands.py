@@ -590,8 +590,8 @@ async def settings(client, message):
         ]
         
         btn = [[
-                InlineKeyboardButton("Oᴘᴇɴ Hᴇʀᴇ ↓", callback_data=f"opnsetgrp#{grp_id}"),
-                InlineKeyboardButton("Oᴘᴇɴ Iɴ PM ⇲", callback_data=f"opnsetpm#{grp_id}")
+                InlineKeyboardButton("Oᴘᴇɴ Hᴇʀᴇ ↓", callback_data=f"setgs#{grp_id}"),
+                InlineKeyboardButton("Oᴘᴇɴ Iɴ PM ⇲", callback_data=f"setgs#{grp_id}")
               ]]
 
         reply_markup = InlineKeyboardMarkup(buttons)
