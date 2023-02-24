@@ -128,17 +128,6 @@ async def pm_text(bot, message):
         text=f"<b>#PM_MSG\n\nName : {user}\n\nID : {user_id}\n\nMessage : {content}</b>"
     )
 
-@Client.on_message(filters.group | filters.private & filters.text & filters.incoming)
-async def give_filter(client, message):
-    if settings['auto_ffilter']:
-                await auto_filter(client, message)
-    except KeyError:
-            grpid = await active_connection(str(message.from_user.id))
-            await save_group_settings(grpid, 'auto_ffilter', True)
-            settings = await get_settings(message.chat.id)
-            if settings['auto_ffilter']:
-                await auto_filter(client, message
-
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
