@@ -9,9 +9,9 @@ class script(object):
 # ⚠️ Please don't change our credits 𝚃𝙷𝙰𝙽𝙺𝚂 𝚃𝙾 & 𝙳𝙴𝚅 👇🏻
 
     ABOUT_TXT = """<b>✯ 𝙼𝚈 𝙽𝙰𝙼𝙴: {}
-✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/+1iWSCrpI_083MDM1>𝙲𝙸𝙽𝙴𝙼𝙰𝙻𝙰.𝙲𝙾𝙼</a>
-✯ 𝚃𝙷𝙰𝙽𝙺𝚂 𝚃𝙾: <a href=https://t.me/creatorbeatz>Jᴏᴇʟ ᠰ TɢX</a>
-✯ 𝙳𝙴𝚅: <a href=https://t.me/A_s_w_i_n_01>『Dᴇᴠɪʟ࿐Tɢ』</a>
+✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/nasrani_update>𝙲𝙸𝙽𝙴𝙼𝙰𝙻𝙰.𝙲𝙾𝙼</a>
+✯ 𝚃𝙷𝙰𝙽𝙺𝚂 𝚃𝙾: <a href=https://t.me/nasrani_update>Jᴏᴇʟ ᠰ TɢX</a>
+✯ 𝙳𝙴𝚅: <a href=https://t.me/nasrani_update>『Dᴇᴠɪʟ࿐Tɢ』</a>
 ✯ 𝙻𝙸𝙱𝚁𝙰𝚁𝚈: 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼
 ✯ 𝙻𝙰𝙽𝙶𝚄𝙰𝙶𝙴: 𝙿𝚈𝚃𝙷𝙾𝙽 𝟹
 ✯ 𝙳𝙰𝚃𝙰 𝙱𝙰𝚂𝙴: 𝙼𝙾𝙽𝙶𝙾 𝙳𝙱
@@ -22,7 +22,7 @@ class script(object):
 <b>- 𝙴𝙻𝚂𝙰 𝙸𝚂 𝙾𝙿𝙴𝙽 𝚂𝙾𝚄𝚁𝙲𝙴 𝙿𝚁𝙾𝙹𝙴𝙲𝚃. 
 - 𝚂𝙾𝚄𝚁𝙲𝙴 - 𝙲𝙻𝙸𝙲𝙺 𝚁𝙴𝙿𝙾 𝙱𝚄𝚃𝚃𝙾𝙽</b>
 <b>DEVS:</b>
-- <a href=https://t.me/+1iWSCrpI_083MDM1>𝙲𝙸𝙽𝙴𝙼𝙰𝙻𝙰.𝙲𝙾𝙼</a>"""
+- <a href=https://t.me/nasrani_update>𝙲𝙸𝙽𝙴𝙼𝙰𝙻𝙰.𝙲𝙾𝙼</a>"""
 
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
@@ -98,7 +98,7 @@ these are the extra features of Elsa
 ⏭️ /song 𝚂𝙾𝙽𝙶 𝙽𝙰𝙼𝙴 
 
 <b>𝚆𝙾𝚁𝙺𝚂 𝙱𝙾𝚃𝙷 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙿𝙼</b>
-@𝙲𝙸𝙽𝙴𝙼𝙰𝙻𝙰.𝙲𝙾𝙼"""
+@nasrani_update"""
 
     VIDEO_TXT ="""𝙷𝙴𝙻𝙿 𝚈𝙾𝚄 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝚅𝙸𝙳𝙴𝙾 𝙵𝚁𝙾𝙼 𝚈𝙾𝚄𝚃𝚄𝙱𝙴.
 • 𝘜𝘴𝘢𝘨𝘦
@@ -177,7 +177,7 @@ To Get Sticker ID
 <b>COMMAND</b> : /font your text (optional)
         <b> Eg:- /font Hello</b>
 
- <i>This feature added by @𝙲𝙸𝙽𝙴𝙼𝙰𝙻𝙰.𝙲𝙾𝙼"""
+ <i>This feature added by @nasrani_update"""
     JSON_TXT = """<b>JSON:</b>
 Bot returns json for all replied messages with /json or /js
 <b>Features:</b>
@@ -302,9 +302,9 @@ Elsa
 
 
 ╔════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╗
-▫️<a href=https://t.me/cinemala_com1> ᴄʜᴀɴɴᴇʟ </a>
+▫️<a href=https://t.me/nasrani_update> ᴄʜᴀɴɴᴇʟ </a>
 
-▫️<a href=https://t.me/Elsasupportgp> sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ </a>
+▫️<a href=https://t.me/nasrani_update> sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ </a>
 ╚════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╝</b>"""
 
     RESTART_TXT = """
@@ -354,7 +354,7 @@ Elsa
 •───────────────────•
 📁 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑵𝒂𝒎𝒆 : {file_name}
 🧲 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑺𝒊𝒛𝒆 : {file_size}
-✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » <a href='https://t.me/CinemaKovilakam_Group'>@CinemaKovilakam</a>
+✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » <a href='https://t.me/nasrani_update'>@CinemaKovilakam</a>
 ✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » @at3movies
 ◈ ━━━━━━━━ ● ━━━━━━━ ◈"""
 
