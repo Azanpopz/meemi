@@ -93,7 +93,8 @@ support_chat_id = environ.get('SUPPORT_CHAT_ID')
 TMP_DOWNLOAD_DIRECTORY = environ.get("TMP_DOWNLOAD_DIRECTORY", "./DOWNLOADS/")
 pm = environ.get('PM')
 PM = int(pm) if pm and id_pattern.search(pm) else None
-
+my_channel = environ.get('MY_CHANNEL')
+MY_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(my_channel) else None
 
 
 # Command
