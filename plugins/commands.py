@@ -79,7 +79,7 @@ async def start(client, message):
                         url=f"https://t.me/nasrani_update"
                     ),
                 ]
-                for file in files
+                
             ]
         
         if message.command[1] != "subscribe":
