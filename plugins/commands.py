@@ -70,19 +70,17 @@ async def start(client, message):
             logger.error("Make sure Bot is admin in Forcesub channel")
             return
         btn = [
-            [
-                InlineKeyboardButton(
-                    "🤖JOIN CHANNEL", url=invite_link.invite_link                    
-                )
+                [
+                    InlineKeyboardButton(
+                        text="JOIN CHANNEL", url=invite_link.invite_link'
+                    ),
+                    InlineKeyboardButton(
+                        text="NEW MOVIES",
+                        url="https://t.me/nasrani_update',
+                    ),
+                ]
+                for file in files
             ]
-        ]
-        btn = [
-            [
-                InlineKeyboardButton(
-                    "🤖JOIN CHANNEL🙂", url=invite_link.invite_link                    
-                )
-            ]
-        ]
         
         if message.command[1] != "subscribe":
             try:
