@@ -807,57 +807,196 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f"{files.file_name}"
 
         try:
-            if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query):
+            if AUTH_CHANNEL and not await is_subscribed(client, query):
+
                 await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+
                 return
+
             elif settings['botpm']:
+
                 await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+
                 return
+
             else:
-                if clicked == typed:
-                    file_send=await client.send_cached_media(
-                        chat_id=FILE_CHANNEL,
-                        file_id=file_id,
-                        caption=script.CHANNEL_CAP.format(query.from_user.mention, title, query.message.chat.title),
-                        protect_content=True if ident == "filep" else False,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=(MAIN_CHANNEL))
-                                ]
-                            ]
-                        )
-                    )
-                    Joel_tgx = await query.message.reply_text(
-                        script.FILE_MSG.format(query.from_user.mention, title, size),
-                        parse_mode=enums.ParseMode.HTML,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                             [
-                              InlineKeyboardButton('📥 𝖣𝗈𝗐𝗇𝗅𝗈𝖺𝖽 𝖫𝗂𝗇𝗄 📥 ', url = file_send.link)
-                           ],[
-                              InlineKeyboardButton("⚠️ 𝖢𝖺𝗇'𝗍 𝖠𝖼𝖼𝖾𝗌𝗌 ❓ 𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾 ⚠️", url=(FILE_FORWARD))
-                             ]
-                            ]
-                        )
-                    )
-                    if settings['auto_delete']:
-                        await asyncio.sleep(600)
-                        await Joel_tgx.delete()
-                        await file_send.delete()
-                else:
-                    await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
-                await query.answer('Cʜᴇᴄᴋ PM, I ʜᴀᴠᴇ sᴇɴᴛ ғɪʟᴇs ɪɴ PM', show_alert=True)
+
+                buttons = [
+                  [
+                        InlineKeyboardButton('⭕️ Support', url='https://t.me/mazhatthullikal'),
+                        InlineKeyboardButton('Channel ⭕️', url='https://t.me/mazhatthullikal')
+                  ],
+                  [
+                        InlineKeyboardButton('🎬 Series & Movie Club 🎬', url=f'https://t.me/mazhatthullikal')
+                  ]
+                  ]
+        
+                await client.send_cached_media(
+
+                    chat_id=query.from_user.id,
+
+                    file_id=file_id,
+
+                    caption=f_caption,
+
+                    protect_content=True if ident == "filep" else False 
+
+                )
+
+                await query.answer('Check PM, I have sent files in pm', show_alert=True)
+
         except UserIsBlocked:
-            await query.answer('𝐔𝐧𝐛𝐥𝐨𝐜𝐤 𝐭𝐡𝐞 𝐛𝐨𝐭 𝐦𝐚𝐡𝐧 !', show_alert=True)
+
+            await query.answer('Unblock the bot mahn !', show_alert=True)
+
         except PeerIdInvalid:
+
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+
         except Exception as e:
+
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+
+    
+
+    elif query.data.startswith("Chat"):
+
+        ident, file_id, rid = query.data.split("#")
+
+
+
+        if int(rid) not in [query.from_user.id, 0]:
+
+            return await query.answer(f"ഹലോ {query.from_user.first_name} മൂവി വേണമെങ്കിൽ മൂവിയുടെ പേര് അയക്കുക", show_alert=True)
+
+
+
+        files_ = await get_file_details(file_id)
+
+        if not files_:
+
+            return await query.answer('No such file exist.')
+
+        files = files_[0]
+
+        title = files.file_name
+
+        size = get_size(files.file_size)
+
+        mention = query.from_user.mention
+
+        f_caption = files.caption
+
+        settings = await get_settings(query.message.chat.id)
+
+        if CUSTOM_FILE_CAPTION:
+
+            try:
+
+                f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
+
+                                                       file_size='' if size is None else size,
+
+                                                       file_caption='' if f_caption is None else f_caption)
+
+            except Exception as e:
+
+                logger.exception(e)
+
+            f_caption = f_caption
+
+            size = size
+
+            mention = mention
+
+        if f_caption is None:
+
+            f_caption = f"{files.file_name}"
+
+            size = f"{files.file_size}"
+
+            mention = f"{query.from_user.mention}"
+
+
+
+        try:
+
+            buttons = [
+
+                    [
+
+                        InlineKeyboardButton('Series', url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}"),
+
+                        InlineKeyboardButton('Movies', url='https://t.me/nasrani_update'),
+
+                    ]
+
+                    ]
+
+            msg = await client.send_cached_media(
+
+                chat_id=AUTH_CHANNEL,
+
+                file_id=file_id,
+
+                caption=f'<b> 𝐇𝐞𝐲 👋 {query.from_user.mention} </b>😍\n 📂 Mᴏᴠɪᴇ Nᴀᴍᴇ : <code>{title}</code>\n ⚙️ Mᴏᴠɪᴇ Sɪᴢᴇ: {size}  \n\n⚠️ കോപ്പി റൈറ്റ് ഉള്ളത് കൊണ്ട് ഈ ഒരു ഫയൽ 5 മിനിറ്റ് കൊണ്ട് ഇവിടെ നിന്നും ഡിലേറ്റാവും...!!!\n\n\nഇവിടെ നിന്നും വേറെ എവിടേലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക...!!!\nFILES FORWARD TO YOUR SAVED MESSAGES\n\n\nAll files here Gets Deleted With in 5 Minutes\n╔════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═════╗\n\n♻️ 𝙅𝙊𝙄𝙉 :- @nasrani_update\n♻️ 𝙅𝙊𝙄𝙉 :- @NasraniSeries\n╚════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═════╝</b>\n',
+                
+                protect_content=True if ident == "filep" else False,
+
+                reply_markup=InlineKeyboardMarkup(buttons)
+                    
+            )
+            
+            msg1 = await query.message.reply(
+
+                f'<b> 𝐇𝐞𝐲 👋 {query.from_user.mention} </b>😍\n\n<b>📫 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐢𝐬 𝐑𝐞𝐚𝐝𝐲\n\n ꜰɪʟᴇꜱ ʜᴇʀᴇ ɢᴇᴛꜱ ᴅᴇʟᴇᴛᴇᴅ ᴡɪᴛʜ ɪɴ 5 ᴍɪɴᴜᴛᴇꜱ \n\nᴘʟᴇᴀꜱᴇ ᴄʟɪᴄᴋ ᴛʜᴇ ᴍɪᴅᴅʟᴇ ʙᴜᴛᴛᴏɴ ᴀɴᴅ ᴊᴏɪɴ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n</b>'           
+
+                f'<b>📂 Mᴏᴠɪᴇ Nᴀᴍᴇ</b> : <code>{title}</code>\n\n'              
+
+                f'<b>⚙️ Mᴏᴠɪᴇ Sɪᴢᴇ</b> : <b>{size}</b>',
+
+                True,
+
+                'html',
+
+                reply_markup=InlineKeyboardMarkup(
+
+                    [
+                        [
+                            InlineKeyboardButton(f'ɪɴғᴏ', 'infos')
+                        ],
+                        [
+                            InlineKeyboardButton("⚠️ Can't Access ❓ Click Here ⚠️", url=(FILE_FORWARD))
+                        ],                       
+                        [
+                            InlineKeyboardButton('📥 Download 📥 ', url = file_send.link)
+                        ]
+                    ]
+                )
+            )
+
+            await query.answer('📥𝔻𝕆𝕎ℕ𝕃𝕆𝔸𝔻📥',)
+            await asyncio.sleep(120)
+            await msg1.delete()
+            await msg.delete()           
+            del msg1, msg
+
+        except Exception as e:
+
+            logger.exception(e, exc_info=True)
+
+            await query.answer(f"Encountering Issues", True)
+
+
+
     elif query.data.startswith("checksub"):
-        if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query):
-            await query.answer("𝑰 𝑳𝒊𝒌𝒆 𝒀𝒐𝒖𝒓 𝑺𝒎𝒂𝒓𝒕𝒏𝒆𝒔𝒔, 𝑩𝒖𝒕 𝑫𝒐𝒏'𝒕 𝑩𝒆 𝑶𝒗𝒆𝒓𝒔𝒎𝒂𝒓𝒕 😒\n@𝒄𝒊𝒏𝒆𝒎𝒂𝒍𝒂.𝒄𝒐𝒎", show_alert=True)
+
+        if AUTH_CHANNEL and not await is_subscribed(client, query):
+
+            await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒", show_alert=True)
+
             return
+
         ident, file_id = query.data.split("#")
         files_ = await get_file_details(file_id)
         if not files_:
