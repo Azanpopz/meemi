@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
 
-@Client.on_message((filters.command(["start", "Start"]) | filters.regex(".start") | filters.regex(".Start")) & filters.group)
+@Client.on_message((filters.command(["start", "Start"]) | filters.regex(".start") | filters.regex(".Start")) & filters.group & filters.private & filters.incoming)
 # @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
