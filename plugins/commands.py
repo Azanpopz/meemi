@@ -63,9 +63,9 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-    if MY_CHANNEL and not await is_subscribed(client, message):
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
-            invite_link = await client.create_chat_invite_link(int(MY_CHANNEL))
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
         except ChatAdminRequired:
             logger.error("Make sure Bot is admin in Forcesub channel")
             return
