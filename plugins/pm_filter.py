@@ -593,17 +593,9 @@ async def next_page(bot, query):
     ])
 
 
-        btn.append(
-            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
-             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
-        )
-    else:
-        btn.append(
-            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
-        )
 
 
-.
+
 
     if SELECT[int(req)] == "ACTIVE":
         btn.append(
@@ -2040,24 +2032,7 @@ async def auto_filter(client, msg, spoll=False):
     ])
 
 
-        btn.append(
-            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
-             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
-        )
-    else:
-        btn.append(
-            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
-        )
 
-
-        btn.insert(2
-            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
-             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
-        )
-    else:
-        btn.insert(1
-            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
-        )
 
 
 
