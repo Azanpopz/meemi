@@ -2094,12 +2094,12 @@ async def auto_filter(client, msg, spoll=False):
                 btn.append(
                     [InlineKeyboardButton("ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​ ≫",callback_data=f"next_{req}_{key}_{offset}")]
                 )
-            else:
+            
                 btn.append(
                     [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
                      InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
                 )
-            else:
+            
                 btn.append(
                     [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
                 )
