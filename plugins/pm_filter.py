@@ -1,5 +1,19 @@
 # Kanged From @TroJanZheX
 # REDIRECT added https://github.com/Joelkb
+
+import json
+import os
+import re
+import ast
+import asyncio
+import logging
+import random
+import pyrogram
+
+from info import *
+
+
+
 import asyncio
 import re
 import ast
@@ -2179,31 +2193,6 @@ async def auto_filter(client, msg, spoll=False):
 
 
 
-    if SELECT[int(req)] == "ACTIVE":
-        btn.append(
-            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
-             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
-        )
-    else:
-        btn.append(
-            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
-        )
-
-    btn.insert(0, [
-        InlineKeyboardButton("⭕️ Nᴇᴡ Uᴘᴅᴀᴛᴇs ⭕️", url="https://t.me/UFSFilmUpdate")
-    ])
-
-    btn.insert(0, [
-        InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
-        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
-    ])
-    try:
-        await query.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(btn)
-        )
-    except MessageNotModified:
-        pass
-    await query.answer()
 
 
 
@@ -2249,6 +2238,36 @@ async def auto_filter(client, msg, spoll=False):
         btn.append(
             [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
         )
+
+
+    if SELECT[int(req)] == "ACTIVE":
+        btn.append(
+            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
+             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
+        )
+    else:
+        btn.append(
+            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
+        )
+
+    btn.insert(0, [
+        InlineKeyboardButton("⭕️ Nᴇᴡ Uᴘᴅᴀᴛᴇs ⭕️", url="https://t.me/UFSFilmUpdate")
+    ])
+
+    btn.insert(0, [
+        InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
+        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
+    ])
+    try:
+        await query.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+    except MessageNotModified:
+        pass
+    await query.answer()
+
+
+
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
