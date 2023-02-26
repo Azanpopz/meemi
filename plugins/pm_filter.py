@@ -135,7 +135,7 @@ async def select_files(bot, query):
         del SELECT[int(req)]
 
     if FILES.get(int(req)):
-        del FILES[int(req)]
+        del files[int(req)]
 
     SELECT[int(req)] = "ACTIVE"
     try:
@@ -222,7 +222,7 @@ async def deselect_all(bot, query):
         del SELECT[int(req)]
 
     if FILES.get(int(req)):
-        del FILES[int(req)]
+        del files[int(req)]
 
     SELECT[int(req)] = "DE-ACTIVE"
     await auto_filter(bot, query.message.reply_to_message, cb=query)
@@ -254,7 +254,7 @@ async def send_files(bot, query):
             "Nice Try! But, This Was Not Your Request, Request Yourself;",
             show_alert=True)
 
-    for file_id in FILES[int(req)]:
+    for file_id in files[int(req)]:
         files_ = await get_file_details(file_id)
 
         if not files_:
@@ -309,7 +309,7 @@ async def send_files(bot, query):
         del SELECT[int(req)]
 
     if FILES[int(req)]:
-        del FILES[int(req)]
+        del files[int(req)]
 
     SELECT[int(req)] = "DE-ACTIVE"
     await auto_filter(bot, query.message.reply_to_message, cb=query)
@@ -408,7 +408,7 @@ async def next_page(bot, query):
             btn = [
             [
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"[{get_size(file.file_size)}] - 🎬 {file.file_name}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"[{get_size(file.file_size)}] - 🎬 {file.file_name}",
                     callback_data=f'files#{file.file_id}'
                 ),
             ]
@@ -418,11 +418,11 @@ async def next_page(bot, query):
             btn = [
             [
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"{file.file_name}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"{file.file_name}",
                     callback_data=f'files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"{get_size(file.file_size)}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"{get_size(file.file_size)}",
                     callback_data=f'files_#{file.file_id}',
                 ),
             ]
@@ -433,7 +433,7 @@ async def next_page(bot, query):
             btn = [
             [
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"[{get_size(file.file_size)}] - 🎬 {file.file_name}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"[{get_size(file.file_size)}] - 🎬 {file.file_name}",
                     callback_data=f'files#{file.file_id}'
                 ),
             ]
@@ -443,11 +443,11 @@ async def next_page(bot, query):
             btn = [
             [
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"{file.file_name}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"{file.file_name}",
                     callback_data=f'files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"{get_size(file.file_size)}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"{get_size(file.file_size)}",
                     callback_data=f'files_#{file.file_id}',
                 ),
             ]
@@ -1951,7 +1951,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
             [
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"[{get_size(file.file_size)}] - 🎬 {file.file_name}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"[{get_size(file.file_size)}] - 🎬 {file.file_name}",
                     callback_data=f'files#{file.file_id}'
                 ),
             ]
@@ -1961,11 +1961,11 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
             [
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"{file.file_name}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"{file.file_name}",
                     callback_data=f'files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
-                    text='Selected ✅' if file.file_id in FILES[int(req)] else f"{get_size(file.file_size)}",
+                    text='Selected ✅' if file.file_id in files[int(req)] else f"{get_size(file.file_size)}",
                     callback_data=f'files_#{file.file_id}',
                 ),
             ]
