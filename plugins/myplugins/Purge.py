@@ -24,7 +24,7 @@ async def purge(client, message):
             message.reply_to_message.id, message.id
         ):
             message_ids.append(a_s_message_id)
-            if len(message_ids) == Configs.TG_MAX_SELECT_LEN:
+            if len(message_ids) == "1000":
                 count_del_etion_s += await client.delete_messages(
                     chat_id=message.chat.id, message_ids=message_ids, revoke=True
                 )
