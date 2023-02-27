@@ -304,7 +304,7 @@ async def vsong(client, message: Message):
 **𝚁𝙴𝚀𝚄𝙴𝚂𝚃𝙴𝙳 𝙱𝚈 :** {message.from_user.mention}
 """
     await client.send_video(
-        chat_id=message.chat.id,
+        message.chat.id,
         video=open(file_stark, "rb"),
         duration=int(ytdl_data["duration"]),
         file_name=str(ytdl_data["title"]),
@@ -312,7 +312,7 @@ async def vsong(client, message: Message):
         caption=capy,
         supports_streaming=True,
         progress=progress,
-        reply_to_message_id=message.message_id,
+        reply_to_message_id=message.id 
         
         progress_args=(
             pablo,
