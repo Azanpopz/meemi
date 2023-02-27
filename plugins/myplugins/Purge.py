@@ -5,7 +5,7 @@ from plugins.functions.handlers import Purge
 from Midukki import Configs
 
 
-@Client.on_message(Purge.a)
+@Client.on_message(filters.command(["purge", "purges"]))
 async def purge(client, message):
     """ purge upto the replied message """
     if message.chat.type not in [ChatType.SUPERGROUP, ChatType.CHANNEL]:
