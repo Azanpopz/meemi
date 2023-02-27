@@ -1968,7 +1968,7 @@ async def advantage_spell_chok(client, msg):
         # await asyncio.sleep(8)
         # await k.delete()
         return
-    SPELL_CHECK[msg.message_id] = movielist
+    SPELL_CHECK[mv_id] = movielist
     i = 1
     pre_len = {}
     btn = []
