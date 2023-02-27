@@ -1946,9 +1946,7 @@ async def advantage_spell_chok(client, msg):
     btn = [
         [
             InlineKeyboardButton(
-                text=movie_name.strip(),
-                callback_data=f"spol#{reqstr1}#{k}", same)
-            
+                text=movie_name.strip(), callback_data=f"spol#{reqstr1}#{k}", same)            
         ]
         for k, movie_name in enumerate(movielist)
     ]
