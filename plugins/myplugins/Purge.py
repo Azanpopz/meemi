@@ -3,7 +3,7 @@ import asyncio
 from info import TG_MAX_MSG_SELECT
 from pyrogram import Client, filters
 from plugins.helpers.admin_check import admin_check
-from plugins.helpers.custom_filter.py import f_onw_fliter
+from plugins.helpers.custom_filter import f_onw_fliter
 
 
 @Client.on_message(filters.command(["pr"]) & f_onw_fliter)
