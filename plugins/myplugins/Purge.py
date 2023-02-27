@@ -1,8 +1,8 @@
 import asyncio
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
-from pyrogram.functions.handlers import Purge
-from Midukki import Configs
+from plugins.functions.handlers import Purge
+from pyrogram import Configs
 
 
 @Client.on_message(Purge.a)
