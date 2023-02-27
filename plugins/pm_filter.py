@@ -1960,7 +1960,7 @@ async def advantage_spell_chok(client, msg):
 
         btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-    btn.append(["❌ Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    btn.append(["❌ Close", callback_data=f'spol#{reqstr1}#close_spellcheck', False])
     btn = build_keyboard(btn)
 
     btn.insert(0, [
