@@ -1,7 +1,7 @@
 import os
 import aiohttp
 import json
-from pyrogram import Client, filters, emoji
+from pyrogram import Client, filters, enums, emoji
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import asyncio
 
@@ -73,7 +73,7 @@ async def find(_, message):
                 ]
             ]
         ),
-        parse_mode="markdown",
+        parse_mode=enums.ParseMode.HTML",
     )
     
 
@@ -110,7 +110,7 @@ async def callback_query_next(_, message):
                 ]
             ]
         ),
-        parse_mode="markdown",
+        parse_mode=enums.ParseMode.HTML",
     )
 
 
@@ -146,7 +146,7 @@ async def callback_query_previous(_, message):
                 ]
             ]
         ),
-        parse_mode="markdown",
+        parse_mode=enums.ParseMode.HTML",
     )
 
 
