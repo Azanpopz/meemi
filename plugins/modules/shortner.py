@@ -3,7 +3,7 @@ import aiohttp
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
 from pyshorteners import Shortener
-
+from pyrogram.handlers import MessageHandler
 
 BITLY_API = os.environ.get("BITLY_API", None)
 CUTTLY_API = os.environ.get("CUTTLY_API", None)
