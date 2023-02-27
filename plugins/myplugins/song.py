@@ -312,7 +312,7 @@ async def vsong(client, message: Message):
         caption=capy,
         supports_streaming=True,
         progress=progress,
-        reply_to_message_id=message.id 
+        reply_to_message_id=message.id,
         
         progress_args=(
             pablo,
