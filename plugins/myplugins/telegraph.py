@@ -8,7 +8,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 TMP_DOWNLOAD_DIRECTORY = "./DOWNLOADS/"
 
 @Client.on_message(
-    filters.command("tele") 
+    filters.command("telegraph") 
 )
 async def telegraph(client, message):
     koshik = await message.reply_text("**Processing...😪**")
