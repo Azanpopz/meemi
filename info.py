@@ -76,6 +76,7 @@ SPELL_IMG = environ.get('SPELL_IMG',"https://telegra.ph/file/b58f576fed14cd645d2
 MELCOW_IMG = environ.get('MELCOW_IMG',"https://telegra.ph/file/e54cae941b9b81f13eb71.jpg")
 MELCOW_VID = environ.get('MELCOW_VID',"")
 
+TG_MAX_MSG_SELECT = int(environ.get('TG_MAX_MSG_SELECT', 1000))
 
 
 # Admins, Channels & Users
