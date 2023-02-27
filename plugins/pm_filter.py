@@ -1943,36 +1943,21 @@ async def advantage_spell_chok(client, msg):
             
         
 
-    btn = ([text, f"spol#{reqstr1}#{k}", same])
-
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=movie_name.strip(),
+                callback_data=f"spol#{reqstr1}#{k}", same)
+            
+        ]
+        for k, movie_name in enumerate(movielist)
+    ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-
-
-    btn.insert(0, [
-        InlineKeyboardButton("⭕️ Wᴇʙ Sᴇʀɪᴇs ⭕️", url="https://t.me/UFSWebSeries")
-    ])
-
-    btn.insert(0, [
-        InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
-        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
-    ])
-
-    # btn = [[
-    #                InlineKeyboardButton(
-    #                    text=movie.strip(),
-    #                    callback_data=f"spolling#{user}#{k}",
-    #                )
-    #            ] for k, movie in enumerate(movielist)]
-    # btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    # btn.insert(0, [
-    #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
-    #     InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
-    # ])
-    await msg.reply("I Couldn't Find Anything Related To That\nDid You Mean Any One Of These 👇🏻?",
-                    reply_markup=InlineKeyboardMarkup(btn))
-
-
-
+    spell_check_del = await msg.reply_photo(
+        photo=(SPELL_IMG),
+        caption=(script.CUDNT_FND.format(reqstr.mention)),
+        reply_markup=InlineKeyboardMarkup(btn)
+        )
 
 
 
