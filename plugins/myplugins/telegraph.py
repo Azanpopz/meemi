@@ -4,7 +4,7 @@ from pyrogram import Client, filters, enums
 from telegraph import upload_file
 from info import TMP_DOWNLOAD_DIRECTORY
 from plugins.helpers.cust_p_filters import f_onw_fliter
-from plugins.helper_functions.get_file_id import get_file_id
+from plugins.helpers.get_file_id import get_file_id
 
 
 @Client.on_message(
