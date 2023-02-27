@@ -73,7 +73,7 @@ async def find(_, message):
                 ]
             ]
         ),
-        parse_mode=enums.ParseMode.HTML",
+        parse_mode=enums.ParseMode.HTML
     )
     
 
@@ -110,7 +110,7 @@ async def callback_query_next(_, message):
                 ]
             ]
         ),
-        parse_mode=enums.ParseMode.HTML",
+        parse_mode=enums.ParseMode.HTML
     )
 
 
@@ -146,7 +146,7 @@ async def callback_query_previous(_, message):
                 ]
             ]
         ),
-        parse_mode=enums.ParseMode.HTML",
+        parse_mode=enums.ParseMode.HTML
     )
 
 
