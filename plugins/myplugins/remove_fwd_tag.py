@@ -15,10 +15,10 @@ Bot = Client(
      api_hash = os.environ["API_HASH"]
 )
 
-@Client.on_message(filters.forwarded & filters.channel & filters.group & filters.incoming)
+@Client.on_message(filters.forwarded & filters.channel & filters.incoming)
 async def channel_tag(bot, message):
     try:
-        chat_id = CHANNELS
+        chat_id = message.chat.id
         forward_msg = await message.copy(chat_id)
         await message.delete()
     except:
