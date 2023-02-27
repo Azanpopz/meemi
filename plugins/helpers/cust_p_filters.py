@@ -1,7 +1,7 @@
 from pyrogram import (
     filters
 )
-from info import ADMINS, AUTH_USERS
+from info import ADMINS, AUTH_USERS, USE_AS_BOT
 from plugins.helpers.admin_check import admin_check
 import os
 
