@@ -6,7 +6,21 @@ from plugins.helpers.admin_check import admin_check
 from plugins.helpers.custom_filter import f_onw_fliter
 
 
-@Client.on_message(filters.command(["pr"]) & f_onw_fliter)
+
+import asyncio
+from pyrogram import Client, filters, enums
+from pyrogram.enums import ChatType
+
+
+@Client.on_message(filters.command(["purge"]) & f_onw_fliter)
+async def purge(client, message):
+    """ purge upto the replied message """
+    if message.chat.type not in [ChatType.SUPERGROUP, ChatType.CHANNEL]:
+        await message.delete()
+        return
+
+
+
 async def purge(client, message):
     """ purge upto the replied message """
     if message.chat.type not in ("SUPERGROUP", "CHANNEL"):
