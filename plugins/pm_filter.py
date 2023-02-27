@@ -1944,12 +1944,13 @@ async def advantage_spell_chok(client, msg):
         
 
     btn = [
-        [
-            InlineKeyboardButton(
-                text=movie_name.strip(), callback_data=f"spol#{reqstr1}#{k}", same)            
-        ]
-        for k, movie_name in enumerate(movielist)
-    ]
+                [
+                    InlineKeyboardButton(
+                        text=f"▫️movie_name.strip()", callback_data=f"spol#{reqstr1}#{k}")
+                    ),
+                ]
+                for k, movie_name in enumerate(movielist)
+            ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
     spell_check_del = await msg.reply_photo(
         photo=(SPELL_IMG),
