@@ -1956,7 +1956,30 @@ async def advantage_spell_chok(client, msg):
     ])
 
 
+    btn = [
+                [
+                    InlineKeyboardButton(
+                        text, callback_data=f"spol#{reqstr1}#{k} same",)
+                    ),
+                ]
+                for k, movie_name in enumerate(movielist)
+            ]
+    btn.insert(0, [
+        InlineKeyboardButton("⭕️ Wᴇʙ Sᴇʀɪᴇs ⭕️", url="https://t.me/UFSWebSeries")
+    ])
 
+    btn.insert(0, [
+        InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
+        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
+    ])
+
+
+    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    spell_check_del = await msg.reply_photo(
+        photo=(SPELL_IMG),
+        caption=(script.CUDNT_FND.format(reqstr.mention)),
+        reply_markup=InlineKeyboardMarkup(btn)
+        )
 
 
 
