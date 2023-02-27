@@ -77,6 +77,7 @@ MELCOW_IMG = environ.get('MELCOW_IMG',"https://telegra.ph/file/e54cae941b9b81f13
 MELCOW_VID = environ.get('MELCOW_VID',"")
 
 TG_MAX_MSG_SELECT = int(environ.get('TG_MAX_MSG_SELECT', 1000))
+USE_AS_BOT = environ.get("USE_AS_BOT", True)
 
 
 # Admins, Channels & Users
