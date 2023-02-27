@@ -1941,9 +1941,9 @@ async def advantage_spell_chok(client, msg):
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
 
-        btn.append([text, f"spol#{reqstr1}#{k}", same])
+    btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-    btn.append(["❌ Close", f'spolling#{user}#close_spellcheck', False])
+    btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck'])
     btn = build_keyboard(btn)
 
     btn.insert(0, [
