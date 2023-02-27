@@ -38,7 +38,7 @@ async def reply_shortens(bot, update):
         disable_web_page_preview=True
     )
 
-@Client.on_message(filters.command(["link"]) & filters.regex(r'https?://[^\s]+') & filters.reply)
+@Client.on_message(filters.command(["linkshort"]) & filters.regex(r'https?://[^\s]+') & filters.reply)
 
 async def reply_shortens(bot, update):
     message = await update.reply_text(
