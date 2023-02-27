@@ -1939,19 +1939,30 @@ async def advantage_spell_chok(client, msg):
         return
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
-    SPELL_CHECK[mv_id] = movielist
+    SPELL_CHECK[msg.message_id] = movielist
+    i = 1
+    pre_len = {}
+    btn = []
+    # movielist.sort(key=len)
+    for k, movie in enumerate(movielist):
+        text = movie.strip()  # args[2]
+        same = False
+        if (i % 2) == 0:
+            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                same = False
+            else:
+                same = True
+        else:
+            pre_len["text_len"] = len(text)
+            same = False
 
+        i += 1
 
+        btn.append([text, f"spol#{reqstr1}#{k}", same])
 
+    btn.append(["❌ Close", callback_data=f'spol#{reqstr1}#close_spellcheck])
+    btn = build_keyboard(btn)
 
-    btn = [
-                [
-                    InlineKeyboardButton(
-                        text=movie_name.strip(), callback_data=f"spol#{reqstr1}#{k}", same
-                    )
-                ]
-                for k, movie_name in enumerate(movielist)
-            ]
     btn.insert(0, [
         InlineKeyboardButton("⭕️ Wᴇʙ Sᴇʀɪᴇs ⭕️", url="https://t.me/UFSWebSeries")
     ])
@@ -1961,13 +1972,19 @@ async def advantage_spell_chok(client, msg):
         InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
     ])
 
-
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    spell_check_del = await msg.reply_photo(
-        photo=(SPELL_IMG),
-        caption=(script.CUDNT_FND.format(reqstr.mention)),
-        reply_markup=InlineKeyboardMarkup(btn)
-        )
+    # btn = [[
+    #                InlineKeyboardButton(
+    #                    text=movie.strip(),
+    #                    callback_data=f"spolling#{user}#{k}",
+    #                )
+    #            ] for k, movie in enumerate(movielist)]
+    # btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
+    # btn.insert(0, [
+    #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
+    #     InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
+    # ])
+    await msg.reply("I Couldn't Find Anything Related To That\nDid You Mean Any One Of These 👇🏻?",
+                    reply_markup=InlineKeyboardMarkup(btn))
 
 
 
