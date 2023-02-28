@@ -26,14 +26,14 @@ async def start_message(bot, message):
         except UserNotParticipant:
               
            button = [[
-              InlineKeyboardButton("Mo Tech YT", url="https://t.me/+r_y-yTPhXkQwMzdl")
-              ]]             
-            await message.reply_text(
+             InlineKeyboardButton("Mo Tech YT", url="https://t.me/+r_y-yTPhXkQwMzdl")
+             ]]             
+           await message.reply_text(
         
-            text="Hello {message.from_user.mention}   Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
-            reply_markup=InlineKeyboardMarkup(buttons)
-        ) 
+           text="Hello {message.from_user.mention}   Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
+           reply_markup=InlineKeyboardMarkup(buttons)
+       ) 
    
-            await message.reply_text("done")
+           await message.reply_text("done")
 
       
