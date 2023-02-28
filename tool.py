@@ -2,7 +2,7 @@
 # Scrappers
 
 import aiohttp
-from info import Config
+from configs import Config
 from requests.utils import requote_uri
 
 API_1337x = "https://api.abir-hasan.tk/1337x?query={}&limit={}"
