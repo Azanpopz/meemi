@@ -70,8 +70,7 @@ def start(client, message):
 @Client.on_message(filters.command(["about"]))
 def abouts(client, message):
     client.send_message(
-        chat_id=message.chat.id,
-        reply_to_message_id=message.message_id,
+        chat_id=message.chat.id,      
         text=about,
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(
