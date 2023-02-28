@@ -6,7 +6,7 @@ from pyrogram.errors import QueryIdInvalid, FloodWait
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InlineQuery, InlineQueryResultArticle, \
     InputTextMessageContent
 
-from info import Config
+from configs import Config
 from tool import SearchYTS, SearchAnime, Search1337x, SearchPirateBay
 
 
@@ -20,7 +20,7 @@ from plugins.helpers.admin_check import admin_check
 
 
 
-Bot = Client(session_name=Config.SESSION, api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
+Bot = Client(session_name=Config.SESSION_NAME, api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
 DEFAULT_SEARCH_MARKUP = [
                     [InlineKeyboardButton("Search YTS", switch_inline_query_current_chat="!yts "),
                      InlineKeyboardButton("Go Inline", switch_inline_query="!yts ")],
@@ -266,9 +266,9 @@ async def inline_handlers(_, inline: InlineQuery):
             results=answers,
             cache_time=0
         )
-        print(f"[{Config.SESSION}] - Answered Successfully - {inline.from_user.first_name}")
+        print(f"[{Config.SESSION_NAME}] - Answered Successfully - {inline.from_user.first_name}")
     except QueryIdInvalid:
-        print(f"[{Config.SESSION}] - Failed to Answer - {inline.from_user.first_name} - Sleeping for 5s")
+        print(f"[{Config.SESSION_NAME}] - Failed to Answer - {inline.from_user.first_name} - Sleeping for 5s")
         await asyncio.sleep(5)
         try:
             await inline.answer(
@@ -278,7 +278,7 @@ async def inline_handlers(_, inline: InlineQuery):
                 switch_pm_parameter="start",
             )
         except QueryIdInvalid:
-            print(f"[{Config.SESSION}] - Failed to Answer Error - {inline.from_user.first_name} - Sleeping for 5s")
+            print(f"[{Config.SESSION_NAME}] - Failed to Answer Error - {inline.from_user.first_name} - Sleeping for 5s")
             await asyncio.sleep(5)
 
 
