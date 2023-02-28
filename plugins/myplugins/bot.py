@@ -82,8 +82,7 @@ def abouts(client, message):
 @Client.on_message(filters.command(["logg"]))
 def stats(client, message):
     stat = client.send_message(
-        chat_id=message.chat.id,
-        reply_to_message_id=message.message_id,
+        chat_id=message.chat.id,       
         text="`Fetching details`",
     )
     txt = logreturn()
