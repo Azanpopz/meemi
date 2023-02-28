@@ -13,7 +13,7 @@ force_channel = "+r_y-yTPhXkQwMzdl"
 async def start_message(bot, message)
    if  force_channel:
         try:
-            user = await bot.get_chat_member(force_channel, msg.from_user.id)
+            user = await bot.get_chat_member(force_channel, message.from_user.id)
             if user.status == "kicked out":
                 await message.reply_text("Join channel")
                 return
