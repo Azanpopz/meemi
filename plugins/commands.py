@@ -43,7 +43,7 @@ async def start_message(client, message):
 
            buttons = [
             [
-                InlineKeyboardButton('🤖 Updates', url=https://t.me/nasrani_batch_store)
+                InlineKeyboardButton('🤖 Updates', url="https://t.me/nasrani_batch_store")
             ],
             [
                 InlineKeyboardButton('ʜᴇʟᴘ', url=f"https://t.me/{temp.U_NAME}?start=help"),
