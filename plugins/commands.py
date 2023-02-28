@@ -25,6 +25,10 @@ import json
 import base64
 logger = logging.getLogger(__name__)
 
+force_channel = "+r_y-yTPhXkQwMzdl"
+
+
+
 BATCH_FILES = {}
 
 @Client.on_message(filters.command("start")) 
