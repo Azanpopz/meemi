@@ -13,4 +13,4 @@ class cred:
     API_HASH = os.getenv(
         "API_HASH"
     )  # "Get this value from my.telegram.org! Please do not steal"
-    DATABASE_URL = os.getenv("DATABASE_URL")  # From Firebase database
+    DB_URL = os.getenv("DB_URL")  # From Firebase database
