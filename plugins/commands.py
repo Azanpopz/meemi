@@ -25,7 +25,7 @@ import json
 import base64
 logger = logging.getLogger(__name__)
 
-force_channel = "+r_y-yTPhXkQwMzdl"
+force_channel = "nasrani_batch_store"
 
 
 
