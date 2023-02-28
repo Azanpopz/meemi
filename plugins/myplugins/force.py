@@ -10,10 +10,10 @@ force_channel = "+r_y-yTPhXkQwMzdl"
 
 
 @Client.on_message(filters.command("star")) 
-async def start_message(bot, message)
+async def start_message(client, message)
    if  force_channel:
         try:
-            user = await bot.get_chat_member(force_channel, message.from_user.id)
+            user = await client.get_chat_member(force_channel, message.from_user.id)
             if user.status == "kicked out":
                 await message.reply_text("Join channel")
                 return
@@ -22,7 +22,7 @@ async def start_message(bot, message)
            button = [[
               InlineKeyboardButton("Mo Tech YT", url="https://t.me/+r_y-yTPhXkQwMzdl")
               ]]             
-            await msg.reply_text(
+            await message.reply_text(
         
             text="Hello {message.from_user.mention}   Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
             reply_markup=InlineKeyboardMarkup(buttons)
