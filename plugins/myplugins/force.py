@@ -15,7 +15,7 @@ async def start_message(bot, message)
         try:
             user = await bot.get_chat_member(force_channel, msg.from_user.id)
             if user.status == "kicked out":
-                await msg.reply_text("Join channel")
+                await message.reply_text("Join channel")
                 return
         except UserNotParticipant:
               
@@ -24,10 +24,10 @@ async def start_message(bot, message)
               ]]             
             await msg.reply_text(
         
-            text="Hello {msg.from_user.mention}   Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
+            text="Hello {message.from_user.mention}   Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
             reply_markup=InlineKeyboardMarkup(buttons)
         ) 
    
-            await msg.reply_text("done")
+            await message.reply_text("done")
 
       
