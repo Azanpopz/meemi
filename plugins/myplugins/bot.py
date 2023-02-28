@@ -87,9 +87,9 @@ def stats(client, message):
         text="`Fetching details`",
         reply_markup=reply_markup,
         parse_mode=enums.ParseMode.HTML
-        )
-        
     )
+        
+    
     txt = logreturn()
     stat.edit(txt)
 
