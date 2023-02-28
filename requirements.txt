@@ -41,3 +41,13 @@ python-telegram-bot==10.1.0
 ### torrent ###
 aiohttp
 
+
+
+
+
+firebase
+gcloud
+pycryptodome
+python-jwt
+requests-toolbelt
+sseclient
