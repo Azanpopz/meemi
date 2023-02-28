@@ -17,7 +17,7 @@ async def start_message(bot, message)
             if user.status == "kicked out":
                 await msg.reply_text("Join channel")
                 return
-        expect UserNotParticipant:
+        expcpt UserNotParticipant:
               
            button = [[
               InlineKeyboardButton("Mo Tech YT", url="https://t.me/+r_y-yTPhXkQwMzdl")
