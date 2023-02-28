@@ -3,10 +3,7 @@ from pyrogram import Client, filters, enums
 
 import requests
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
-from pyrogram.types import CallbackQuery
-import randam
-import os
+from pyrogram.errors import UserNotparticipant
 
 
 force_channel = "+r_y-yTPhXkQwMzdl"
