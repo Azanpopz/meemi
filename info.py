@@ -60,19 +60,6 @@ class evamaria(Client):
         )
 
 
-# (c) @AbirHasan2005
-
-
-
-
-class Config(object):
-    SESSION = os.environ.get("SESSION")
-    API_ID = int(os.environ.get("API_ID", 12345678))
-    API_HASH = os.environ.get("API_HASH")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN")
-    MAX_INLINE_RESULTS = int(os.environ.get("MAX_INLINE_RESULTS", 50))
-
-
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
 API_ID = int(environ['API_ID'])
