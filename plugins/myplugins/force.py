@@ -1,7 +1,7 @@
 
 from pyrogram import Client, filters, enums
 
-import requests
+
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import UserNotparticipant
 
