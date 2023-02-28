@@ -45,9 +45,4 @@ aiohttp
 
 
 
-firebase
-gcloud
-pycryptodome
-python-jwt
-requests-toolbelt
-sseclient
+
