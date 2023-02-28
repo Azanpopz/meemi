@@ -66,7 +66,7 @@ class evamaria(Client):
 
 
 class Config(object):
-    SESSION_NAME = os.environ.get("SESSION_NAME")
+    SESSION = os.environ.get("SESSION")
     API_ID = int(os.environ.get("API_ID", 12345678))
     API_HASH = os.environ.get("API_HASH")
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
