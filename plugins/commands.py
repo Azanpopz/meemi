@@ -28,10 +28,10 @@ logger = logging.getLogger(__name__)
 BATCH_FILES = {}
 
 @Client.on_message(filters.command("start")) 
-async def start_message(bot, message):
+async def start_message(client, message):
    if  force_channel:
         try:
-            user = await bot.get_chat_member(force_channel, message.from_user.id)
+            user = await client.get_chat_member(force_channel, message.from_user.id)
             if user.status == "kicked out":
                 await message.reply_text("Join channel")
                 return
