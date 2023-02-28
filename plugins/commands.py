@@ -53,7 +53,7 @@ async def start_message(client, message):
         await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
         await asyncio.sleep(2)
         return
-        button = [[
+        buttons = [[
           InlineKeyboardButton("Mo Tech YT", url="https://t.me/+r_y-yTPhXkQwMzdl")
           ]]             
         await msg.reply_text(
