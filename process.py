@@ -2,7 +2,7 @@ from firebase import firebase as fb
 import datetime
 import pytz
 from creds import cred
-firebase = fb.FirebaseApplication(cred.DATABASE_URL)
+firebase = fb.FirebaseApplication(cred.DB_URL)
 
 
 def datefind():
