@@ -41,14 +41,17 @@ async def start_message(client, message):
                 return
         except UserNotParticipant:
 
-           button = [[
-             InlineKeyboardButton("Mo Tech YT", url="https://t.me/nasrani_batch_store")
-             ]]             
-           await message.reply_text(
-        
-           text="Hello {message.from_user.mention}   Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
-           reply_markup=InlineKeyboardMarkup(buttons)
-       ) 
+           buttons = [
+            [
+                InlineKeyboardButton('🤖 Updates', url=https://t.me/nasrani_batch_store)
+            ],
+            [
+                InlineKeyboardButton('ʜᴇʟᴘ', url=f"https://t.me/{temp.U_NAME}?start=help"),
+            ]
+            ]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
+        await asyncio.sleep(2)
         if not await db.get_chat(message.chat.id):
             total=await client.get_chat_members_count(message.chat.id)
             await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
