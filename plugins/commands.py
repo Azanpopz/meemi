@@ -42,7 +42,7 @@ async def start_message(client, message):
         except UserNotParticipant:
 
            button = [[
-             InlineKeyboardButton("Mo Tech YT", url="https://t.me/+r_y-yTPhXkQwMzdl")
+             InlineKeyboardButton("Mo Tech YT", url="https://t.me/nasrani_batch_store")
              ]]             
            await message.reply_text(
         
