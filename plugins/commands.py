@@ -42,7 +42,7 @@ async def start_message(client, message):
         except UserNotParticipant:
 
            buttons = [[
-               InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
+               InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='https://t.me/nasrani_batch_store')
            ]]
            reply_markup = InlineKeyboardMarkup(buttons)
            m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
@@ -59,9 +59,7 @@ async def start_message(client, message):
             InlineKeyboardButton('sᴜʀᴘ🥺🥺🥺ʀɪsᴇ', callback_data='start')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
-        await asyncio.sleep(1)
-        await m.delete()        
+        await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")                 
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
