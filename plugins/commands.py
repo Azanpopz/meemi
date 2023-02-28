@@ -54,7 +54,7 @@ async def start_message(client, message):
                reply_markup=reply_markup,
                parse_mode=enums.ParseMode.HTML
            )
-#        return
+        return
         await message.reply_text("done")
 
 
@@ -64,9 +64,6 @@ async def start_message(client, message):
 
 
 
-@Client.on_message(filters.command("help") & filters.incoming)
-async def start(client, message):
-    if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
             [
                 InlineKeyboardButton('🤖 Updates', url=(MAIN_CHANNEL))
