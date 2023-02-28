@@ -41,20 +41,22 @@ async def start_message(client, message):
                 return
         except UserNotParticipant:
 
-           buttons = [
-            [
-                InlineKeyboardButton('🤖 Updates', url="https://t.me/nasrani_batch_store")
-            ],
-            [
-                InlineKeyboardButton('ʜᴇʟᴘ', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            ]
-            ]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
-        await asyncio.sleep(2)
+           buttons = [[
+               InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
+           ]]
+           reply_markup = InlineKeyboardMarkup(buttons)
+           m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
+           await asyncio.sleep(1)
+           await m.delete()        
+           await message.reply_photo(
+               photo=random.choice(PICS),
+               caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+               reply_markup=reply_markup,
+               parse_mode=enums.ParseMode.HTML
+           )
         return
         buttons = [[
-            InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
+            InlineKeyboardButton('sᴜʀᴘ🥺🥺🥺ʀɪsᴇ', callback_data='start')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
