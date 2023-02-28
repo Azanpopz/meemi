@@ -1,3 +1,6 @@
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
+
 from firebase import firebase
 from creds import cred
 from googletrans import Translator
@@ -81,8 +84,11 @@ def abouts(client, message):
 def stats(client, message):
     stat = client.send_message(
         chat_id=message.chat.id,
-        reply_to_message_id=message.message_id,
         text="`Fetching details`",
+        reply_markup=reply_markup,
+        parse_mode=enums.ParseMode.HTML
+        )
+        
     )
     txt = logreturn()
     stat.edit(txt)
