@@ -59,7 +59,7 @@ async def start_message(client, message):
         await msg.reply_text(
         
         text="Hello {message.from_user.mention}   Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
-        reply_markup=InlineKeyboardMarkup(buttons)
+        reply_markup = InlineKeyboardMarkup(buttons)
     ) 
         if not await db.get_chat(message.chat.id):
             total=await client.get_chat_members_count(message.chat.id)
