@@ -6,7 +6,7 @@ from pyrogram.errors import QueryIdInvalid, FloodWait
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InlineQuery, InlineQueryResultArticle, \
     InputTextMessageContent
 
-from configs import Config
+from info import Config
 from tool import SearchYTS, SearchAnime, Search1337x, SearchPirateBay
 
 
