@@ -968,16 +968,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.startswith("upload"):
         
-        btn = [[
-                InlineKeyboardButton("❌️Uᴘʟᴏᴀᴅᴇᴅ❌️ ", callback_data=f"show#{query.from_user.id}"),
-                InlineKeyboardButton("✅Uᴘʟᴏᴀᴅᴇᴅ✅", callback_data=f"upalert#{query.from_user.id}")
-              ]]
-        btn2 = [[
-                 InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
-               ]]
+        buttons = [[
+            InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', callback_data=f'f"upalert#{query.from_user.id}')
+        ], [
+            InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', f'show#{query.from_user.id}'),
+            InlineKeyboardButton('ᴏᴡɴ ɪɴғᴏ', url='https://t.me/nasrani_update')
+        ], [
+            InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help'),
+            InlineKeyboardButton('ᴀʙᴏᴜᴛ', callback_data='about')
+         ],[
+            InlineKeyboardButton('ʙᴀᴄᴋ ᴛᴏ sᴛᴀʀᴛ', callback_data='surprise')
+        ]]
+        
+        
         if query.from_user.id in ADMINS:
             user = await client.get_users(query.from_user.id)
-            reply_markup = InlineKeyboardMarkup(btn)                    
+            reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
             await query.message.edit_text(f"<b><strike>{content}</strike></b>")
             await query.message.edit_reply_markup(reply_markup)
