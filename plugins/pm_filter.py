@@ -969,10 +969,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("upload"):
         
         buttons = [[
-            InlineKeyboardButton('× upload ×', callback_data=f"show_option#{query.from_user.id}")
+            InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"uploaded#{query.from_user.id}")
         ], [
-            InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', callback_data=f'show#{query.from_user.id}'),
-            InlineKeyboardButton('start', callback_data=f'start#{query.from_user.id}')
+            InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'unavailable#{query.from_user.id}'),
+            InlineKeyboardButton('❌️CLOSE❌️', callback_data='close_data')
         
         ]]
         
@@ -981,7 +981,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
-            await query.message.edit_text(f"{query.from_user.mention}")
+            await query.message.edit_text(f"{query.from_user.mention} <b><strike>{content}</strike></b>")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
