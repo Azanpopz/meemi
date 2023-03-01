@@ -1947,8 +1947,8 @@ async def advantage_spell_chok(client, msg):
         await asyncio.sleep(30)
         await k.delete()
         return
-    poster, id, text = get_movie_info(movie_name)
-    movie_name = msg.text.replace(" ", "+")
+    pic = imdb.get('poster')
+    poster = pic.replace('.jpg', "._V1_UX360.jpg")
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
