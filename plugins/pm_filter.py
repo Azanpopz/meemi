@@ -1049,7 +1049,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
     
     elif query.data.startswith("upload"):
-        ident, from_user = query.data.split("#")
+        
         btn = [[
                 InlineKeyboardButton("✅✔️ Uᴘʟᴏᴀᴅᴇᴅ✔️ ✅", callback_data=f"upalert#{from_user}")
               ]]
