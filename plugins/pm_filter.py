@@ -1912,6 +1912,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
+    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     pic = imdb.get('poster')
     poster = pic.replace('.jpg', "._V1_UX360.jpg")
     mv_rqst = msg.text
@@ -1947,8 +1948,7 @@ async def advantage_spell_chok(client, msg):
         await asyncio.sleep(30)
         await k.delete()
         return
-    pic = imdb.get('poster')
-    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+    
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
