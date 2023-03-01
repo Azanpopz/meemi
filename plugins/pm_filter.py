@@ -1056,8 +1056,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         btn2 = [[
                  InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
                ]]
-        if query.from_user.id in ADMINS:
-            user = await client.get_users(from_user)
+        
             reply_markup = InlineKeyboardMarkup(btn)
             content = query.message.text
             await query.message.edit_text(f"<b><strike>{content}</strike></b>")
