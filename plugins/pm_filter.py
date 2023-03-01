@@ -2005,10 +2005,15 @@ async def advantage_spell_chok(client, msg):
         movies = await get_poster(mv_rqst, bulk=True)
     except Exception as e:
         logger.exception(e)
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
+
+        pic = imdb.get('poster')
+        poster = pic.replace('.jpg', "._V1_UX360.jpg")
+        hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+
+
+
         await asyncio.sleep(8)
-        await k.delete()
+        await hmm.delete()
         return
     movielist = []
     if not movies:
