@@ -1912,7 +1912,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
-    movie_name = message.text.replace(" ", "+")
+    movie_name = msg.text.replace(" ", "+")
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -1948,7 +1948,7 @@ async def advantage_spell_chok(client, msg):
         await k.delete()
         return
     poster, id, text = get_movie_info(movie_name)
-    movie_name = message.text.replace(" ", "+")
+    movie_name = msg.text.replace(" ", "+")
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
@@ -1962,8 +1962,8 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    m=await message.reply_text("𝖥𝗂𝗇𝖽𝗂𝗇𝗀 𝖣𝖾𝗍𝖺𝗂𝗅𝗌..")
-    k=await message.reply_photo(photo=poster.replace("SX300",""), caption=text, reply_markup=InlineKeyboardMarkup(buttons))
+    m=await msg.reply_text("𝖥𝗂𝗇𝖽𝗂𝗇𝗀 𝖣𝖾𝗍𝖺𝗂𝗅𝗌..")
+    k=await msg.reply_photo(photo=poster.replace("SX300",""), caption=text, reply_markup=InlineKeyboardMarkup(buttons))
     await m.delete()   
 
     try:
