@@ -2008,7 +2008,7 @@ async def advantage_spell_chok(client, msg):
 
         pic = imdb.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
-        hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+        hmm = await msg.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
 
 
 
@@ -2024,7 +2024,7 @@ async def advantage_spell_chok(client, msg):
         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         pic = imdb.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
-        k = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+        k = await msg.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
 
         await asyncio.sleep(30)
         await k.delete()
@@ -2042,7 +2042,7 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    spell_check_del = hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+    spell_check_del = await msg.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
 
         
 
