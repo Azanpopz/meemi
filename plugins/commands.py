@@ -789,3 +789,32 @@ async def shortlink(bot, message):
     await save_group_settings(grpid, 'shortlink_api', api)
     await save_group_settings(grpid, 'is_shortlink', True)
     await reply.edit_text(f"<b>Successfully added shortlink API for {title}.\n\nCurrent Shortlink Website: <code>{shortlink_url}</code>\nCurrent API: <code>{api}</code></b>")
+
+
+
+
+@Client.on_message(filters.command("help")) 
+async def start_message(client, message):
+   if  force_channel:
+        try:
+            user = await client.get_chat_member(force_channel, message.from_user.id)
+            if user.status == "kicked out":
+                await message.reply_text("Join channel")
+                return
+        except UserNotParticipant:
+
+           buttons = [[
+               InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='https://t.me/nasrani_batch_store')
+           ]]
+           reply_markup = InlineKeyboardMarkup(buttons)
+           m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
+           await asyncio.sleep(1)
+           await m.delete()        
+           await message.reply_photo(
+               photo=random.choice(PICS),
+               caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+               reply_markup=reply_markup,
+               parse_mode=enums.ParseMode.HTML
+           )
+        return
+        await message.reply_text("done")
