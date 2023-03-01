@@ -35,6 +35,9 @@ from database.gfilters_mdb import (
     find_gfilter,
     get_gfilters,
 )
+
+import os
+fsub_channel = int(os.environ.get('REQST_CHANNEL_ID','-1001467741576'))
 import logging
 
 logger = logging.getLogger(__name__)
@@ -1641,6 +1644,7 @@ async def auto_filter(client, msg, spoll=False):
             search = message.text
             files, offset, total_results = await get_search_results(message.chat.id ,search.lower(), offset=0, filter=True)
             if not files:
+                await client.send_message(fsub_channel, f"REQUESTED_LOGS \nCONTENT NAME:**`{search}` \REQUESTED BY :** {message.from_user.first.name} \n **USER ID:** {message.from_user.id} ")
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
