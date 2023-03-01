@@ -972,7 +972,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', callback_data=f'f"upload1#{query.from_user.id}')
         ], [
             InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', callback_data=f'show#{query.from_user.id}'),
-            InlineKeyboardButton('ᴏᴡɴ ɪɴғᴏ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ᴏᴡɴ ɪɴғᴏ', callback_data='start')
         
         ]]
         
