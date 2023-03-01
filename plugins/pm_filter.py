@@ -2042,9 +2042,10 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    pic = imdb.get('poster')
+    poster = pic.replace('.jpg', "._V1_UX360.jpg")
     spell_check_del = await msg.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
 
-        
 
     try:
         if settings['auto_delete']:
