@@ -969,7 +969,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("upload"):
         
         buttons = [[
-            InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', callback_data=f'f"upload2#{query.from_user.id}')
+            InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', callback_data=f'f"upload1#{query.from_user.id}')
         ], [
             InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', callback_data=f'show#{query.from_user.id}'),
             InlineKeyboardButton('ᴏᴡɴ ɪɴғᴏ', url='https://t.me/nasrani_update')
@@ -995,7 +995,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("upload2"):
         
         buttons = [[
-            InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', callback_data=f'f"upload2#{query.from_user.id}')
+            InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', callback_data=f'f"upload1#{query.from_user.id}')
         ], [
             InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', callback_data=f'show#{query.from_user.id}'),
             InlineKeyboardButton('ᴏᴡɴ ɪɴғᴏ', url='https://t.me/nasrani_update')
