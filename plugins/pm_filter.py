@@ -1912,85 +1912,6 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
-    query = re.sub(
-        r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-        "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
-    query = query.strip() + " movie"
-    g_s = await search_gagala(query)
-    g_s += await search_gagala(msg.text)
-    gs_parsed = []
-    if not g_s:
-        Send_message = await client.send_video(
-            chat_id=msg.chat.id,
-            video="https://telegra.ph/file/3e9f7db0c98e6b236c2c7.mp4",
-            caption=f"Couldn't Find This Movie.Please Try Again Or Search On Our "
-                    f"<b><a href='https://t.me/UFSNewRelease'>Channel</a></b>. \n\n"
-                    f"ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺",
-            parse_mode="html",
-            reply_to_message_id=msg.message_id
-        )
-        await asyncio.sleep(15)  # in seconds
-        await Send_message.delete()
-        await msg.delete()
-        # k = await msg.reply("I couldn't find any movie in that name.")
-        # await asyncio.sleep(8)
-        # await k.delete()
-        return
-    regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
-    gs = list(filter(regex.match, g_s))
-    gs_parsed = [re.sub(
-        r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)',
-        '', i, flags=re.IGNORECASE) for i in gs]
-    if not gs_parsed:
-        reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*",
-                         re.IGNORECASE)  # match something like Watch Niram | Amazon Prime
-        for mv in g_s:
-            match = reg.match(mv)
-            if match:
-                gs_parsed.append(match.group(1))
-    user = msg.from_user.id if msg.from_user else 0
-    movielist = []
-    gs_parsed = list(dict.fromkeys(gs_parsed))  # removing duplicates https://stackoverflow.com/a/7961425
-    if len(gs_parsed) > 3:
-        gs_parsed = gs_parsed[:3]
-    if gs_parsed:
-        for mov in gs_parsed:
-            imdb_s = await get_poster(mov.strip(), bulk=True)  # searching each keyword in imdb
-            if imdb_s:
-                movielist += [movie.get('title') for movie in imdb_s]
-    movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
-    movielist = list(dict.fromkeys(movielist))  # removing duplicates
-    if not movielist:
-        Send_message = await client.send_video(
-            chat_id=msg.chat.id,
-            video="https://telegra.ph/file/3e9f7db0c98e6b236c2c7.mp4",
-            caption=f"Couldn't Find This Movie.Please Try Again Or Search On Our "
-                    f"<b><a href='https://t.me/UFSNewRelease'>Channel</a></b>. \n\n"
-                    f"ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺",
-            parse_mode="html",
-            reply_to_message_id=msg.message_id
-        )
-        await asyncio.sleep(15)  # in seconds
-        await Send_message.delete()
-        await msg.delete()
-        # k = await msg.reply("I Couldn't Find Anything Related To That. Check Your Spelling")
-        # await asyncio.sleep(8)
-        # await k.delete()
-        return
-    SPELL_CHECK[mv_id] = movielist
-    i = 1
-    pre_len = {}
-    btn = []
-    # movielist.sort(key=len)
-    for k, movie in enumerate(movielist):
-        text = movie.strip()  # args[2]
-        same = False
-        if (i % 2) == 0:
-            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                same = False
-            else:
-                same = True
-async def advantage_spell_chok(client, msg):
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2005,15 +1926,10 @@ async def advantage_spell_chok(client, msg):
         movies = await get_poster(mv_rqst, bulk=True)
     except Exception as e:
         logger.exception(e)
-
-        pic = imdb.get('poster')
-        poster = pic.replace('.jpg', "._V1_UX360.jpg")
-        hmm = await msg.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-
-
-
+        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
         await asyncio.sleep(8)
-        await hmm.delete()
+        await k.delete()
         return
     movielist = []
     if not movies:
@@ -2022,15 +1938,28 @@ async def advantage_spell_chok(client, msg):
                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        pic = imdb.get('poster')
-        poster = pic.replace('.jpg', "._V1_UX360.jpg")
-        k = await msg.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-
+        k = await msg.reply_photo(
+            photo=SPELL_IMG, 
+            caption=script.I_CUDNT.format(mv_rqst),
+            reply_markup=InlineKeyboardMarkup(button)
+        )
         await asyncio.sleep(30)
         await k.delete()
         return
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+    SPELL_CHECK[mv_id] = movielist
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=movie_name.strip(),
+                callback_data=f"spol#{reqstr1}#{k}",
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ]
+    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    spell_check_del =
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
@@ -2063,7 +1992,8 @@ async def advantage_spell_chok(client, msg):
             plot=imdb['plot'],
             rating=imdb['rating'],
             url=imdb['url'],
-            
+            **locals()
+        )
     else:
         cap = f"<b><i>𝙃𝙚𝙧𝙚 𝙞𝙨 𝙬𝙝𝙖𝙩 𝙞𝙨 𝙛𝙤𝙪𝙣𝙙 𝙮𝙤𝙪𝙧 𝙦𝙪𝙚𝙧𝙮:\n {search}\n👤𝙍𝙚𝙦𝙪𝙚𝙨𝙩𝙚𝙙 𝘽𝙮 : {message.from_user.mention}\n👥𝙂𝙧𝙤𝙪𝙥 : {message.chat.title}</i></b>"
     if imdb and imdb.get('poster'):
@@ -2071,92 +2001,12 @@ async def advantage_spell_chok(client, msg):
             if message.chat.id == SUPPORT_CHAT_ID:
                 await message.reply_text(f"<b>Hᴇʏ {message.from_user.mention}, {str(total_results)} ʀᴇsᴜʟᴛs ᴀʀᴇ ғᴏᴜɴᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {search}. Kɪɴᴅʟʏ ᴜsᴇ ɪɴʟɪɴᴇ sᴇᴀʀᴄʜ ᴏʀ ᴍᴀᴋᴇ ᴀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴀᴅᴅ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇ ғɪʟᴇs. Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ғɪʟᴇs ғʀᴏᴍ ʜᴇʀᴇ...</b>")
             else:
-                hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+                hehe = await msg.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
                 try:
                     if settings['auto_delete']:
                         await asyncio.sleep(600)
                         await hehe.delete()
                         await message.delete()
-                except KeyError:
-                    grpid = await active_connection(str(message.from_user.id))
-                    await save_group_settings(grpid, 'auto_delete', True)
-                    settings = await get_settings(message.chat.id)
-                    if settings['auto_delete']:
-                        await asyncio.sleep(600)
-                        await hehe.delete()
-                        await message.delete()
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            if message.chat.id == SUPPORT_CHAT_ID:
-                await message.reply_text(f"<b>Hᴇʏ {message.from_user.mention}, {str(total_results)} ʀᴇsᴜʟᴛs ᴀʀᴇ ғᴏᴜɴᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {search}. Kɪɴᴅʟʏ ᴜsᴇ ɪɴʟɪɴᴇ sᴇᴀʀᴄʜ ᴏʀ ᴍᴀᴋᴇ ᴀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴀᴅᴅ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇ ғɪʟᴇs. Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ғɪʟᴇs ғʀᴏᴍ ʜᴇʀᴇ...</b>")
-            else:
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-                try:
-                    if settings['auto_delete']:
-                        await asyncio.sleep(600)
-                        await hmm.delete()
-                        await message.delete()
-                except KeyError:
-                    grpid = await active_connection(str(message.from_user.id))
-                    await save_group_settings(grpid, 'auto_delete', True)
-                    settings = await get_settings(message.chat.id)
-                    if settings['auto_delete']:
-                        await asyncio.sleep(600)
-                        await hmm.delete()
-                        await message.delete()
-        except Exception as e:
-            if message.chat.id == SUPPORT_CHAT_ID:
-                await message.reply_text(f"<b>Hᴇʏ {message.from_user.mention}, {str(total_results)} ʀᴇsᴜʟᴛs ᴀʀᴇ ғᴏᴜɴᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {search}. Kɪɴᴅʟʏ ᴜsᴇ ɪɴʟɪɴᴇ sᴇᴀʀᴄʜ ᴏʀ ᴍᴀᴋᴇ ᴀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴀᴅᴅ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇ ғɪʟᴇs. Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ғɪʟᴇs ғʀᴏᴍ ʜᴇʀᴇ...</b>")
-            else:
-                logger.exception(e)
-                fek = await message.reply_photo(photo=NOR_IMG, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-                try:
-                    if settings['auto_delete']:
-                        await asyncio.sleep(600)
-                        await fek.delete()
-                        await message.delete()
-                except KeyError:
-                    grpid = await active_connection(str(message.from_user.id))
-                    await save_group_settings(grpid, 'auto_delete', True)
-                    settings = await get_settings(message.chat.id)
-                    if settings['auto_delete']:
-                        await asyncio.sleep(600)
-                        await fek.delete()
-                        await message.delete()
-    else:
-        if message.chat.id == SUPPORT_CHAT_ID:
-            await message.reply_text(f"<b>Hᴇʏ {message.from_user.mention}, {str(total_results)} ʀᴇsᴜʟᴛs ᴀʀᴇ ғᴏᴜɴᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {search}. Kɪɴᴅʟʏ ᴜsᴇ ɪɴʟɪɴᴇ sᴇᴀʀᴄʜ ᴏʀ ᴍᴀᴋᴇ ᴀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴀᴅᴅ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇ ғɪʟᴇs. Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ғɪʟᴇs ғʀᴏᴍ ʜᴇʀᴇ...</b>")
-        else:
-            fuk = await message.reply_photo(photo=NOR_IMG, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-            try:
-                if settings['auto_delete']:
-                    await asyncio.sleep(600)
-                    await fuk.delete()
-                    await message.delete()
-            except KeyError:
-                grpid = await active_connection(str(message.from_user.id))
-                await save_group_settings(grpid, 'auto_delete', True)
-                settings = await get_settings(message.chat.id)
-                if settings['auto_delete']:
-                    await asyncio.sleep(600)
-                    await fuk.delete()
-                    await message.delete()
-    
-    SPELL_CHECK[mv_id] = movielist
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=movie_name.strip(),
-                callback_data=f"spol#{reqstr1}#{k}",
-            )
-        ]
-        for k, movie_name in enumerate(movielist)
-    ]
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])    
-    poster = pic.replace('.jpg', "._V1_UX360.jpg")
-    spell_check_del = await msg.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-
 
     try:
         if settings['auto_delete']:
@@ -2169,9 +2019,6 @@ async def advantage_spell_chok(client, msg):
             if settings['auto_delete']:
                 await asyncio.sleep(600)
                 await spell_check_del.delete()
-
-
-
 
 async def manual_filters(client, message, text=False):
     settings = await get_settings(message.chat.id)
