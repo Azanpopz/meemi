@@ -1912,8 +1912,8 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
-    movie_name = msg.text.replace(" ", "+")
-    mv_id = msg.id
+    pic = imdb.get('poster')
+    poster = pic.replace('.jpg', "._V1_UX360.jpg")
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
@@ -1963,7 +1963,7 @@ async def advantage_spell_chok(client, msg):
     ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
     m=await msg.reply_text("𝖥𝗂𝗇𝖽𝗂𝗇𝗀 𝖣𝖾𝗍𝖺𝗂𝗅𝗌..")
-    k=await msg.reply_photo(photo=poster.replace("SX300",""), caption=text, reply_markup=InlineKeyboardMarkup(buttons))
+    hmm = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
     await m.delete()   
 
     try:
