@@ -969,7 +969,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("upload"):
         
         buttons = [[
-            InlineKeyboardButton('× upload ×', callback_data=f"uploaded#{query.from_user.id}')
+            InlineKeyboardButton('× upload ×', callback_data=f"show_option#{query.from_user.id}')
         ], [
             InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ', callback_data=f'show#{query.from_user.id}'),
             InlineKeyboardButton('start', callback_data=f'start#{query.from_user.id}')
