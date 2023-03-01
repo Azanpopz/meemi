@@ -1059,7 +1059,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         btn = [[
                 InlineKeyboardButton("✅✔️ Uᴘʟᴏᴀᴅᴇᴅ✔️ ✅", callback_data=f"req"),
-                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"upalert#{query.from_user.id}"
+                InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"upalert#{query.from_user.id}")
               ]]
         btn2 = [[
                  InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
