@@ -19,23 +19,6 @@ async def nolink(bot,message):
                 hmm = await message.sleep(6)
                 await hmm.delete()
                 
-		k = await message.reply_text(            
-                text=f"SORRY DUDE",
-                parse_mode=enums.ParseMode.HTML,
-                disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton(
-                                        '🎭 ⭕️ ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ⭕️', url=f'https://t.me/nasrani_update'
-                                    )
-                                ]
-                            ]
-                        )
-                    )
-
-                await asyncio.sleep(6)
-                await k.delete()
 
 
 	except:
