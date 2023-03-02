@@ -2,6 +2,7 @@ import os
 import pyrogram
 from pyrogram import Client, filters
 from info import BOT_TOKEN, API_ID, API_HASH
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 
 
 Bot = Client(
@@ -17,4 +18,7 @@ async def nolink(bot,message):
 		await message.delete(5)
 	except:
 		return
-                await message.reply_text("❌️Sorry❌️")
+                    k = await msg.reply_text(
+                        text="sorry",                        
+                        reply_markup=InlineKeyboardMarkup(button)
+                    )
