@@ -24,22 +24,3 @@ async def nolink(bot,message):
 
 
 
-@Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me")) 
-async def start_message(bot, message):
-           
-	try:
-		await message.delete(5)
-	except:
-		return
-        
-              
-           button = [[
-             InlineKeyboardButton("Mo Tech YT", url="https://t.me/+r_y-yTPhXkQwMzdl")
-             ]]             
-           await message.reply_text(
-        
-           text="Hello {message.from_user.mention} {content}  Bro സുഖമാണോ ചാനൽ ലോഗിൻ ചെയ്യ്",
-           reply_markup=InlineKeyboardMarkup(buttons)
-       ) 
-   
-           
