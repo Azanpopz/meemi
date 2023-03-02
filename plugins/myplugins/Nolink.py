@@ -1,7 +1,7 @@
 import os 
 import pyrogram
 from pyrogram import Client, filters
-from info import BOT_TOKEN, API_ID, API_HASH
+from info import BOT_TOKEN, API_ID, API_HASH, SUPPORT_CHAT_ID
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 import asyncio
 from Script import script
@@ -17,12 +17,12 @@ Bot = Client(
 
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
-    chat_id = message.chat.id
-    reporter = str(message.from_user.id)
-    mention = message.from_user.mention
-    
-    content = message.reply_to_message.text
-	try:
+    if message.reply_to_message and SUPPORT_CHAT_ID == message.chat.id:
+        chat_id = message.chat.id
+        reporter = str(message.from_user.id)
+        mention = message.from_user.mention    
+        content = message.reply_to_message.text
+    	try:
                 buttons = [[
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
                 ]]
