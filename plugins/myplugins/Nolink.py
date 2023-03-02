@@ -63,7 +63,7 @@ async def nolink(bot,message):
                       ]]
                 reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"🤯𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
                 
-                    await message.delete() 
+                await message.delete() 
                 
                 return
                 
