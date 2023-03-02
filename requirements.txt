@@ -42,7 +42,10 @@ python-telegram-bot==10.1.0
 aiohttp
 
 
-
+humanize
+aiofiles
+dnspython 
+pynewtonmath
 
 
 
