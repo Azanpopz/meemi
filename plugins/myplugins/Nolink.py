@@ -18,7 +18,7 @@ async def nolink(bot,message):
 		await message.delete(5)
 	except:
 		return
-                k = await msg.reply_text(
-                    text="sorry",                        
-                    reply_markup=InlineKeyboardMarkup(button)
-                )
+        k = await message.reply_text(
+            text="sorry",                        
+            reply_markup=InlineKeyboardMarkup(button)
+        )
