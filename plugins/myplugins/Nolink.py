@@ -16,6 +16,9 @@ Bot = Client(
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
 	try:
+                hmm = await message.sleep(6)
+                await hmm.delete()
+                
 		k = await message.reply_text(            
                 text=f"SORRY DUDE",
                 parse_mode=enums.ParseMode.HTML,
@@ -31,7 +34,7 @@ async def nolink(bot,message):
                         )
                     )
 
-            await asyncio.sleep(6)
+                await asyncio.sleep(6)
                 await k.delete()
 
 
