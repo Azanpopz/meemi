@@ -72,7 +72,7 @@ async def nolink(bot,message):
                 await m.delete()        
                 await message.reply_photo(
                     photo=random.choice(PICS),
-                    caption=f"hey{content}"),
+                    caption=f"hey{content}",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
                 )
