@@ -70,7 +70,7 @@ async def nolink(bot,message):
 
 
 	except Exception as e:
-		return
+		
         
 
 
