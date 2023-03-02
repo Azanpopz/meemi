@@ -4,6 +4,9 @@ from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters, enums
 
+
+CAPTION = 'converted by nasrani_update' # caption of the files
+
 api_id = 123456789 #int of api id get from my.telegram.org
 api_hash = " Your Api Hash Here " #str of api hash get from my.telegram.org
 token = ' Your Bot Token here ' #str of token get from BotFather
