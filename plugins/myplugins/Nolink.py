@@ -38,10 +38,6 @@ logger = logging.getLogger(__name__)
 
 
 
-chat_id = "message.chat.id"
-reporter = "str(message.from_user.id)"
-mention = "message.from_user.mention"
-content = "message.text"
 
 Bot = Client(
     "NoLink-BOT",
@@ -68,10 +64,7 @@ Bot = Client(
 async def nolink(bot,message):
     
 	try:
-                chat_id = message.chat.id
-                reporter = str(message.from_user.id)
-                mention = message.from_user.mention       
-                content = message.reply_to_message.text
+                
                 buttons = [[
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='{content}')
                 ]]
@@ -81,7 +74,7 @@ async def nolink(bot,message):
                 await m.delete()        
                 await message.reply_photo(
                     photo=random.choice(PICS),
-                    caption=f"hey{content}",
+                    caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
                     reply_markup=reply_markup,
                     parse_mode=enums.ParseMode.HTML
                 )
