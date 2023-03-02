@@ -22,6 +22,33 @@ async def nolink(bot,message):
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
+                        
+                await message.reply_photo(
+                    photo=random.choice(PICS),
+                    caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+                    reply_markup=reply_markup,
+                    parse_mode='html'
+        
+                )
+                hmm = await message.delete()
+                return
+                
+
+
+	except:
+		return
+        
+
+
+
+
+@Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
+async def nolink(bot,message):
+	try:
+                buttons = [[
+                    InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
+                ]]
+                reply_markup = InlineKeyboardMarkup(buttons)
                 m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
                 await asyncio.sleep(1)
                 await m.delete()        
