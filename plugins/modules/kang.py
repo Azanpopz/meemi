@@ -43,19 +43,6 @@ async def sticker_image(_, msg: Message):
     name_format = f"StarkBots_{user_id}"
     if msg.photo:
         message = await msg.reply("Converting...")
-        image = await msg.download(file_name=f"{name_format}.jpg")
-        await message.edit("Sending...")
-        im = Image.open(image).convert("RGB")
-        im.save(f"{name_format}.webp", "webp")
-        sticker = f"{name_format}.webp"
-        await msg.reply_sticker(sticker)
-        await message.delete()
-        os.remove(sticker)
-        os.remove(image)
-    elif msg.sticker.is_animated:
-        await msg.reply("Animated stickers are not supported !", quote=True)
-    else:
-        message = await msg.reply("Converting...")
         sticker = await msg.download(file_name=f"{name_format}.webp")
         await message.edit("Sending...")
         im = Image.open(sticker).convert("RGB")
@@ -65,9 +52,22 @@ async def sticker_image(_, msg: Message):
         await message.delete()
         os.remove(image)
         os.remove(sticker)
+    elif msg.sticker.is_animated:
+        await msg.reply("Animated stickers are not supported !", quote=True)
+    else:
+        message = await msg.reply("Converting...")
+        image = await msg.download(file_name=f"{name_format}.jpg")
+        await message.edit("Sending...")
+        im = Image.open(image).convert("RGB")
+        im.save(f"{name_format}.webp", "webp")
+        sticker = f"{name_format}.webp"
+        await msg.reply_sticker(sticker)
+        await message.delete()
+        os.remove(sticker)
+        os.remove(image)
 
 
-@Client.on_message(filters.command(['png']))
+@Client.on_message(filters.command(['png']) & filters.sticker)
 def photo_convert(c, m):
     rand_id = random.randint(100,900) # generate random number between 100 to 900
     m.download(f"{m.chat.id}-{rand_id}.jpg")
