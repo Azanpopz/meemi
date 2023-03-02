@@ -55,7 +55,7 @@ async def ping(bot, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@Client.on_message(filters.private & filters.command(["getsticker"]))
+@Client.on_message(filters.private & filters.group & filters.command(["getsticker"]))
 async def getstickerasfile(bot, message):  
     tx = await message.reply_text("Checking Sticker")
     await tx.edit("Validating sticker..")
@@ -95,7 +95,7 @@ async def getstickerasfile(bot, message):
                    except Exception as error:
                        print(error)
 
-@Client.on_message(filters.private & filters.command(["clearcache"]))
+@Client.on_message(filters.private & filters.group & filters.command(["clearcache"]))
 async def clearcache(bot, message):   
     # Found some Files showing error while Uploading, So a method to Remove it !!  
     txt = await message.reply_text("Checking Cache")
@@ -117,7 +117,7 @@ async def stickerid(bot, message):
        await message.reply("Oops !! Not a sticker file")
 
 
-@Client.on_message(filters.private & filters.command(["findsticker"]))
+@Client.on_message(filters.private & filters.group & filters.command(["findsticker"]))
 async def findsticker(bot, message):  
   try:
        if message.reply_to_message: 
