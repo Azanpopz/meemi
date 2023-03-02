@@ -11,20 +11,7 @@ from utils import temp
 import re
 
 
-import logging
-import asyncio
-from pyrogram import Client, filters, enums
-from pyrogram.errors import FloodWait
-from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, ChatAdminRequired, UsernameInvalid, UsernameNotModified
-from info import ADMINS, LAZY_RENAMERS
-from info import INDEX_REQ_CHANNEL as LOG_CHANNEL
-from info import LAZY_MODE 
-from database.ia_filterdb import save_file
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from utils import temp
-import re
-import humanize
-from info import ADMINS
+
 
 
 logger = logging.getLogger(__name__)
@@ -170,26 +157,7 @@ async def send_for_index(bot, message):
                                 reply_markup=reply_markup)
             await asyncio.sleep(600)
             await k.delete()
-        else :      
-            await message.reply('🎉\n\n\n❤️ Thank You For the Contribution, Wait For My Moderators to verify the files.\n\n\n🎁')
-            buttons = [
-                        [InlineKeyboardButton("📝✧✧ S𝚝ar𝚝 re𝚗aᗰi𝚗g ✧✧📝", callback_data="requireauth") ],
-                        [ InlineKeyboardButton("📸G͢e͢t͢ T͢h͢u͢m͢b͢n͢a͢i͢l͢ ᶜᵒᵐⁱⁿᵍ ˢᵒᵒⁿ", callback_data="reqauthgetlazythumbnail") ],
-                        [ InlineKeyboardButton("🔏G͢e͢n͢e͢r͢a͢t͢e͢ L͢i͢n͢k͢ ᶜᵒᵐⁱⁿᵍ ˢᵒᵒⁿ", callback_data="getlazylink") ],
-                        [InlineKeyboardButton('⨳  C L Ф S Ξ  ⨳', callback_data='cancel')]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            file = getattr(message, message.media.value)
-            filename = file.file_name
-            filesize = humanize.naturalsize(file.file_size) 
-            k = await message.reply(
-                                f"\n⨳ *•.¸♡ LΛＺ𝐲 ＭⓄｄ𝓔 ♡¸.•* ⨳\n\n🤩 Do you know LazyPrincess can do a lot of things at a time...\nWould you like to try some of it's amazing features... \n\n🪬Chat ID/ Username: <code>{chat_id}</code>\nℹ️Last Message ID: <code>{last_msg_id}</code> \n\n🎞**File Name** :- `{filename}`\n\n⚙️**File Size** :- `{filesize}`",
-                                reply_to_message_id=message.id,
-                                reply_markup=reply_markup)
-            await asyncio.sleep(600)
-            await k.delete()
-    else:
-        await message.reply('🎉\n\n\n❤️ Thank You For the Contribution, Wait For My Moderators to verify the files.\n\n\n🎁')
- 
+
 
 
 
