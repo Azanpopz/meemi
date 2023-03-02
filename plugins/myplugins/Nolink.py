@@ -69,9 +69,8 @@ async def nolink(bot,message):
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='{content}')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
-                m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
-                await asyncio.sleep(4)
-                await m.delete()        
+                await message.reply_sticker("CAACAgUAAx0CXPjPGAACAlRkAAHKPuo0Qu7IXqPjNBJa46TQuSMAAk8AA2oJKz8E0m1WztJODx4E") 
+                        
                 await message.reply_photo(
                     photo=random.choice(PICS),
                     caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
