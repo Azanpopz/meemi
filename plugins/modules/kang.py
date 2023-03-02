@@ -4,6 +4,12 @@ from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters, enums
 
+api_id = 123456789 #int of api id get from my.telegram.org
+api_hash = " Your Api Hash Here " #str of api hash get from my.telegram.org
+token = ' Your Bot Token here ' #str of token get from BotFather
+
+bot = Client('Session_Name', api_id, api_hash, bot_token=token, workers = 4 )
+
 
 @Client.on_message(filters.command(['converts']))
 async def sticker_image(_, msg: Message):
@@ -77,7 +83,7 @@ def photo_convert(c, m):
     os.remove(f"{m.chat.id}-{rand_id}.png")
     os.remove(f'downloads/{m.chat.id}-{rand_id}.jpg')
 
-@Client.on_message(filters.command(['ipng']) & filters.sticker & filters.private)
+@Client.on_message(filters.sticker)
 def conver_webp(c, m):
     rand_id = random.randint(100,900) # generate random number between 100 to 900
     if (m.sticker.is_animated) == False:
