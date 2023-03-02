@@ -31,7 +31,7 @@ async def start_message(bot, message):
             
                 await message.delete(5)
 	except:
-                return
+    return
         except UserNotParticipant:
               
            button = [[
