@@ -17,6 +17,11 @@ Bot = Client(
 
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
+    chat_id = message.chat.id
+    reporter = str(message.from_user.id)
+    mention = message.from_user.mention
+    
+    content = message.reply_to_message.text
 	try:
                 buttons = [[
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
@@ -24,8 +29,9 @@ async def nolink(bot,message):
                 reply_markup = InlineKeyboardMarkup(buttons)
                         
                 await message.reply_photo(
+                    chat_id=message.chat.id
                     photo=random.choice(PICS),
-                    caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+                    caption=f"{message.from_user.mention}, ({reporter})  {content}"),
                     reply_markup=reply_markup,
                     parse_mode='html'
         
