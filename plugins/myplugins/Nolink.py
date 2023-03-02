@@ -57,11 +57,12 @@ Bot = Client(
 
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
-    chat_id = message.chat.id
-    reporter = str(message.from_user.id)
-    mention = message.from_user.mention       
-    content = message.reply_to_message.text
+    
 	try:
+                chat_id = message.chat.id
+                reporter = str(message.from_user.id)
+                mention = message.from_user.mention       
+                content = message.reply_to_message.text
                 buttons = [[
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
                 ]]
