@@ -47,5 +47,5 @@ aiofiles
 dnspython 
 pynewtonmath
 hachoir
-
+decouple
 
