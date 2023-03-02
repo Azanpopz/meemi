@@ -14,6 +14,7 @@ Bot = Client(
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
 	try:
-		await message.delete()
+		await message.delete(5)
 	except:
 		return
+            await message.reply_text(❌️Sorry❌️)
