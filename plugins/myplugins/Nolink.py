@@ -6,6 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 import asyncio
 from Script import script
 from info import PICS
+import random
 
 Bot = Client(
     "NoLink-BOT",
@@ -17,8 +18,6 @@ Bot = Client(
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
 	try:
-                hmm = await message.delete()
-                return
                 buttons = [[
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
                 ]]
@@ -32,6 +31,9 @@ async def nolink(bot,message):
                     reply_markup=reply_markup,
                     parse_mode=enums.ParseMode.HTML
                 )
+                hmm = await message.delete()
+                return
+                
 
 
 	except:
