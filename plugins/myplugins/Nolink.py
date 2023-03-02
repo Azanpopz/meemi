@@ -3,7 +3,7 @@ import pyrogram
 from pyrogram import Client, filters
 from info import BOT_TOKEN, API_ID, API_HASH
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
-from pyrogram.errors import UserNotparticipant
+
 
 
 Bot = Client(
