@@ -3,7 +3,7 @@ import pyrogram
 from pyrogram import Client, filters
 from info import BOT_TOKEN, API_ID, API_HASH
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
-
+import asyncio
 
 
 Bot = Client(
@@ -16,7 +16,25 @@ Bot = Client(
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
 	try:
-		await message.delete(5)
+		k = await message.reply_text(            
+                text=f"SORRY DUDE",
+                parse_mode=enums.ParseMode.HTML,
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton(
+                                        '🎭 ⭕️ ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ⭕️', url=f'https://t.me/nasrani_update'
+                                    )
+                                ]
+                            ]
+                        )
+                    )
+
+                await asyncio.sleep(6)
+                await hmm.delete()
+
+
 	except:
 		return
         
