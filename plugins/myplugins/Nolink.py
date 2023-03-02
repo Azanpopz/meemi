@@ -16,9 +16,10 @@ Bot = Client(
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
 	try:
-                hmm = await message.sleep(6)
+                hmm = await message.delete(6)
                 await hmm.delete()
-                
+                await asyncio.sleep(6)
+                await hmm.delete()
 
 
 	except:
