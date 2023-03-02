@@ -17,4 +17,4 @@ async def nolink(bot,message):
 		await message.delete(5)
 	except:
 		return
-            await message.reply_text(❌️Sorry❌️)
+            await message.reply_text("❌️Sorry❌️")
