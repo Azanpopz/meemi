@@ -46,6 +46,6 @@ humanize
 aiofiles
 dnspython 
 pynewtonmath
-
+hachoir
 
 
