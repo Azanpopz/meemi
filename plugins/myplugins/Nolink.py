@@ -4,7 +4,8 @@ from pyrogram import Client, filters
 from info import BOT_TOKEN, API_ID, API_HASH
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 import asyncio
-
+from Script import script
+from info import PICS
 
 Bot = Client(
     "NoLink-BOT",
@@ -16,10 +17,21 @@ Bot = Client(
 @Client.on_message((filters.group) & filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
 	try:
-                hmm = await message.delete(6)
-                await hmm.delete()
-                await asyncio.sleep(6)
-                await hmm.delete()
+                hmm = await message.delete()
+                return
+                buttons = [[
+            InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', callback_data='start')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
+        await asyncio.sleep(1)
+        await m.delete()        
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.SUR_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
 
 
 	except:
