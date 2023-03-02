@@ -31,7 +31,7 @@ async def nolink(bot,message):
                         )
                     )
 
-                    await asyncio.sleep(6)
+            await asyncio.sleep(6)
                 await k.delete()
 
 
