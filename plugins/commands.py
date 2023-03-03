@@ -161,7 +161,7 @@ async def start(client, message):
         pre = ""
 
     if data.split("-", 1)[0] == "BATCH":
-        sts = await message.reply("<b>Please wait...</b>")
+        sts = await message.reply("f"<b><a href='https://t.me/nasrani_batch_store'>ʏᴏᴜʀ ᴍᴏᴠɪᴇ ꜰɪʟᴇꜱ ꜱᴇɴᴅᴇᴅ ᴛʜɪꜱ ɢʀᴏᴜᴘ.. ᴄʜᴀᴇᴄᴋ</a></b>")
         file_id = data.split("-", 1)[1]
         msgs = BATCH_FILES.get(file_id)
         if not msgs:
@@ -190,7 +190,7 @@ async def start(client, message):
                 k = await client.send_cached_media(
                     chat_id=force_channel,
                     file_id=msg.get("file_id"),
-                    caption=f"<b>Join [Here](https://t.me/teamevamaria)</b> \n FILE : <code>{file_name}</code> Size : <i>{file_size}</i>\nCAPTION: {file_caption}\n {message.from_user.mention}",      
+                    caption=f_caption,      
                     protect_content=msg.get('protect', False),
                     parse_mode=enums.ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(
@@ -207,7 +207,6 @@ async def start(client, message):
                              )
                  
                 
-                await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
                 
                 
             except FloodWait as e:
@@ -245,8 +244,7 @@ async def start(client, message):
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
-            await asyncio.sleep(1) 
-        await sts.delete()
+            
         return
     elif data.split("-", 1)[0] == "DSTORE":
         sts = await message.reply("<b>Please wait...</b>")
