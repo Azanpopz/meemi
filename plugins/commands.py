@@ -190,7 +190,7 @@ async def start(client, message):
                 k = await client.send_cached_media(
                     chat_id=force_channel,
                     file_id=msg.get("file_id"),
-                    caption=script.START_TXT.format(message.from_user.mention, f_caption),      
+                    caption=<b>Join [Here](https://t.me/teamevamaria)</b> \n FILE : <code>{file_name}</code> Size : <i>{file_size}</i>\nCAPTION: {file_caption}\n{message.from_user.mention},      
                     protect_content=msg.get('protect', False),
                     parse_mode=enums.ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(
