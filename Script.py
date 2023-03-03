@@ -1,6 +1,6 @@
 class script(object):
     
-    START_TXT = """𝐇𝐞𝐥𝐥𝐨 {},
+    START_TXT = """𝐇𝐞𝐥𝐥𝐨 {} f_caption = {title},
  𝗠ʏ 𝗡ᴀᴍᴇ ɪ𝘀  ᴀᴜᴛᴏ ꜰɪʟᴛᴇʀ
 ➢ ɪ'ᴍ ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ᴀᴜᴛᴏꜰɪʟᴛᴇʀ ʙᴏᴛ 
  
