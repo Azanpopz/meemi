@@ -56,55 +56,55 @@ async def start(client, message):
         buttons = [[
             InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
-            InlineKeyboardButton('ᴀᴜᴛᴏ', callback_data='help'),
-            InlineKeyboardButton('ᴀᴜᴛᴏ', callback_data='help')
+            InlineKeyboardButton('🔹ᴀᴜᴛᴏ', callback_data='autofilter'),
+            InlineKeyboardButton('ᴀᴜᴛᴏ🔹', callback_data='help')
         ], [
-            InlineKeyboardButton('ᴀᴜᴅʙᴏᴏᴋ', callback_data='help'),
-            InlineKeyboardButton('ᴄʜᴀᴛ', callback_data='about')
+            InlineKeyboardButton('🔹ᴀᴜᴅʙᴏᴏᴋ', callback_data='abook'),
+            InlineKeyboardButton('ᴄʜᴀᴛ🔹', callback_data='chat')
         ], [
-            InlineKeyboardButton('ᴄᴀʀʙᴏɴ', callback_data='help'),
-            InlineKeyboardButton('ᴄᴏɴɴᴇᴄᴛ', callback_data='help')
+            InlineKeyboardButton('🔹ᴄᴀʀʙᴏɴ', callback_data='carb'),
+            InlineKeyboardButton('ᴄᴏɴɴᴇᴄᴛ🔹', callback_data='coct')
         ], [
-            InlineKeyboardButton('ᴄᴏᴠɪᴅ', callback_data='help'),
-            InlineKeyboardButton('ᴄᴏᴜɴᴛʀʏ', callback_data='help')
+            InlineKeyboardButton('🔹ᴄᴏᴠɪᴅ', callback_data='corona'),
+            InlineKeyboardButton('ᴄᴏᴜɴᴛʀʏ🔹', callback_data='country')
         ], [
-            InlineKeyboardButton('ᴅᴇᴘʟᴏʏ', callback_data='help'),
-            InlineKeyboardButton('ᴇxᴛʀᴀ', callback_data='help')
+            InlineKeyboardButton('🔹ᴅᴇᴘʟᴏʏ', callback_data='deploy'),
+            InlineKeyboardButton('ᴇxᴛʀᴀ🔹', callback_data='extra')
         ], [
-            InlineKeyboardButton('ꜰᴏɴᴛ', callback_data='help'),
-            InlineKeyboardButton('ɢᴀᴍᴇꜱ', callback_data='help'')
+            InlineKeyboardButton('🔹ꜰᴏɴᴛ', callback_data='font'),
+            InlineKeyboardButton('ɢᴀᴍᴇꜱ🔹', callback_data='fun'')
         ], [
-            InlineKeyboardButton('ɪᴅ', callback_data='help'),
-            InlineKeyboardButton('ᴊꜱᴏɴ', callback_data='about')
+            InlineKeyboardButton('🔹ɪᴅ', callback_data='id'),
+            InlineKeyboardButton('ᴊꜱᴏɴ🔹', callback_data='json')
         ], [
-            InlineKeyboardButton('ᴋᴀɴɢ', callback_data='help'),
-            InlineKeyboardButton('ᴍᴀɴᴜᴇʟ', callback_data='help')
+            InlineKeyboardButton('🔹ᴋᴀɴɢ', callback_data='kang'),
+            InlineKeyboardButton('ᴍᴀɴᴜᴇʟ🔹', callback_data='manuelfilter')
         ], [
-            InlineKeyboardButton('ᴘɪɴɢ', callback_data='help'),
-            InlineKeyboardButton('Qᴜᴛᴏᴇꜱ', callback_data='about')
+            InlineKeyboardButton('🔹ᴘɪɴɢ', callback_data='pings'),
+            InlineKeyboardButton('Qᴜᴛᴏᴇꜱ🔹', callback_data='quote')
         ], [
-            InlineKeyboardButton('ʀᴇQᴜᴇꜱᴛ', callback_data='help'),
-            InlineKeyboardButton('ꜱᴛᴀᴛᴜꜱ', callback_data='help')
+            InlineKeyboardButton('🔹ʀᴇQᴜᴇꜱᴛ', callback_data='request'),
+            InlineKeyboardButton('ꜱᴛᴀᴛᴜꜱ🔹', callback_data='status')
         ], [
-            InlineKeyboardButton('ꜱᴏɴɢ', callback_data='help'),
-            InlineKeyboardButton('ꜱᴛɪᴄᴋᴇʀ', callback_data='help')
+            InlineKeyboardButton('🔹ꜱᴏɴɢ', callback_data='song'),
+            InlineKeyboardButton('ꜱᴛɪᴄᴋᴇʀ🔹', callback_data='sticker')
         ], [
-            InlineKeyboardButton('ᴛᴛꜱ', callback_data='help'),
-            InlineKeyboardButton('ᴛɢʀᴀᴘʜ', callback_data='about')
+            InlineKeyboardButton('🔹ᴛᴛꜱ', callback_data='tts'),
+            InlineKeyboardButton('ᴛɢʀᴀᴘʜ🔹', callback_data='tele')
         ], [
-            InlineKeyboardButton('ᴛᴏʀʀᴇɴᴛ', callback_data='help'),
-            InlineKeyboardButton('ᴜʀʟꜱʜᴏʀᴛ', callback_data='help')
+            InlineKeyboardButton('🔹ᴛᴏʀʀᴇɴᴛ', callback_data='torrent'),
+            InlineKeyboardButton('ᴜʀʟꜱʜᴏʀᴛ🔹', callback_data='urlshort')
         ], [
-            InlineKeyboardButton('ᴠɪᴅᴇᴏ', callback_data='help'),
-            InlineKeyboardButton('ᴡʜᴏɪꜱ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('🔹ᴠɪᴅᴇᴏ', callback_data='video'),
+            InlineKeyboardButton('ᴡʜᴏɪꜱ🔹', callback_data='whois')
         ], [
-            InlineKeyboardButton('𝐇𝐢𝐝𝐞 𝐂𝐨𝐦𝐦𝐚𝐧𝐝', callback_data='help'),
-            InlineKeyboardButton('𝐬𝐩𝐞𝐜𝐢𝐚𝐥', callback_data='about')
+            InlineKeyboardButton('🔹𝐇𝐢𝐝𝐞 𝐂𝐨𝐦𝐦𝐚𝐧𝐝', callback_data='help'),
+            InlineKeyboardButton('𝐬𝐩𝐞𝐜𝐢𝐚𝐥🔹', callback_data='about')
         ], [
-            InlineKeyboardButton('𝐆𝐫𝐨𝐮𝐩', callback_data='help'),
-            InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', callback_data='about')
+            InlineKeyboardButton('🔹𝐆𝐫𝐨𝐮𝐩', callback_data='help'),
+            InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞🔹', callback_data='about')
         ], [
-            InlineKeyboardButton('𝐂𝐋𝐎𝐒𝐄', callback_data='surprise')
+            InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='surprise')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
