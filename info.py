@@ -103,7 +103,9 @@ TMP_DOWNLOAD_DIRECTORY = environ.get("TMP_DOWNLOAD_DIRECTORY", "./DOWNLOADS/")
 pm = environ.get('PM')
 PM = int(pm) if pm and id_pattern.search(pm) else None
 my_channel = environ.get('MY_CHANNEL')
-MY_CHANNEL = int(my_channel) if my_channel and id_pattern.search(my_channel) else None
+MY_CHANNEL = int(my_channel) if my_channel and id_pattern.search(batch_group) else None
+batch_group = environ.get('BATCH_GROUP')
+BATCH_GROUP = int(batch_group) if batch_group and id_pattern.search(batch_group) else None
 
 
 # Command
