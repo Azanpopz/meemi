@@ -57,7 +57,7 @@ async def start(client, message):
             InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
             InlineKeyboardButton('🔹ᴀᴜᴛᴏ', callback_data='autofilter'),
-            InlineKeyboardButton('ᴀᴜᴛᴏ🔹', callback_data='help')
+            InlineKeyboardButton('ᴀᴅᴅ🔹', callback_data='add')
         ], [
             InlineKeyboardButton('🔹ᴀᴜᴅʙᴏᴏᴋ', callback_data='abook'),
             InlineKeyboardButton('ᴄʜᴀᴛ🔹', callback_data='chat')
