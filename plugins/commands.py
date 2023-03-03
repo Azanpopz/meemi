@@ -192,6 +192,7 @@ async def start(client, message):
                     file_id=msg.get("file_id"),
                     caption=f_caption,      
                     protect_content=msg.get('protect', False),
+                    parse_mode=enums.ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(
                                      [
                                          [
@@ -213,6 +214,7 @@ async def start(client, message):
                     file_id=msg.get("file_id"),
                     caption=f_caption,      
                     protect_content=msg.get('protect', False),
+                    parse_mode=enums.ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(
                                      [
                                          [
@@ -376,6 +378,7 @@ async def start(client, message):
         file_id=file_id,
         caption=f_caption,      
         protect_content=True if pre == 'filep' else False,
+        parse_mode=enums.ParseMode.MARKDOWN,
         reply_markup=InlineKeyboardMarkup(
                          [
                              [
