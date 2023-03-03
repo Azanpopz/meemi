@@ -200,7 +200,7 @@ async def start(client, message):
                                          ],
                                          [
                                              InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}"),
-                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://t.me/NasraniChatGroup")
+                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
                                          ]                            
                                      ]
                                  )
