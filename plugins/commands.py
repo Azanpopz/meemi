@@ -207,7 +207,7 @@ async def start(client, message):
                              )
                 
                 await message.reply(
-                    chat_id=force_channel,
+                    chat_id=BATCH_GROUP,
                     text=script.BATCH_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
                     
                 )
