@@ -205,6 +205,8 @@ async def start(client, message):
                                      ]
                                  )
                              )
+                await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
+     
                 
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -230,8 +232,7 @@ async def start(client, message):
                              )
 
                 
-                await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
-     
+                
         
                 
 
