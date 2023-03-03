@@ -72,7 +72,7 @@ async def start(client, message):
             InlineKeyboardButton('ᴇxᴛʀᴀ🔹', callback_data='extra')
         ], [
             InlineKeyboardButton('🔹ꜰᴏɴᴛ', callback_data='font'),
-            InlineKeyboardButton('ɢᴀᴍᴇꜱ🔹', callback_data='fun'')
+            InlineKeyboardButton('ɢᴀᴍᴇꜱ🔹', callback_data='fun')
         ], [
             InlineKeyboardButton('🔹ɪᴅ', callback_data='id'),
             InlineKeyboardButton('ᴊꜱᴏɴ🔹', callback_data='json')
