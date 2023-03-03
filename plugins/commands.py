@@ -56,46 +56,46 @@ async def start(client, message):
         buttons = [[
             InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
-            InlineKeyboardButton('ᴀᴜᴛᴏ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ᴀᴜᴛᴏ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ᴀᴜᴛᴏ', callback_data='help'),
+            InlineKeyboardButton('ᴀᴜᴛᴏ', callback_data='help')
         ], [
             InlineKeyboardButton('ᴀᴜᴅʙᴏᴏᴋ', callback_data='help'),
             InlineKeyboardButton('ᴄʜᴀᴛ', callback_data='about')
         ], [
-            InlineKeyboardButton('ᴄᴀʀʙᴏɴ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ᴄᴏɴɴᴇᴄᴛ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ᴄᴀʀʙᴏɴ', callback_data='help'),
+            InlineKeyboardButton('ᴄᴏɴɴᴇᴄᴛ', callback_data='help')
         ], [
-            InlineKeyboardButton('ᴄᴏᴠɪᴅ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ᴄᴏᴜɴᴛʀʏ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ᴄᴏᴠɪᴅ', callback_data='help'),
+            InlineKeyboardButton('ᴄᴏᴜɴᴛʀʏ', callback_data='help')
         ], [
             InlineKeyboardButton('ᴅᴇᴘʟᴏʏ', callback_data='help'),
-            InlineKeyboardButton('ᴇxᴛʀᴀ', callback_data='about')
+            InlineKeyboardButton('ᴇxᴛʀᴀ', callback_data='help')
         ], [
-            InlineKeyboardButton('ꜰᴏɴᴛ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ɢᴀᴍᴇꜱ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ꜰᴏɴᴛ', callback_data='help'),
+            InlineKeyboardButton('ɢᴀᴍᴇꜱ', callback_data='help'')
         ], [
             InlineKeyboardButton('ɪᴅ', callback_data='help'),
             InlineKeyboardButton('ᴊꜱᴏɴ', callback_data='about')
         ], [
-            InlineKeyboardButton('ᴋᴀɴɢ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ᴍᴀɴᴜᴇʟ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ᴋᴀɴɢ', callback_data='help'),
+            InlineKeyboardButton('ᴍᴀɴᴜᴇʟ', callback_data='help')
         ], [
             InlineKeyboardButton('ᴘɪɴɢ', callback_data='help'),
             InlineKeyboardButton('Qᴜᴛᴏᴇꜱ', callback_data='about')
         ], [
-            InlineKeyboardButton('ʀᴇQᴜᴇꜱᴛ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ꜱᴛᴀᴛᴜꜱ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ʀᴇQᴜᴇꜱᴛ', callback_data='help'),
+            InlineKeyboardButton('ꜱᴛᴀᴛᴜꜱ', callback_data='help')
         ], [
-            InlineKeyboardButton('ꜱᴏɴɢ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ꜱᴛɪᴄᴋᴇʀ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ꜱᴏɴɢ', callback_data='help'),
+            InlineKeyboardButton('ꜱᴛɪᴄᴋᴇʀ', callback_data='help')
         ], [
             InlineKeyboardButton('ᴛᴛꜱ', callback_data='help'),
             InlineKeyboardButton('ᴛɢʀᴀᴘʜ', callback_data='about')
         ], [
-            InlineKeyboardButton('ᴛᴏʀʀᴇɴᴛ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('ᴜʀʟꜱʜᴏʀᴛ', url='https://t.me/nasrani_update')
+            InlineKeyboardButton('ᴛᴏʀʀᴇɴᴛ', callback_data='help'),
+            InlineKeyboardButton('ᴜʀʟꜱʜᴏʀᴛ', callback_data='help')
         ], [
-            InlineKeyboardButton('ᴠɪᴅᴇᴏ', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('ᴠɪᴅᴇᴏ', callback_data='help'),
             InlineKeyboardButton('ᴡʜᴏɪꜱ', url='https://t.me/nasrani_update')
         ], [
             InlineKeyboardButton('𝐇𝐢𝐝𝐞 𝐂𝐨𝐦𝐦𝐚𝐧𝐝', callback_data='help'),
