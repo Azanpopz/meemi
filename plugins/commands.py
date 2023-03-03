@@ -205,13 +205,11 @@ async def start(client, message):
                                      ]
                                  )
                              )
-                btn = [[
-                    InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
-                ]]
-                await message.reply_text(
+                
+                await message.reply(
                     chat_id=force_channel,
                     text=script.BATCH_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
-                    reply_markup=InlineKeyboardMarkup(btn)
+                    
                 )
                 
                 
