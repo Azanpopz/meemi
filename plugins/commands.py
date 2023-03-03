@@ -187,7 +187,7 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                await client.send_cached_media(
+                k = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,      
@@ -205,8 +205,10 @@ async def start(client, message):
                                      ]
                                  )
                              )
+                await asyncio.sleep(5) 
+                await k.delete()
                 await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
-     
+                
                 
             except FloodWait as e:
                 await asyncio.sleep(e.x)
