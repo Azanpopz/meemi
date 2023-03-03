@@ -190,7 +190,7 @@ async def start(client, message):
                 k = await client.send_cached_media(
                     chat_id=force_channel,
                     file_id=msg.get("file_id"),
-                    caption=f_caption,      
+                    caption={message.from_user.mention} /nf_caption,      
                     protect_content=msg.get('protect', False),
                     parse_mode=enums.ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(
