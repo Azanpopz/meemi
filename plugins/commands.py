@@ -196,10 +196,10 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(
                                      [
                                          [
-                                             InlineKeyboardButton('1🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="https://t.me/+YCA-JWZDNsJkNmI1")
+                                             InlineKeyboardButton('1🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', callback_data=f"{pre}#{file_id}")
                                          ],
                                          [
-                                             InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url="https://t.me/NasraniChatGroup"),
+                                             InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}"),
                                              InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://t.me/NasraniChatGroup")
                                          ]                            
                                      ]
@@ -230,7 +230,7 @@ async def start(client, message):
                                          ],
                                          [
                                              InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url="https://t.me/NasraniChatGroup"),
-                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://t.me/NasraniChatGroup")
+                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
                                          ]                            
                                      ]
                                  )
