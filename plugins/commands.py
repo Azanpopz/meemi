@@ -209,7 +209,7 @@ async def start(client, message):
                 await asyncio.sleep(e.x)
                 logger.warning(f"Floodwait of {e.x} sec.")
                 
-                k = await client.send_cached_media(
+                await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,      
@@ -228,8 +228,7 @@ async def start(client, message):
                                  )
                              )
 
-                await asyncio.sleep(60) 
-                await k.delete()
+                
                 await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
      
         
