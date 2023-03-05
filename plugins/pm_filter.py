@@ -2254,14 +2254,9 @@ async def global_filters(client, message, text=False):
                                 disable_web_page_preview=True,
                                 reply_to_message_id=reply_id
                             )
-
-                            
-
-
-
-
-
-                            
+                            await asyncio.sleep(60) 
+                            await joelkb.delete()
+                                                        
                         else:
                             button = eval(btn)
                             hmm = await client.send_message(
@@ -2273,42 +2268,29 @@ async def global_filters(client, message, text=False):
                             )
                             
 
-
-
-
-
-
-
                     elif btn == "[]":
                         oto = await client.send_cached_media(
                             group_id,
                             fileid,
+                            photo=(SPELL_IMG),
                             caption=reply_text or "",
                             reply_to_message_id=reply_id
                         )
-                        
+                        await asyncio.sleep(60) 
+                        await oto.delete()
   
-
-
-
-
-
-
-
                     else:
                         button = eval(btn)
                         dlt = await message.reply_cached_media(
                             fileid,
+                            photo=(SPELL_IMG),
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id
                         )
+                        await asyncio.sleep(60) 
+                        await dlt.delete()
                         
-
-
-
-
-
                 except Exception as e:
                     logger.exception(e)
                 break
