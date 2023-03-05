@@ -372,7 +372,7 @@ async def next_page(bot, query):
                     ],
                 )
     btn.insert(0, [
-        InlineKeyboardButton(f'⛔️ ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
+        InlineKeyboardButton(f'🌷ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​🌷', url='https://t.me/nasrani_update')
     ])
     try:
         await query.edit_message_reply_markup(
@@ -490,7 +490,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
             [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}",
+                        text=f"🐠[{get_size(file.file_size)}] {file.file_name}🐠",
                         url=await get_shortlink(
                             message.chat.id,
                             f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
@@ -503,14 +503,14 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
             else [
                 [
                     InlineKeyboardButton(
-                        text=f"{file.file_name}",
+                        text=f"🐠{file.file_name}",
                         url=await get_shortlink(
                             message.chat.id,
                             f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
                         ),
                     ),
                     InlineKeyboardButton(
-                        text=f"{get_size(file.file_size)}",
+                        text=f"🐠{get_size(file.file_size)}",
                         url=await get_shortlink(
                             message.chat.id,
                             f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}",
@@ -1785,7 +1785,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"▫️{get_size(file.file_size)} ⊳ {file.file_name}", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        text=f"🐠{get_size(file.file_size)} {file.file_name}🐠", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                 ]
                 for file in files
@@ -1794,11 +1794,11 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"{file.file_name}",
+                        text=f"🐠{file.file_name}",
                         url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                     InlineKeyboardButton(
-                        text=f"{get_size(file.file_size)}",
+                        text=f"🐠{get_size(file.file_size)}",
                         url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                 ]
@@ -1809,7 +1809,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"▫️{get_size(file.file_size)} ⊳ {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                        text=f"🐠{get_size(file.file_size)} {file.file_name}🐠", callback_data=f'{pre}#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -1875,7 +1875,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
     btn.insert(0, [
-        InlineKeyboardButton(f'⛔️ ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
+        InlineKeyboardButton(f'🌷ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs🌷', url='https://t.me/nasrani_update')
     ])
 
     m=await message.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
