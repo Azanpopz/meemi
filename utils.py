@@ -134,6 +134,21 @@ async def get_poster(query, bulk=False, id=False, file=None):
         'rating': str(movie.get("rating")),
         'url':f'https://www.imdb.com/title/tt{movieid}'
     }
+
+async def get_settings(group_id):
+    settings = temp.SETTINGS.get(group_id)
+    if not settings:
+        settings = await db.get_settings(group_id)
+        temp.SETTINGS[group_id] = settings
+    return settings
+    
+async def save_group_settings(group_id, key, value):
+    current = await get_settings(group_id)
+    current[key] = value
+    temp.SETTINGS[group_id] = current
+    await db.update_settings(group_id, current)
+    
+
 # https://github.com/odysseusmax/animated-lamp/blob/2ef4730eb2b5f0596ed6d03e7b05243d93e3415b/bot/utils/broadcast.py#L37
 
 async def broadcast_messages(user_id, message):
