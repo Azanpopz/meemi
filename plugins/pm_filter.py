@@ -2335,7 +2335,7 @@ async def global_filters(client, message, text=False):
                                 parse_mode=enums.ParseMode.HTML
         
                             )
-                            btn.insert(0, [
+                            btn.append([
                                 InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
                             ])
                             
@@ -2355,7 +2355,7 @@ async def global_filters(client, message, text=False):
                                 
                                 parse_mode=enums.ParseMode.HTML    
                             )
-                            btn.insert(0, [
+                            btn.append([
                                 InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
                             ])
 
@@ -2372,12 +2372,12 @@ async def global_filters(client, message, text=False):
                             reply_to_message_id=reply_id,                            
                             parse_mode=enums.ParseMode.HTML
                         )
-                        btn.insert(0, [
+                        btn.append([
                             InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
                         ])
 
                     else:
-                        btn.insert(0, [
+                        btn.append([
                             InlineKeyboardButton(f'⛔️ ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
                         ])
                         reply_markup = InlineKeyboardMarkup(btn)  
