@@ -2250,7 +2250,7 @@ async def global_filters(client, message, text=False):
                         if btn == "[]":
                             joelkb = await client.send_message(
                                 group_id,
-                                photo,
+                                
                                 reply_text, 
                                 disable_web_page_preview=True,
                                 reply_to_message_id=reply_id
@@ -2262,7 +2262,7 @@ async def global_filters(client, message, text=False):
                             button = eval(btn)
                             hmm = await client.send_message(
                                 group_id,
-                                photo,
+                                
                                 reply_text,
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
@@ -2276,7 +2276,7 @@ async def global_filters(client, message, text=False):
                         oto = await client.send_cached_media(
                             group_id,
                             fileid,
-                            photo=(SPELL_IMG),
+                            
                             caption=reply_text or "",
                             reply_to_message_id=reply_id
                         )
@@ -2287,7 +2287,7 @@ async def global_filters(client, message, text=False):
                         button = eval(btn)
                         dlt = await message.reply_cached_media(
                             fileid,
-                            photo=(SPELL_IMG),
+                            
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id
