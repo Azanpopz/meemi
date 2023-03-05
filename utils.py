@@ -11,7 +11,7 @@ import os
 from datetime import datetime
 from typing import List
 from database.users_chats_db import db
-from database.users import db
+
 
 from bs4 import BeautifulSoup
 import requests
