@@ -2250,7 +2250,7 @@ async def global_filters(client, message, text=False):
                         if btn == "[]":
                             joelkb = await client.send_message(
                                 group_id,
-                                photo=(SPELL_IMG),
+                                photo,
                                 reply_text, 
                                 disable_web_page_preview=True,
                                 reply_to_message_id=reply_id
@@ -2262,7 +2262,7 @@ async def global_filters(client, message, text=False):
                             button = eval(btn)
                             hmm = await client.send_message(
                                 group_id,
-                                photo=(SPELL_IMG),
+                                photo,
                                 reply_text,
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
