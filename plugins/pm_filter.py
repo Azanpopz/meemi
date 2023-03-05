@@ -2369,20 +2369,22 @@ async def global_filters(client, message, text=False):
                         )
 
                     else:
-                        button = eval(btn)
-                        buttons = [[            
-                            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
-                            InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
-                        ]]
-                        reply_markup = InlineKeyboardMarkup(buttons)  
+                        btn.insert(0, [
+                            InlineKeyboardButton(f'⛔️ ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
+                        ])
+                        reply_markup = InlineKeyboardMarkup(btn)  
                         dlt = await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
+                            reply_markup=InlineKeyboardMarkup(btn),
                             reply_to_message_id=reply_id,
                             
                             parse_mode=enums.ParseMode.HTML
                         )
+                        btn.insert(0, [
+                            InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
+                        ])
 
                 except Exception as e:
                     logger.exception(e)
