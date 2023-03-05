@@ -2257,7 +2257,7 @@ async def global_filters(client, message, text=False):
 
                             try:
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await global_filters(client, message)
                             except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_ffilter', True)
@@ -2290,7 +2290,7 @@ async def global_filters(client, message, text=False):
                             )
                             try:
                                 if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                                    await global_filters(client, message)
                             except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_ffilter', True)
@@ -2323,7 +2323,7 @@ async def global_filters(client, message, text=False):
                         )
                         try:
                             if settings['auto_ffilter']:
-                                await auto_filter(client, message)
+                                await global_filters(client, message)
                         except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_ffilter', True)
@@ -2357,8 +2357,8 @@ async def global_filters(client, message, text=False):
                         )
                         try:
                             if settings['auto_ffilter']:
-                                await auto_filter(client, message)
-                            except KeyError:
+                                await global_filters(client, message)
+                        except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_ffilter', True)
                                 settings = await get_settings(message.chat.id)
