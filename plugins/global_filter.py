@@ -11,7 +11,7 @@ from database.gfilters_mdb import(
 
 from database.connections_mdb import active_connection
 from utils import get_file_id, gfilterparser, split_quotes
-from info import ADMINS, SPELL_IMG
+from info import ADMINS
 
 
 @Client.on_message(filters.command(['gfilter', 'addg']) & filters.incoming & filters.user(ADMINS))
@@ -30,7 +30,7 @@ async def addgfilter(client, message):
         return
 
     if (len(extracted) >= 2) and not message.reply_to_message:
-        reply_text, btn, photo, alert = gfilterparser(extracted[1], text)
+        reply_text, btn, alert = gfilterparser(extracted[1], text)
         fileid = None
         if not reply_text:
             await message.reply_text("You cannot have buttons alone, give some text to go with it!", quote=True)
@@ -39,9 +39,7 @@ async def addgfilter(client, message):
     elif message.reply_to_message and message.reply_to_message.reply_markup:
         try:
             rm = message.reply_to_message.reply_markup
-            btn = rm.inline_keyboard
-
-            photo = (SPELL_IMG)
+            btn = rm.inline_keyboard            
             msg = get_file_id(message.reply_to_message)
             if msg:
                 fileid = msg.file_id
@@ -55,30 +53,29 @@ async def addgfilter(client, message):
             btn = "[]" 
             fileid = None
             alert = None
-            photo = ""
+            
     elif message.reply_to_message and message.reply_to_message.media:
         try:
             msg = get_file_id(message.reply_to_message)
             fileid = msg.file_id if msg else None
-            reply_text, photo, btn, alert = gfilterparser(extracted[1], text) if message.reply_to_message.sticker else gfilterparser(message.reply_to_message.caption.html, text)
+            reply_text, btn, alert = gfilterparser(extracted[1], text) if message.reply_to_message.sticker else gfilterparser(message.reply_to_message.caption.html, text)
         except:
             reply_text = ""
             btn = "[]"
-            alert = None
-            photo = ""
+            alert = None      
     elif message.reply_to_message and message.reply_to_message.text:
         try:
             fileid = None
-            reply_text, btn, photo, alert = gfilterparser(message.reply_to_message.text.html, text)
+            reply_text, btn, alert = gfilterparser(message.reply_to_message.text.html, text)
         except:
             reply_text = ""
             btn = "[]"
             alert = None
-            photo = ""
+            
     else:
         return
 
-    await add_gfilter('gfilters', text, reply_text, photo, btn, fileid, alert)
+    await add_gfilter('gfilters', text, reply_text, btn, fileid, alert)
 
     await message.reply_text(
         f"GFilter for  `{text}`  added",
