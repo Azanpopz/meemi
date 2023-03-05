@@ -2349,7 +2349,7 @@ async def global_filters(client, message, text=False):
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
                                 reply_to_message_id=reply_id,
-                                reply_markup=reply_markup,
+                                
                                 parse_mode=enums.ParseMode.HTML    
                             )
 
@@ -2364,7 +2364,7 @@ async def global_filters(client, message, text=False):
                             fileid,
                             caption=reply_text or "",
                             reply_to_message_id=reply_id,
-                            reply_markup=reply_markup,
+                            
                             parse_mode=enums.ParseMode.HTML
                         )
 
