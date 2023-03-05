@@ -228,7 +228,7 @@ async def start(client, message):
                                          ],
                                          [
                                              InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url="https://t.me/NasraniChatGroup"),
-                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url=f"https://telegram.me/{temp.U_NAME}?start="))
+                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url=f"https://telegram.me/{temp.U_NAME}?start"))
                                          ]                            
                                      ]
                                  )
