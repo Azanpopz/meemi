@@ -76,7 +76,7 @@ async def sticker_image(_, msg: Message):
         os.remove(image)
 
 
-@Client.on_message(filters.command(['png']) & filters.sticker)
+@Client.on_message(filters.command(['png']) | filters.private & filters.sticker)
 def photo_convert(c, m):
     rand_id = random.randint(100,900) # generate random number between 100 to 900
     m.download(f"{m.chat.id}-{rand_id}.jpg")
@@ -86,7 +86,7 @@ def photo_convert(c, m):
     os.remove(f"{m.chat.id}-{rand_id}.png")
     os.remove(f'downloads/{m.chat.id}-{rand_id}.jpg')
 
-@Client.on_message(filters.sticker)
+@Client.on_message(filters.command(['png1']) | filters.private & filters.sticker)
 def conver_webp(c, m):
     rand_id = random.randint(100,900) # generate random number between 100 to 900
     if (m.sticker.is_animated) == False:
