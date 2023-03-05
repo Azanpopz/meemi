@@ -2322,18 +2322,18 @@ async def global_filters(client, message, text=False):
                             reply_to_message_id=reply_id
                         )
                         try:
-                                if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
-                            except KeyError:
+                            if settings['auto_ffilter']:
+                                await auto_filter(client, message)
+                        except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_ffilter', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_ffilter']:
                                     await auto_filter(client, message)
-                            try:
-                                if settings['auto_delete']:
-                                    await oto.delete()
-                            except KeyError:
+                        try:
+                            if settings['auto_delete']:
+                                await oto.delete()
+                        except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_delete', True)
                                 settings = await get_settings(message.chat.id)
@@ -2356,18 +2356,18 @@ async def global_filters(client, message, text=False):
                             reply_to_message_id=reply_id
                         )
                         try:
-                                if settings['auto_ffilter']:
-                                    await auto_filter(client, message)
+                            if settings['auto_ffilter']:
+                                await auto_filter(client, message)
                             except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_ffilter', True)
                                 settings = await get_settings(message.chat.id)
                                 if settings['auto_ffilter']:
                                     await auto_filter(client, message)
-                            try:
+                        try:
                                 if settings['auto_delete']:
                                     await dlt.delete()
-                            except KeyError:
+                        except KeyError:
                                 grpid = await active_connection(str(message.from_user.id))
                                 await save_group_settings(grpid, 'auto_delete', True)
                                 settings = await get_settings(message.chat.id)
