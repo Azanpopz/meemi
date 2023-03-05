@@ -2254,6 +2254,30 @@ async def global_filters(client, message, text=False):
                                 disable_web_page_preview=True,
                                 reply_to_message_id=reply_id
                             )
+
+                            try:
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_ffilter', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            try:
+                                if settings['auto_delete']:
+                                    await joelkb.delete()
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_delete', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_delete']:
+                                    await joelkb.delete()
+
+
+
+
+
                             
                         else:
                             button = eval(btn)
@@ -2264,6 +2288,31 @@ async def global_filters(client, message, text=False):
                                 reply_markup=InlineKeyboardMarkup(button),
                                 reply_to_message_id=reply_id
                             )
+                            try:
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_ffilter', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            try:
+                                if settings['auto_delete']:
+                                    await hmm.delete()
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_delete', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_delete']:
+                                    await hmm.delete()
+
+
+
+
+
+
+
 
                     elif btn == "[]":
                         oto = await client.send_cached_media(
@@ -2272,6 +2321,31 @@ async def global_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_to_message_id=reply_id
                         )
+                        try:
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_ffilter', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            try:
+                                if settings['auto_delete']:
+                                    await oto.delete()
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_delete', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_delete']:
+                                    await oto.delete()
+  
+
+
+
+
+
+
 
                     else:
                         button = eval(btn)
@@ -2281,6 +2355,28 @@ async def global_filters(client, message, text=False):
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id
                         )
+                        try:
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_ffilter', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_ffilter']:
+                                    await auto_filter(client, message)
+                            try:
+                                if settings['auto_delete']:
+                                    await dlt.delete()
+                            except KeyError:
+                                grpid = await active_connection(str(message.from_user.id))
+                                await save_group_settings(grpid, 'auto_delete', True)
+                                settings = await get_settings(message.chat.id)
+                                if settings['auto_delete']:
+                                    await dlt.delete()
+
+
+
+
 
                 except Exception as e:
                     logger.exception(e)
@@ -2301,102 +2397,4 @@ async def global_filters(client, message, text=False):
 
 
 
-
-async def global_filters(client, message, text=False):
-    settings = await get_settings(message.chat.id)
-    group_id = message.chat.id
-    name = text or message.text
-    reply_id = message.reply_to_message.id if message.reply_to_message else message.id
-    keywords = await get_gfilters('gfilters')
-    for keyword in reversed(sorted(keywords, key=len)):
-        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
-        if re.search(pattern, name, flags=re.IGNORECASE):
-            reply_text, btn, alert, fileid = await find_gfilter('gfilters', keyword)
-
-            if reply_text:
-                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
-
-            if btn is not None:
-                try:
-                    if fileid == "None":
-                        if btn == "[]":
-                            buttons = [[            
-                                InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
-                                InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
-                            ]]
-                            reply_markup = InlineKeyboardMarkup(buttons)
-        
-                            joelkb = await client.send_message(
-                                group_id, 
-                                reply_text, 
-                                disable_web_page_preview=True,
-                                reply_to_message_id=reply_id,
-                                reply_markup=reply_markup,                                
-                                parse_mode=enums.ParseMode.HTML
-        
-                            )
-                            btn.append([
-                                InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
-                            ])
-                            
-                        else:
-                            button = eval(btn)
-                            buttons = [[            
-                                InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
-                                InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
-                            ]]
-                            reply_markup = InlineKeyboardMarkup(buttons)
-                            hmm = await client.send_message(
-                                group_id,
-                                reply_text,
-                                disable_web_page_preview=True,
-                                reply_markup=InlineKeyboardMarkup(button),
-                                reply_to_message_id=reply_id,
-                                
-                                parse_mode=enums.ParseMode.HTML    
-                            )
-                            btn.append([
-                                InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
-                            ])
-
-                    elif btn == "[]":
-                        buttons = [[            
-                            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
-                            InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
-                        ]]
-                        reply_markup = InlineKeyboardMarkup(buttons)
-                        oto = await client.send_cached_media(
-                            group_id,
-                            fileid,
-                            caption=reply_text or "",
-                            reply_to_message_id=reply_id,                            
-                            parse_mode=enums.ParseMode.HTML
-                        )
-                        btn.append([
-                            InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
-                        ])
-
-                    else:
-                        btn.append([
-                            InlineKeyboardButton(f'⛔️ ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
-                        ])
-                        reply_markup = InlineKeyboardMarkup(btn)  
-                        dlt = await message.reply_cached_media(
-                            fileid,
-                            caption=reply_text or "",
-                            reply_markup=InlineKeyboardMarkup(button),
-                            
-                            reply_to_message_id=reply_id,
-                            
-                            parse_mode=enums.ParseMode.HTML
-                        )
-                        btn.insert(0, [
-                            InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
-                        ])
-
-                except Exception as e:
-                    logger.exception(e)
-                break
-    else:
-        return False
 
