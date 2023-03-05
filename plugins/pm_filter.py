@@ -2380,7 +2380,7 @@ async def global_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id,
-                            reply_markup=reply_markup,
+                            
                             parse_mode=enums.ParseMode.HTML
                         )
 
