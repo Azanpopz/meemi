@@ -1758,7 +1758,7 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search.lower(), offset=0, filter=True)
             if not files:
                 await client.send_message(message.chat.id, text=f"-🦋 #REQUESTED_CONTENT 🦋-\n{message.from_user.mention}📝**Content Name** :`{search}`\n**Requested By**: {message.from_user.first_name}\n **USER ID**:{message.from_user.id}\n\n🗃️",
-                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔺 Mark as Done 🔺", callback_data="upload")],[InlineKeyboardButton("🔺 🔐𝐂𝐥𝐨𝐬𝐞🔐 🔺", callback_data=close_data")]]))
+                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔺 Mark as Done 🔺", callback_data="upload")],[InlineKeyboardButton("🔺 🔐𝐂𝐥𝐨𝐬𝐞🔐 🔺", callback_data="close_data")]]))
                 
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
