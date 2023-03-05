@@ -2320,38 +2320,68 @@ async def global_filters(client, message, text=False):
                 try:
                     if fileid == "None":
                         if btn == "[]":
+                            buttons = [[            
+                                InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
+                                InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
+                            ]]
+                            reply_markup = InlineKeyboardMarkup(buttons)
+        
                             joelkb = await client.send_message(
                                 group_id, 
                                 reply_text, 
                                 disable_web_page_preview=True,
-                                reply_to_message_id=reply_id
+                                reply_to_message_id=reply_id,
+                                reply_markup=reply_markup,                                
+                                parse_mode=enums.ParseMode.HTML
+        
                             )
                             
                         else:
                             button = eval(btn)
+                            buttons = [[            
+                                InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
+                                InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
+                            ]]
+                            reply_markup = InlineKeyboardMarkup(buttons)
                             hmm = await client.send_message(
                                 group_id,
                                 reply_text,
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
-                                reply_to_message_id=reply_id
+                                reply_to_message_id=reply_id,
+                                reply_markup=reply_markup,
+                                parse_mode=enums.ParseMode.HTML    
                             )
 
                     elif btn == "[]":
+                        buttons = [[            
+                            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
+                            InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
+                        ]]
+                        reply_markup = InlineKeyboardMarkup(buttons)
                         oto = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
-                            reply_to_message_id=reply_id
+                            reply_to_message_id=reply_id,
+                            reply_markup=reply_markup,
+                            parse_mode=enums.ParseMode.HTML
                         )
 
                     else:
                         button = eval(btn)
+                        buttons = [[            
+                            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='page1'),
+                            InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
+                        ]]
+                        reply_markup = InlineKeyboardMarkup(buttons)  
                         dlt = await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
-                            reply_to_message_id=reply_id
+                            reply_to_message_id=reply_id,
+                            reply_markup=reply_markup,
+                            parse_mode=enums.ParseMode.HTML
                         )
 
                 except Exception as e:
