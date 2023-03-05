@@ -103,7 +103,7 @@ async def start(client, message):
             InlineKeyboardButton('🔹𝐆𝐫𝐨𝐮𝐩', callback_data='help'),
             InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞🔹', callback_data='about')
         ], [
-            InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='surprise')
+            InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
