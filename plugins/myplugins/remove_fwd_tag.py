@@ -15,7 +15,7 @@ Bot = Client(
      api_hash = os.environ["API_HASH"]
 )
 
-@Client.on_message(filters.forwarded & filters.group & filters.incoming)
+@Client.on_message(filters.forwarded & filters.incoming & filters.group)
 async def channel_tag(bot, message):
     try:
         chat_id = message.chat.id
