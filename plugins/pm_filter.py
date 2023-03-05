@@ -2335,6 +2335,9 @@ async def global_filters(client, message, text=False):
                                 parse_mode=enums.ParseMode.HTML
         
                             )
+                            btn.insert(0, [
+                                InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
+                            ])
                             
                         else:
                             button = eval(btn)
@@ -2352,6 +2355,9 @@ async def global_filters(client, message, text=False):
                                 
                                 parse_mode=enums.ParseMode.HTML    
                             )
+                            btn.insert(0, [
+                                InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
+                            ])
 
                     elif btn == "[]":
                         buttons = [[            
@@ -2363,10 +2369,12 @@ async def global_filters(client, message, text=False):
                             group_id,
                             fileid,
                             caption=reply_text or "",
-                            reply_to_message_id=reply_id,
-                            
+                            reply_to_message_id=reply_id,                            
                             parse_mode=enums.ParseMode.HTML
                         )
+                        btn.insert(0, [
+                            InlineKeyboardButton(f'⛔️ 🥺ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​ ⛔️', url='https://t.me/nasrani_update')
+                        ])
 
                     else:
                         btn.insert(0, [
@@ -2377,7 +2385,7 @@ async def global_filters(client, message, text=False):
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
-                            reply_markup=InlineKeyboardMarkup(btn),
+                            
                             reply_to_message_id=reply_id,
                             
                             parse_mode=enums.ParseMode.HTML
