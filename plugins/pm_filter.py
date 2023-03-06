@@ -992,21 +992,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("check"):
         
         buttons = [[
-            InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"uploaded#{query.from_user.id}")
+            InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"upl#{query.from_user.id}")
         ], [
             InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'unv#{query.from_user.id}'),
             InlineKeyboardButton('❌️CLOSE❌️', callback_data='close_data')
         
         ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
+        
         if query.from_user.id in ADMINS:
+            username = query.from_user.name
             user = await client.get_users(query.from_user.id)
+            reply_markup = InlineKeyboardMarkup(buttons)
             content = query.message.text
             req = query.from_user.id
             chat_id = query.message.chat.id
             message = query.message
-            await query.message.edit_text(f"{query.from_user.mention} {content}💕")
-        
+            await query.message.edit_text(f"{query.from_user.mention} {query.from_user.name} {content}💕")
+            await query.message.edit_reply_markup(reply_markup)
         
 
     elif query.data.startswith("upl"):
