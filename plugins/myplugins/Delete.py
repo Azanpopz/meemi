@@ -5,16 +5,14 @@ from pyrogram import enums
 import re
 from os import environ
 
-from info import API_HASH, API_ID, BOT_TOKEN, SESSION
+from info import API_HASH, API_ID, BOT_TOKEN, SESSION, SUPPORT_CHAT_ID, ADMINS
 
 API_ID = int(environ.get("API_ID"))
 API_HASH = environ.get("API_HASH")
 BOT_TOKEN = environ.get("BOT_TOKEN")
 SESSION = environ.get('SESSION', 'UFSBotz')
 
-GROUPS = []
-for grp in environ.get("GROUPS").split():
-    GROUPS.append(int(grp))
+
 ADMINS = []
 for usr in environ.get("ADMINS").split():
     ADMINS.append(int(usr))
