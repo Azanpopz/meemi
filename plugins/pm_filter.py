@@ -1004,7 +1004,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         req = query.from_user.id
         chat_id = query.message.chat.id
         message = query.message
-        if int(req) not in [query.message.reply_to_message.from_user.id, 0]:
+        if int(req) not in [query.message.reply_to_message.query.from_user.id, 0]:
             await query.message.edit_text(f"{query.from_user.mention} {content}💕")
         
         
