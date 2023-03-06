@@ -5,7 +5,8 @@ logger = logging.getLogger(__name__)
 
 import asyncio
 from pyrogram import Client, filters
-
+from plugins.myplugins.caption import autocaption
+from plugins.myplugins.caption import Config
 import pyrogram
 
 import logging
