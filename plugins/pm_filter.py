@@ -1038,14 +1038,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )        
         
         if query.from_user.id in ADMINS:
+            chat_id = query.message.chat.id
+            reporter = str(message.from_user.id)
+            mention = query.from_user.mention           
+            content = message.text
+
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
-            await query.message.edit_text(f"{query.from_user.mention}\n <strike>Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !<strike> {content}")
+            await query.message.edit_text(f"{mention} ({reporter})\n <strike>Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !<strike> {content}")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
-                await client.send_message(query.from_user.id, text=f"<b>Hᴇʏ {query.from_user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ʜᴀs ʙᴇᴇɴ ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ ᴏᴜʀ ᴍᴏᴅᴇʀᴀᴛᴏʀs. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.</b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await client.send_message(query.message.chat.id, text=f"<b>Hᴇʏ {query.from_user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ʜᴀs ʙᴇᴇɴ ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ ᴏᴜʀ ᴍᴏᴅᴇʀᴀᴛᴏʀs. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.</b>", reply_markup=InlineKeyboardMarkup(buttons))
             except UserIsBlocked:
                 await client.send_message(query.from_user.id, text=f"<b>Hᴇʏ {query.from_user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ʜᴀs ʙᴇᴇɴ ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ ᴏᴜʀ ᴍᴏᴅᴇʀᴀᴛᴏʀs. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.\n\nNᴏᴛᴇ: Tʜɪs ᴍᴇssᴀɢᴇ ɪs sᴇɴᴛ ᴛᴏ ᴛʜɪs ɢʀᴏᴜᴘ ʙᴇᴄᴀᴜsᴇ ʏᴏᴜ'ᴠᴇ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ. Tᴏ sᴇɴᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ ʏᴏᴜʀ PM, Mᴜsᴛ ᴜɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ.</b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
