@@ -992,10 +992,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("check"):
         
         buttons = [[
-            InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"upl#{query.from_user.id}")
+            InlineKeyboardButton('ᴜᴘʟᴏᴀᴅ', callback_data=f"upl#{query.from_user.id}")
         ], [
-            InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'unv#{query.from_user.id}'),
-            InlineKeyboardButton('❌️CLOSE❌️', callback_data='close_data')
+            InlineKeyboardButton('ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ', callback_data=f'unv#{query.from_user.id}'),
+            InlineKeyboardButton('❌️ᴄʟᴏꜱᴇ❌️', callback_data='close_data')
         
         ]]
         
@@ -1011,33 +1011,37 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
             await asyncio.sleep(300)
             await k.delete()
-            buttons = [[
-                InlineKeyboardButton('ʀᴇᴘᴏ', url='https://t.me/nasrani_update'),
-                InlineKeyboardButton('ʙᴀᴄᴋ', callback_data='about')
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await query.message.edit_text(
-                text=script.UN_TXT,
-                reply_markup=reply_markup,
-                parse_mode=enums.ParseMode.HTML
-            )
+            
 
     elif query.data.startswith("upl"):
         
         buttons = [[
-            InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"uploaded#{query.from_user.id}")
-        ], [
-            InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'unv#{query.from_user.id}'),
-            InlineKeyboardButton('❌️CLOSE❌️', callback_data='close_data')
-        
-        ]]
-        
+            InlineKeyboardButton('✔️ᴜᴘʟᴏᴀᴅᴇᴅ✔️', callback_data=f"uploaded#{query.from_user.id}")
+        ]] 
+        await query.message.edit_text(
+            text="▣▢▢▢▢▢"
+        )
+        await query.message.edit_text(
+            text="▣▣▢▢▢▢"
+        )
+        await query.message.edit_text(
+            text="▣▣▣▢▢▢"
+        )
+        await query.message.edit_text(
+            text="▣▣▣▣▢▢"
+        )
+        await query.message.edit_text(
+            text="▣▣▣▣▣▢"
+        )
+        await query.message.edit_text(
+            text="▣▣▣▣▣▣"
+        )        
         
         if query.from_user.id in ADMINS:
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
-            await query.message.edit_text(f"{query.from_user.mention} {content}")
+            await query.message.edit_text(f"{query.from_user.mention}\n <strike>Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !<strike> {content}")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
@@ -1051,12 +1055,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("unv"):
         
         buttons = [[
-            InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"uploaded#{query.from_user.id}")
-        ], [
-            InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'un#{query.from_user.id}'),
-            InlineKeyboardButton('❌️CLOSE❌️', callback_data='close_data')
-        
-        ]]
+            InlineKeyboardButton('⚠️ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ⚠️', callback_data="close_data")
+        ]] 
              
         await query.message.edit_text(
             text="▣▢▢▢▢▢"
@@ -1081,7 +1081,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
-            await query.message.edit_text(f"{query.from_user.mention}\n\n 🙂{content}🙂")
+            await query.message.edit_text(f"{query.from_user.mention}\n <strike>Sᴇᴛ ᴛᴏ Uɴᴀᴠᴀɪʟᴀʙʟᴇ ! <strike>{content}🙂")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uɴᴀᴠᴀɪʟᴀʙʟᴇ !")
             try:
