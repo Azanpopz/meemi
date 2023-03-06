@@ -1041,7 +1041,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             chat_id = query.message.chat.id
             reporter = str(query.message.from_user.id)
             mention = query.from_user.mention           
-            content = message.text
+            content = query.message.text
 
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)                    
