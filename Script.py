@@ -11,7 +11,7 @@ class script(object):
 
     UPL_TXT = """𝐇𝐞𝐥𝐥𝐨 {},"""
 
-    UN_TXT = """𝐇𝐞𝐥𝐥𝐨 {},"""   
+    UN_TXT = """𝐇𝐞𝐥𝐥𝐨 {}, {content}"""   
 
 
    
