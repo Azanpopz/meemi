@@ -49,9 +49,9 @@ if __name__ == "__main__" :
 
 
 # =
-usercaption_position = Config.CAPTION_POSITION
-caption_position = usercaption_position.lower()
-caption_text = Config.CAPTION_TEXT
+# usercaption_position = Config.CAPTION_POSITION
+# caption_position = usercaption_position.lower()
+# caption_text = Config.CAPTION_TEXT
 
 
 @Client.on_message(filters.channel & (filters.document | filters.video | filters.audio ) & ~filters.edited, group=-1)
