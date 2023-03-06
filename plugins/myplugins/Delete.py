@@ -40,7 +40,7 @@ Bot = Client(name="auto-delete",
 async def start(bot, message):
     await message.reply(START_MSG.format(message.from_user.mention))
 
-@Client.on_message(filters.chat(GROUPS))
+@Client.on_message(filters.chat(SUPPORT_CHAT_ID))
 async def delete(bot, message):
     try:
        if message.from_user.id in ADMINS:
