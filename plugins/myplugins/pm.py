@@ -1,7 +1,7 @@
 import asyncio
 import os
 import logging
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 from Script import script
 from info import CHANNELS, ADMIN, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PM
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-@Client.on_message(filters.private & filters.text)
+@Client.on_message(filters.command("chat") & filters.text)
 async def pm_text(client: Client, message):
     try:
         if message.from_user.id == ADMIN:
@@ -22,7 +22,7 @@ async def pm_text(client: Client, message):
         k = await client.send_message(
             chat_id=ADMIN,
             text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
-            parse_mode="html",
+            parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
                             [
@@ -39,7 +39,7 @@ async def pm_text(client: Client, message):
         await client.send_message(
             chat_id=PM,
             text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
-            parse_mode="html",
+            parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
                             [
@@ -92,7 +92,7 @@ async def reply_text(client: Client, message):
             await client.send_message(
                 text=message.text,
                 chat_id=int(reference_id),
-                parse_mode="html",
+                parse_mode=enums.ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
                         [
                             [
@@ -127,7 +127,7 @@ async def replay_media(client: Client, message):
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
                 message_id=message.message_id,
-                parse_mode="html",
+                parse_mode=enums.ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
                         [
                             [
