@@ -1007,9 +1007,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
             req = query.from_user.id
             chat_id = query.message.chat.id
             message = query.message
-            await query.message.edit_text(f"{query.from_user.mention} {query.from_user.name} {content}💕")
+            k = await query.message.edit_text(f"{query.from_user.mention} {query.from_user.name} {content}💕")
             await query.message.edit_reply_markup(reply_markup)
-        
+            await asyncio.sleep(300)
+            await k.delete()
+            buttons = [[
+                InlineKeyboardButton('ʀᴇᴘᴏ', url='https://t.me/nasrani_update'),
+                InlineKeyboardButton('ʙᴀᴄᴋ', callback_data='about')
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await query.message.edit_text(
+                text=script.UN_TXT,
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
 
     elif query.data.startswith("upl"):
         
