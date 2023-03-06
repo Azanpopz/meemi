@@ -1142,7 +1142,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
  
 
     elif query.data.startswith("uploaded"):
-         elif query.data.startswith("uploaded"):
+         
         ident, from_user = query.data.split("#")
         btn = [[
                 InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"upalert#{from_user}")
