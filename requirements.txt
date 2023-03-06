@@ -51,9 +51,3 @@ python-decouple
 YoutubeTags
 
 
-certifi==2022.12.7
-future==0.16.0
-lxml==4.9.1
-
-requests==2.20.0
-urllib3==1.26.5
