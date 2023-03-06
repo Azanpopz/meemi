@@ -1039,7 +1039,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         if query.from_user.id in ADMINS:
             chat_id = query.message.chat.id
-            reporter = str(message.from_user.id)
+            reporter = str(query.message.from_user.id)
             mention = query.from_user.mention           
             content = message.text
 
