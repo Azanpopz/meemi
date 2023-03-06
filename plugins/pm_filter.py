@@ -1616,6 +1616,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
+    elif query.data == "un":
+        buttons = [[
+            InlineKeyboardButton('close', callback_data='close_data')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            chat_id=query.from_user.id,
+            text=f"{query.from_user.mention} {content} നിങ്ങളുടെ മൂവി ഇറങ്ങിയിട്ടില്ല",
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
     elif query.data == "stats":
         buttons = [[
             InlineKeyboardButton('ʙᴀᴄᴋ', callback_data='start'),
