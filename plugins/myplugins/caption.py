@@ -5,66 +5,28 @@ logger = logging.getLogger(__name__)
 
 import asyncio
 from pyrogram import Client, filters
-from plugins.myplugins.caption import autocaption
-from plugins.myplugins.caption import Config
-import pyrogram
-
-import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-import os
-
+from bot import autocaption
 from config import Config
-from pyrogram import Client 
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-
-class Config(object):
-      BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
-      API_ID = int(os.environ.get("APP_ID", 12345))
-      API_HASH = os.environ.get("API_HASH")
-      CAPTION_TEXT = os.environ.get("CAPTION_TEXT", "😍😍")
-      CAPTION_POSITION = os.environ.get("CAPTION_POSITION", "top")
-      ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "AvishkarPatil")
-
-
-class autocaption(Client):
-    
-    def __init__(self):
-        super().__init__(
-            session_name="Captioner",
-            bot_token = Config.BOT_TOKEN,
-            api_id = Config.API_ID,
-            api_hash = Config.API_HASH,
-            workers = 20,
-            plugins = dict(
-                root="Plugins"
-            )
-        )
-
-if __name__ == "__main__" :
-
-
 
 
 # =
-# usercaption_position = Config.CAPTION_POSITION
-# caption_position = usercaption_position.lower()
-# caption_text = Config.CAPTION_TEXT
+usercaption_position = Config.CAPTION_POSITION
+caption_position = usercaption_position.lower()
+caption_text = Config.CAPTION_TEXT
 
-
-@Client.on_message(filters.channel & (filters.document | filters.video | filters.audio ) & ~filters.edited, group=-1)
+@Client.on_message(filters.channel & (filters.document | filters.video | filters.audio) & ~filters.edited, group=-1)
 async def editing(bot, message):
       try:
-         media = message.document or message.video or message.audio
+         media = message.document or message.video or message.audio or message.image
          caption_text = Config.CAPTION_TEXT
       except:
          caption_text = ""
          pass 
-      if (message.document or message.video or message.audio): 
-          if message.caption:                        
-             file_caption = f"**{message.caption}**"                
+      if (message.document or message.video or message.audio or message.image): 
+          if message.caption:
+             fname = media.file_name
+             filename = fname.replace("_", ".")
+             file_caption = f"`{filename}`"                
           else:
              fname = media.file_name
              filename = fname.replace("_", ".")
@@ -94,6 +56,8 @@ async def editing(bot, message):
              ) 
       except:
           pass
-              
-                   
+
+@Client.on_message(filters.command("hello"))
+async def hello(bot, message):
+  await bot.reply("hello")
       
