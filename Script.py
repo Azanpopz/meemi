@@ -8,7 +8,10 @@ class script(object):
 
     
     BATCH_TXT = """𝐇𝐞𝐥𝐥𝐨 {},"""
-   
+
+    UPL_TXT = """𝐇𝐞𝐥𝐥𝐨 {},"""
+
+    UN_TXT = """𝐇𝐞𝐥𝐥𝐨 {},"""   
 
 
    
