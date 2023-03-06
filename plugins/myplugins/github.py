@@ -46,7 +46,7 @@ async def getgithub(bot, message):
 **Followers:** `{followers}`
 **Following:** `{following}`
 
-**@KoshikKumar17**"""
+**@nasrani_update**"""
     await message.reply_photo(photo=avatar_url, caption=capy, reply_markup=BUTTONS)
     await bot.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
     await k.delete()
