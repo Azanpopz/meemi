@@ -2,11 +2,15 @@ import asyncio
 from os import environ
 from pyrogram import Client, filters, idle
 from pyrogram import enums
+import re
+from os import environ
+
+from info import API_HASH, API_ID, BOT_TOKEN, SESSION
 
 API_ID = int(environ.get("API_ID"))
 API_HASH = environ.get("API_HASH")
 BOT_TOKEN = environ.get("BOT_TOKEN")
-SESSION = environ.get("SESSION")
+SESSION = environ.get('SESSION', 'UFSBotz')
 TIME = int(environ.get("TIME"))
 GROUPS = []
 for grp in environ.get("GROUPS").split():
