@@ -989,6 +989,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )
 
+    elif query.data.startswith("check"):
+        
+        buttons = [[
+            InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"uploaded#{query.from_user.id}")
+        ], [
+            InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'unv#{query.from_user.id}'),
+            InlineKeyboardButton('❌️CLOSE❌️', callback_data='close_data')
+        
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(f"{query.from_user.mention} {search} 💕{content}💕")
+        
+        
+
     elif query.data.startswith("upl"):
         
         buttons = [[
@@ -1013,6 +1027,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_message(query.from_user.id, text=f"<b>Hᴇʏ {query.from_user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ʜᴀs ʙᴇᴇɴ ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ ᴏᴜʀ ᴍᴏᴅᴇʀᴀᴛᴏʀs. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.\n\nNᴏᴛᴇ: Tʜɪs ᴍᴇssᴀɢᴇ ɪs sᴇɴᴛ ᴛᴏ ᴛʜɪs ɢʀᴏᴜᴘ ʙᴇᴄᴀᴜsᴇ ʏᴏᴜ'ᴠᴇ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ. Tᴏ sᴇɴᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ ʏᴏᴜʀ PM, Mᴜsᴛ ᴜɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ.</b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
+
 
     elif query.data.startswith("unv"):
         
@@ -1812,7 +1827,7 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search.lower(), offset=0, filter=True)
             if not files:
                 await client.send_message(message.chat.id, text=f"📂#𝙍𝙀𝙌𝙐𝙀𝙎𝙏𝙀𝘿_𝘾𝙊𝙉𝙏𝙀𝙉𝙏📂\n\n🤖ᴜꜱᴇʀ:-{message.from_user.mention}\n\n📝ᴄᴏɴᴛᴇɴᴛ ɴᴀᴍᴇ:-`{search}`\n\n👶🏻ʀᴇQᴜᴇꜱᴛᴇᴅ ʙʏ:- {message.from_user.first_name}\n\n 🃏ᴜꜱᴇʀ ɪᴅ:-{message.from_user.id}\n\n🗃️",
-                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="upl")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", callback_data="close_data")]]))
+                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", callback_data="close_data")]]))
                 
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
