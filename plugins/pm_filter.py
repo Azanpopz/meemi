@@ -994,7 +994,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('× ✔️upload✔️ ×', callback_data=f"uploaded#{query.from_user.id}")
         ], [
-            InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'unavailable#{query.from_user.id}'),
+            InlineKeyboardButton('⚠️unavailable⚠️', callback_data=f'un#{query.from_user.id}'),
             InlineKeyboardButton('❌️CLOSE❌️', callback_data='close_data')
         
         ]]
