@@ -1044,8 +1044,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
             await client.send_message(
-            chat_id=query.from_user.id,
-            text=f" {query.from_user.mention} <strike>Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !<strike> {content}")
+                chat_id=query.from_user.id,
+                text=f" {query.from_user.mention} <strike>Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !<strike> {content}",
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
