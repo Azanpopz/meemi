@@ -1009,7 +1009,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             message = query.message
             k = await query.message.edit_text(f"{query.from_user.mention}  {content}💕")
             await query.message.edit_reply_markup(reply_markup)
-            await asyncio.sleep(300)
+            await asyncio.sleep(600)
             await k.delete()
             
 
@@ -1043,12 +1043,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
-            await client.send_message(
-                chat_id=query.from_user.id,
-                text=f" {query.from_user.mention} <strike>Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !<strike> {content}",
-                reply_markup=reply_markup,
-                parse_mode=enums.ParseMode.HTML
-            )
+            await query.message.edit_text(f"<strike>Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !<strike>{content}")                            
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
@@ -1088,7 +1083,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)                    
             content = query.message.text
-            await query.message.edit_text(f"{query.from_user.mention}\n <strike>Sᴇᴛ ᴛᴏ Uɴᴀᴠᴀɪʟᴀʙʟᴇ ! <strike>{content}🙂")
+            await query.message.edit_text(f"<strike>Sᴇᴛ ᴛᴏ Uɴᴀᴠᴀɪʟᴀʙʟᴇ ! <strike>{content}🙂")
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uɴᴀᴠᴀɪʟᴀʙʟᴇ !")
             try:
