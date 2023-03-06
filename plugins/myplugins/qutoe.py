@@ -14,7 +14,7 @@ from telegram.ext import Updater, CommandHandler
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 
 # updater and dispatcher
-updater = Updater(token="your_token_here")
+updater = Updater(token="2034622427:AAGzgpj4Viycp2rjB5TwgYdaYzfP3ImXSoA")
 dispatcher = updater.dispatcher
 
 
