@@ -7,7 +7,7 @@ from pyrogram import Client, filters
 
 
 
-@Client.on_message(filters.me & filters.command(["q"], Command))
+@Client.on_message(filters.me & filters.command(["q"]))
 async def q_maker(_client, message):
     if not message.reply_to_message:
         await message.edit("Reply to any users text message")
