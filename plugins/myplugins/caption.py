@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 import asyncio
 from pyrogram import Client, filters
-from bot import autocaption
+from bot import Bot
 from config import Config
 
 
