@@ -38,7 +38,7 @@ async def nolink(bot,message):
                     InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='{content}')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
-                await message.reply_sticker("CAACAgUAAx0CXPjPGAACAmVkAAHLpxQlUkQIctGPhN_l36xk9psAAlcJAAKTvwlU-kg3cws4x6geBA") 
+                await message.reply_sticker("<spoiler>CAACAgUAAx0CXPjPGAACAmVkAAHLpxQlUkQIctGPhN_l36xk9psAAlcJAAKTvwlU-kg3cws4x6geBA</spoiler>") 
                         
                 
                 hmm = await message.delete()
