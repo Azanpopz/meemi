@@ -51,7 +51,7 @@ async def answer(bot, query):
     reply_markup = get_reply_markup(query=string)
     files, next_offset, total = await get_search_results(string,
                                                   file_type=file_type,
-                                                  max_results=50,
+                                                  max_results=10,
                                                   offset=offset)
 
     for file in files:
