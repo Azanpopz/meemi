@@ -879,8 +879,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await asyncio.sleep(300)
                         await Joel_tgx.delete()
                         await file_send.delete()
-
-                    k = await query.message.reply_text(
+                return
+                    k = await client.send_message(
                         chat_id=FILE_CHANNEL,
                         
                         text=script.DONE_MSG.format(query.from_user.mention, title, size),
