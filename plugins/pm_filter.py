@@ -880,11 +880,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await Joel_tgx.delete()
                         await file_send.delete()
 
-                    await client.send_cached_media(
+                    k = await query.message.reply((
                         chat_id=FILE_CHANNEL,
                         
                         caption=script.DONE_MSG.format(query.from_user.mention, title, size),
-                        protect_content=True if ident == "filep" else False,
+                        parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
                             [
                                 [
@@ -893,7 +893,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                     )
-
+                    await asyncio.sleep(300)
+                    await k.delete()
+       
 
                 else:
                     await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
