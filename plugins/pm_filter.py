@@ -880,10 +880,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await Joel_tgx.delete()
                         await file_send.delete()
 
-                    k = await query.message.reply(
+                    k = await query.message.reply_text(
                         chat_id=FILE_CHANNEL,
                         
-                        caption=script.DONE_MSG.format(query.from_user.mention, title, size),
+                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
                         parse_mode=enums.ParseMode.HTML,
                         reply_markup=InlineKeyboardMarkup(
                             [
