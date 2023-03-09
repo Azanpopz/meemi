@@ -287,12 +287,12 @@ Elsa
 <b>© Powered by {}</b>
 """
 
-    DONE_CAP = """
-<b>Hai 👋 {}</b> 😍
-<code>{}</code>
-<b>{}</b>
-<b>DOWNLOAD DONE✔️✔️✔️!</b>
-<b>© Powered by {}</b>
+    DONE_MSG = """
+<b>Hai 👋 {} </b>DOWNLOAD DONE✔️✔️E
+<b>📫 Your File is Ready</b>
+<b>📂 Fɪʟᴇ Nᴀᴍᴇ</b> : <code>{}</code>              
+                       
+<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{}</b>
 """
 
 
