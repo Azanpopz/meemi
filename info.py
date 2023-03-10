@@ -73,7 +73,10 @@ import shutil
 load_dotenv("config.env")
 import os 
 # Log
-
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(message)s",
+    handlers = [logging.FileHandler('bot.log'), logging.StreamHandler()]
+)
 LOGGER = logging.getLogger().setLevel(logging.INFO)
 
 LOGGER.debug("One or More ENV variable not found.")
