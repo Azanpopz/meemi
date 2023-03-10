@@ -2,6 +2,8 @@
 from pyrogram import Client,filters
 import requests,os,wget
 from info import BATCH_GROUP
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
 
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
@@ -17,8 +19,13 @@ async def song(client, message):
     file = wget.download(slink)
     ffile = file.replace("mp4", "mp3")
     os.rename(file, ffile)
-                           
-    await message.reply_audio(audio=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from saavn ",thumb=thumbnail)
+    button = [[
+        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
+    ]]                           
+    await message.reply_audio(
+    audio=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail),
+    reply_markup=InlineKeyboardMarkup(buttons)
+) 
     os.remove(ffile)
     os.remove(thumbnail)
         
