@@ -14,7 +14,7 @@ Bot = Client(
 
 @Client.on_message(filters.command('app') & filters.text)
 async def search(client, message):
-    results = play_scraper.search(update.message)
+    results = play_scraper.search(update.client)
     answers = []
     for result in results:
     
