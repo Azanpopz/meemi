@@ -9,7 +9,7 @@ async def song(client, message):
        args = message.text.split(None, 1)[1]
     except:
         pak = await message.reply('Downloading...')
-        return                       
+        return ""                       
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
         await pak.edit(str(e))        
