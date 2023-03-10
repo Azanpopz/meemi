@@ -14,7 +14,7 @@ Bot = Client(
 
 @Client.on_message(filters.command('app') & filters.text)
 async def search(client, message):
-    results = play_scraper.search(update.client)
+    results = play_scraper.search(f"https://playstore.me/search/app?query={args}&page=1&limit=1").json()
     answers = []
     for result in results:
     
