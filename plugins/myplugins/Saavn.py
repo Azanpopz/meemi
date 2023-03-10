@@ -12,7 +12,7 @@ async def song(client, message):
     try:
        
         
-    if BATCH_GROUP:
+        if BATCH_GROUP:
         pak = await message.reply('Downloading...')
     try
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
