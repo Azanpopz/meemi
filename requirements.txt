@@ -56,7 +56,7 @@ requests
 spotipy
 lyricsgenius
 asgiref
-
+deezer-python
 
 
 
