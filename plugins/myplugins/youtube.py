@@ -22,7 +22,7 @@ SOFTWARE.
 """
 from asyncio import sleep
 #from database.progress import progress
-from info import BATCH_GROUP, LOGGER, LOG_CHANNEL, BUG
+from info import BATCH_GROUP, LOGGER, LOG_GROUP, BUG
 from pyrogram import filters, Client, enums
 from database.mainhelper import parse_spotify_url,fetch_spotify_track,download_songs,thumb_down,copy,forward 
 from database.ytdl import getIds,ytdl_down,audio_opt
@@ -62,7 +62,7 @@ async def spotify_dl(_,message):
                 DForChat =  await message.reply_chat_action(enums.ChatAction.UPLOAD_AUDIO)
                 #reply = await message.reply_text(f"sorry we removed support of  episode 😔 pls send other types")
                 AForCopy = await message.reply_audio(fileLink,title=item[3].replace("_"," "),performer="Spotify",duration=int(item[4]),caption=f"[{item[3]}](https://open.spotify.com/episode/{item[0]})",thumb=thumbnail,quote=True)
-                if LOG_CHANNEL:
+                if LOG_GROUP:
                     await sleep(3.5)
                     await copy(PForCopy,AForCopy)
             return await m.delete()
@@ -97,7 +97,7 @@ async def spotify_dl(_,message):
             AForCopy = await message.reply_audio(path,performer=f"{song.get('artist')}",title=f"{song.get('name')} - {song.get('artist')}",caption=f"[{song.get('name')}](https://open.spotify.com/track/{song.get('deezer_id')}) | {song.get('album')} - {song.get('artist')}",thumb=thumbnail,quote=True)
             feedback = await message.reply_text(f"Done✅",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Feedback", callback_data="feed")]]))
-            if LOG_CHANNEL:
+            if LOG_GROUP:
                 await sleep(2.5)
                 await copy(PForCopy,AForCopy)
             return await m.delete()
@@ -172,7 +172,7 @@ async def spotify_dl(_,message):
                 AForCopy = await message.reply_audio(path,performer=song.get('artist'),title=f"{song.get('name')} - {song.get('artist')}",caption=f"[{song.get('name')}](https://open.spotify.com/track/{song.get('deezer_id')}) | {song.get('album')} - {song.get('artist')}",thumb=thumbnail,quote=True)
                 feedback = await message.reply_text(f"Done✅",   
                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Feedback", callback_data="feed")]]))
-                if LOG_CHANNEL:
+                if LOG_GROUP:
                     await sleep(2.5)
                     await copy(PForCopy,AForCopy)
             return await m.delete()
