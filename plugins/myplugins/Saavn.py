@@ -1,7 +1,9 @@
 ### This download from saavn.me an unofficial api
 from pyrogram import Client,filters
-import requests,os,wget 
-@Client.on_message(filters.command('saavn') & filters.text)
+import requests,os,wget
+from info import BATCH_GROUP
+
+@Client.on_message(filters.command('saavn') & filters.text  & filters.chat(BATCH_GROUP))
 async def song(client, message):
     try:
        args = message.text.split(None, 1)[1]
