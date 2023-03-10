@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
+from pyrogram.types import Message
 from pyrogram import filters, Client
 from info import SUPPORT_CHAT_ID, LOG_GROUP
 from deezer import Client
