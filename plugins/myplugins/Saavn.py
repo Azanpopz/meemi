@@ -16,7 +16,7 @@ async def song(client, message):
             pak = await message.reply('Downloading...')
         try
             r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
-        except Exception as e:
+    except Exception as e:
             await pak.edit(str(e))
             return
         sname = r['data']['results'][0]['name']
