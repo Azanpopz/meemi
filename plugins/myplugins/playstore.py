@@ -15,7 +15,7 @@ Bot = Client(
 @Client.on_message(filters.command('app')filters.text & filters.chat(BATCH_GROUP))
 async def search(client, message):
     
-    for result in results:
+    
         details = "**Title:** `{}`".format(result["title"]) + "\n" \
         "**Description:** `{}`".format(result["description"]) + "\n" \
         "**App ID:** `{}`".format(result["app_id"]) + "\n" \
@@ -28,7 +28,7 @@ async def search(client, message):
         "\n" + "Made by @FayasNoushad"
         await message.reply_text(title=result["title"], description=result.get("description", None), thumb_url=result.get("icon", None),)         
             
-except Exception as error:
+    except Exception as error:
             print(error)
     await update.answer(answers)
 
