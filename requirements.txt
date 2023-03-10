@@ -61,7 +61,7 @@ python-dotenv
 
 deezer-python
 psutil
-apscheduler
+
 mutagen
 pymongo[srv]==3.12.3
 bs4
