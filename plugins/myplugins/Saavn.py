@@ -6,7 +6,8 @@ from info import BATCH_GROUP
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
     try:
-               
+       args = message.text.split(None, 1)[1]
+    except:               
         pak = await message.reply('saavn requires an argument.') 
     try:                     
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
