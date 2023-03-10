@@ -12,7 +12,7 @@ Bot = Client(
 )
 
 
-@Client.on_message(filters.command('app') & filters.text & filters.chat(BATCH_GROUP))
+@Client.on_message(filters.command('app') & filters.text)
 async def search(client, message):
     results = play_scraper.search(update.message)
     answers = []
