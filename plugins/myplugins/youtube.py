@@ -62,7 +62,7 @@ async def spotify_dl(_,message):
                 DForChat =  await message.reply_chat_action(enums.ChatAction.UPLOAD_AUDIO)
                 #reply = await message.reply_text(f"sorry we removed support of  episode 😔 pls send other types")
                 AForCopy = await message.reply_audio(fileLink,title=item[3].replace("_"," "),performer="Spotify",duration=int(item[4]),caption=f"[{item[3]}](https://open.spotify.com/episode/{item[0]})",thumb=thumbnail,quote=True)
-                if LOG_GROUP:
+                if LOG_CHANNEL:
                     await sleep(3.5)
                     await copy(PForCopy,AForCopy)
             return await m.delete()
