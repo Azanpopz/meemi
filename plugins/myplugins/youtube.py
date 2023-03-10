@@ -38,6 +38,23 @@ from mutagen.flac import FLAC ,Picture
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 client = spotipy.Spotify(auth_manager=spotipy.oauth2.SpotifyClientCredentials())
 #PICS = ("mbot/1162775.jpg mbot/danny-howe-bn-D2bCvpik-unsplash.jpg mbot/saurabh-gill-38RthwbB3nE-unsplash.jpg").split()
+
+
+class Mbot(Client):
+    def  __init__(self):
+        name = self.__class__.__name__.lower()
+        super().__init__(
+            ":memory:",
+            plugins=dict(root=f"{name}/plugins"),
+            workdir="./cache/",
+            api_id=API_ID,
+            api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
+            sleep_threshold=30
+        )
+
+
+
 @Client.on_message(filters.regex(r'https?://open.spotify.com[^\s]+') & filters.incoming | filters.regex(r'https?://open.spotify.com[^\s]+') & filters.command(["spotify","spotdl"]) | filters.incoming & filters.regex(r"spotify:") & filters.chat(BATCH_GROUP))
 async def spotify_dl(_,message):
     link = message.matches[0].group(0)
