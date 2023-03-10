@@ -73,12 +73,7 @@ import shutil
 load_dotenv("config.env")
 import os 
 # Log
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(message)s",
-    handlers = [logging.FileHandler('bot.log'), logging.StreamHandler()]
-)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-LOGGER = logging.getLogger(__name__)
+
 
 
 LOGGER.debug("One or More ENV variable not found.")
