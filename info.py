@@ -59,12 +59,16 @@ class evamaria(Client):
             sleep_threshold=60
         )
 
-# Rename
+# saavn
 
-
-
-
-
+AUTH_CHATS = environ.get('AUTH_CHATS',None ).split()
+AUTH_CHATS = [int(_x) for _x in AUTH_CHATS]
+LOG_GROUP = environ.get("LOG_GROUP", None)
+if LOG_GROUP:
+    LOG_GROUP = int(LOG_GROUP)
+BUG = environ.get("BUG", None)
+if BUG:
+    BUG = int(BUG)
 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
