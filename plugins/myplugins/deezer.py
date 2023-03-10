@@ -22,7 +22,7 @@ SOFTWARE.
 """
 
 from pyrogram import filters, Client
-from info import AUTH_CHATS, LOG_GROUP
+from info import SUPPORT_CHAT_ID, LOG_GROUP
 from deezer import Client
 from os import mkdir
 from random import randint
