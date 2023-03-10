@@ -81,7 +81,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
 
-    LOGGER.debug("One or More ENV variable not found.")
+LOGGER.debug("One or More ENV variable not found.")
     sys.exit(1)
 
 
