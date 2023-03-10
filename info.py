@@ -63,47 +63,7 @@ class evamaria(Client):
 
 
 from pyrogram import Client
-from os import environ,sys,mkdir,path
-import logging
-from sys import executable
-#from Python_ARQ import ARQ
-from aiohttp import ClientSession
-from dotenv import load_dotenv
-import shutil
-load_dotenv("config.env")
-import os 
-# Log
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(message)s",
-    handlers = [logging.FileHandler('bot.log'), logging.StreamHandler()]
-)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-LOGGER = logging.getLogger(__name__)
-
-# Mandatory Variable
-try:
-    API_ID = int(environ['API_ID'])
-    API_HASH = environ['API_HASH']
-    BOT_TOKEN = environ['BOT_TOKEN']
-    ADMINS = int(environ['ADMINS'])
-except KeyError:
-    LOGGER.debug("One or More ENV variable not found.")
-    sys.exit(1)
-# Optional Variable
-SUDO_USERS = environ.get("SUDO_USERS",str(ADMINS)).split()
-SUDO_USERS = [int(_x) for _x in SUDO_USERS]
-if ADMINS not in SUDO_USERS:
-    SUDO_USERS.append(OWNER_ID)
-LOG_GROUP = environ.get("LOG_GROUP", None)
-if LOG_GROUP:
-    LOG_GROUP = int(LOG_GROUP)
-BUG = environ.get("BUG", None)
-if BUG:
-    BUG = int(BUG)
-genius_api = environ.get("genius_api",None)
-if genius_api:
-    genius_api = genius_api
-
+from 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
 API_ID = int(environ['API_ID'])
