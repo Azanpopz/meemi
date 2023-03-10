@@ -32,7 +32,7 @@ from database.mainhelper import fetch_tracks,download_songs,parse_deezer_url,thu
 client = Client()
 
 
-@Client.on_message(filters.regex(r'https?://.*deezer[^\s]+') & filters.private | filters.regex(r'https?://.*deezer[^\s]+') & filters.command("deezer") & filters.chat(AUTH_CHATS))
+@Client.on_message(filters.regex(r'https?://.*deezer[^\s]+') & filters.private | filters.regex(r'https?://.*deezer[^\s]+') & filters.command("deezer") & filters.chat(SUPPORT_CHAT_ID))
 async def link_handler(_, message):
     link = message.matches[0].group(0)
     try:
