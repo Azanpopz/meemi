@@ -19,7 +19,7 @@ async def song(client, message):
     file = wget.download(slink)
     ffile = file.replace("mp4", "mp3")
     os.rename(file, ffile)
-    button = [[
+    buttons = [[
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
     await message.reply_audio(
