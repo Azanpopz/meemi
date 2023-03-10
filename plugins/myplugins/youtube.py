@@ -12,6 +12,7 @@ API = "https://apis.xditya.me/lyrics?song="
 genius_api = environ.get("genius_api",None)
 if genius_api:
     genius_api = genius_api
+
 @Client.on_message(filters.text & filters.command(["genius"]) & filters.private)
 async def sng(bot, message):  
           genius = Genius(genius_api)        
