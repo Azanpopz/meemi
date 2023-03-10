@@ -11,7 +11,7 @@ async def song(client, message):
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
-    album_id = r.json()[0]["albumid"]
+#    album_id = r.json()[0]["albumid"]
     img = r['data']['results'][0]['image'][2]['link']
     thumbnail = wget.download(img)
     file = wget.download(slink)
