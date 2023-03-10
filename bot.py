@@ -140,6 +140,6 @@ class Mbot(Client):
                 current += 1
 
 
-app = Bot()
+app = Mbot()
 app.run()
 
