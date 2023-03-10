@@ -6,13 +6,13 @@ logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("imdbpy").setLevel(logging.ERROR)
-from os import environ,sys,mkdir,path
+
 
 from pyrogram import Client, __version__, filters
 from pyrogram.raw.all import layer
 from database.ia_filterdb import Media
 from database.users_chats_db import db
-from info import SESSION, API_ID, API_HASH, BOT_TOKEN, LOG_STR, LOG_CHANNEL, PORT, BATCH_GROUP
+from info import SESSION, API_ID, API_HASH, BOT_TOKEN, LOG_STR, LOG_CHANNEL, PORT
 from utils import temp
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types
@@ -23,42 +23,22 @@ import pytz
 
 from config import Config
 
-"""MIT License
-
-Copyright (c) 2022 Daniel
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
 
 
 
-class Mbot(Client):
-    def  __init__(self):
-        name = self.__class__.__name__.lower()
+
+
+class Bot(Client):
+
+    def __init__(self):
         super().__init__(
-            ":memory:",
-            plugins=dict(root=f"{name}/plugins"),
-            workdir="./cache/",
+            name=SESSION,
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
-            sleep_threshold=30
+            workers=150,
+            plugins={"root": "plugins"},
+            sleep_threshold=5,
         )
 
     async def start(self):
@@ -80,21 +60,6 @@ class Mbot(Client):
         now = datetime.now(tz)
         time = now.strftime("%H:%M:%S %p")
         await self.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(today, time))
-
-        os.system(f"rm -rf ./cache/")
-        os.system(f"mkdir ./cache/")
-        global BOT_INFO
-        
-        BOT_INFO = await self.get_me()
-        if not path.exists('/tmp/thumbnails/'):
-            mkdir('/tmp/thumbnails/')
-        for chat in BATCH_GROUP:
-            await self.send_photo(chat,"https://telegra.ph/file/97bc8a091ac1b119b72e4.jpg","**Spotify Downloa Started**")
-        
-    
-
-
-
 
     async def stop(self, *args):
         await super().stop()
@@ -140,6 +105,7 @@ class Mbot(Client):
                 current += 1
 
 
-app = Mbot()
-app.run()
 
+
+app = Bot()
+app.run()
