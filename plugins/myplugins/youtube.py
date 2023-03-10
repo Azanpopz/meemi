@@ -3,7 +3,9 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests 
 from lyricsgenius import Genius 
 import os
-
+from dotenv import load_dotenv
+import shutil
+load_dotenv("config.env")
 
 API = "https://apis.xditya.me/lyrics?song="
 genius_api = environ.get("genius_api",None)
