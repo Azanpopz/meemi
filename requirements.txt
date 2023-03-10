@@ -50,4 +50,7 @@ hachoir
 python-decouple
 YoutubeTags
 
-
+eyeD3
+lyricsgenius
+requests
+spotipy
