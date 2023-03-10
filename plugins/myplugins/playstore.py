@@ -21,7 +21,7 @@ async def search(client, message):
   #  for result in results:
     results = play_scraper.search(update)
     answers = []
-        for result in results:   
+    for result in results:   
             details = "**Title:** `{}`".format(result["title"]) + "\n" \
             "**Description:** `{}`".format(result["description"]) + "\n" \
             "**App ID:** `{}`".format(result["app_id"]) + "\n" \
