@@ -32,6 +32,7 @@ async def search(client, message):
             "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
             "**Free:** `{}`".format(result["free"]) + "\n" \
             "\n" + "Made by @FayasNoushad"
+        try:
             await message.reply_text(title=result["title"], description=result.get("description", None), thumb_url=result.get("icon", None),)         
         except Exception as error:
             print(error)
