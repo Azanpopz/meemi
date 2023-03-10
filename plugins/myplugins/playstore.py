@@ -16,7 +16,7 @@ Bot = Client(
 async def search(client, message):
     
      
-     results = play_scraper.search(f"https://play.google.com/search?query={answers}&page=1&limit=1")
+     results = play_scraper.search(f"https://play.google.com/search?query={answer}&page=1&limit=1")
      answers = []
      for result in results:
  #   results = play_scraper.search(update)
