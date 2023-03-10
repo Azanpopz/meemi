@@ -8,8 +8,9 @@ async def song(client, message):
     try:
        args = message.text.split(None, 1)[1]
     except:
-        pak = await message.reply('Downloading...')
-        return ""                       
+        
+        return pak = await message.reply('saavn requires an argument.') 
+    try:                     
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
         await pak.edit(str(e))        
