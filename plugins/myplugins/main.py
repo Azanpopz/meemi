@@ -118,7 +118,7 @@ def download(update: Update, context: CallbackContext):
 
 def run():
     updater = Updater(token=telegram_token, use_context=True)
-    updater.start_polling()
+    
     dispatcher = updater.dispatcher
     start_handler = CommandHandler('start', start)
     album_handler = CommandHandler('album', album)
