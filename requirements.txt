@@ -59,8 +59,7 @@ lyricsgenius
 
 
 
-deezer-python
-psutil
+
 
 
 
