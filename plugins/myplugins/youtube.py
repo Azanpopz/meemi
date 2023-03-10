@@ -22,7 +22,7 @@ SOFTWARE.
 """
 from asyncio import sleep
 #from database.progress import progress
-from info import AUTH_CHATS, LOGGER, LOG_GROUP,BUG
+from info import AUTH_CHATS, LOGGER, LOG_GROUP, BUG
 from pyrogram import filters,enums
 from database.mainhelper import parse_spotify_url,fetch_spotify_track,download_songs,thumb_down,copy,forward 
 from database.ytdl import getIds,ytdl_down,audio_opt
