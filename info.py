@@ -84,7 +84,7 @@ LOGGER = logging.getLogger(__name__)
 
 # saavn
 
-AUTH_CHATS = environ.get('AUTH_CHATS',None ).split()
+AUTH_CHATS = environ.get('AUTH_CHATS',None )
 AUTH_CHATS = [int(_x) for _x in AUTH_CHATS]
 LOG_GROUP = environ.get("LOG_GROUP", None)
 if LOG_GROUP:
