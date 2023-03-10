@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests 
 from lyricsgenius import Genius 
 import os
-from bot import Bot
+
 
 API = "https://apis.xditya.me/lyrics?song="
 genius_api = environ.get("genius_api",None)
