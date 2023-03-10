@@ -61,9 +61,7 @@ class evamaria(Client):
 
 
 
-
-from pyrogram import Client
-from 
+ 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
 API_ID = int(environ['API_ID'])
