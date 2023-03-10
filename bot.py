@@ -6,13 +6,13 @@ logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("imdbpy").setLevel(logging.ERROR)
-
+from os import environ,sys,mkdir,path
 
 from pyrogram import Client, __version__, filters
 from pyrogram.raw.all import layer
 from database.ia_filterdb import Media
 from database.users_chats_db import db
-from info import SESSION, API_ID, API_HASH, BOT_TOKEN, LOG_STR, LOG_CHANNEL, PORT
+from info import SESSION, API_ID, API_HASH, BOT_TOKEN, LOG_STR, LOG_CHANNEL, PORT, BATCH_GROUP
 from utils import temp
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types
@@ -88,7 +88,7 @@ class Mbot(Client):
         BOT_INFO = await self.get_me()
         if not path.exists('/tmp/thumbnails/'):
             mkdir('/tmp/thumbnails/')
-        for chat in AUTH_CHATS:
+        for chat in BATCH_GROUP:
             await self.send_photo(chat,"https://telegra.ph/file/97bc8a091ac1b119b72e4.jpg","**Spotify Downloa Started**")
         
     
