@@ -74,7 +74,7 @@ load_dotenv("config.env")
 import os 
 # Log
 
-
+LOGGER = logging.getLogger(__name__)
 
 LOGGER.debug("One or More ENV variable not found.")
 sys.exit(1)
