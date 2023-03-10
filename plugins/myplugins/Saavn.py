@@ -7,7 +7,7 @@ from info import BATCH_GROUP
 async def song(client, message):
     try:
         if message.reply_to_message: 
-            txt = await message.reply_text("Validating Sticker ID")
+            pak = await message.reply_text("Validating Sticker ID")
             return ""
             r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
