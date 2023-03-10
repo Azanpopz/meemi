@@ -23,7 +23,7 @@ SOFTWARE.
 from random import randint 
 #from yt.yt_dlp import YoutubeDL
 from yt_dlp import YoutubeDL
-from mbot import LOGGER,LOG_CHANNEL,BUG
+from info import LOGGER,LOG_CHANNEL,BUG
 from requests import get
 from asyncio import sleep 
 from asgiref.sync import sync_to_async
