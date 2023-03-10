@@ -36,6 +36,6 @@ async def search(client, message):
             await message.reply_text(title=result["title"], description=result.get("description", None), thumb_url=result.get("icon", None),)         
         except Exception as error:
             print(error)
-    await update.answer(answers)
+     await update.answer(answers)
             
 
