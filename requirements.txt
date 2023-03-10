@@ -54,18 +54,15 @@ eyeD3
 lyricsgenius
 requests
 spotipy
+lyricsgenius
 
-https://github.com/Masterolic/yt-dlp/archive/refs/heads/master.zip
-python-dotenv
+
 
 
 deezer-python
 psutil
 
-mutagen
-pymongo[srv]==3.12.3
-bs4
-Shazamio
+
 
 
 
