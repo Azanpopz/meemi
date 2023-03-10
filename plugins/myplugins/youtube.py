@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
-from mbot import Mbot,genius_api
+from plugins import Mbot,genius_api
 import requests 
 from lyricsgenius import Genius 
 import os
