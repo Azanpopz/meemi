@@ -89,18 +89,3 @@ class Mbot(Client):
             bot_token=BOT_TOKEN,
             sleep_threshold=30
         )
-    async def start(self):
-        os.system(f"rm -rf ./cache/")
-        os.system(f"mkdir ./cache/")
-        global BOT_INFO
-        await super().start()
-        BOT_INFO = await self.get_me()
-        if not path.exists('/tmp/thumbnails/'):
-            mkdir('/tmp/thumbnails/')
-        for chat in AUTH_CHATS:
-            await self.send_photo(chat,"https://telegra.ph/file/97bc8a091ac1b119b72e4.jpg","**Spotify Downloa Started**")
-        LOGGER.info(f"Bot Started As {BOT_INFO.username}\n")
-    
-    async def stop(self,*args):
-        await super().stop()
-        LOGGER.info("Bot Stopped, Bye.")
