@@ -27,8 +27,9 @@ async def search(bot, update):
         disable_web_page_preview=True,
         quote=True
     )
-
+@Client.on_inline_query()
 async def search(bot, update):
+
     results = play_scraper.search(update.query)
     answers = []
     for result in results:
