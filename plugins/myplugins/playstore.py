@@ -19,7 +19,7 @@ async def search(client, message):
  #    results = play_scraper.search(f"https://play.google.com/search?query={answer}&page=1&limit=1")
  #    answers = []
   #   for result in results:
-     results = play_scraper.search :
+     results = play_scraper.search
      answers = []
      for result in results:   
         details = "**Title:** `{}`".format(result["title"]) + "\n" \
