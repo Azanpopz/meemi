@@ -134,5 +134,3 @@ def run():
     print('[TELEGRAM BOT] Listening...')
 
 
-if __name__ == '__main__':
-    run()   
