@@ -23,9 +23,10 @@ SOFTWARE.
 
 from os import mkdir
 from random import randint
-from bot import AUTH_CHATS, LOG_GROUP, LOGGER, Mbot
+from plugins import AUTH_CHATS, LOG_GROUP, LOGGER
 from pyrogram import Client, filters
 from database.ytdl import getIds,ytdl_down,audio_opt,thumb_down
+from bot import Bot
 
 @Client.on_message(filters.regex(r'(https?://)?.*you[^\s]+') & filters.private | filters.command(["yt","ytd","ytmusic"]) & filters.regex(r'https?://.*you[^\s]+') & filters.chat(AUTH_CHATS))
 async def _(_,message):
