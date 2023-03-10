@@ -48,17 +48,17 @@ SOFTWARE.
 
 
 
-class Bot(Client):
-
-    def __init__(self):
+class Mbot(Client):
+    def  __init__(self):
+        name = self.__class__.__name__.lower()
         super().__init__(
-            name=SESSION,
+            ":memory:",
+            plugins=dict(root=f"{name}/plugins"),
+            workdir="./cache/",
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
-            workers=150,
-            plugins={"root": "plugins"},
-            sleep_threshold=5,
+            sleep_threshold=30
         )
 
     async def start(self):
@@ -80,6 +80,21 @@ class Bot(Client):
         now = datetime.now(tz)
         time = now.strftime("%H:%M:%S %p")
         await self.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(today, time))
+
+        os.system(f"rm -rf ./cache/")
+        os.system(f"mkdir ./cache/")
+        global BOT_INFO
+        
+        BOT_INFO = await self.get_me()
+        if not path.exists('/tmp/thumbnails/'):
+            mkdir('/tmp/thumbnails/')
+        for chat in AUTH_CHATS:
+            await self.send_photo(chat,"https://telegra.ph/file/97bc8a091ac1b119b72e4.jpg","**Spotify Downloa Started**")
+        
+    
+
+
+
 
     async def stop(self, *args):
         await super().stop()
