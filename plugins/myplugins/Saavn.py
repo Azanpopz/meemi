@@ -6,16 +6,16 @@ from info import BATCH_GROUP
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
     if r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
-    sname = r['data']['results'][0]['name']
-    slink = r['data']['results'][0]['downloadUrl'][4]['link']
-    ssingers = r['data']['results'][0]['primaryArtists']
-   # album_id = r.json()[0]["albumid"]
-    img = r['data']['results'][0]['image'][2]['link']
-    thumbnail = wget.download(img)
-    file = wget.download(slink)
-    ffile = file.replace("mp4", "mp3")
-    os.rename(file, ffile)
-    await pak.edit('Uploading...')
+        sname = r['data']['results'][0]['name']
+        slink = r['data']['results'][0]['downloadUrl'][4]['link']
+        ssingers = r['data']['results'][0]['primaryArtists']
+      # album_id = r.json()[0]["albumid"]
+        img = r['data']['results'][0]['image'][2]['link']
+        thumbnail = wget.download(img)
+        file = wget.download(slink)
+        ffile = file.replace("mp4", "mp3")
+        os.rename(file, ffile)
+        await pak.edit('Uploading...')
     try:
         
         
