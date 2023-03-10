@@ -80,16 +80,29 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
-
-
-# saavn
-
+# Mandatory Variable
+try:
+    API_ID = int(environ['API_ID'])
+    API_HASH = environ['API_HASH']
+    BOT_TOKEN = environ['BOT_TOKEN']
+    ADMINS = int(environ['ADMINS'])
+except KeyError:
+    LOGGER.debug("One or More ENV variable not found.")
+    sys.exit(1)
+# Optional Variable
+SUDO_USERS = environ.get("SUDO_USERS",str(ADMINS)).split()
+SUDO_USERS = [int(_x) for _x in SUDO_USERS]
+if ADMINS not in SUDO_USERS:
+    SUDO_USERS.append(OWNER_ID)
 LOG_GROUP = environ.get("LOG_GROUP", None)
 if LOG_GROUP:
     LOG_GROUP = int(LOG_GROUP)
 BUG = environ.get("BUG", None)
 if BUG:
     BUG = int(BUG)
+genius_api = environ.get("genius_api",None)
+if genius_api:
+    genius_api = genius_api
 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
