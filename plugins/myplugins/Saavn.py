@@ -5,6 +5,7 @@ from info import BATCH_GROUP
 
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
+    args = message.text.split(None, 1)[1]
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
