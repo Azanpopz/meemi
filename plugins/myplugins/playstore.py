@@ -1,66 +1,76 @@
-import os
-import play_scraper
+import asyncio
 from pyrogram import Client, filters
-from pyrogram.types import *
+from pyrogram.errors import QueryIdInvalid, FloodWait
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InlineQuery, InlineQueryResultArticle, \
+    InputTextMessageContent
 
 
-Bot = Client(
-    "Play-Store-Bot",
-    bot_token = os.environ["BOT_TOKEN"],
-    api_id = int(os.environ["API_ID"]),
-    api_hash = os.environ["API_HASH"]
-)
 
 
-@Client.on_message(filters.command('app') & filters.text)
-async def search(bot, update):
-    text = "Search play store apps using below buttons.\n\nMade by @FayasNoushad"
-    reply_markup = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton(text="Search here", switch_inline_query_current_chat="")],
-            [InlineKeyboardButton(text="Search in another chat", switch_inline_query="")]
-        ]
-    )
-    await update.reply_text(
-        text=text,
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-        quote=True
-    )
+
+
 @Client.on_inline_query()
-async def search(bot, update):
-
-    results = play_scraper.search(update.query)
+async def inline_handlers(_, inline: InlineQuery):
+    search_ts = inline.query
     answers = []
-    for result in results:
-        details = "**Title:** `{}`".format(result["title"]) + "\n" \
-        "**Description:** `{}`".format(result["description"]) + "\n" \
-        "**App ID:** `{}`".format(result["app_id"]) + "\n" \
-        "**Developer:** `{}`".format(result["developer"]) + "\n" \
-        "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
-        "**Score:** `{}`".format(result["score"]) + "\n" \
-        "**Price:** `{}`".format(result["price"]) + "\n" \
-        "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
-        "**Free:** `{}`".format(result["free"]) + "\n" \
-        "\n" + "Made by @FayasNoushad"
-        reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
+    if search_ts == "":
+        answers.append(
+            InlineQueryResultArticle(
+                title="Search Something ...",
+                description="Search For Torrents ...",
+                input_message_content=InputTextMessageContent(
+                    message_text="Search for Torrents from Inline!",
+                    parse_mode="Markdown"
+                ),
+                reply_markup=InlineKeyboardMarkup(DEFAULT_SEARCH_MARKUP)
+            )
         )
-        try:
+    elif search_ts.startswith("app"):
+        query = search_ts.split(" ", 1)[-1]
+        if (query == "") or (query == " "):
             answers.append(
                 InlineQueryResultArticle(
-                    title=result["title"],
-                    description=result.get("description", None),
-                    thumb_url=result.get("icon", None),
+                    title="!pb [text]",
+                    description="https://telegra.ph/file/13c860f7ef9f90e9e07cb.jpg",
                     input_message_content=InputTextMessageContent(
-                        message_text=details, disable_web_page_preview=True
+                        message_text="`!pb [text]`\n\nSearch ThePirateBay Torrents from Inline!",
+                        parse_mode="Markdown"
                     ),
-                    reply_markup=reply_markup
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!pb ")]])
                 )
             )
-        except Exception as error:
-            print(error)
-    await update.answer(answers)
-
-
-
+        else:
+            torrentList = await SearchPirateBay(query)
+            if not torrentList:
+                answers.append(
+                    InlineQueryResultArticle(
+                        title="No Torrents Found in ThePirateBay!",
+                        description=f"Can't find torrents for {query} in ThePirateBay !!",
+                        input_message_content=InputTextMessageContent(
+                            message_text=f"No Torrents Found For `{query}` in ThePirateBay !!",
+                            parse_mode="Markdown"
+                        ),
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Try Again", switch_inline_query_current_chat="!pb ")]])
+                    )
+                )
+            else:
+                for i in range(len(torrentList)):
+                    answers.append(
+                        InlineQueryResultArticle(
+                            title=f"{torrentList[i]['Name']}",
+                            description=f"Seeders: {torrentList[i]['Seeders']}, Leechers: {torrentList[i]['Leechers']}\nSize: {torrentList[i]['Size']}",
+                            input_message_content=InputTextMessageContent(
+                                message_text=f"**Category:** `{torrentList[i]['Category']}`\n"
+                                             f"**Name:** `{torrentList[i]['Seeders']}`\n"
+                                             f"**Size:** `{torrentList[i]['Size']}`\n"
+                                             f"**Seeders:** `{torrentList[i]['Seeders']}`\n"
+                                             f"**Leechers:** `{torrentList[i]['Leechers']}`\n"
+                                             f"**Uploader:** `{torrentList[i]['Uploader']}`\n"
+                                             f"**Uploaded on {torrentList[i]['Date']}**\n\n"
+                                             f"**Magnet:**\n`{torrentList[i]['Magnet']}`\n\nPowered By @AHToolsBot",
+                                parse_mode="Markdown"
+                            ),
+                            reply_markup=InlineKeyboardMarkup(
+                                [[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!pb ")]])
+                        )
+                    )
