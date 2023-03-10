@@ -9,7 +9,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 async def song(client, message):
     args = message.text.split(None)
 
-    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
+    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=10").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
