@@ -77,10 +77,9 @@ logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s - %(message)s",
     handlers = [logging.FileHandler('bot.log'), logging.StreamHandler()]
 )
-LOGGER = logging.getLogger().setLevel(logging.INFO)
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+LOGGER = logging.getLogger(__name__)
 
-LOGGER.debug("One or More ENV variable not found.")
-sys.exit(1)
 
 
 # saavn
