@@ -58,7 +58,7 @@ spotipy
 https://github.com/Masterolic/yt-dlp/archive/refs/heads/master.zip
 python-dotenv
 
-asgiref
+
 deezer-python
 psutil
 apscheduler
