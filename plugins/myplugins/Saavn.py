@@ -10,6 +10,10 @@ async def song(client, message):
        
     
     try:
+       args = message.text.split(None)[]
+    except:
+        return await message.reply("/saavn requires an argument.")
+    if args.startswith(""):
         pak = await message.reply('Downloading...')
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
