@@ -59,7 +59,7 @@ asgiref
 deezer-python
 mutagen
 play-scraper
-
+pymediainfo
 
 
 
