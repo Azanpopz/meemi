@@ -58,18 +58,18 @@ async def inline_handlers(_, inline: InlineQuery):
             )
         
             
-            try:
-                answers.append(
-                    InlineQueryResultArticle(
-                        title=result["title"],
-                        description=result.get("description", None),
-                        thumb_url=result.get("icon", None),
-                        input_message_content=InputTextMessageContent(
-                            message_text=details, disable_web_page_preview=True
-                        ),
-                        reply_markup=reply_markup
-                    )
+        try:
+            answers.append(
+                InlineQueryResultArticle(
+                    title=result["title"],
+                    description=result.get("description", None),
+                    thumb_url=result.get("icon", None),
+                    input_message_content=InputTextMessageContent(
+                        message_text=details, disable_web_page_preview=True
+                    ),
+                    reply_markup=reply_markup
                 )
-            except Exception as error:
-                print(error)
-        await update.answer(answers)
+            )
+        except Exception as error:
+            print(error)
+    await update.answer(answers)
