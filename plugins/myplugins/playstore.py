@@ -186,13 +186,13 @@ async def create_sticker_private_handler(client, message):
 
 @Client.on_message(filters.command(['quote']))
 async def create_sticker_group_handler(client, message):
-    s = await message.reply_text("...", reply_to_message_id=m.message_id)
+    s = await message.reply_text("...", reply_to_message_id=message.message_id)
     await create_sticker(client, message.reply_to_message)
     await s.delete()
 
 @Client.on_message(filters.command(['quote']))
 async def create_sticker_private_handler(client, message):
-    s = await message.reply_text("...", reply_to_message_id=m.message_id)
+    s = await message.reply_text("...", reply_to_message_id=message.message_id)
     await create_sticker(client, message.reply_to_message)
     await s.delete()
 
