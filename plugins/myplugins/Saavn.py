@@ -78,8 +78,8 @@ async def song(client, message):
         args = message.text.split(None)
     except:
          
-        return ""
-    pak = await message.reply('Downloading...')
+        
+    return pak = await message.reply('Downloading...')
     try:
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
@@ -94,13 +94,13 @@ async def song(client, message):
     img = r['data']['results'][0]['image'][2]['link']
     thumbnail = wget.download(img)
     file = wget.download(slink)
-    ffile = file.replace("mp4", "mp3")
+    ffile = file.replace("mp3", "mp4")
     os.rename(file, ffile)
     buttons = [[
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
-    await message.reply_audio(
-    audio=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
+    await message.reply_video(
+    video=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
     reply_markup=InlineKeyboardMarkup(buttons)
 )
     os.remove(ffile)
