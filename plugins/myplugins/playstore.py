@@ -64,10 +64,14 @@ async def inline_handlers(_, inline: InlineQuery):
                             "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
                             "**Free:** `{}`".format(result["free"]) + "\n" \
                             "\n" + "Made by @FayasNoushad"
-                            reply_markup = InlineKeyboardMarkup(
-                                [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
-                            )
+                            parse_mode="Markdown",
+                                disable_web_page_preview=True
+                            ),
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!yts ")]]),
+                            thumb_url=torrentList[i]["Poster"]
+                        )
+                    )
                     
-                        except Exception as error:
-                            print(error)
-                    await inline.answer(answers)
+                except Exception as error:
+                    print(error)
+            await inline.answer(answers)
