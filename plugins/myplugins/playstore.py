@@ -1,49 +1,50 @@
-# Credits: @mrismanaziz
-# Copyright (C) 2022 Pyro-ManUserbot
-#
-# This file is a part of < https://github.com/mrismanaziz/PyroMan-Userbot/ >
-# PLease read the GNU Affero General Public License in
-# <https://www.github.com/mrismanaziz/PyroMan-Userbot/blob/main/LICENSE/>.
-#
-# t.me/SharingUserbot & t.me/Lunatic0de
-
-import asyncio
-
+import os
+import requests
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    InlineQueryResultPhoto
+)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-from ProjectMan.tools import get_arg
+Bot = Client(
+    "Image-Search-Bot",
+    bot_token=os.environ.get("BOT_TOKEN"),
+    api_id=int(os.environ.get("API_ID")),
+    api_hash=os.environ.get("API_HASH")
+)
+
+API = "https://apibu.herokuapp.com/api/y-images?query="
 
 
 
 
-@Client.on_message(filters.me & filters.command(["q", "quotly"]))
-async def quotly(client: Client, message: Message):
-    args = get_arg(message)
-    if not message.reply_to_message and not args:
-        return await message.edit("**Mohon Balas ke Pesan**")
-    bot = "QuotLyBot"
-    if message.reply_to_message:
-        await message.edit("`Making a Quote . . .`")
-        await client.unblock_user(bot)
-        if args:
-            await client.send_message(bot, f"/qcolor {args}")
-            await asyncio.sleep(1)
-        else:
-            pass
-        await message.reply_to_message.forward(bot)
-        await asyncio.sleep(5)
-        async for quotly in client.search_messages(bot, limit=1):
-            if quotly:
-                await message.delete()
-                await message.reply_sticker(
-                    sticker=quotly.sticker.file_id,
-                    reply_to_message_id=message.reply_to_message.id
-                    if message.reply_to_message
-                    else None,
-                )
-            else:
-                return await message.edit("**Gagal Membuat Sticker Quotly**")
+
+
+
+@Client.on_message(filters.text & filters.command(["img"]))
+async def song(client, message):
+    
+    
+    results = requests.get(
+        API + requests.utils.requote_uri(update.query)
+    ).json()["result"][:50]
+    
+    answers = []
+    buttons = [[
+        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
+    ]]                           
+    await message.reply_audio(
+    title=update.query.capitalize(),
+    description=result,
+    caption="Made by @FayasNoushad",
+    photo_url=result,
+    reply_markup=InlineKeyboardMarkup(buttons)
+) 
+    
+    await update.answer(answers)
+
 
 
