@@ -57,21 +57,7 @@ async def inline_handlers(_, inline: InlineQuery):
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!app ")]])
                 )
             )
-        else:
-            torrentList = await SearchPirateBay(query)
-            if not torrentList:
-                answers.append(
-                    InlineQueryResultArticle(
-                        title="No Torrents Found in ThePirateBay!",
-                        description=f"Can't find torrents for {query} in ThePirateBay !!",
-                        input_message_content=InputTextMessageContent(
-                            message_text=f"No Torrents Found For `{query}` in ThePirateBay !!",
-                            parse_mode="Markdown"
-                        ),
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Try Again", switch_inline_query_current_chat="!pb ")]])
-                    )
-                )        
-            
+        
         try:
             answers.append(
                 InlineQueryResultArticle(
