@@ -253,7 +253,7 @@ MINNAL_MURALI = InlineKeyboardMarkup(
         ]]
     )
 
-@Clinet.on_message(filters.text & filters.private & (~filters.command("qstart") | ~filters.command("help")))
+@Client.on_message(filters.text & filters.private & (~filters.command("qstart") | ~filters.command("help")))
 async def create_sticker_private_handler(c: Client, m: Message):
     s = await m.reply_text("...")
     await create_sticker(c, m)
