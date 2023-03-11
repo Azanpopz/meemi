@@ -91,16 +91,16 @@ async def song(client, message):
     pak = await message.reply('Downloading...')
     try:
 
-    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
-    sname = r['data']['results'][0]['name']
-    slink = r['data']['results'][0]['downloadUrl'][4]['link']
-    ssingers = r['data']['results'][0]['primaryArtists']
-#    album_id = r.json()[0]["albumid"]
-    img = r['data']['results'][0]['image'][2]['link']
-    thumbnail = wget.download(img)
-    file = wget.download(slink)
-    ffile = file.replace("mp4", "mp3")
-    os.rename(file, ffile)
+        r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
+        sname = r['data']['results'][0]['name']
+        slink = r['data']['results'][0]['downloadUrl'][4]['link']
+        ssingers = r['data']['results'][0]['primaryArtists']
+#       album_id = r.json()[0]["albumid"]
+        img = r['data']['results'][0]['image'][2]['link']
+        thumbnail = wget.download(img)
+        file = wget.download(slink)
+        ffile = file.replace("mp4", "mp3")
+        os.rename(file, ffile)
     buttons = [[
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
