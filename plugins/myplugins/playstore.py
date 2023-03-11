@@ -42,6 +42,7 @@ async def inline_handlers(_, inline: InlineQuery):
                 reply_markup=InlineKeyboardMarkup(DEFAULT_SEARCH_MARKUP)
             )
         )
+try:
     elif search_ts.startswith("!app"):
         query = search_ts.split(" ", 1)[-1]
         if (query == "") or (query == " "):
