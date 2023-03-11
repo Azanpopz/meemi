@@ -55,19 +55,19 @@ async def inline_handlers(_, inline: InlineQuery):
                     answers.append(
                         InlineQueryResultArticle(
                             details = "**Title:** `{}`".format(result["title"]) + "\n" \
-        "**Description:** `{}`".format(result["description"]) + "\n" \
-        "**App ID:** `{}`".format(result["app_id"]) + "\n" \
-        "**Developer:** `{}`".format(result["developer"]) + "\n" \
-        "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
-        "**Score:** `{}`".format(result["score"]) + "\n" \
-        "**Price:** `{}`".format(result["price"]) + "\n" \
-        "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
-        "**Free:** `{}`".format(result["free"]) + "\n" \
-        "\n" + "Made by @FayasNoushad"
-        reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
-        )
+                            "**Description:** `{}`".format(result["description"]) + "\n" \
+                            "**App ID:** `{}`".format(result["app_id"]) + "\n" \
+                            "**Developer:** `{}`".format(result["developer"]) + "\n" \
+                            "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
+                            "**Score:** `{}`".format(result["score"]) + "\n" \
+                            "**Price:** `{}`".format(result["price"]) + "\n" \
+                            "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
+                            "**Free:** `{}`".format(result["free"]) + "\n" \
+                            "\n" + "Made by @FayasNoushad"
+                            reply_markup = InlineKeyboardMarkup(
+                                [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
+                            )
                     
-    except Exception as error:
-        print(error)
-await inline.answer(answers)
+                        except Exception as error:
+                            print(error)
+                    await inline.answer(answers)
