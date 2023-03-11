@@ -2,7 +2,7 @@ import asyncio
 import random
 from asyncio import sleep
 
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.types import Message
 
 
