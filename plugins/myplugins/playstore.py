@@ -12,7 +12,7 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import CMD_HANDLER as cmd
+
 from ProjectMan.tools import get_arg
 
 
