@@ -89,7 +89,7 @@ async def chat(_, message):
 
 @Client.on_message(
     filters.private & ~filters.command("help") & filters.chat(LOG_CHANNEL))
-)
+
 async def chatpm(_, message):
     if not message.text:
         return
