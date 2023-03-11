@@ -28,8 +28,9 @@ async def song(client, message):
     audio=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
     reply_markup=InlineKeyboardMarkup(buttons)
 )
+return
     buttons = [[
-        InlineKeyboardButton(f"{sname}", url="{slink}")
+        InlineKeyboardButton("sname", url="https://t.me/NASRANI_UPDATE")
     ]]
     await message.reply_photo(
     photo=img,
