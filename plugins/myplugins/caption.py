@@ -1,70 +1,119 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# (c) Shrimadhav U K & PR0FESS0R-99
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
-import os
+import asyncio
+import datetime
+from pyrogram import Client, filters
+from bot import autocaption
 from config import Config
-from pyrogram import Client, filters 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
+from database.database import *
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait
-from info import BATCH_GROUP, BOT_TOKEN, API_ID, API_HASH
-import pyrogram, os, asyncio
+from info import BATCH_GROUP
+
+@Client.on_message(filters.private & ~filters.edited)
+async def set(bot, message):
+    if ("/set_cap" in message.text) and ((len(message.text.split(' ')) == 2) or (len(message.text.split(' ')) == 1)):
+        await message.reply_text("🖊️ 𝐒𝐄𝐓 𝐂𝐀𝐏𝐓𝐈𝐎𝐍 \n\nUse this command to set custom caption for any of your channels.\n\n👉 `/set_cap -1001448973320 My Caption`", quote = True)
+    elif ("/set_cap" in message.text) and (len(message.text.split(' ')) != 2) and (len(message.text.split(' ')) != 1):
+        caption = message.text.markdown.split(' ', 2)[2]
+        channel = message.text.split(' ', 2)[1].replace("-100", "")
+        try:
+            a = await get_caption(channel)
+            b = a.caption
+        except:
+            await update_caption(channel, caption)
+            return await message.reply_text(f"**--Your Caption--:**\n\n{caption}", quote=True)
+        await message.reply_text("⚠️\n\nA caption already seted for this channel, you should first use /rmv_cap command to remove the current caption and then try seting new.", quote=True)
+           
+    if ("/set_btn" in message.text) and ((len(message.text.split(' ')) == 2) or (len(message.text.split(' ')) == 1)):
+        await message.reply_text("🖊️ 𝐒𝐄𝐓 BUTTON \n\nUse this command to set button for any of your channels.\nSend a Button name and URL(separated by ' | ').\n\n👉 `/set_btn -1001448973320 Channel | https://t.me/channel`", quote = True)
+    elif ("/set_btn" in message.text) and (len(message.text.split(' ')) != 2) and (len(message.text.split(' ')) != 1):
+        button = message.text.split(' ', 2)[2]
+        channel = message.text.split(' ', 2)[1].replace("-100", "").replace("1", "")
+        try:
+            a = await get_button(channel)
+            b = a.button
+        except:
+            await update_button(channel, button)
+            return await message.reply_text(f"**--Your Button--:**\n\n{button}", quote=True, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(button.split(' | ')[0], url=f"{button.rsplit(' ', 1)[1]}")]]))
+        await message.reply_text("⚠️\n\nA button already seted for this channel, you should first use /rmv_btn command to remove the current button and then try seting new.", quote=True)
+           
+    if (message.text == "/rmv_cap"):
+        await message.reply_text("Use this command to remove the current caption of any of your channels.\n\n👉 `/rmv_cap -1001448973320`", quote = True)
+    elif ("/rmv_cap" in message.text) and (len(message.text.split(' ')) != 1):
+        channel = message.text.split(' ', 1)[1].replace("-100", "")
+        try:
+            a = await get_caption(channel)
+            b = a.caption
+        except:
+            return await message.reply_text("Caption not setted yet!", quote=True)     
+        await del_caption(channel)
+        await message.reply_text("✅The Caption Removed Successfully.", quote=True)
+
+    if (message.text == "/rmv_btn"):
+        await message.reply_text("Use this command to remove the current button of any of your channels.\n\n👉 `/rmv_btn -1001448973320`", quote = True)
+    elif ("/rmv_btn" in message.text) and (len(message.text.split(' ')) != 1):
+        channel = message.text.split(' ', 1)[1].replace("-100", "").replace("1", "")
+        try:
+            a = await get_button(channel)
+            b = a.button
+        except:
+            return await message.reply_text("Button not setted yet!", quote=True)     
+        await del_button(channel)
+        await message.reply_text("✅The Button Removed Successfully.", quote=True)
 
 
 
-
-
-try: API_ID = int(os.environ.get("API_ID", None))
-except Exception as app_id: print(f"⚠️ API_ID Invalid {API_ID}")
-try: API_HASH = os.environ.get("api_hash", None)
-except Exception as api_id: print(f"⚠️ API_HASH Invalid {API_HASH}")
-try: BOT_TOKEN = os.environ.get("bot_token", None)
-except Exception as bot_token: print(f"⚠️ Bot Token Invalid {BOT_TOKEN}")
-try: custom_caption = os.environ.get("custom_caption", "`{file_name}`")
-except Exception as custom_caption: print(f"⚠️ Custom Caption Invalid {custom_caption}")
-
-
-
-
-
-
-@Client.on_message(pyrogram.filters.chat(BATCH_GROUP))
-def edit_caption(bot, update: pyrogram.types.Message):
-  if os.environ.get("custom_caption"):
-      motech, _ = get_file_details(update)
-      try:
-          try: update.edit(custom_caption.format(file_name=motech.file_name))
-          except pyrogram.errors.FloodWait as FloodWait:
-              asyncio.sleep(FloodWait.value)
-              update.edit(custom_caption.format(file_name=motech.file_name))
-      except pyrogram.errors.MessageNotModified: pass 
-  else:
-      return
-    
-def get_file_details(update: pyrogram.types.Message):
-  if update.media:
-    for message_type in (
-        "photo",
-        "animation",
-        "audio",
-        "document",
-        "video",
-        "video_note",
-        "voice",
-        # "contact",
-        # "dice",
-        # "poll",
-        # "location",
-        # "venue",
-        "sticker"
-    ):
-        obj = getattr(update, message_type)
-        if obj:
-            return obj, obj.file_id
-
-
-
-print("Telegram AutoCaption V1 Bot Start")
-print("Bot Created By https://github.com/PR0FESS0R-99")
-
-
+@Client.on_message(filters.chat(BATCH_GROUP) & (filters.video | filters.document | filters.audio ) & ~filters.edited, group=-1)
+async def edit(bot, message):
+    m = message.video or message.document or message.audio
+    try:
+        channel = str(message.chat.id).replace('-100', '').replace('1', '')
+        btn = await get_button(int(channel))
+        button = btn.button
+    except:
+        button = None
+        pass
+    try:
+        channel = str(message.chat.id).replace('-100', '')
+        cap = await get_caption(int(channel))
+        if message.audio:
+            caption = cap.caption.replace("{duration}", str(datetime.timedelta(seconds = m.duration))).replace("{mime_type}", m.mime_type).replace("{filename}", m.file_name).replace("{artist}", m.performer).replace("{title}", m.title).replace("{ext}", "." + m.file_name.rsplit('.', 1)[1])
+        elif message.video:
+            caption = cap.caption.replace("{duration}", str(datetime.timedelta(seconds = m.duration))).replace("{mime_type}", m.mime_type).replace("{filename}", m.file_name).replace("{width}", str(m.width)).replace("{height}", str(m.height)).replace("{ext}", "." + m.file_name.rsplit('.', 1)[1])
+        elif message.document:
+            caption = cap.caption.replace("{mime_type}", m.mime_type).replace("{filename}", m.file_name).replace("{ext}", "." + m.file_name.rsplit('.', 1)[1])
+    except:
+        caption = None
+        pass
+       
+    if button is not None:
+        Url = button.rsplit(' ', 1)[1]
+        Name = button.split(' | ')[0]
+        if caption is not None:
+            try:
+                await bot.edit_message_caption(chat_id = message.chat.id, message_id = message.message_id, caption = caption, parse_mode = "markdown", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(Name, url=f"{Url}")]]))
+            except FloodWait as e:
+                print(f"Sleeping for {e.x}s")
+                await asyncio.sleep(e.x)
+            except Exception as e:
+                print(e)
+        elif caption is None:
+            try:
+                await bot.edit_message_caption(chat_id = message.chat.id, message_id = message.message_id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(Name, url=f"{Url}")]]))
+            except FloodWait as e:
+                print(f"Sleeping for {e.x}s")
+                await asyncio.sleep(e.x)
+            except Exception as e:
+                print(e)
+    elif (button is None) and (caption is not None):
+        try:
+            await bot.edit_message_caption(chat_id = message.chat.id, message_id = message.message_id, caption = caption, parse_mode = "markdown")
+        except FloodWait as e:
+            print(f"Sleeping for {e.x}s")
+            await asyncio.sleep(e.x)
+        except Exception as e:
+            print(e)
