@@ -68,7 +68,6 @@ async def start(_, message):
     filters.chat(LOG_CHANNEL)
     & filters.text
     & ~filters.command("help")
-    group=69,
 )
 async def chat(_, message):
     if message.reply_to_message:
