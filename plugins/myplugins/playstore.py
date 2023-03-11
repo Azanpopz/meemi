@@ -17,7 +17,20 @@ from pyrogram.types import *
 async def inline_handlers(_, inline: InlineQuery):
     results = play_scraper.search(update.query)
     answers = []
-    if search_ts == "":
+    for result in results:
+        details = "**Title:** `{}`".format(result["title"]) + "\n" \
+        "**Description:** `{}`".format(result["description"]) + "\n" \
+        "**App ID:** `{}`".format(result["app_id"]) + "\n" \
+        "**Developer:** `{}`".format(result["developer"]) + "\n" \
+        "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
+        "**Score:** `{}`".format(result["score"]) + "\n" \
+        "**Price:** `{}`".format(result["price"]) + "\n" \
+        "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
+        "**Free:** `{}`".format(result["free"]) + "\n" \
+        "\n" + "Made by @FayasNoushad"
+        reply_markup = InlineKeyboardMarkup(
+            [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
+        )
         answers.append(
             InlineQueryResultArticle(
                 title="Search Something ...",
@@ -57,22 +70,7 @@ async def inline_handlers(_, inline: InlineQuery):
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Try Again", switch_inline_query_current_chat="!pb ")]])
                     )
                 )
-            else:
-                
-                for result in results:
-                    details = "**Title:** `{}`".format(result["title"]) + "\n" \
-                    "**Description:** `{}`".format(result["description"]) + "\n" \
-                    "**App ID:** `{}`".format(result["app_id"]) + "\n" \
-                    "**Developer:** `{}`".format(result["developer"]) + "\n" \
-                    "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
-                    "**Score:** `{}`".format(result["score"]) + "\n" \
-                    "**Price:** `{}`".format(result["price"]) + "\n" \
-                    "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
-                    "**Free:** `{}`".format(result["free"]) + "\n" \
-                    "\n" + "Made by @FayasNoushad"
-                    reply_markup = InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
-                )
+            
             try:
                 answers.append(
                     InlineQueryResultArticle(
