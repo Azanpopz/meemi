@@ -7,7 +7,7 @@ from pyrogram.types import Message
 
 
 
-@Client.on_message(filters.me & filters.command(["q"], '.'))
+@Client.on_message(filters.command(["q"]))
 async def quotly(client, message):
     if not message.reply_to_message:
         await message.edit("Reply to any users text message")
