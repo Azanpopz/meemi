@@ -65,7 +65,7 @@ async def inline_handlers(_, inline: InlineQuery):
                             "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
                             "**Free:** `{}`".format(result["free"]) + "\n" \
                             "\n" + "Made by @FayasNoushad"
-                            parse_mode="Markdown",
+                            
                                 disable_web_page_preview=True
                             ),
                             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!yts ")]]),
