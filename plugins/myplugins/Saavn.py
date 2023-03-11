@@ -81,9 +81,15 @@ async def song(client, message):
 
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
+    try:
+        args = message.text.split(None)
+     except:
+         return await message.reply("/saavn requires an argument.")
+     if args.startswith(""):
+         await message.reply("/saavn requires an argument.")
+         return ""
     pak = await message.reply('Downloading...')
-try:
-    args = message.text.split(None)
+    try:
 
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     sname = r['data']['results'][0]['name']
