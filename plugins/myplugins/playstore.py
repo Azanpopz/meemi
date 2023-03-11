@@ -22,20 +22,8 @@ Bot = Client(
 async def inline_handlers(_, inline: InlineQuery):
     results = play_scraper.search(inline.query)
     answers = []
-    for result in results:
-        details = "**Title:** `{}`".format(result["title"]) + "\n" \
-        "**Description:** `{}`".format(result["description"]) + "\n" \
-        "**App ID:** `{}`".format(result["app_id"]) + "\n" \
-        "**Developer:** `{}`".format(result["developer"]) + "\n" \
-        "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
-        "**Score:** `{}`".format(result["score"]) + "\n" \
-        "**Price:** `{}`".format(result["price"]) + "\n" \
-        "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
-        "**Free:** `{}`".format(result["free"]) + "\n" \
-        "\n" + "Made by @FayasNoushad"
-        reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
-        )
+    if result in results:
+        
         answers.append(
                 InlineQueryResultArticle(
                     title=result["title"],
@@ -48,33 +36,38 @@ async def inline_handlers(_, inline: InlineQuery):
                 )
             )
 
-    elif results.startswith("!app"):
-        query = results.split(" ", 1)[-1]
-        if (query == "") or (query == " "):
-            answers.append(
-                InlineQueryResultArticle(
-                    title=result["title"],
-                    description=result.get("description", None),
-                    thumb_url=result.get("icon", None),
-                    input_message_content=InputTextMessageContent(
-                        message_text=details, disable_web_page_preview=True
-                    ),
-                    reply_markup=reply_markup
+       else: 
+            results = play_scraper.search(inline.query)
+            if not torrentList:
+                answers.append(
+                    InlineQueryResultArticle(
+                        title="No Torrents Found in ThePirateBay!",
+                        description=f"Can't find torrents for {query} in ThePirateBay !!",
+                        input_message_content=InputTextMessageContent(
+                            message_text=f"No Torrents Found For `{query}` in ThePirateBay !!",
+                            parse_mode="Markdown"
+                        ),
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Try Again", switch_inline_query_current_chat="!pb ")]])
+                    )
                 )
-            )
-        
-        try:
-            answers.append(
-                InlineQueryResultArticle(
-                    title=result["title"],
-                    description=result.get("description", None),
-                    thumb_url=result.get("icon", None),
-                    input_message_content=InputTextMessageContent(
-                        message_text=details, disable_web_page_preview=True
-                    ),
-                    reply_markup=reply_markup
-                )
-            )
-        except Exception as error:
-            print(error)
-    await inline.answer(answers)
+            else:
+                for i in range(len(results)):
+                    answers.append(
+                        InlineQueryResultArticle(
+                            details = "**Title:** `{}`".format(result["title"]) + "\n" \
+        "**Description:** `{}`".format(result["description"]) + "\n" \
+        "**App ID:** `{}`".format(result["app_id"]) + "\n" \
+        "**Developer:** `{}`".format(result["developer"]) + "\n" \
+        "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
+        "**Score:** `{}`".format(result["score"]) + "\n" \
+        "**Price:** `{}`".format(result["price"]) + "\n" \
+        "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
+        "**Free:** `{}`".format(result["free"]) + "\n" \
+        "\n" + "Made by @FayasNoushad"
+        reply_markup = InlineKeyboardMarkup(
+            [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
+        )
+                    
+    except Exception as error:
+        print(error)
+await inline.answer(answers)
