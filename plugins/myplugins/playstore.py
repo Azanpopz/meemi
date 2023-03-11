@@ -64,7 +64,7 @@ async def inline_handlers(_, inline: InlineQuery):
                             "**Price:** `{}`".format(result["price"]) + "\n" \
                             "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
                             "**Free:** `{}`".format(result["free"]) + "\n" \
-                            "\n" + "Made by @FayasNoushad"
+                            "\n" + "Made by @FayasNoushad",
                             
                                 
                             input_message_content=InputTextMessageContent(
