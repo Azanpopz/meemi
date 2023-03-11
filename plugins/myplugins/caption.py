@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 import asyncio
 import datetime
 from pyrogram import Client, filters
-from bot import autocaption
+
 from config import Config
 from database.database import *
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
