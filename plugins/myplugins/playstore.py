@@ -70,7 +70,7 @@ async def inline_handlers(_, inline: InlineQuery):
                             ),
                             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!yts ")]]),
                             thumb_url=torrentList[i]["Poster"]
-                        )
+                        
                     )
                     
                 except Exception as error:
