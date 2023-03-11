@@ -13,33 +13,59 @@ from info import BATCH_GROUP, BOT_TOKEN, API_ID, API_HASH
 
 
 
-@Client.on_message(filters.media & filters.chat(BATCH_GROUP))
-async def caption(client, message: Message):
-    kopp, _ = get_file_id(message)
-    await message.edit(f"<b>{kopp.file_name}</b>\n\njoin and support",
-          reply_markup=InlineKeyboardMarkup(
-              [[
-              InlineKeyboardButton(f"JOIN", url="https://t.me/nasrani_update")
-              ]]
-        ))
+try: app_id = int(os.environ.get("app_id", None))
+except Exception as app_id: print(f"⚠️ App ID Invalid {app_id}")
+try: api_hash = os.environ.get("api_hash", None)
+except Exception as api_id: print(f"⚠️ Api Hash Invalid {api_hash}")
+try: bot_token = os.environ.get("bot_token", None)
+except Exception as bot_token: print(f"⚠️ Bot Token Invalid {bot_token}")
+try: custom_caption = os.environ.get("custom_caption", "`{file_name}`")
+except Exception as custom_caption: print(f"⚠️ Custom Caption Invalid {custom_caption}")
 
-def get_file_id(msg: Message):
-    if msg.media:
-        for message_type in (
-            "photo",
-            "animation",
-            "audio",
-            "document",
-            "video",
-            "video_note",
-            "voice",
-            # "contact",
-            # "dice",
-            # "poll",
-            # "location",
-            # "venue",
-            "sticker"
-        ):
-            obj = getattr(msg, message_type)
-            if obj:
-                return obj, obj.file_id
+AutoCaptionBot = pyrogram.Client(
+   name="AutoCaptionBot", api_id=app_id, api_hash=api_hash, bot_token=bot_token)
+
+
+
+
+
+@Client.on_message(pyrogram.filters.chat(BATCH_GROUP))
+def edit_caption(bot, update: pyrogram.types.Message):
+  if os.environ.get("custom_caption"):
+      motech, _ = get_file_details(update)
+      try:
+          try: update.edit(custom_caption.format(file_name=motech.file_name))
+          except pyrogram.errors.FloodWait as FloodWait:
+              asyncio.sleep(FloodWait.value)
+              update.edit(custom_caption.format(file_name=motech.file_name, mote))
+      except pyrogram.errors.MessageNotModified: pass 
+  else:
+      return
+    
+def get_file_details(update: pyrogram.types.Message):
+  if update.media:
+    for message_type in (
+        "photo",
+        "animation",
+        "audio",
+        "document",
+        "video",
+        "video_note",
+        "voice",
+        # "contact",
+        # "dice",
+        # "poll",
+        # "location",
+        # "venue",
+        "sticker"
+    ):
+        obj = getattr(update, message_type)
+        if obj:
+            return obj, obj.file_id
+
+
+
+print("Telegram AutoCaption V1 Bot Start")
+print("Bot Created By https://github.com/PR0FESS0R-99")
+
+
