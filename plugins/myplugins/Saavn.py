@@ -101,23 +101,23 @@ async def song(client, message):
         file = wget.download(slink)
         ffile = file.replace("mp4", "mp3")
         os.rename(file, ffile)
-    buttons = [[
-        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
-    ]]                           
-    await message.reply_photo(
-    photo=img,thumb=thumbnail,
-    reply_markup=InlineKeyboardMarkup(buttons)
-)
-    return
-    buttons = [[
-        InlineKeyboardButton("sname", url="https://t.me/NASRANI_UPDATE")
-    ]]
-    await message.reply_photo(
-    photo=img,
-    reply_markup=InlineKeyboardMarkup(buttons)
-) 
-    os.remove(ffile)
-    os.remove(thumbnail)
+        buttons = [[
+            InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
+        ]]                           
+        await message.reply_photo(
+        photo=img,thumb=thumbnail,
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
+        return
+        buttons = [[
+            InlineKeyboardButton("sname", url="https://t.me/NASRANI_UPDATE")
+        ]]
+        await message.reply_photo(
+        photo=img,
+        reply_markup=InlineKeyboardMarkup(buttons)
+    ) 
+        os.remove(ffile)
+        os.remove(thumbnail)
 
 
 
