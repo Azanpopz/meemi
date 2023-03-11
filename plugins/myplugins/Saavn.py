@@ -72,7 +72,7 @@ async def song(client, message):
 #    await pak.delete()
 
 
-@Client.on_message(filters.command('vsaavn') & filters.text & filters.chat(BATCH_GROUP))
+@Client.on_message(filters.command('vsaavn') & filters.text)
 async def video(client, message):
     try:
         args = message.text.split(None)
