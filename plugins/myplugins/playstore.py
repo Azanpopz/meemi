@@ -51,7 +51,7 @@ async def inline_handlers(_, inline: InlineQuery):
                         [[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!yts ")]])
                 )
             )
-            else:
+            try:
                 for i in range(len(results)):
                     answers.append(
                         InlineQueryResultArticle(
