@@ -57,7 +57,7 @@ async def type_and_send(message):
 
 
 
-@Client.on_message(filters.command("help") & filters.chat(LOG_CHANNEL) & ~filters.edited)
+@Client.on_message(filters.command("help") & filters.chat(LOG_CHANNEL))
 async def start(_, message):
     await luna.send_chat_action(message.chat.id, "typing")
     await sleep(2)
@@ -68,7 +68,6 @@ async def start(_, message):
     filters.chat(LOG_CHANNEL)
     & filters.text
     & ~filters.command("help")
-    & ~filters.edited,
     group=69,
 )
 async def chat(_, message):
@@ -90,7 +89,7 @@ async def chat(_, message):
 
 
 @Client.on_message(
-    filters.private & ~filters.command("help") & filters.chat(LOG_CHANNEL) & ~filters.edited
+    filters.private & ~filters.command("help") & filters.chat(LOG_CHANNEL))
 )
 async def chatpm(_, message):
     if not message.text:
