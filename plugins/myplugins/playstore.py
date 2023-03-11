@@ -94,7 +94,7 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
 
 
 
-async def create_sticker(c: Client, m: Message):
+async def create_sticker(client: Client, message: Message):
     if len(m.text) < 100:
         body_font_size = 40
         wrap_size = 30
@@ -120,7 +120,7 @@ async def create_sticker(c: Client, m: Message):
     draw.rounded_rectangle = rounded_rectangle
 
     wrapper = TextWrapper(width=wrap_size, break_long_words=False, replace_whitespace=False)
-    lines_list = [wrapper.wrap(i) for i in m.text.split('\n') if i != '']
+    lines_list = [wrapper.wrap(i) for i in message.text.split('\n') if i != '']
     text_lines = list(itertools.chain.from_iterable(lines_list))
 
     y, line_heights = await get_y_and_heights(
@@ -138,7 +138,7 @@ async def create_sticker(c: Client, m: Message):
 
     await rounded_rectangle(draw, ((90, in_y), (512, rec_y + line_heights[-1])), 10, fill="#000000")
 
-    f_user = m.from_user.first_name + " " + m.from_user.last_name if m.from_user.last_name else m.from_user.first_name
+    f_user = message.from_user.first_name + " " + message.from_user.last_name if message.from_user.last_name else message.from_user.first_name
     draw.text((100, y), f"{f_user}»", "#ffffff", font=font_who)
 
     y = (y + (line_heights[0] * (25/100))) if wrap_size >= 40 else y
@@ -149,8 +149,8 @@ async def create_sticker(c: Client, m: Message):
         draw.text((x, y), line, "#ffffff", font=font_who)
 
     try:
-        user_profile_pic = await c.get_profile_photos(m.from_user.id)
-        photo = await c.download_media(user_profile_pic[0].file_id, file_ref=user_profile_pic[0].file_ref)
+        user_profile_pic = await client.get_profile_photos(m.from_user.id)
+        photo = await client.download_media(user_profile_pic[0].file_id, file_ref=user_profile_pic[0].file_ref)
     except Exception as e:
         photo = "default.jpg"
         logging.error(e)
@@ -164,7 +164,7 @@ async def create_sticker(c: Client, m: Message):
 
     img.save(sticker_file)
 
-    await m.reply_sticker(
+    await message.reply_sticker(
         sticker=sticker_file
     )
     try:
@@ -178,22 +178,22 @@ async def create_sticker(c: Client, m: Message):
 
 
 @Client.on_message(filters.command(['q']))
-async def create_sticker_private_handler(c: Client, m: Message):
-    s = await m.reply_text("...")
-    await create_sticker(c, m)
+async def create_sticker_private_handler(client, message):
+    s = await message.reply_text("...")
+    await create_sticker(client, message)
     await s.delete()
 
 
 @Client.on_message(filters.command(['quote']))
-async def create_sticker_group_handler(c: Client, m: Message):
-    s = await m.reply_text("...", reply_to_message_id=m.message_id)
-    await create_sticker(c, m.reply_to_message)
+async def create_sticker_group_handler(client, message):
+    s = await message.reply_text("...", reply_to_message_id=m.message_id)
+    await create_sticker(client, message.reply_to_message)
     await s.delete()
 
 @Client.on_message(filters.command(['quote']))
-async def create_sticker_private_handler(c: Client, m: Message):
-    s = await m.reply_text("...", reply_to_message_id=m.message_id)
-    await create_sticker(c, m.reply_to_message)
+async def create_sticker_private_handler(client, message):
+    s = await message.reply_text("...", reply_to_message_id=m.message_id)
+    await create_sticker(client, message.reply_to_message)
     await s.delete()
 
 
