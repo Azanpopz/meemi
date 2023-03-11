@@ -29,14 +29,7 @@ async def song(client, message):
     audio=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
     reply_markup=InlineKeyboardMarkup(buttons)
 )
-    return
-    buttons = [[
-        InlineKeyboardButton("sname", url="https://t.me/NASRANI_UPDATE")
-    ]]
-    await message.reply_photo(
-    photo=img,
-    reply_markup=InlineKeyboardMarkup(buttons)
-) 
+
     os.remove(ffile)
     os.remove(thumbnail)
 
@@ -93,7 +86,7 @@ async def song(client, message):
         await pak.edit(str(e))
         return
 
-    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
+    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=2&limit=2").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
@@ -106,18 +99,10 @@ async def song(client, message):
     buttons = [[
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
-    await message.reply_photo(
-    photo=img,thumb=thumbnail,
+    await message.reply_audio(
+    audio=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
     reply_markup=InlineKeyboardMarkup(buttons)
-) 
-    return
-    buttons = [[
-        InlineKeyboardButton("sname", url="https://t.me/NASRANI_UPDATE")
-    ]]
-    await message.reply_photo(
-    photo=img,
-    reply_markup=InlineKeyboardMarkup(buttons)
-) 
+)
     os.remove(ffile)
     os.remove(thumbnail)
 
