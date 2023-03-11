@@ -1,40 +1,49 @@
-import requests
-from dotenv import load_dotenv
-from requests.utils import requote_uri
-from pyrogram import Client, filters, enums
-from pyrogram.types import *
-import os
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+import asyncio
+import random
+from asyncio import sleep
+
+from pyrogram import filters
+from pyrogram.types import Message
 
 
 
+@Client.on_message(filters.me & filters.command(["q"], '.'))
+async def quotly(bot: UserBot, message: Message):
+    if not message.reply_to_message:
+        await message.edit("Reply to any users text message")
+        return
 
-load_dotenv()
-API = "https://api.abirhasan.wtf/google?query="
+    await message.edit("```Making a Quote```")
+
+    await message.reply_to_message.forward("@QuotLyBot")
+
+    is_sticker = False
+    progress = 0
+
+    while not is_sticker:
+        try:
+            await sleep(4)
+            msg = await bot.get_history("@QuotLyBot", 1)
+            print(msg)
+            is_sticker = True
+        except:
+            await sleep(1)
+
+            progress += random.randint(0, 5)
+
+            if progress > 100:
+                await message.edit('There was a long running error')
+                return
+
+            try:
+                await message.edit("```Making a Quote\nProcessing {}%```".format(progress))
+            except:
+                await message.edit("ERROR")
+
+    if msg_id := msg[0]['message_id']:
+        await asyncio.gather(
+            message.delete(),
+            bot.forward_messages(message.chat.id, "@QuotLyBot", msg_id)
+        )
 
 
-Bot = Client(
-    "Google-Search-Bot",
-    bot_token=os.environ.get("BOT_TOKEN"),
-    api_id=int(os.environ.get("API_ID")),
-    api_hash=os.environ.get("API_HASH")
-)
-
-
-@Client.on_message(filters.private & filters.command(["google"]))
-async def start(client, message):
-    args = message.text.split(None)  
-    r = requests.get(API + requote_uri(API))
-    informations = r.json()["results"][:50]
-for info in informations:
-    text = f"**Title:** `{info['title']}`"
-    text += f"\n**Description:** `{info['description']}`"
-    text += f"\n\nMade by @FayasNoushad"
-    buttons = [[
-        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
-    ]]                           
-    await message.reply_text(
-    text = f"**Title:** `{info['title']}`",
-    reply_markup=InlineKeyboardMarkup(buttons)
-) 
-    return results
