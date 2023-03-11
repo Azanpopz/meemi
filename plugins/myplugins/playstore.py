@@ -29,7 +29,7 @@ async def song(client, message):
     
     
     results = requests.get(
-        API + requests.utils.requote_uri(message):
+        API + requests.utils.requote_uri(message.from_user.mention)
     ).json()["result"][:50]
     
     answers = []
@@ -37,14 +37,14 @@ async def song(client, message):
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
     await message.reply_audio(
-    title=update.query.capitalize(),
+    title=message.from_user.mention.capitalize(),
     description=result,
     caption="Made by @FayasNoushad",
     photo_url=result,
     reply_markup=InlineKeyboardMarkup(buttons)
 ) 
     
-    await message.answer(answers)
+    await message.from_user.mention.answer(answers)
 
 
 
