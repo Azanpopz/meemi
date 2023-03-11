@@ -68,9 +68,9 @@ async def inline_handlers(_, inline: InlineQuery):
                             
                                 
                             input_message_content=InputTextMessageContent(
-                        message_text=details, disable_web_page_preview=True
-                        ),
-                        reply_markup=reply_markup
+                            message_text=details, disable_web_page_preview=True
+                            ),
+                            reply_markup=reply_markup
                         )
                     )
                     
