@@ -51,7 +51,7 @@ async def inline_handlers(_, inline: InlineQuery):
                     )
                 )
             else:
-                for i in range(len(results)):
+                try: i in range(len(results)):
                     answers.append(
                         InlineQueryResultArticle(
                             details = "**Title:** `{}`".format(result["title"]) + "\n" \
