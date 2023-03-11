@@ -9,8 +9,7 @@ import asyncio
 
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
-    pak = await message.reply('Downloading...')
-    return
+    
     args = message.text.split(None)
 
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=5&limit=5").json()
