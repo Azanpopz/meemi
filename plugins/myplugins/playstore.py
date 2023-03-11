@@ -19,7 +19,7 @@ Bot = Client(
 
 @Client.on_message(filters.private & filters.command(["google"]))
 async def start(bot, update):    
-    r = requests.get(API + requote_uri(query))
+    r = requests.get(API + requote_uri(f"https://api.abirhasan.wtf/google?query={args}&page=1&limit=10").json()
     informations = r.json()["results"][:50]
     text = f"**Title:** `{info['title']}`"
     text += f"\n**Description:** `{info['description']}`"
