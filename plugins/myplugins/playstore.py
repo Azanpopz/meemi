@@ -28,7 +28,7 @@ async def start(bot, update):
     buttons = [[
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
-    await message.reply_audio(
+    await message.reply_text(
     text = f"**Title:** `{info['title']}`",
     reply_markup=InlineKeyboardMarkup(buttons)
 ) 
