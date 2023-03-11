@@ -24,7 +24,7 @@ Bot = Client(
 @Client.on_message(filters.private & filters.command(["google"]))
 async def start(bot, update):
     args = message.text.split(None)  
-    r = requests.get(API + requote_uri()
+    r = requests.get(API + requote_uri(API))
     informations = r.json()["results"][:50]
     text = f"**Title:** `{info['title']}`"
     text += f"\n**Description:** `{info['description']}`"
