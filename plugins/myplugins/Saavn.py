@@ -79,7 +79,8 @@ async def song(client, message):
     except:
          
         
-    return pak = await message.reply('Downloading...')
+    return
+    pak = await message.reply('Downloading...')
     try:
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
@@ -105,6 +106,6 @@ async def song(client, message):
 )
     os.remove(ffile)
     os.remove(thumbnail)
-
+    await pak.delete()
 
 
