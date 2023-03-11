@@ -86,7 +86,7 @@ async def video(client, message):
     except Exception as e:
         await pak.edit(str(e))
         return
-
+    message.reply_to_message and BATCH_GROUP == message.chat.id:
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=2&limit=2").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
@@ -98,9 +98,10 @@ async def video(client, message):
     ffile = file.replace("mp3", "mp4")
     os.rename(file, ffile)
     buttons = [[
-        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
+        InlineKeyboardButton("JOIN MOVIES", url=f"{message.reply_to_message.link}")
     ]]                           
     await message.reply_video(
+    chat_id=BATCH_GROUP,
     video=ffile, caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
     reply_markup=InlineKeyboardMarkup(buttons)
 )
