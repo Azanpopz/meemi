@@ -8,6 +8,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import FloodWait
 from info import BATCH_GROUP, BOT_TOKEN, API_ID, API_HASH
+import pyrogram, os, asyncio
 
 
 
