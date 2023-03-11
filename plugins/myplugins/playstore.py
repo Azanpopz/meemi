@@ -26,6 +26,7 @@ async def start(client, message):
     args = message.text.split(None)  
     r = requests.get(API + requote_uri(API))
     informations = r.json()["results"][:50]
+for info in informations:
     text = f"**Title:** `{info['title']}`"
     text += f"\n**Description:** `{info['description']}`"
     text += f"\n\nMade by @FayasNoushad"
