@@ -84,9 +84,7 @@ async def song(client, message):
     try:
         args = message.text.split(None)
     except:
-         return await message.reply("/saavn requires an argument.")
-    if args.startswith(""):
-        await message.reply("/saavn requires an argument.")
+         
         return ""
     pak = await message.reply('Downloading...')
     try:
