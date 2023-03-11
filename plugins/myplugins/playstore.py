@@ -22,7 +22,7 @@ Bot = Client(
 
 
 @Client.on_message(filters.private & filters.command(["google"]))
-async def start(bot, update):
+async def start(client, message):
     args = message.text.split(None)  
     r = requests.get(API + requote_uri(API))
     informations = r.json()["results"][:50]
