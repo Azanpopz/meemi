@@ -7,19 +7,21 @@ from config import Config
 from pyrogram import Client, filters 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import FloodWait
+from info import BATCH_GROUP
+
 
 CAPTION_TEXT=Config.CAPTION
 BUTTON_TEXT=Config.BUTTON_TEXT
 URL_LINK=Config.URL_LINK
 
 
-@Client.on_message(filters.media & filters.channel)
+@Client.on_message(filters.media & filters.chat(BATCH_GROUP))
 async def caption(client, message: Message):
     kopp, _ = get_file_id(message)
-    await message.edit(f"<b>{kopp.file_name}</b>\n\n{CAPTION_TEXT}",
+    await message.edit(f"<b>{kopp.file_name}</b>\n\njoin and support",
           reply_markup=InlineKeyboardMarkup(
               [[
-              InlineKeyboardButton(f"{BUTTON_TEXT}", url=f"{URL_LINK}")
+              InlineKeyboardButton(f"JOIN", url="https://t.me/nasrani_update")
               ]]
         ))
 
