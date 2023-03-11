@@ -11,7 +11,7 @@ import asyncio
 async def song(client, message):
     args = message.text.split(None)
 
-    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=10").json()
+    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=5&limit=5").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
