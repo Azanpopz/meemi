@@ -82,10 +82,10 @@ async def song(client, message):
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
     try:
-        args = message.text.split(None, 1)[1]
+        args = message.text.split(None)
     except:
          return await message.reply("/saavn requires an argument.")
-    if args.startswith(" "):
+    if args.startswith(""):
         await message.reply("/saavn requires an argument.")
         return ""
     pak = await message.reply('Downloading...')
