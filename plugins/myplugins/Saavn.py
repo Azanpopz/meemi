@@ -86,7 +86,7 @@ async def video(client, message):
     except Exception as e:
         await pak.edit(str(e))
         return
-    message.reply_to_message = message.chat.id:
+    message.reply_to_message = message.chat.id
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=2&limit=2").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
