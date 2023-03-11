@@ -15,7 +15,7 @@ from pyrogram.types import *
 
 @Client.on_inline_query()
 async def inline_handlers(_, inline: InlineQuery):
-    results = play_scraper.search(update.query)
+    results = play_scraper.search(inline.query)
     answers = []
     if result in results:
         details = "**Title:** `{}`".format(result["title"]) + "\n" \
@@ -32,16 +32,16 @@ async def inline_handlers(_, inline: InlineQuery):
             [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
         )
         answers.append(
-            InlineQueryResultArticle(
-                title="Search Something ...",
-                description="Search For Torrents ...",
-                input_message_content=InputTextMessageContent(
-                    message_text="Search for Torrents from Inline!",
-                    parse_mode="Markdown"
-                ),
-                reply_markup=InlineKeyboardMarkup(DEFAULT_SEARCH_MARKUP)
+                InlineQueryResultArticle(
+                    title=result["title"],
+                    description=result.get("description", None),
+                    thumb_url=result.get("icon", None),
+                    input_message_content=InputTextMessageContent(
+                        message_text=details, disable_web_page_preview=True
+                    ),
+                    reply_markup=reply_markup
+                )
             )
-        )
 
     elif search_ts.startswith("!app"):
         query = search_ts.split(" ", 1)[-1]
