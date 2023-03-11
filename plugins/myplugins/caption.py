@@ -24,7 +24,7 @@ try: custom_caption = os.environ.get("custom_caption", "`{file_name}`")
 except Exception as custom_caption: print(f"⚠️ Custom Caption Invalid {custom_caption}")
 
 AutoCaptionBot = pyrogram.Client(
-   name="AutoCaptionBot", api_id=app_id, api_hash=api_hash, bot_token=bot_token)
+   name="AutoCaptionBot", API_ID=API_ID, API_HASH=API_HASH, BOT_TOKEN=BOT_TOKEN)
 
 
 
