@@ -95,7 +95,7 @@ async def video(client, message):
     ffile = file.replace("mp3", "mp4")
     os.rename(file, ffile)
     buttons = [[
-        InlineKeyboardButton("JOIN MOVIES", url=f"{message.reply_to_message.link}")
+        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
     await message.reply_video(
     chat_id=BATCH_GROUP,
