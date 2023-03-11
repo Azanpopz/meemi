@@ -36,7 +36,7 @@ async def inline_handlers(_, inline: InlineQuery):
                 )
             )
 
-       elif search_ts.startswith("!yts"):
+    elif search_ts.startswith("!yts"):
         query = search_ts.split(" ", 1)[-1]
         if (query == "") or (query == " "):
             answers.append(
