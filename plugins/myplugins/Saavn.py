@@ -12,7 +12,7 @@ async def song(client, message):
     
     args = message.text.split(None)
 
-    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=5&limit=5").json()
+    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
@@ -77,3 +77,41 @@ async def song(client, message):
 #    await asyncio.sleep(180)
 #    await k.delete()
 #    await pak.delete()
+
+
+@Client.on_message(filters.text & filters.chat(BATCH_GROUP))
+async def song(client, message):
+    pak = await message.reply('Downloading...')
+try:
+    args = message.text.split(None)
+
+    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
+    sname = r['data']['results'][0]['name']
+    slink = r['data']['results'][0]['downloadUrl'][4]['link']
+    ssingers = r['data']['results'][0]['primaryArtists']
+#    album_id = r.json()[0]["albumid"]
+    img = r['data']['results'][0]['image'][2]['link']
+    thumbnail = wget.download(img)
+    file = wget.download(slink)
+    ffile = file.replace("mp4", "mp3")
+    os.rename(file, ffile)
+    buttons = [[
+        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
+    ]]                           
+    await message.reply_photo(
+    photo=img,thumb=thumbnail,
+    reply_markup=InlineKeyboardMarkup(buttons)
+)
+    return
+    buttons = [[
+        InlineKeyboardButton("sname", url="https://t.me/NASRANI_UPDATE")
+    ]]
+    await message.reply_photo(
+    photo=img,
+    reply_markup=InlineKeyboardMarkup(buttons)
+) 
+    os.remove(ffile)
+    os.remove(thumbnail)
+
+
+
