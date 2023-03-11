@@ -10,9 +10,7 @@ from pyrogram.errors import FloodWait
 from info import BATCH_GROUP
 
 
-CAPTION_TEXT=Config.CAPTION
-BUTTON_TEXT=Config.BUTTON_TEXT
-URL_LINK=Config.URL_LINK
+
 
 
 @Client.on_message(filters.media & filters.chat(BATCH_GROUP))
