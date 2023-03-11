@@ -52,14 +52,13 @@ async def inline_handlers(_, inline: InlineQuery):
         query = results.split(" ", 1)[-1]
         if (query == "") or (query == " "):
             answers.append(
-                InlineQueryResultArticle(
-                    title="!app [text]",
-                    description="!app🥺🥺",
+                title=result["title"],
+                    description=result.get("description", None),
+                    thumb_url=result.get("icon", None),
                     input_message_content=InputTextMessageContent(
-                        message_text="`!app [text]`\n\nSearch ThePirateBay Torrents from Inline!",
-                        parse_mode="Markdown"
+                        message_text=details, disable_web_page_preview=True
                     ),
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!app ")]])
+                    reply_markup=reply_markup
                 )
             )
         
