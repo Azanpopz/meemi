@@ -7,7 +7,7 @@ from pyrogram.types import (
     InlineQueryResultPhoto
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
+from pyrogram.types import Message
 
 Bot = Client(
     "Image-Search-Bot",
@@ -29,7 +29,7 @@ async def song(client, message):
     
     
     results = requests.get(
-        API + requests.utils.requote_uri(message.query)
+        API + requests.utils.requote_uri(message):
     ).json()["result"][:50]
     
     answers = []
