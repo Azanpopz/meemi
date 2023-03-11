@@ -3,7 +3,7 @@
 ### This download from saavn.me an unofficial api
 from pyrogram import Client,filters
 import requests,os,wget
-from info import BATCH_GROUP
+from info import BATCH_GROUP, REQST_CHANNEL, SUPPORT_CHAT_ID
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import asyncio
 
@@ -74,7 +74,8 @@ async def song(client, message):
 
 @Client.on_message(filters.command('vsaavn') & filters.text)
 async def video(client, message):
-    try:
+    if REQST_CHANNEL is None or SUPPORT_CHAT_ID is None: return # Must add REQST_CHANNEL and SUPPORT_CHAT_ID to use this feature
+    if message.reply_to_message and SUPPORT_CHAT_ID == message.chat.id:
         args = message.text.split(None)
     except:
          
@@ -86,7 +87,7 @@ async def video(client, message):
     except Exception as e:
         await pak.edit(str(e))
         return
-    message.reply_to_message = message.chat.id
+    
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=2&limit=2").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
