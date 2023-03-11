@@ -64,15 +64,12 @@ async def inline_handlers(_, inline: InlineQuery):
                             "**Price:** `{}`".format(result["price"]) + "\n" \
                             "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
                             "**Free:** `{}`".format(result["free"]) + "\n" \
-                            "\n" + "Made by @FayasNoushad",
+                            "\n" + "Made by @FayasNoushad"
                             
                                 
-                            input_message_content=InputTextMessageContent(
-                            message_text=details, disable_web_page_preview=True
-                            ),
-                            reply_markup=reply_markup
-                        )
-                    )
+                            reply_markup = InlineKeyboardMarkup(
+                                [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
+                            )
                     
                 except Exception as error:
                     print(error)
