@@ -6,39 +6,11 @@ import logging
 import configparser
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from textwrap import TextWrapper
-from pyrogram import Client as Bot
+from pyrogram import Client
 from pyrogram import Client, idle, filters
 from pyrogram.types import Message
 from PIL import Image, ImageDraw, ImageFont, ImageChops
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-
-START_TEXT = """**👋𝙷𝚎𝚕𝚕𝚘 ᴅᴇᴀʀ **
-
-𝙸 𝚊𝚖 𝚊𝚗 𝚝𝚎𝚡𝚝 𝚝𝚘 𝚜𝚝𝚒𝚌𝚔𝚎𝚛 𝚋𝚘𝚝
-
-𝙸 𝚓𝚞𝚜𝚝 𝚌𝚛𝚎𝚊𝚝𝚎 𝚝𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝚜𝚝𝚒𝚌𝚔𝚎𝚛 𝚏𝚛𝚘𝚖 𝚝𝚑𝚎 𝚝𝚎𝚡𝚝 𝚖𝚎𝚜𝚜𝚊𝚐𝚎𝚜 𝚢𝚘𝚞 𝚜𝚎𝚗𝚍 𝚖𝚎
-
-Made by- [M-STER TECH](https://t.me/M_STER_TECH) """
-
-START_BUTTONS = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('𝚄𝙿𝙳𝙰𝚃𝙴 𝙲𝙷𝙰𝙽𝙽𝙴𝙻', url='https://t.me/M_STER_TECH'),
-        ]]
-    )
-
-@Client.on_callback_query()
-async def cb_handler(bot, update):
-    if update.data == "home":
-        await m.message.edit_text(
-            text=START_TEXT.format(m.from_user.mention),
-            reply_markup=START_BUTTONS,
-            disable_web_page_preview=True
-        )
-    
 
 
 
@@ -119,48 +91,28 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
                     (bottom_right_point[0], bottom_right_point[1] - corner_radius)], fill=outline)
 
 
-@Client.on_message(filters.private & filters.command(["start"]))
-async def start_handler(c: Client, m: Message): await m.reply_text(
- text=START_TEXT.format(m.from_user.mention),
-        disable_web_page_preview=True,
- reply_markup=START_BUTTONS
-    )
 
-
-@Client.on_message(filters.private & filters.command(["help"]))
-async def start_handler(c: Client, m: Message): await m.reply_text(
- text=PANDITHAN.format(m.from_user.mention),
-        disable_web_page_preview=True,
- reply_markup=MINNAL_MURALI
-    )
-
-@Client.on_message(filters.private & filters.command(["about"]))
-async def start_handler(c: Client, m: Message): await m.reply_text(
- text=MALIK.format(m.from_user.mention),
-        disable_web_page_preview=True,
- reply_markup=MALIK2
-    )
 
 
 async def create_sticker(c: Client, m: Message):
     if len(m.text) < 100:
-        body_font_size = 35
+        body_font_size = 40
         wrap_size = 30
-    elif len(m.text) < 200:
-        body_font_size = 30
+    elif len(m.text) < 250:
+        body_font_size = 50
         wrap_size = 35
-    elif len(m.text) < 500:
+    elif len(m.text) < 550:
         body_font_size = 20
         wrap_size = 40
-    elif len(m.text) < 1000:
+    elif len(m.text) < 1050:
         body_font_size = 12
-        wrap_size = 80
+        wrap_size = 90
     else:
-        body_font_size = 8
-        wrap_size = 100
+        body_font_size = 15
+        wrap_size = 150
 
     font = ImageFont.truetype("Segan-Light.ttf", body_font_size)
-    font_who = ImageFont.truetype("Segan-Light.ttf", 24)
+    font_who = ImageFont.truetype("Segan-Light.ttf", 50)
     AKKU = ImageFont.truetype("Sticky-Notes.ttf", body_font_size)
 
     img = Image.new("RGBA", (512, 512), (255, 255, 255, 0))
@@ -174,7 +126,7 @@ async def create_sticker(c: Client, m: Message):
     y, line_heights = await get_y_and_heights(
         text_lines,
         (512, 512),
-        10,
+        30,
         font
     )
 
@@ -189,12 +141,12 @@ async def create_sticker(c: Client, m: Message):
     f_user = m.from_user.first_name + " " + m.from_user.last_name if m.from_user.last_name else m.from_user.first_name
     draw.text((100, y), f"{f_user}»", "#ffffff", font=font_who)
 
-    y = (y + (line_heights[0] * (20/100))) if wrap_size >= 40 else y
+    y = (y + (line_heights[0] * (25/100))) if wrap_size >= 40 else y
 
     for i, line in enumerate(text_lines):
         x = 100
         y += line_heights[i]
-        draw.text((x, y), line, "#ffffff", font=AKKU)
+        draw.text((x, y), line, "#ffffff", font=font_who)
 
     try:
         user_profile_pic = await c.get_profile_photos(m.from_user.id)
@@ -224,46 +176,25 @@ async def create_sticker(c: Client, m: Message):
     except Exception as e:
         logging.error(e)
 
-MALIK = """╔════❰ ABOUT ❱═❍⊱❁۪۪
-║╭━━━━━━━━━━━━━━━➣ 
-║┣⪼ 𝙼𝚈 𝙽𝙰𝙼𝙴 : TEXT TO STICKER
-║┣⪼ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁 : [⸙ꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋM-STER](https://t.me/M_STER_TECH)
-║┣⪼ 𝙻𝙸𝙱𝚁𝙰𝚁𝚈 : PYROGRAM
-║┣⪼ 𝙻𝙰𝙽𝙶𝚄𝙰𝙶𝙴 : PYTHON 3
-║┣⪼ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁 : ZeeT
-║┣⪼ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂 : v1.0.1 [ 𝙱𝙴𝚃𝙰 ]
-║┣⪼ 𝙲𝚁𝙴𝙳𝙸𝚃𝚂 : [PANDITHAN](https://t.me/PANDITHAN_SIR)
-║╰━━━━━━━━━━━━━━━➣ ╚══════════════════❍⊱❁۪۪۪۪ """
-MALIK2 = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('𝚂𝙾𝚄𝚁𝙲𝙴 𝙲𝙾𝙳𝙴', url='https://t.me/M_STER_TECH'),
-        ]]
-    )
 
-PANDITHAN ="""**👋Hi ᴅᴇᴀʀ**
-
-I do not have much to say on help - I just create telegram stickers from the text messages you send me
-
- MADE BY [M-STER TECH](https://t.me/M_STER_TECH)"""
-
-MINNAL_MURALI = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('𝚄𝙿𝙳𝙰𝚃𝙴 𝙲𝙷𝙰𝙽𝙽𝙴𝙻', url='https://t.me/M_STER_TECH'),
-        InlineKeyboardButton('Home', callback_data='home')
-        ]]
-    )
-
-@Client.on_message(filters.text & filters.private & (~filters.command("qstart") | ~filters.command("help")))
+@Client.on_message(filters.command(['q']))
 async def create_sticker_private_handler(c: Client, m: Message):
     s = await m.reply_text("...")
     await create_sticker(c, m)
     await s.delete()
 
 
-@Client.on_message(filters.command(["sticker", "s"]) & filters.reply & filters.group)
+@Client.on_message(filters.command(['quote']))
 async def create_sticker_group_handler(c: Client, m: Message):
     s = await m.reply_text("...", reply_to_message_id=m.message_id)
     await create_sticker(c, m.reply_to_message)
     await s.delete()
+
+@Client.on_message(filters.command(['quote']))
+async def create_sticker_private_handler(c: Client, m: Message):
+    s = await m.reply_text("...", reply_to_message_id=m.message_id)
+    await create_sticker(c, m.reply_to_message)
+    await s.delete()
+
 
 
