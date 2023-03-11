@@ -22,7 +22,7 @@ Bot = Client(
 async def inline_handlers(_, inline: InlineQuery):
     results = play_scraper.search(inline.query)
     answers = []
-    if result in results:
+    for result in results:
         details = "**Title:** `{}`".format(result["title"]) + "\n" \
         "**Description:** `{}`".format(result["description"]) + "\n" \
         "**App ID:** `{}`".format(result["app_id"]) + "\n" \
