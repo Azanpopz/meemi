@@ -45,7 +45,7 @@ async def inline_handlers(_, inline: InlineQuery):
                     description="Search For Torrent in YTS ...",
                     input_message_content=InputTextMessageContent(
                         message_text="`!yts [text]`\n\nSearch YTS Torrents from Inline!",
-                        parse_mode="Markdown"
+                        message_text=details, disable_web_page_preview=True
                     ),
                     reply_markup=InlineKeyboardMarkup(
                         [[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!yts ")]])
