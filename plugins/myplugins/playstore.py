@@ -1,9 +1,13 @@
 import requests
 from dotenv import load_dotenv
 from requests.utils import requote_uri
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 from pyrogram.types import *
 import os
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
+
+
 
 load_dotenv()
 API = "https://api.abirhasan.wtf/google?query="
@@ -20,7 +24,7 @@ Bot = Client(
 @Client.on_message(filters.private & filters.command(["google"]))
 async def start(bot, update):
     args = message.text.split(None)  
-    r = requests.get(API + requote_uri(f"https://api.abirhasan.wtf/google?query={args}&page=1&limit=10").json()
+    r = requests.get(API + requote_uri(f"https://api.abirhasan.wtf/google?query={args})
     informations = r.json()["results"][:50]
     text = f"**Title:** `{info['title']}`"
     text += f"\n**Description:** `{info['description']}`"
