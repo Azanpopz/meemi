@@ -14,6 +14,10 @@ if is_config:
 else:
     from sample_config import *
 
+from os import environ
+
+bot_token = environ["bot_token"]
+
 luna = Client(
     ":memory:",
     bot_token=bot_token,
