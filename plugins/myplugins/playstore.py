@@ -68,6 +68,4 @@ async def inline_handlers(_, inline: InlineQuery):
                             
                                 
                             
-                        except Exception as error:
-                            print(error)
-                    await inline.answer(answers)
+                        
