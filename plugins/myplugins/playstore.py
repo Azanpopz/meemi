@@ -67,12 +67,13 @@ async def inline_handlers(_, inline: InlineQuery):
                             "\n" + "Made by @FayasNoushad"
                             
                                 
-                            ),
-                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!yts ")]]),
-                            thumb_url=torrentList[i]["Poster"]
-                        
+                            input_message_content=InputTextMessageContent(
+                        message_text=details, disable_web_page_preview=True
+                        ),
+                        reply_markup=reply_markup
                         )
+                    )
                     
-                    except Exception as error:
-                        print(error)
-                await inline.answer(answers)
+                except Exception as error:
+                    print(error)
+            await inline.answer(answers)
