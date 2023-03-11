@@ -36,20 +36,21 @@ async def inline_handlers(_, inline: InlineQuery):
                 )
             )
 
-       else: 
-            results = play_scraper.search(inline.query)
-            if not torrentList:
-                answers.append(
-                    InlineQueryResultArticle(
-                        title="No Torrents Found in ThePirateBay!",
-                        description=f"Can't find torrents for {query} in ThePirateBay !!",
-                        input_message_content=InputTextMessageContent(
-                            message_text=f"No Torrents Found For `{query}` in ThePirateBay !!",
-                            parse_mode="Markdown"
-                        ),
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Try Again", switch_inline_query_current_chat="!pb ")]])
-                    )
+       elif search_ts.startswith("!yts"):
+        query = search_ts.split(" ", 1)[-1]
+        if (query == "") or (query == " "):
+            answers.append(
+                InlineQueryResultArticle(
+                    title="!yts [text]",
+                    description="Search For Torrent in YTS ...",
+                    input_message_content=InputTextMessageContent(
+                        message_text="`!yts [text]`\n\nSearch YTS Torrents from Inline!",
+                        parse_mode="Markdown"
+                    ),
+                    reply_markup=InlineKeyboardMarkup(
+                        [[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!yts ")]])
                 )
+            )
             else:
                 for i in range(len(results)):
                     answers.append(
