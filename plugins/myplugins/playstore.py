@@ -17,7 +17,7 @@ from pyrogram.types import *
 async def inline_handlers(_, inline: InlineQuery):
     results = play_scraper.search(update.query)
     answers = []
-    for result in results:
+    if result in results:
         details = "**Title:** `{}`".format(result["title"]) + "\n" \
         "**Description:** `{}`".format(result["description"]) + "\n" \
         "**App ID:** `{}`".format(result["app_id"]) + "\n" \
