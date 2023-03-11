@@ -52,7 +52,6 @@ async def inline_handlers(_, inline: InlineQuery):
         query = results.split(" ", 1)[-1]
         if (query == "") or (query == " "):
             answers.append(
-                answers.append(
                 InlineQueryResultArticle(
                     title=result["title"],
                     description=result.get("description", None),
