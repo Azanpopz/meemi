@@ -75,7 +75,10 @@ async def song(client, message):
 @Client.on_message(filters.command('vsaavn') & filters.text)
 async def video(client, message): 
     try:
-        args = message.text.split(None)                 
+        args = message.text.split(None)
+    except:
+         
+        
         return
     pak = await message.reply('Downloading...')
     try:
