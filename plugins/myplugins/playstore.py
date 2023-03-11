@@ -71,6 +71,6 @@ async def inline_handlers(_, inline: InlineQuery):
                                 [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
                             )
                     
-                except Exception as error:
-                    print(error)
-            await inline.answer(answers)
+                        except Exception as error:
+                            print(error)
+                    await inline.answer(answers)
