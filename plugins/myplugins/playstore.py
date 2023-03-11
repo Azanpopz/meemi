@@ -29,7 +29,7 @@ async def song(client, message):
     
     
     results = requests.get(
-        API + requests.utils.requote_uri(update.query)
+        API + requests.utils.requote_uri(message.query)
     ).json()["result"][:50]
     
     answers = []
@@ -44,7 +44,7 @@ async def song(client, message):
     reply_markup=InlineKeyboardMarkup(buttons)
 ) 
     
-    await update.answer(answers)
+    await message.answer(answers)
 
 
 
