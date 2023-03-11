@@ -13,7 +13,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import CMD_HANDLER as cmd
-from ProjectMan.helpers.tools import get_arg
+from ProjectMan.tools import get_arg
 
 
 
