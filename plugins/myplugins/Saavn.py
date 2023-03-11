@@ -3,7 +3,7 @@
 ### This download from saavn.me an unofficial api
 from pyrogram import Client,filters
 import requests,os,wget
-from info import BATCH_GROUP, REQST_CHANNEL, SUPPORT_CHAT_ID
+from info import BATCH_GROUP, REQST_CHANNEL, SUPPORT_CHAT_ID, ADMINS
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import asyncio
 
@@ -73,13 +73,9 @@ async def song(client, message):
 
 
 @Client.on_message(filters.command('vsaavn') & filters.text)
-async def video(client, message):
-    if REQST_CHANNEL is None or SUPPORT_CHAT_ID is None: return # Must add REQST_CHANNEL and SUPPORT_CHAT_ID to use this feature
-    if message.reply_to_message and SUPPORT_CHAT_ID == message.chat.id:
-        args = message.text.split(None)
-    except:
-         
-        
+async def video(client, message): 
+    try:
+        args = message.text.split(None)                 
         return
     pak = await message.reply('Downloading...')
     try:
@@ -106,6 +102,7 @@ async def video(client, message):
     video=ffile, caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
     reply_markup=InlineKeyboardMarkup(buttons)
 )
+    await message.reply_text(chat_id=ADMINS, text="https://t.me/nasrani_batch_store")
     os.remove(ffile)
     os.remove(thumbnail)
     await pak.delete()
