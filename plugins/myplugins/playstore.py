@@ -4,6 +4,10 @@ from pyrogram.errors import QueryIdInvalid, FloodWait
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InlineQuery, InlineQueryResultArticle, \
     InputTextMessageContent
 
+import os
+import play_scraper
+from pyrogram import Client, filters
+from pyrogram.types import *
 
 
 
@@ -11,7 +15,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, 
 
 @Client.on_inline_query()
 async def inline_handlers(_, inline: InlineQuery):
-    search_ts = inline.query
+    results = play_scraper.search(update.query)
     answers = []
     if search_ts == "":
         answers.append(
@@ -25,22 +29,22 @@ async def inline_handlers(_, inline: InlineQuery):
                 reply_markup=InlineKeyboardMarkup(DEFAULT_SEARCH_MARKUP)
             )
         )
-    elif search_ts.startswith("app"):
+    elif search_ts.startswith("!app"):
         query = search_ts.split(" ", 1)[-1]
         if (query == "") or (query == " "):
             answers.append(
                 InlineQueryResultArticle(
-                    title="!pb [text]",
-                    description="https://telegra.ph/file/13c860f7ef9f90e9e07cb.jpg",
+                    title="!app [text]",
+                    description="!app🥺🥺",
                     input_message_content=InputTextMessageContent(
-                        message_text="`!pb [text]`\n\nSearch ThePirateBay Torrents from Inline!",
+                        message_text="`!app [text]`\n\nSearch ThePirateBay Torrents from Inline!",
                         parse_mode="Markdown"
                     ),
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!pb ")]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!app ")]])
                 )
             )
         else:
-            torrentList = await SearchPirateBay(query)
+            torrentList = await search(query)
             if not torrentList:
                 answers.append(
                     InlineQueryResultArticle(
@@ -54,23 +58,33 @@ async def inline_handlers(_, inline: InlineQuery):
                     )
                 )
             else:
-                for i in range(len(torrentList)):
-                    answers.append(
-                        InlineQueryResultArticle(
-                            title=f"{torrentList[i]['Name']}",
-                            description=f"Seeders: {torrentList[i]['Seeders']}, Leechers: {torrentList[i]['Leechers']}\nSize: {torrentList[i]['Size']}",
-                            input_message_content=InputTextMessageContent(
-                                message_text=f"**Category:** `{torrentList[i]['Category']}`\n"
-                                             f"**Name:** `{torrentList[i]['Seeders']}`\n"
-                                             f"**Size:** `{torrentList[i]['Size']}`\n"
-                                             f"**Seeders:** `{torrentList[i]['Seeders']}`\n"
-                                             f"**Leechers:** `{torrentList[i]['Leechers']}`\n"
-                                             f"**Uploader:** `{torrentList[i]['Uploader']}`\n"
-                                             f"**Uploaded on {torrentList[i]['Date']}**\n\n"
-                                             f"**Magnet:**\n`{torrentList[i]['Magnet']}`\n\nPowered By @AHToolsBot",
-                                parse_mode="Markdown"
-                            ),
-                            reply_markup=InlineKeyboardMarkup(
-                                [[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="!pb ")]])
-                        )
+                
+                for result in results:
+                details = "**Title:** `{}`".format(result["title"]) + "\n" \
+                "**Description:** `{}`".format(result["description"]) + "\n" \
+                "**App ID:** `{}`".format(result["app_id"]) + "\n" \
+                "**Developer:** `{}`".format(result["developer"]) + "\n" \
+                "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
+                "**Score:** `{}`".format(result["score"]) + "\n" \
+                "**Price:** `{}`".format(result["price"]) + "\n" \
+                "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
+                "**Free:** `{}`".format(result["free"]) + "\n" \
+                "\n" + "Made by @FayasNoushad"
+                reply_markup = InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
+                )
+            try:
+                answers.append(
+                    InlineQueryResultArticle(
+                        title=result["title"],
+                        description=result.get("description", None),
+                        thumb_url=result.get("icon", None),
+                        input_message_content=InputTextMessageContent(
+                            message_text=details, disable_web_page_preview=True
+                        ),
+                        reply_markup=reply_markup
                     )
+                )
+            except Exception as error:
+                print(error)
+        await update.answer(answers)
