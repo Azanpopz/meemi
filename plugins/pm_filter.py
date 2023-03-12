@@ -2110,7 +2110,7 @@ async def advantage_spell_chok(client, msg):
     if imdb:
         caption = IMDB_TEMPLATE.format(
             mv_rqst = imdb['title'],
-            poster = imdb['poster'],
+            
         )
     else:
         caption = "No Results"
