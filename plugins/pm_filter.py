@@ -2113,8 +2113,8 @@ async def advantage_spell_chok(client, msg):
             
         )
     else:
-        caption = "No Results"
-    if imdb.get('poster'):
+        caption = f"Here is what i found for your query {search}"
+    if movies and imdb.get('poster'):
         try:
             await quer_y.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
