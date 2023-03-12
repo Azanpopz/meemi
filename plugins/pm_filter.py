@@ -2106,14 +2106,14 @@ async def advantage_spell_chok(client, msg):
     RQST = query.strip()
     query = query.strip() + " movie"
     try:
-        imdb = await get_poster(search, file=(files[0]).file_name)
-        query=search,
-        pic = imdb.get('poster')
+        movies = await get_poster(mv_rqst, bulk=True)
+        
+        pic = movies.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
         
     except Exception as e:
         logger.exception(e)
-        hmm = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
+        hmm = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
         await asyncio.sleep(8)
         await hmm.delete()
         return
@@ -2124,7 +2124,7 @@ async def advantage_spell_chok(client, msg):
                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        hmm = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
+        hmm = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
         await asyncio.sleep(30)
         await hmm.delete()
         return
