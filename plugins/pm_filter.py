@@ -2095,6 +2095,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
+    imdb = await get_poster(search, file=(files[0]).file_name)
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2107,33 +2108,12 @@ async def advantage_spell_chok(client, msg):
     query = query.strip() + " movie"
     try:
         movies = await get_poster(mv_rqst, bulk=True)
-    
-        caption = IMDB_TEMPLATE.format(
-            mv_rqst = movies['title'],
-            
-        )
-    
-    if movies and imdb.get('poster'):
-        try:
-            await msg.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = movies.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await msg.message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(btn))
-        except Exception as e:
-            logger.exception(e)
-            await msg.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await movies.message.delete()
-    else:
-        await msg.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-    await msg.answer()      
-        pic = movies.get('poster')
-        poster = pic.replace('.jpg', "._V1_UX360.jpg")
-
-    
-        hmm = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
+    except Exception as e:
+        logger.exception(e)
+        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
         await asyncio.sleep(8)
-        await hmm.delete()
+        await k.delete()
         return
     movielist = []
     if not movies:
@@ -2142,18 +2122,22 @@ async def advantage_spell_chok(client, msg):
                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        hmm = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
+        k = await msg.reply_photo(
+            photo=SPELL_IMG, 
+            caption=script.I_CUDNT.format(mv_rqst),
+            reply_markup=InlineKeyboardMarkup(button)
+        )
         await asyncio.sleep(30)
-        await hmm.delete()
+        await k.delete()
         return
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
     btn = [
-        [
-            InlineKeyboardButton(
-                text=movie_name.strip(),
-                callback_data=f"spol#{reqstr1}#{k}",
+            [
+                InlineKeyboardButton(
+                text=f"{imdb.get('title')}",
+                url=imdb['url'],
             )
         ]
         for k, movie_name in enumerate(movielist)
