@@ -2107,10 +2107,14 @@ async def advantage_spell_chok(client, msg):
     query = query.strip() + " movie"
     try:
         movies = await get_poster(mv_rqst, bulk=True)
-        
+    if imdb:
+        caption = IMDB_TEMPLATE.format(
+            mv_rqst = imdb['title'],
+            poster = imdb['poster'],
+        )        
         pic = movies.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
-        
+
     except Exception as e:
         logger.exception(e)
         hmm = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
