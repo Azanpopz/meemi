@@ -2095,9 +2095,6 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
-    imdb = await get_poster(pic=movie, id=True)
-    pic = imdb.get('poster')
-    poster = pic.replace('.jpg', "._V1_UX360.jpg")
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2110,12 +2107,14 @@ async def advantage_spell_chok(client, msg):
     query = query.strip() + " movie"
     try:
         movies = await get_poster(mv_rqst, bulk=True)
+        pic = movies.get('poster')
+        poster = pic.replace('.jpg', "._V1_UX360.jpg")
+        
     except Exception as e:
         logger.exception(e)
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
+        hmm = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
         await asyncio.sleep(8)
-        await k.delete()
+        await hmm.delete()
         return
     movielist = []
     if not movies:
@@ -2123,9 +2122,10 @@ async def advantage_spell_chok(client, msg):
         button = [[
                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
-        k = await message.reply_photo(photo=imdb.get('poster'), reply_markup=InlineKeyboardMarkup(btn))
+        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+        hmm = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
         await asyncio.sleep(30)
-        await k.delete()
+        await hmm.delete()
         return
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
