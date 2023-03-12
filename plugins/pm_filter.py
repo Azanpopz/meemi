@@ -2095,49 +2095,40 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
-    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
-    btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{imdb.get('title')}",
-                    url=imdb['url'],
-                )
-            ]
-        ]
-    message = quer_y.message.reply_to_message or quer_y.message
+    movies = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
+    TEMPLATE = settings['template']
     if imdb:
-        caption = IMDB_TEMPLATE.format(
-            query = imdb['title'],
-            title = imdb['title'],
-            votes = imdb['votes'],
-            aka = imdb["aka"],
-            seasons = imdb["seasons"],
-            box_office = imdb['box_office'],
-            localized_title = imdb['localized_title'],
-            kind = imdb['kind'],
-            imdb_id = imdb["imdb_id"],
-            cast = imdb["cast"],
-            runtime = imdb["runtime"],
-            countries = imdb["countries"],
-            certificates = imdb["certificates"],
-            languages = imdb["languages"],
-            director = imdb["director"],
-            writer = imdb["writer"],
-            producer = imdb["producer"],
-            composer = imdb["composer"],
-            cinematographer = imdb["cinematographer"],
-            music_team = imdb["music_team"],
-            distributors = imdb["distributors"],
-            release_date = imdb['release_date'],
-            year = imdb['year'],
-            genres = imdb['genres'],
-            poster = imdb['poster'],
-            plot = imdb['plot'],
-            rating = imdb['rating'],
-            url = imdb['url'],
+        cap = TEMPLATE.format(
+            query=search,
+            title=imdb['title'],
+            votes=imdb['votes'],
+            aka=imdb["aka"],
+            seasons=imdb["seasons"],
+            box_office=imdb['box_office'],
+            localized_title=imdb['localized_title'],
+            kind=imdb['kind'],
+            imdb_id=imdb["imdb_id"],
+            cast=imdb["cast"],
+            runtime=imdb["runtime"],
+            countries=imdb["countries"],
+            certificates=imdb["certificates"],
+            languages=imdb["languages"],
+            director=imdb["director"],
+            writer=imdb["writer"],
+            producer=imdb["producer"],
+            composer=imdb["composer"],
+            cinematographer=imdb["cinematographer"],
+            music_team=imdb["music_team"],
+            distributors=imdb["distributors"],
+            release_date=imdb['release_date'],
+            year=imdb['year'],
+            genres=imdb['genres'],
+            poster=imdb['poster'],
+            plot=imdb['plot'],
+            rating=imdb['rating'],
+            url=imdb['url'],
             **locals()
-        )
-    
+        )    
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2149,26 +2140,13 @@ async def advantage_spell_chok(client, msg):
     RQST = query.strip()
     query = query.strip() + " movie"
     try:
-        movies = await get_poster(query=movie, id=True)
+        movies = await get_poster(mv_rqst, bulk=True)
     except Exception as e:
         logger.exception(e)
-    else:
-        cap = f"Here is what i found for your query {search}"
-    if imdb and imdb.get('poster'):
-        try:
-            await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
-                                      reply_markup=InlineKeyboardMarkup(btn))
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-        except Exception as e:
-            logger.exception(e)
-            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-    else:
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-    if spoll:
-        await msg.message.delete()
+        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
+        await asyncio.sleep(8)
+        await k.delete()
         return
     movielist = []
     if not movies:
