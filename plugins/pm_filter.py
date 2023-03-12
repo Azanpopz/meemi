@@ -2095,7 +2095,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
-    imdb = await get_poster(mv_rqst)
+    imdb = await get_poster(pic=movie, id=True)
     pic = imdb.get('poster')
     poster = pic.replace('.jpg', "._V1_UX360.jpg")
     mv_id = msg.id
@@ -2123,12 +2123,7 @@ async def advantage_spell_chok(client, msg):
         button = [[
                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply_photo(
-            photo=SPELL_IMG, 
-            caption=script.I_CUDNT.format(mv_rqst),
-            reply_markup=InlineKeyboardMarkup(button)
-        )
+        k = await message.reply_photo(photo=imdb.get('poster'), reply_markup=InlineKeyboardMarkup(btn))
         await asyncio.sleep(30)
         await k.delete()
         return
