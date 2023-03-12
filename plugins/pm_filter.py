@@ -2108,7 +2108,7 @@ async def advantage_spell_chok(client, msg):
     query = query.strip() + " movie"
     try:
         i, movie = msg.data.split('#')
-    imdb = await get_poster(mag=movie, id=True)
+    imdb = await get_poster(msg=movie, id=True)
     btn = [
             [
                 InlineKeyboardButton(
