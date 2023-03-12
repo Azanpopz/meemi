@@ -2131,8 +2131,7 @@ async def advantage_spell_chok(client, msg):
         pic = movies.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
 
-    except Exception as e:
-        logger.exception(e)
+    
         hmm = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(buttons))
         await asyncio.sleep(8)
         await hmm.delete()
