@@ -1820,7 +1820,7 @@ async def auto_filter(client, msg, spoll=False):
             if not files:
                 hmm = await client.send_message(message.chat.id, text=f"📂#𝙍𝙀𝙌𝙐𝙀𝙎𝙏𝙀𝘿_𝘾𝙊𝙉𝙏𝙀𝙉𝙏📂\n\n🤖ᴜꜱᴇʀ:-{message.from_user.mention}\n\n📝ᴄᴏɴᴛᴇɴᴛ ɴᴀᴍᴇ:-`{search}`\n\n👶🏻ʀᴇQᴜᴇꜱᴛᴇᴅ ʙʏ:- {message.from_user.first_name}\n\n 🃏ᴜꜱᴇʀ ɪᴅ:-{message.from_user.id}\n\n🗃️",
                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", callback_data="close_data")]]))
-                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", callback_data="close_data")]]))
+                
                 
                                                                                                        await asyncio.sleep(180)
                                                                                                        await hmm.delete() 
