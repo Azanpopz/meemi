@@ -2112,8 +2112,7 @@ async def advantage_spell_chok(client, msg):
             mv_rqst = movies['title'],
             
         )
-    else:
-        caption = f"Here is what i found for your query {search}"
+    
     if movies and imdb.get('poster'):
         try:
             await msg.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
