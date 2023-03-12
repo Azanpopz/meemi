@@ -2105,16 +2105,8 @@ async def advantage_spell_chok(client, msg):
         "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
     RQST = query.strip()
     query = query.strip() + " movie"
-    try:
-        movies = await get_poster(mv_rqst, bulk=True)
-    except Exception as e:
-        logger.exception(e)
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
-        await asyncio.sleep(8)
-        await k.delete()
-
-    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
+    try:        
+        imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
         cap = TEMPLATE.format(
