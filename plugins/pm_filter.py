@@ -2107,27 +2107,27 @@ async def advantage_spell_chok(client, msg):
     query = query.strip() + " movie"
     try:
         movies = await get_poster(mv_rqst, bulk=True)
-    if imdb:
+    
         caption = IMDB_TEMPLATE.format(
-            mv_rqst = imdb['title'],
+            mv_rqst = movies['title'],
             
         )
     else:
         caption = f"Here is what i found for your query {search}"
     if movies and imdb.get('poster'):
         try:
-            await quer_y.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
+            await msg.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
+            pic = movies.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await quer_y.message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(btn))
+            await msg.message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(btn))
         except Exception as e:
             logger.exception(e)
-            await quer_y.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await quer_y.message.delete()
+            await msg.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+        await movies.message.delete()
     else:
-        await quer_y.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-    await quer_y.answer()      
+        await msg.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+    await msg.answer()      
         pic = movies.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
 
