@@ -2106,8 +2106,9 @@ async def advantage_spell_chok(client, msg):
     RQST = query.strip()
     query = query.strip() + " movie"
     try:
-        movies = await get_poster(mv_rqst, bulk=True)
-        pic = movies.get('poster')
+        imdb = await get_poster(search, file=(files[0]).file_name)
+        query=search,
+        pic = imdb.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
         
     except Exception as e:
