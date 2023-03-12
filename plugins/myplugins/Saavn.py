@@ -6,6 +6,11 @@ import requests,os,wget
 from info import BATCH_GROUP, REQST_CHANNEL, SUPPORT_CHAT_ID, ADMINS
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import asyncio
+from info import LOG_CHANNEL
+BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('💖🇮🇳✨ Made By ✨🇮🇳💖', url='https://t.me/nasrani_update')]])
+A = """{} with user id:- {} used /git command."""
+
+
 
 @Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def song(client, message):
@@ -33,6 +38,9 @@ async def song(client, message):
     os.remove(ffile)
     os.remove(thumbnail)
 
+
+    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+    await k.delete()    
 
 
 
@@ -109,7 +117,8 @@ async def video(client, message):
     os.remove(thumbnail)
     await pak.delete()
 
-
+    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+    await k.delete()
 
 
 
@@ -150,5 +159,6 @@ async def song(client, message):
     os.remove(thumbnail)
     await pak.delete()
 
-
+    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+    
 
