@@ -2107,8 +2107,8 @@ async def advantage_spell_chok(client, msg):
     RQST = query.strip()
     query = query.strip() + " movie"
     try:
-        movies = await get_poster(msg=movie, id=True)
-    
+        movies = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
+    TEMPLATE = settings['template']
     if imdb:
         caption = IMDB_TEMPLATE.format(
             query = imdb['title'],
