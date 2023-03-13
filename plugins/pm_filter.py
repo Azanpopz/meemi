@@ -2095,6 +2095,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
+    user = msg.from_user.id if msg.from_user else 0
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2150,9 +2151,9 @@ async def advantage_spell_chok(client, msg):
 
         i += 1
 
-        btn.append([text, f"spolling#{user}#{k}", same])
+        btn.append([text, f"spol#{user}#{k}", same])
 
-    btn.append(["❌ Close", f'spolling#{user}#close_spellcheck', False])
+    btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
     btn = build_keyboard(btn)
 
     btn.insert(0, [
