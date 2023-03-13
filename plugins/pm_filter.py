@@ -418,7 +418,7 @@ async def advantage_spoll_choker(bot, query):
           
             k = await query.message.edit(
             photo=SPELL_IMG, 
-            caption=f" {search} ᴛʜɪꜱ ᴍᴏᴠɪᴇ ɪꜱ ɴᴏᴛ ʏᴇᴛ  ʀᴇʟᴇᴀꜱᴇᴅ ᴏʀ ᴀᴅᴅᴇᴅ ᴛᴏ ᴅᴀᴛᴀʙᴀꜱᴇ"),
+            caption=f" {search} ᴛʜɪꜱ ᴍᴏᴠɪᴇ ɪꜱ ɴᴏᴛ ʏᴇᴛ  ʀᴇʟᴇᴀꜱᴇᴅ ᴏʀ ᴀᴅᴅᴇᴅ ᴛᴏ ᴅᴀᴛᴀʙᴀꜱᴇ",
             reply_markup=InlineKeyboardMarkup(button)
             )
 
