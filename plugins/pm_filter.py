@@ -2171,7 +2171,7 @@ async def advantage_spell_chok(client, msg):
 #            "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
 #            RQST = query.strip()
 #            query = query.strip() + " movie"
-#            try:
+            try:
 #                d_msg = await msg.reply_photo(photo=imdb.get('poster'))
 #                                                  
 #
