@@ -2099,8 +2099,6 @@ async def advantage_spell_chok(client, msg):
     search = msg.text
     files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
     
-    pic = imdb.get('poster')
-    poster = pic.replace('.jpg', "._V1_UX360.jpg")
     mv_id = msg.id
     mv_rqst = msg.text
     i, movie = query.data.split('#')
