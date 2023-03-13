@@ -2096,8 +2096,8 @@ async def auto_filter(client, msg, spoll=False):
 
 async def advantage_spell_chok(client, msg):
     user = msg.from_user.id if msg.from_user else 0
-    search = message.text
-    files, offset, total_results = await get_search_results(message.chat.id ,search.lower(), offset=0, filter=True)
+    search = msg.text
+    files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
     imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
     
     pic = imdb.get('poster')
