@@ -2215,7 +2215,7 @@ async def advantage_spell_chok(client, msg):
                 ]
                 for k, movie_name in enumerate(movielist)
             ]
-            btn.append([[InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')],[InlineKeyboardButton("✪ Dev Ch- ✪", url="https://t.me/LazyDeveloper"), InlineKeyboardButton("✪ ＹＴ ✪", url="https://youtube.com/@LazyDeveloperr"), InlineKeyboardButton("✪ Main Ch- ✪", url="https://t.me/real_MoviesAdda2")],[InlineKeyboardButton("╚»♥️Thank u MoviesAdda™♥️«╝", callback_data="close_data")]]))
+            btn.append([[InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')],[InlineKeyboardButton("✪ Dev Ch- ✪", url="https://t.me/LazyDeveloper")]])
             btn.insert(0, [
                 InlineKeyboardButton(f"🔰{mv_rqst}🔰", url="https://t.me/nasrani_update"),
                 InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
