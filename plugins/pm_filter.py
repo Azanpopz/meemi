@@ -384,9 +384,12 @@ async def next_page(bot, query):
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
+    reqst_gle = mv_rqst.replace(" ", "+")
     mv_rqst = query.message.text
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
+        mv_rqst = message.text
+        reqst_gle = mv_rqst.replace(" ", "+")
         return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
@@ -401,10 +404,12 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
+            mv_rqst = query.message.text
+            reqst_gle = mv_rqst.replace(" ", "+")
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
-                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)
             reqst_gle = mv_rqst.replace(" ", "+")
             btn = [[
                 InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
