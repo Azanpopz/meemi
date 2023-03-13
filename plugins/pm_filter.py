@@ -2105,7 +2105,7 @@ async def advantage_spell_chok(client, msg):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
     settings = await get_settings(msg.chat.id)
-    movies = await get_poster(mv_rqst, bulk=True)
+   
     # plis contribute some common words
     see = re.sub(
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
@@ -2150,7 +2150,7 @@ async def advantage_spell_chok(client, msg):
         
             if imdb and imdb.get('poster'):
                 try:                                        
-                    await msg.reply_photo(photo=imdb['poster'], caption=caption)
+                    await msg.reply_text(text=imdb['year'])
                                                 
                 except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                     pic = imdb.get('poster')
@@ -2172,17 +2172,25 @@ async def advantage_spell_chok(client, msg):
             movielist = []
             if not movies:
                 reqst_gle = mv_rqst.replace(" ", "+")
-                button = [[
-                           InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-                ]]
-                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-                k = await msg.reply_photo(
-                    photo=SPELL_IMG, 
-                    caption=script.I_CUDNT.format(mv_rqst),
-                    reply_markup=InlineKeyboardMarkup(button)
-                )
-                await asyncio.sleep(30)
+                btn = [
+                    [
+                       InlineKeyboardButton(
+                           text=movie_name.strip(),
+                           callback_data=f"spol#{reqstr1}#{k}",
+                       )
+                    ]
+                    for k, movie_name in enumerate(movielist)
+                ]
+                btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+
+                k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+
+                await asyncio.sleep(1)
+
                 await k.delete()
+                await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                        reply_markup=InlineKeyboardMarkup(btn))
+       
                 return
             movielist += [movie.get('title') for movie in movies]
             movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
