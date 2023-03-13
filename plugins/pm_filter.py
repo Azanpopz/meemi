@@ -2131,23 +2131,23 @@ async def advantage_spell_chok(client, msg):
             )
         
             caption = "No Results"
-        if imdb.get('poster'):
-            try:
-                await msg.reply_photo(photo=imdb['poster'], caption=caption,
+            if imdb.get('poster'):
+                try:
+                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
                                                 reply_markup=InlineKeyboardMarkup(btn))
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                    pic = imdb.get('poster')
+                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
                                                 reply_markup=InlineKeyboardMarkup(btn))
-            except Exception as e:
-                logger.exception(e)
-                await msg.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
+                except Exception as e:
+                    logger.exception(e)
+                    await msg.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
                                           disable_web_page_preview=False)
-            await msg.delete()
-        else:
-            await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await msg.answer()
+                await msg.delete()
+            else:
+                await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+            await msg.answer()
             user = msg.from_user.id if msg.from_user else 0
             search = msg.text
             files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
