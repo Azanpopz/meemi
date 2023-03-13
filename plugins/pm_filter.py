@@ -2192,11 +2192,11 @@ async def advantage_spell_chok(client, msg):
                 photo=SPELL_IMG, 
                 caption=script.I_CUDNT.format(mv_rqst),
                 reply_markup=InlineKeyboardMarkup(button)
-            )
-            await asyncio.sleep(30)
-            await k.delete()
-            return
-        movielist = []
+                )
+                await asyncio.sleep(30)
+                await k.delete()
+                return
+            movielist = []
         if not movies:
             reqst_gle = mv_rqst.replace(" ", "+")
             button = [[
