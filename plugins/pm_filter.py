@@ -2107,7 +2107,8 @@ async def advantage_spell_chok(client, msg):
     settings = await get_settings(msg.chat.id)
     movies = await get_poster(mv_rqst, bulk=True)
     # plis contribute some common words
-    
+    RQST = query.strip()
+    pls = query.strip() + " movie" 
     
     imdb = await get_poster(search) if IMDB else None
       
@@ -2194,8 +2195,17 @@ async def advantage_spell_chok(client, msg):
             except Exception as e:
                 logger.exception(e)
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+                btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=movie_name.strip(),
+                                callback_data=f"spol#{reqstr1}#{k}",
+                            )
+                        ]
+                    for k, movie_name in enumerate(movielist)
+                ]
                 k = await msg.reply_photo(photo=imdb.get('poster'))
-                await asyncio.sleep(8)
+                await asyncio.sleep(180)
                 await k.delete()
                 return
             movielist = []
