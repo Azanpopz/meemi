@@ -2152,25 +2152,25 @@ async def advantage_spell_chok(client, msg):
 #                                                
 #                await msg.delete()
 #            else:
-                 await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-            await msg.answer()
-            user = msg.from_user.id if msg.from_user else 0
-            search = msg.text
-            files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
-            imdb = await get_poster(search) if IMDB else None
-    
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            mv_id = msg.id
-            mv_rqst = msg.text
-            reqstr1 = msg.from_user.id if msg.from_user else 0
-            reqstr = await client.get_users(reqstr1)
-            settings = await get_settings(msg.chat.id)
-            query = re.sub(
-            r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-            "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
-            RQST = query.strip()
-            query = query.strip() + " movie"
+#                 await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+#            await msg.answer()
+#            user = msg.from_user.id if msg.from_user else 0
+#            search = msg.text
+#            files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
+#            imdb = await get_poster(search) if IMDB else None
+#    
+#            pic = imdb.get('poster')
+#            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+#            mv_id = msg.id
+#            mv_rqst = msg.text
+#            reqstr1 = msg.from_user.id if msg.from_user else 0
+#            reqstr = await client.get_users(reqstr1)
+#            settings = await get_settings(msg.chat.id)
+#            query = re.sub(
+#            r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
+#            "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
+#            RQST = query.strip()
+#            query = query.strip() + " movie"
             try:
                 d_msg = await msg.reply_photo(photo=imdb.get('poster'))
                                                   
