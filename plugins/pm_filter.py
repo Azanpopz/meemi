@@ -2153,11 +2153,11 @@ async def advantage_spell_chok(client, msg):
             if imdb and imdb.get('poster'):
                 try:
                     btn = [[
-                    InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+                        InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
                     ]]                                      
-                    await msg.reply_photo(photo=imdb['poster']
-                    reply_markup=InlineKeyboardMarkup(btn)
-                    )
+                    await msg.reply_photo(photo=imdb['poster'],
+                    reply_markup=InlineKeyboardMarkup(btn))
+                    
                                                 
                 except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                     pic = imdb.get('poster')
