@@ -385,7 +385,7 @@ async def next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
     search = query.message.text
-    reqst_gle = mv_rqst.replace(" ", "+")
+    
     mv_rqst = query.message.text
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
