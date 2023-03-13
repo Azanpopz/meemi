@@ -2101,7 +2101,7 @@ async def advantage_spell_chok(client, msg):
     
     mv_id = msg.id
     mv_rqst = msg.text
-    imdb = await get_poster(search) if IMDB else None
+    imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
       
     if imdb:
             caption = IMDB_TEMPLATE.format(
