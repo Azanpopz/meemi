@@ -2107,11 +2107,11 @@ async def advantage_spell_chok(client, msg):
     settings = await get_settings(msg.chat.id)
     movies = await get_poster(mv_rqst, bulk=True)
     # plis contribute some common words
-    query = re.sub(
+    see = re.sub(
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
         "", msg.text, flags=re.IGNORECASE)  
-    RQST = query.strip()
-    query = query.strip() + " movie" 
+    RQST = see.strip()
+    see = query.strip() + " movie" 
     
     imdb = await get_poster(search) if IMDB else None
       
@@ -2173,6 +2173,9 @@ async def advantage_spell_chok(client, msg):
                     logger.exception(e)
                     
             try:
+                movielist += [movie.get('title') for movie in movies]
+                movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+                SPELL_CHECK[mv_id] = movielist
                 btn = [
                         [
                             InlineKeyboardButton(
