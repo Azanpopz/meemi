@@ -2137,10 +2137,10 @@ async def advantage_spell_chok(client, msg):
     pre_len = {}
     btn = []
     reqst_gle = mv_rqst.replace(" ", "+")
-    movielist.sort(key=len)
+#    movielist.sort(key=len)
     for k, movie in enumerate(movielist):
         reqst_gle = mv_rqst.replace(" ", "+")
-        text = movie.strip()  args[2]
+        text = movie.strip() #  args[2]
         same = False
         if (i % 2) == 0:
             if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
