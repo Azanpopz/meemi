@@ -1910,7 +1910,7 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imdb'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -1919,7 +1919,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imdb'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -1932,7 +1932,7 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imdb'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -1941,7 +1941,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imdb'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -2224,8 +2224,8 @@ async def advantage_spell_chok(client, msg):
                 
             ])
 
-            btn.insert(0, [
-                InlineKeyboardButton(f"{imdb.get('year')}", imdb),
+            btn.insert(0, [ 
+                InlineKeyboardButton(f"{imdb.get('year')}", 'imdb'),           
                 InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")                
             ])
 
