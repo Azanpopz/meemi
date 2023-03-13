@@ -2137,7 +2137,7 @@ async def advantage_spell_chok(client, msg):
                 **locals()
             )
         
-            if imdb and imdb.get('poster'):
+#            if imdb and imdb.get('poster'):
 #                try:
 #                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
 #                                                reply_markup=InlineKeyboardMarkup(btn))
