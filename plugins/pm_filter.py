@@ -2098,8 +2098,8 @@ async def advantage_spell_chok(client, msg):
     imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
       
     if imdb:
-            cap = IMDB_TEMPLATE.format(
-                query=search,
+            caption = IMDB_TEMPLATE.format(
+                query=imdb['title'],
                 title=imdb['title'],
                 votes=imdb['votes'],
                 aka=imdb["aka"],
@@ -2127,20 +2127,27 @@ async def advantage_spell_chok(client, msg):
                 plot=imdb['plot'],
                 rating=imdb['rating'],
                 url=imdb['url'],
-                chat=message.chat.title,
                 **locals()
-                )
+            )
         else:
-            cap = search
-    if imdb and imdb.get('poster'):
-        try:
-            d_msg = await msg.reply_photo(photo=imdb.get('poster'), caption=cap,
-                                          reply_markup=InlineKeyboardMarkup(btn))                
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            d_msg = await msg.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-
+            caption = "No Results"
+        if imdb.get('poster'):
+            try:
+                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                pic = imdb.get('poster')
+                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+            except Exception as e:
+                logger.exception(e)
+                await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
+                                          disable_web_page_preview=False)
+            await query.message.delete()
+        else:
+            await query.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+        await query.answer()
             user = msg.from_user.id if msg.from_user else 0
             search = msg.text
             files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
