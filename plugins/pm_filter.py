@@ -2148,8 +2148,8 @@ async def advantage_spell_chok(client, msg):
                                                 reply_markup=InlineKeyboardMarkup(btn))
                 except Exception as e:
                     logger.exception(e)
-                    await msg.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
-                                          disable_web_page_preview=False)
+                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
                 await msg.delete()
             else:
                 await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
