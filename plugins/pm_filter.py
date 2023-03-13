@@ -405,7 +405,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            search = message.text
+            search = query.message.text
             mv_rqst = query.message.text
             reqst_gle = mv_rqst.replace(" ", "+")
             reqstr1 = query.from_user.id if query.from_user else 0
