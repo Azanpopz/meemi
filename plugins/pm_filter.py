@@ -2152,8 +2152,8 @@ async def advantage_spell_chok(client, msg):
 #                                                
 #                await msg.delete()
 #            else:
-#                await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-#            await msg.answer()
+                 await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+            await msg.answer()
             user = msg.from_user.id if msg.from_user else 0
             search = msg.text
             files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
