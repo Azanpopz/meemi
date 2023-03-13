@@ -2109,6 +2109,7 @@ async def auto_filter(client, msg, spoll=False):
 async def advantage_spell_chok(client, msg):
     user = msg.from_user.id if msg.from_user else 0
 #    search = msg.text
+    reqst_gle = mv_rqst.replace(" ", "+")
     mention=msg.from_user.mention 
     message = msg
     search = message.text
@@ -2204,6 +2205,7 @@ async def advantage_spell_chok(client, msg):
                 return
             movielist += [movie.get('title') for movie in movies]
             movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+            reqst_gle = mv_rqst.replace(" ", "+")
             SPELL_CHECK[mv_id] = movielist
             btn = [
                 [
