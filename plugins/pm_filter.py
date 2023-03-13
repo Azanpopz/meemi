@@ -2098,13 +2098,13 @@ async def advantage_spell_chok(client, msg):
     user = msg.from_user.id if msg.from_user else 0
     search = msg.text
     files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
-    imdb = await get_poster(search) if IMDB else None
     
     pic = imdb.get('poster')
     poster = pic.replace('.jpg', "._V1_UX360.jpg")
     mv_id = msg.id
     mv_rqst = msg.text
-    imdb = await get_poster(search) if IMDB else None
+    i, movie = query.data.split('#')
+    imdb = await get_poster(query=movie, id=True)
       
     if imdb:
             caption = IMDB_TEMPLATE.format(
