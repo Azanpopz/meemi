@@ -2101,8 +2101,7 @@ async def advantage_spell_chok(client, msg):
     
     mv_id = msg.id
     mv_rqst = msg.text
-    i, movie = query.data.split('#')
-    imdb = await get_poster(query=movie, id=True)
+    imdb = await get_poster(search) if IMDB else None
       
     if imdb:
             caption = IMDB_TEMPLATE.format(
