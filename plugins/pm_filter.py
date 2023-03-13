@@ -410,7 +410,7 @@ async def advantage_spoll_choker(bot, query):
             reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)
-            reqst_gle = mv_rqst.replace(" ", "+")
+            
             btn = [[
                 InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
             ]]
