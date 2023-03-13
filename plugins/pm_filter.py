@@ -384,6 +384,7 @@ async def next_page(bot, query):
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
+    search = message.text
     reqst_gle = mv_rqst.replace(" ", "+")
     mv_rqst = query.message.text
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
@@ -404,6 +405,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
+            search = message.text
             mv_rqst = query.message.text
             reqst_gle = mv_rqst.replace(" ", "+")
             reqstr1 = query.from_user.id if query.from_user else 0
@@ -412,13 +414,11 @@ async def advantage_spoll_choker(bot, query):
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)
             
             
-            button = [[
-                InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-            ]]
+            
           
             k = await query.message.edit(
             photo=SPELL_IMG, 
-            caption=script.MVE_NT_FND),
+            caption=f" {search} ᴛʜɪꜱ ᴍᴏᴠɪᴇ ɪꜱ ɴᴏᴛ ʏᴇᴛ  ʀᴇʟᴇᴀꜱᴇᴅ ᴏʀ ᴀᴅᴅᴇᴅ ᴛᴏ ᴅᴀᴛᴀʙᴀꜱᴇ"),
             reply_markup=InlineKeyboardMarkup(button)
             )
 
