@@ -2108,7 +2108,7 @@ async def advantage_spell_chok(client, msg):
     movies = await get_poster(mv_rqst, bulk=True)
     # plis contribute some common words
     
-    query = query.strip() + " movie"
+    
     imdb = await get_poster(search) if IMDB else None
       
     if imdb:
