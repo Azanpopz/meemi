@@ -414,9 +414,9 @@ async def advantage_spoll_choker(bot, query):
             
             buttons = [[
                 InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-            ]] 
-            k = await query.message.edit(script.MVE_NT_FND)
+            ]]
             reply_markup = InlineKeyboardMarkup(buttons)
+            k = await query.message.edit(script.MVE_NT_FND)            
             await query.message.edit_reply_markup(reply_markup)
             await asyncio.sleep(180)
             await k.delete()
