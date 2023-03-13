@@ -2138,8 +2138,7 @@ async def advantage_spell_chok(client, msg):
                 url=imdb['url'],
                 **locals()
             )
-        else:
-            caption = "No Results"
+        
             if imdb.get('poster'):
                 try:
                     await msg.reply_photo(photo=imdb['poster'], caption=caption,
