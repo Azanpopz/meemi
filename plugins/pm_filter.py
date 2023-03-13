@@ -2140,7 +2140,7 @@ async def advantage_spell_chok(client, msg):
             if imdb and imdb.get('poster'):
 #                try:
 #                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
+#                                                reply_markup=InlineKeyboardMarkup(btn))
 #                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
 #                    pic = imdb.get('poster')
 #                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
