@@ -2107,7 +2107,7 @@ async def advantage_spell_chok(client, msg):
     settings = await get_settings(msg.chat.id)
     movies = await get_poster(mv_rqst, bulk=True)
     # plis contribute some common words
-    RQST = query.strip()
+    
     query = query.strip() + " movie"
     imdb = await get_poster(search) if IMDB else None
       
