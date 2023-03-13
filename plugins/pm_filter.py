@@ -2173,109 +2173,69 @@ async def advantage_spell_chok(client, msg):
                     logger.exception(e)
                     
             try:
-                movielist += [movie.get('title') for movie in movies]
-                movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
-                SPELL_CHECK[mv_id] = movielist
-                btn = [
-                        [
-                            InlineKeyboardButton(
-                                text=movie_name.strip(),
-                                callback_data=f"spol#{reqstr1}#{k}",
-                            )
-                        ]
-                    for k, movie_name in enumerate(movielist)
-                ]
-                d_msg = await msg.reply_photo(photo=imdb.get('poster'),
-                                                  reply_markup=InlineKeyboardMarkup(btn))
-
-                
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
-
-
-
-
                 movies = await get_poster(mv_rqst, bulk=True)
             except Exception as e:
                 logger.exception(e)
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-                btn = [
-                        [
-                            InlineKeyboardButton(
-                                text=movie_name.strip(),
-                                callback_data=f"spol#{reqstr1}#{k}",
-                            )
-                        ]
-                    for k, movie_name in enumerate(movielist)
-                ]
-                k = await msg.reply_photo(photo=imdb.get('poster'))
-                await asyncio.sleep(180)
+                k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
+                await asyncio.sleep(8)
                 await k.delete()
                 return
             movielist = []
             if not movies:
                 reqst_gle = mv_rqst.replace(" ", "+")
                 button = [[
-                           InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
                 ]]
-                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-                k = await msg.reply_photo(
-                    photo=SPELL_IMG, 
-                    caption=script.I_CUDNT.format(mv_rqst),
-                    reply_markup=InlineKeyboardMarkup(button)
-                )
-                await asyncio.sleep(30)
-                await k.delete()
-                return
-                movielist += [movie.get('title') for movie in movies]
-                movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
-            SPELL_CHECK[msg.id] = movielist
-            i = 1
-            pre_len = {}
-            btn = []
-    
-#    movielist.sort(key=len)
-            for k, movie in enumerate(movielist):
-                reqst_gle = mv_rqst.replace(" ", "+")
-                text = movie.strip() #  args[2]
-                same = False
-                if (i % 2) == 0:
-                    if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                        same = False
-                    else:
-                        same = True
-                else:
-                    pre_len["text_len"] = len(text)
-                    same = False
+            await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+            k = await msg.reply_photo(
+            photo=SPELL_IMG, 
+            caption=script.I_CUDNT.format(mv_rqst),
+            reply_markup=InlineKeyboardMarkup(button)
+        )
+        await asyncio.sleep(30)
+        await k.delete()
+        return
+    movielist = []
+    if not movies:
+        reqst_gle = mv_rqst.replace(" ", "+")
+        button = [[
+                   InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+        ]]
+        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+        k = await msg.reply_photo(
+            photo=SPELL_IMG, 
+            caption=script.I_CUDNT.format(mv_rqst),
+            reply_markup=InlineKeyboardMarkup(button)
+        )
+        await asyncio.sleep(30)
+        await k.delete()
+        return
+    movielist += [movie.get('title') for movie in movies]
+    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+    SPELL_CHECK[mv_id] = movielist
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=movie_name.strip(),
+                callback_data=f"spol#{reqstr1}#{k}",
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ]
+    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
 
-                i += 1
-                reqst_gle = mv_rqst.replace(" ", "+")
-                btn.append([text, f"spol#{user}#{k}", same])
+    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 
-            btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
-            btn = build_keyboard(btn)
+    await asyncio.sleep(1)
 
-            btn.insert(0, [
-                InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url=f"https://www.google.com/search?q={reqst_gle}"),
-                InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/nasrani_update")
-            ])
-
-            btn.insert(0, [
-                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
-            ])
-   
-            d_msg = await msg.reply_photo(photo=imdb.get('poster'),
-                                                  reply_markup=InlineKeyboardMarkup(btn))
-
-                
-
-            d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(180)
-            await d_msg.delete()
-            await msg.delete()
-
+    await k.delete()
+    spell_check_del = await msg.reply_photo(
+        photo=(SPELL_IMG),
+        caption=(script.CUDNT_FND.format(reqstr.mention)),
+        reply_markup=InlineKeyboardMarkup(btn)
+        )
+    await msg.delete()
 
 def build_keyboard(buttons):
     keyb = []
