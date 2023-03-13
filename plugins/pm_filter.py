@@ -2210,43 +2210,43 @@ async def advantage_spell_chok(client, msg):
     
 #    movielist.sort(key=len)
             for k, movie in enumerate(movielist):
-            reqst_gle = mv_rqst.replace(" ", "+")
-            text = movie.strip() #  args[2]
-            same = False
-            if (i % 2) == 0:
-                if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                    same = False
-                else:
-                    same = True
-            else:
-                pre_len["text_len"] = len(text)
+                reqst_gle = mv_rqst.replace(" ", "+")
+                text = movie.strip() #  args[2]
                 same = False
+                if (i % 2) == 0:
+                    if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                        same = False
+                    else:
+                        same = True
+                else:
+                    pre_len["text_len"] = len(text)
+                    same = False
 
-            i += 1
-            reqst_gle = mv_rqst.replace(" ", "+")
-            btn.append([text, f"spol#{user}#{k}", same])
+                i += 1
+                reqst_gle = mv_rqst.replace(" ", "+")
+                btn.append([text, f"spol#{user}#{k}", same])
 
-        btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
-        btn = build_keyboard(btn)
+            btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
+            btn = build_keyboard(btn)
 
-        btn.insert(0, [
-            InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url=f"https://www.google.com/search?q={reqst_gle}"),
-            InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/nasrani_update")
-        ])
+            btn.insert(0, [
+                InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url=f"https://www.google.com/search?q={reqst_gle}"),
+                InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/nasrani_update")
+            ])
 
-        btn.insert(0, [
-            InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
-        ])
+            btn.insert(0, [
+                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
+            ])
    
-        d_msg = await msg.reply_photo(photo=imdb.get('poster'),
+            d_msg = await msg.reply_photo(photo=imdb.get('poster'),
                                                   reply_markup=InlineKeyboardMarkup(btn))
 
                 
 
-        d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
-        await asyncio.sleep(180)
-        await d_msg.delete()
-        await msg.delete()
+            d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
+            await asyncio.sleep(180)
+            await d_msg.delete()
+            await msg.delete()
 
 
 def build_keyboard(buttons):
