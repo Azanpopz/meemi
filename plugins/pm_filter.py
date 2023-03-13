@@ -2129,7 +2129,7 @@ async def advantage_spell_chok(client, msg):
                 url=imdb['url'],
                 chat=message.chat.title,
                 **locals()
-            )
+                )
         else:
             cap = search
     if imdb and imdb.get('poster'):
