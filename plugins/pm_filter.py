@@ -2099,7 +2099,7 @@ async def advantage_spell_chok(client, msg):
       
     if imdb:
             caption = IMDB_TEMPLATE.format(
-                query=imdb['title'],
+                query=search,
                 title=imdb['title'],
                 votes=imdb['votes'],
                 aka=imdb["aka"],
