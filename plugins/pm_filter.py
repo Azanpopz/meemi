@@ -412,14 +412,15 @@ async def advantage_spoll_choker(bot, query):
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)
             
             
-            btn = [[
+            button = [[
                 InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
             ]]
-            reply_markup = InlineKeyboardMarkup(btn)
-            k = await query.message.edit(f"script.MVE_NT_FND")            
-            await query.message.edit_reply_markup(reply_markup)
-            await asyncio.sleep(180)
-            await k.delete()
+          
+            k = await query.message.edit(
+            photo=SPELL_IMG, 
+            caption=script.MVE_NT_FND),
+            reply_markup=InlineKeyboardMarkup(button)
+            )
 
 #             l = await query.message.edit(text=f"△ 𝙷𝚎𝚢 𝚜𝚘𝚗𝚊 `{message.from_user.first_name}` 😎,\n\nʏᴏᴜʀ ʀᴇQᴜᴇꜱᴛ ʜᴀꜱ ʙᴇᴇɴ ꜱᴇɴᴛ ᴛᴏ ᴏᴜʀ **ᴀᴅᴍɪɴ'ꜱ ᴅᴀꜱʜʙᴏᴀʀᴅ** !\nᴘʟᴇᴀꜱᴇ ᴋᴇᴇᴘ ꜱᴏᴍᴇ ᴘᴀᴛɪᴇɴᴄᴇ !\nᴛʜᴇʏ ᴡɪʟʟ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴀꜱ ꜱᴏᴏɴ ᴀꜱ ᴘᴏꜱꜱɪʙʟᴇ.\n\n➟ 📝𝘾𝙤𝙣𝙩𝙚𝙣𝙩 𝙣𝙖𝙢𝙚 : `{search}`\n➟ 👮𝙍𝙚𝙦𝙪𝙚𝙨𝙩𝙚𝙙 𝘽𝙮 : `{message.from_user.first_name}`\n\n༺ @nasrani_update ༻\n\n🦋・‥☆𝘼𝘿𝙈𝙞𝙉 𝙨𝙪𝙥𝙥𝙤𝙧𝙩☆‥・🦋\n╰┈➤・☆ @nasrani_update\n╰┈➤・☆ @nasrani_update",
 #                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("━ • │▌║  ᗩᗪᗪ ʍɛ 2 ᑌᖇ Ǥᖇᗝᑌᑭ  ║▌│ • ━", url=f'http://t.me/{temp.U_NAME}?startgroup=true')],[InlineKeyboardButton("✪ Dev Ch- ✪", url="https://t.me/nasrani_update"), InlineKeyboardButton("✪ ＹＴ ✪", url="https://t.me/nasrani_update"), InlineKeyboardButton("✪ Main Ch- ✪", url="https://t.me/nasrani_update")],[InlineKeyboardButton("╚»♥️Thank u MoviesAdda™♥️«╝", callback_data="close_data")]]))
