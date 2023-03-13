@@ -56,7 +56,7 @@ async def save_group(bot, message):
                         pass
                 temp.MELCOW['welcome'] = await message.reply_sticker(
                                                  sticker="CAACAgUAAxkBAAEUITVkDglLmbrE00xjQRMoi1oCJyYPDQAC0gcAArwmiVSTwrq-v5Wohx4E",
-                                                 caption=(script.MELCOW_ENG.format(u.mention, message.chat.title)),
+#                                                 caption=(script.MELCOW_ENG.format(u.mention, message.chat.title)),
                                                  reply_markup=InlineKeyboardMarkup(
                                                                          [[
                                                                            InlineKeyboardButton('ᴊᴏɪɴ ɢʀᴏᴜᴘ', url=S_GROUP),
