@@ -2096,6 +2096,8 @@ async def auto_filter(client, msg, spoll=False):
 
 async def advantage_spell_chok(client, msg):
     user = msg.from_user.id if msg.from_user else 0
+    pic = imdb.get('poster')
+    poster = pic.replace('.jpg', "._V1_UX360.jpg")
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2107,6 +2109,18 @@ async def advantage_spell_chok(client, msg):
     RQST = query.strip()
     query = query.strip() + " movie"
     try:
+        d_msg = await msg.reply_photo(photo=imdb.get('poster'),
+                                                  reply_markup=InlineKeyboardMarkup(btn))
+
+                
+    except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+        pic = imdb.get('poster')
+        poster = pic.replace('.jpg', "._V1_UX360.jpg")
+        d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
+
+
+
+
         movies = await get_poster(mv_rqst, bulk=True)
     except Exception as e:
         logger.exception(e)
@@ -2166,22 +2180,13 @@ async def advantage_spell_chok(client, msg):
     btn.insert(0, [
         InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
     ])
-    #
-    # btn.insert(0, [
-    #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
-    #     InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
-    # ])
-    d_msg = await msg.reply_photo(photo=imdb.get('poster'), caption=cap,
+   
+    d_msg = await msg.reply_photo(photo=imdb.get('poster'),
                                                   reply_markup=InlineKeyboardMarkup(btn))
 
-                # if AUTO_DELETE:
-                #     await asyncio.sleep(int(DELETE_TIME))
-                #     await message.delete()
-                #     await d_msg.delete()
-except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-    pic = imdb.get('poster')
-    poster = pic.replace('.jpg', "._V1_UX360.jpg")
-    d_msg = await msg.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+                
+
+    d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(180)
     await d_msg.delete()
     await msg.delete()
