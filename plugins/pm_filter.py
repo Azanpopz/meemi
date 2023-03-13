@@ -2105,9 +2105,10 @@ async def advantage_spell_chok(client, msg):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
     settings = await get_settings(msg.chat.id)
+    movies = await get_poster(mv_rqst, bulk=True)
     query = re.sub(
-        r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-        "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
+            r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
+            "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
     RQST = query.strip()
     query = query.strip() + " movie"
     imdb = await get_poster(search) if IMDB else None
@@ -2145,50 +2146,31 @@ async def advantage_spell_chok(client, msg):
                 **locals()
             )
         
-#            if imdb and imdb.get('poster'):
-#                try:
-#                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-#                                                reply_markup=InlineKeyboardMarkup(btn))
-#                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-#                    pic = imdb.get('poster')
-#                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
-#                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-#                                                reply_markup=InlineKeyboardMarkup(btn))
-#                except Exception as e:
-#                    logger.exception(e)
-#                    await msg.reply_photo(photo=imdb['poster'], caption=caption)
-#                                                
-#                await msg.delete()
-#            else:
-#                 await msg.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-#            await msg.answer()
-#            user = msg.from_user.id if msg.from_user else 0
-#            search = msg.text
-#            files, offset, total_results = await get_search_results(msg.chat.id ,search.lower(), offset=0, filter=True)
-#            imdb = await get_poster(search) if IMDB else None
-#    
-#            pic = imdb.get('poster')
-#            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-#            mv_id = msg.id
-#            mv_rqst = msg.text
-#            reqstr1 = msg.from_user.id if msg.from_user else 0
-#            reqstr = await client.get_users(reqstr1)
-#            settings = await get_settings(msg.chat.id)
-#            query = re.sub(
-#            r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-#            "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
-            RQST = query.strip()
-            query = query.strip() + " movie"
+            if imdb and imdb.get('poster'):
+                try:
+                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                    pic = imdb.get('poster')
+                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+                except Exception as e:
+                    logger.exception(e)
+                    
             try:
-#                d_msg = await msg.reply_photo(photo=imdb.get('poster'))
-#                                                  
-#
-#                
-#            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-#                pic = imdb.get('poster')
-#                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-#                d_msg = await msg.reply_photo(photo=poster)
-#
+                d_msg = await msg.reply_photo(photo=imdb.get('poster'),
+                                                  reply_markup=InlineKeyboardMarkup(btn))
+
+                
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                pic = imdb.get('poster')
+                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
+
+
+
+
                 movies = await get_poster(mv_rqst, bulk=True)
             except Exception as e:
                 logger.exception(e)
@@ -2254,7 +2236,7 @@ async def advantage_spell_chok(client, msg):
 
                 
 
-            d_msg = await msg.reply_photo(photo=poster)
+            d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
             await asyncio.sleep(180)
             await d_msg.delete()
             await msg.delete()
