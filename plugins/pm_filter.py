@@ -389,7 +389,7 @@ async def advantage_spoll_choker(bot, query):
     mv_rqst = query.message.text
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
-        mv_rqst = message.text
+        mv_rqst = query.message.text
         reqst_gle = mv_rqst.replace(" ", "+")
         return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if int(user) != 0 and query.from_user.id != int(user):
