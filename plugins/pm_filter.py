@@ -2096,12 +2096,12 @@ async def auto_filter(client, msg, spoll=False):
 
 async def advantage_spell_chok(client, msg):
     try:
-        d_msg = await message.reply_photo(photo=imdb.get('poster'), caption=cap,
+        d_msg = await msg.reply_photo(photo=imdb.get('poster'), caption=cap,
                                           reply_markup=InlineKeyboardMarkup(btn))                
     except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
         pic = imdb.get('poster')
         poster = pic.replace('.jpg', "._V1_UX360.jpg")
-        d_msg = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+        d_msg = await msg.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
 
         user = msg.from_user.id if msg.from_user else 0
         search = msg.text
