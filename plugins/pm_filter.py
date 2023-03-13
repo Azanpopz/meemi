@@ -2109,7 +2109,7 @@ async def auto_filter(client, msg, spoll=False):
 async def advantage_spell_chok(client, msg):
     user = msg.from_user.id if msg.from_user else 0
 #    search = msg.text
-    
+    mention=msg.from_user.mention 
     message = msg
     search = message.text
     mv_id = msg.id
@@ -2129,8 +2129,7 @@ async def advantage_spell_chok(client, msg):
       
     if imdb:
             caption = IMDB_TEMPLATE.format(
-                query=search,
-                mention=msg.from_user.mention,
+                query=search,                
                 title=imdb['title'],
                 votes=imdb['votes'],
                 aka=imdb["aka"],
@@ -2222,7 +2221,7 @@ async def advantage_spell_chok(client, msg):
             await asyncio.sleep(1)
 
             await k.delete()
-            await msg.reply_photo(photo=imdb['poster'], caption=f"{mention}, imdb['title']",
+            await msg.reply_photo(photo=imdb['poster'], text=f"{mention}",
                                         reply_markup=InlineKeyboardMarkup(btn))
             await msg.delete()
 
