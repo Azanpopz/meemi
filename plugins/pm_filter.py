@@ -2136,9 +2136,11 @@ async def advantage_spell_chok(client, msg):
     i = 1
     pre_len = {}
     btn = []
-    # movielist.sort(key=len)
+    reqst_gle = mv_rqst.replace(" ", "+")
+    movielist.sort(key=len)
     for k, movie in enumerate(movielist):
-        text = movie.strip()  # args[2]
+        reqst_gle = mv_rqst.replace(" ", "+")
+        text = movie.strip()  args[2]
         same = False
         if (i % 2) == 0:
             if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
@@ -2162,7 +2164,7 @@ async def advantage_spell_chok(client, msg):
     ])
 
     btn.insert(0, [
-        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
+        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://www.google.com/search?q={search}")
     ])
     #
     # btn.insert(0, [
