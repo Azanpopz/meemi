@@ -2194,7 +2194,7 @@ async def advantage_spell_chok(client, msg):
             except Exception as e:
                 logger.exception(e)
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-                k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
+                k = await msg.reply_photo(photo=imdb.get('poster'))
                 await asyncio.sleep(8)
                 await k.delete()
                 return
