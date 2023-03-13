@@ -2209,7 +2209,7 @@ async def advantage_spell_chok(client, msg):
             btn = []
     
 #    movielist.sort(key=len)
-        for k, movie in enumerate(movielist):
+            for k, movie in enumerate(movielist):
             reqst_gle = mv_rqst.replace(" ", "+")
             text = movie.strip() #  args[2]
             same = False
