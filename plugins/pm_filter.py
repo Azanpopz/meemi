@@ -1822,8 +1822,8 @@ async def auto_filter(client, msg, spoll=False):
                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", callback_data="close_data")]]))
                 
                 
-                await asyncio.sleep(180)
-                await hmm.delete()                                                                                        
+#                await asyncio.sleep(180)
+#                await hmm.delete()                                                                                        
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
@@ -2157,12 +2157,12 @@ async def advantage_spell_chok(client, msg):
     btn = build_keyboard(btn)
 
     btn.insert(0, [
-        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UniversalFilmStudioo"),
-        InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
+        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://www.google.com/search?q={reqst_gle}"),
+        InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/nasrani_update")
     ])
 
     btn.insert(0, [
-        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
+        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
     ])
     #
     # btn.insert(0, [
