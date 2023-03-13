@@ -411,12 +411,13 @@ async def advantage_spoll_choker(bot, query):
             if NO_RESULTS_MSG:
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)
             
-            btn = [[
+            
+            buttons = [[
                 InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-            ]]
-            k = await query.message.edit(script.MVE_NT_FND,
-            reply_markup=InlineKeyboardMarkup(btn)
-            )
+            ]] 
+            k = await query.message.edit(script.MVE_NT_FND)
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await query.message.edit_reply_markup(reply_markup)
             await asyncio.sleep(180)
             await k.delete()
 
