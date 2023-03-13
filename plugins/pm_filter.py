@@ -2171,19 +2171,16 @@ async def advantage_spell_chok(client, msg):
 #            "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
 #            RQST = query.strip()
 #            query = query.strip() + " movie"
-            try:
-                d_msg = await msg.reply_photo(photo=imdb.get('poster'))
-                                                  
-
-                
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                d_msg = await msg.reply_photo(photo=poster)
-
-
-
-
+#            try:
+#                d_msg = await msg.reply_photo(photo=imdb.get('poster'))
+#                                                  
+#
+#                
+#            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+#                pic = imdb.get('poster')
+#                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+#                d_msg = await msg.reply_photo(photo=poster)
+#
                 movies = await get_poster(mv_rqst, bulk=True)
             except Exception as e:
                 logger.exception(e)
