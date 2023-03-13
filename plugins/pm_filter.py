@@ -2194,59 +2194,59 @@ async def advantage_spell_chok(client, msg):
                 ]]
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
                 k = await msg.reply_photo(
-                photo=SPELL_IMG, 
-                caption=script.I_CUDNT.format(mv_rqst),
-                reply_markup=InlineKeyboardMarkup(button)
-            )
-            await asyncio.sleep(30)
-            await k.delete()
-            return
-            movielist += [movie.get('title') for movie in movies]
-            movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
-        SPELL_CHECK[msg.id] = movielist
-        i = 1
-        pre_len = {}
-        btn = []
+                    photo=SPELL_IMG, 
+                    caption=script.I_CUDNT.format(mv_rqst),
+                    reply_markup=InlineKeyboardMarkup(button)
+                )
+                await asyncio.sleep(30)
+                await k.delete()
+                return
+                movielist += [movie.get('title') for movie in movies]
+                movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+            SPELL_CHECK[msg.id] = movielist
+            i = 1
+            pre_len = {}
+            btn = []
     
 #    movielist.sort(key=len)
-    for k, movie in enumerate(movielist):
-        reqst_gle = mv_rqst.replace(" ", "+")
-        text = movie.strip() #  args[2]
-        same = False
-        if (i % 2) == 0:
-            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                same = False
-            else:
-                same = True
-        else:
-            pre_len["text_len"] = len(text)
+        for k, movie in enumerate(movielist):
+            reqst_gle = mv_rqst.replace(" ", "+")
+            text = movie.strip() #  args[2]
             same = False
+            if (i % 2) == 0:
+                if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                    same = False
+                else:
+                    same = True
+            else:
+                pre_len["text_len"] = len(text)
+                same = False
 
-        i += 1
-        reqst_gle = mv_rqst.replace(" ", "+")
-        btn.append([text, f"spol#{user}#{k}", same])
+            i += 1
+            reqst_gle = mv_rqst.replace(" ", "+")
+            btn.append([text, f"spol#{user}#{k}", same])
 
-    btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
-    btn = build_keyboard(btn)
+        btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
+        btn = build_keyboard(btn)
 
-    btn.insert(0, [
-        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url=f"https://www.google.com/search?q={reqst_gle}"),
-        InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/nasrani_update")
-    ])
+        btn.insert(0, [
+            InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url=f"https://www.google.com/search?q={reqst_gle}"),
+            InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/nasrani_update")
+        ])
 
-    btn.insert(0, [
-        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
-    ])
+        btn.insert(0, [
+            InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")
+        ])
    
-    d_msg = await msg.reply_photo(photo=imdb.get('poster'),
+        d_msg = await msg.reply_photo(photo=imdb.get('poster'),
                                                   reply_markup=InlineKeyboardMarkup(btn))
 
                 
 
-    d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(180)
-    await d_msg.delete()
-    await msg.delete()
+        d_msg = await msg.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
+        await asyncio.sleep(180)
+        await d_msg.delete()
+        await msg.delete()
 
 
 def build_keyboard(buttons):
