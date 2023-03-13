@@ -2171,11 +2171,17 @@ async def advantage_spell_chok(client, msg):
     #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
     #     InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
     # ])
+    d_msg = await msg.reply_photo(photo=imdb.get('poster'), caption=cap,
+                                                  reply_markup=InlineKeyboardMarkup(btn))
 
-    d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
-                            f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
-                            f"Did You Mean Any One Of These 👇🏻?",
-                            reply_markup=InlineKeyboardMarkup(btn))
+                # if AUTO_DELETE:
+                #     await asyncio.sleep(int(DELETE_TIME))
+                #     await message.delete()
+                #     await d_msg.delete()
+except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+    pic = imdb.get('poster')
+    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+    d_msg = await msg.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(180)
     await d_msg.delete()
     await msg.delete()
