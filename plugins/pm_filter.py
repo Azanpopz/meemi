@@ -1941,7 +1941,9 @@ async def auto_filter(client, msg, spoll=False):
                                                 reply_markup=InlineKeyboardMarkup(btn))
         except Exception as e:
             logger.exception(e)
-                    
+                              
+    try:
+        movies = await get_poster(mv_rqst, bulk=True)              
 
     if not spoll:
         message = msg        
