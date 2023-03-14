@@ -1060,8 +1060,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]]
         
         if query.from_user.id in ADMINS:
-            message = msg
-            search = message.text
+            message = query.message
+            search = query.message.text
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)
             content = query.message.text
