@@ -1005,14 +1005,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "imd":
         i, movie = query.data.split('#')
         imdb = await get_poster(query=movie, id=True)
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{imdb.get('title')}",
-                    url=imdb['url'],
-                )
-            ]
-        ]
+        
         if imdb:
             caption = IMDB_TEMPLATE.format(
                 query=imdb['title'],
@@ -1023,14 +1016,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if imdb and imdb.get('poster'):
             try:
                                                   
-                await query.message.edit_text(f"{imdb.get('year')}")
-                reply_markup=InlineKeyboardMarkup(btn)
+                await query.answer(f"{imdb.get('title')}", show_alert=True)
+                
                     
                                                 
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.message.edit_text(f"{imdb.get('year')}")
+                await query.answer(f"{imdb.get('title')}", show_alert=True)
             except Exception as e:
                 logger.exception(e)
                 
