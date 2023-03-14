@@ -1059,20 +1059,21 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         ]]
         
-        if query.from_user.id in ADMINS:
-            message = query.message
-            search = query.message.text
-            user = await client.get_users(query.from_user.id)
-            reply_markup = InlineKeyboardMarkup(buttons)
-            content = query.message.text
-            req = query.from_user.id
-            chat_id = query.message.chat.id
-            message = query.message
-            k = await query.message.edit_text(f"{query.from_user.mention} {search} 💕")
-            await query.message.edit_reply_markup(reply_markup)
-            await asyncio.sleep(600)
-            await k.delete()
-           
+        
+        message = query.message
+        search = query.message.text
+        user = await client.get_users(query.from_user.id)
+        reply_markup = InlineKeyboardMarkup(buttons)
+        content = query.message.text
+        req = query.from_user.id
+        chat_id = query.message.chat.id
+        message = query.message
+        k = await query.message.edit_text(f"{query.from_user.mention}💕")
+        await query.message.edit_reply_markup(reply_markup)
+        await query.answer("🔍Search")
+        await asyncio.sleep(600)
+        await k.delete()
+          
 
 
     elif query.data.startswith("check"):
@@ -1095,7 +1096,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             message = query.message
             k = await query.message.edit_text(f"{query.from_user.mention}  {content}💕")
             await query.message.edit_reply_markup(reply_markup)
-            await asyncio.sleep(600)
+            await asyncio.sleep(180)
             await k.delete()
             
 
