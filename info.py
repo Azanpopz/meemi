@@ -390,6 +390,8 @@ SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "True")), True)
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", f"{script.CAPTION}")
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", None)
 IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", f"{script.IMDB_TEMPLATE_TXT}")
+TEMPLATE = environ.get("TEMPLATE", f"<b>🏷 𝐓𝐢𝐭𝐥𝐞 : {title}  🎭 𝐆𝐞𝐧𝐫𝐞𝐬 : {genres}\n 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {runtime} Minutes")
+
 LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False"), False)
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), True)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
