@@ -796,12 +796,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 "Your connected group details ;\n\n",
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
-    elif "im" in query.data:
-        
-        message = msg
-        searc = message.text
-        
-        await query.answer(alert, show_alert=True)
+
     elif "gfilteralert" in query.data:
         grp_id = query.message.chat.id
         i = query.data.split(":")[1]
