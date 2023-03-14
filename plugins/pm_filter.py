@@ -1002,9 +1002,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-    elif query.data == "imd":
-        i, movie = query.data.split('#')
-        imdb = await get_poster(query=movie, id=True)
+    elif query.data == "immd":
         
         if imdb:
             caption = IMDB_TEMPLATE.format(
@@ -1050,6 +1048,31 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
+
+    elif query.data.startswith("imd"):
+        
+        buttons = [[
+            InlineKeyboardButton('🗂️ᴜᴘʟᴏᴀᴅ🗂️', callback_data=f"upl#{query.from_user.id}")
+        ], [
+            InlineKeyboardButton('💡ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ💡', callback_data=f'unv#{query.from_user.id}'),
+            InlineKeyboardButton('🔒ᴄʟᴏꜱᴇ🔒', callback_data='close_data')
+        
+        ]]
+        
+        if query.from_user.id in ADMINS:
+            
+            user = await client.get_users(query.from_user.id)
+            reply_markup = InlineKeyboardMarkup(buttons)
+            content = query.message.text
+            req = query.from_user.id
+            chat_id = query.message.chat.id
+            message = query.message
+            k = await query.message.edit_text(f"{query.from_user.mention}  {content}💕")
+            await query.message.edit_reply_markup(reply_markup)
+            await asyncio.sleep(600)
+            await k.delete()
+           
+
 
     elif query.data.startswith("check"):
         
