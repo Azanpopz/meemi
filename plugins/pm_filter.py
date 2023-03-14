@@ -982,6 +982,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "im":
+        message = msg
+        searc = message.text
 #        i, movie = query.data.split('#')
         imdb = await get_poster(searc) if IMDB else None
         votes=imdb['votes']
