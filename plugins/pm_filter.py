@@ -798,16 +798,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
     elif "im" in query.data:
         
-        message = query.msg
-        searc = query.message.text
-        i = query.data.split(":")[1]
-        keyword = query.data.split(":")[2]
-        reply_text, btn, alerts, fileid = await find_gfilter('gfilters', keyword)
-        if alerts is not None:
-            alerts = ast.literal_eval(alerts)
-            alert = alerts[int(i)]
-            alert = alert.replace("\\n", "\n").replace("\\t", "\t")
-            await query.answer(alert, show_alert=True)
+        message = msg
+        searc = message.text
+        
+        await query.answer(alert, show_alert=True)
     elif "gfilteralert" in query.data:
         grp_id = query.message.chat.id
         i = query.data.split(":")[1]
@@ -998,8 +992,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #    search = msg.text                         
         
         
-        message = query.msg
-        searc = query.message.text                 
+        message = qmsg
+        searc = message.text                 
         reqstr1 = msg.from_user.id if msg.from_user else 0
         reqstr = await client.get_users(reqstr1)
 #        i, movie = query.data.split('#')
