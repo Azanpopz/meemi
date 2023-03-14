@@ -2026,7 +2026,7 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imd'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -2035,7 +2035,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imd'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -2048,7 +2048,7 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imd'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -2057,7 +2057,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'imd'),
+                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
                 ]
@@ -2067,6 +2067,9 @@ async def auto_filter(client, msg, spoll=False):
 
     btn.insert(0, [
         InlineKeyboardButton(f'🌷ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs🌷', url='https://t.me/nasrani_update')
+    ])
+    btn.insert(11, [
+        InlineKeyboardButton(f"🗓️{imdb.get('year')}🗓️", url=imdb['url']')
     ])
 
     m=await message.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
@@ -2341,7 +2344,7 @@ async def advantage_spell_chok(client, msg):
             ])
 
             btn.insert(0, [ 
-                InlineKeyboardButton(f"{imdb.get('year')}", 'im'),           
+                InlineKeyboardButton(f"🔰{movie.get('title')} - {movie.get('year')}🔰", 'imd'),           
                 InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")                
             ])
 
