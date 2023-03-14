@@ -757,7 +757,7 @@ async def requests(bot, message):
         content = message.reply_to_message.text
         imdb = await get_poster(search) if IMDB else None
       
-    if imdb:
+        if imdb:
             caption = IMDB_TEMPLATE.format(
                 query=search,                
                 title=imdb['title'],
