@@ -1896,6 +1896,23 @@ async def auto_filter(client, msg, spoll=False):
     if imdb:
         cap = IMDB_TEMPLATE.format(query=search, title=imdb['title'], votes=imdb['votes'], poster=imdb['poster'], **locals())
     if imdb and imdb.get('poster'):
+        try:
+            btn = [[
+                InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+           ]]                                      
+           await msg.reply_photo(photo=imdb['poster'],
+           reply_markup=InlineKeyboardMarkup(btn))
+                    
+                                                
+           except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+               pic = imdb.get('poster')
+               poster = pic.replace('.jpg', "._V1_UX360.jpg")
+               await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+           except Exception as e:
+               logger.exception(e)
+                    
+
     if not spoll:
         message = msg        
         settings = await get_settings(message.chat.id)
