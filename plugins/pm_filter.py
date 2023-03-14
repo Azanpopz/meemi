@@ -1021,18 +1021,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 **locals()
             )
         if imdb and imdb.get('poster'):
-        try:
+            try:
                                                   
-            await query.message.edit_text(f"{imdb.get('year')}")
-            reply_markup=InlineKeyboardMarkup(btn))
+                await query.message.edit_text(f"{imdb.get('year')}")
+                reply_markup=InlineKeyboardMarkup(btn))
                     
                                                 
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await query.message.edit_text(f"{imdb.get('year')}")
-        except Exception as e:
-            logger.exception(e)
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                pic = imdb.get('poster')
+                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                await query.message.edit_text(f"{imdb.get('year')}")
+            except Exception as e:
+                logger.exception(e)
                 
     elif query.data == "minfo":
         await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴀᴠᴀᴛᴀʀ: ᴛʜᴇ ᴡᴀʏ ᴏғ ᴡᴀᴛᴇʀ\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©️ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
