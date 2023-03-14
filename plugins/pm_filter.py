@@ -1894,6 +1894,7 @@ async def auto_filter(client, msg, spoll=False):
     imdb = await get_poster(searchh) if IMDB else None
 
     if imdb:
+        cap = TEMPLATE.format(
             query=searchh,            
             title=imdb['title'],
             votes=imdb['votes'],
