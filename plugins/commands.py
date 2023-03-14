@@ -840,7 +840,7 @@ async def requests(bot, message):
                 content = message.text
                 keywords = ["#request", "/request", "#Request", "/Request"]
                 for keyword in keywords:
-                if keyword in content:
+                    if keyword in content:
                     content = content.replace(keyword, "")
             try:
                 if REQST_CHANNEL is not None and len(content) >= 3:
