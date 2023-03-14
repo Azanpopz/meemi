@@ -325,7 +325,7 @@ Elsa
 
 
 
-TEMPLATE_TXT = """
+    TEMPLATE_TXT = """
 <b>🔖 ᴛɪᴛʟᴇ :<a href={url}>{title}</a>
 📆 ʏᴇᴀʀ : {release_date}
 🗞 ʟᴀɴɢᴜᴀɢᴇ : {languages}
@@ -334,7 +334,7 @@ TEMPLATE_TXT = """
 
 
 
-CUSTOM_FILE_CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
+    CUSTOM_FILE_CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
 
 
 
