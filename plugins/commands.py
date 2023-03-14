@@ -793,18 +793,16 @@ async def requests(bot, message):
         
             if imdb and imdb.get('poster'):
                 try:
-                    btn = [[
-                        InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
-                    ]]                                      
-                    await msg.reply_photo(photo=imdb['poster'],
-                    reply_markup=InlineKeyboardMarkup(btn))
+                                                        
+                    await bot.send_message(chat_id=REQST_CHANNEL, photo=imdb['poster'], text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                    
                     
                                                 
                 except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                     pic = imdb.get('poster')
                     poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
+                    await bot.send_message(chat_id=REQST_CHANNEL, photo=imdb['poster'], text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                                                
                 except Exception as e:
                     logger.exception(e)
                     
