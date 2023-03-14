@@ -150,8 +150,9 @@ async def imdb_search(client, message):
 
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot: Client, quer_y: CallbackQuery):
-#    i, movie = quer_y.data.split('#')
-    imdb = await get_poster(query=movie, id=True)
+    messages = query.message      
+    searc = query.message.text                         
+    imdb = await get_poster(searc) if IMDB else None
     btn = [
             [
                 InlineKeyboardButton(
