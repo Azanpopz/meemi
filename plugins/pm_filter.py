@@ -1887,6 +1887,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
+    i, movie = query.data.split('#')
     imdb = await get_poster(query=movie, id=True)
     search = message.text
     message = msg
@@ -1911,7 +1912,7 @@ async def auto_filter(client, msg, spoll=False):
                 
                 cap = IMDB_TEMPLATE.format(query=imdb['title'],votes=imdb['votes'])
                 reqst_gle = search.replace(" ", "+")
-                hmm = await client.send_message(message.chat.id, text=f" {movie.get('year')} {cap} \n 📂#𝙍𝙀𝙌𝙐𝙀𝙎𝙏𝙀𝘿_𝘾𝙊𝙉𝙏𝙀𝙉𝙏📂\n\n🤖ᴜꜱᴇʀ:-{message.from_user.mention}\n\n📝ᴄᴏɴᴛᴇɴᴛ ɴᴀᴍᴇ:-`{search}`\n\n👶🏻ʀᴇQᴜᴇꜱᴛᴇᴅ ʙʏ:- {message.from_user.first_name}\n\n 🃏ᴜꜱᴇʀ ɪᴅ:-{message.from_user.id}\n\n🗃️",
+                hmm = await client.send_message(message.chat.id, text=f" {movie.get('title')} {cap} \n 📂#𝙍𝙀𝙌𝙐𝙀𝙎𝙏𝙀𝘿_𝘾𝙊𝙉𝙏𝙀𝙉𝙏📂\n\n🤖ᴜꜱᴇʀ:-{message.from_user.mention}\n\n📝ᴄᴏɴᴛᴇɴᴛ ɴᴀᴍᴇ:-`{search}`\n\n👶🏻ʀᴇQᴜᴇꜱᴛᴇᴅ ʙʏ:- {message.from_user.first_name}\n\n 🃏ᴜꜱᴇʀ ɪᴅ:-{message.from_user.id}\n\n🗃️",
                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", url=f"https://www.google.com/search?q={reqst_gle}")]]))
                 
                 
