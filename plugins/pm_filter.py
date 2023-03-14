@@ -1887,7 +1887,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
-    i, movie = query.data.split('#')
+    i, movie = msg.data.split('#')
     imdb = await get_poster(msg=movie, id=True)
     search = message.text
     message = msg
