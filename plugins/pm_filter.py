@@ -797,8 +797,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
     elif "imdb" in query.data:
-        i, movie = quer_y.data.split('#')
-        imdb = await get_poster(query=movie, id=True)
+        messages = query.message      
+        searc = query.message.text                 
+        
+        imdb = await get_poster(searc) if IMDB else None
         btn = [
                 [
                     InlineKeyboardButton(
