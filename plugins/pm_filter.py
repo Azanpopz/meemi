@@ -983,12 +983,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "im":
-        messages = message      
+        messages = query.message      
         searc = query.message.text                 
         
         imdb = await get_poster(searc) if IMDB else None                
         if imdb:
-            cap = IMDB_TEMPLATE.format(
+                await query.message.edit_text(IMDB_TEMPLATE.format(
                 query=searc,
                 title=imdb['title'],
                 votes=imdb['votes'],
@@ -1022,19 +1022,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         if imdb.get('poster'):
             try:
-                await query.answer(cap=cap, show_alert=True)
+                await query.message.edit_text(cap=cap)
                                 
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.answer(cap=cap, show_alert=True)
+                await query.message.edit_text(cap=cap)
                                                 
             except Exception as e:
                 logger.exception(e)
-                await query.answer(cap=cap, show_alert=True)
+                await query.message.edit_text(cap=cap)
             await query.message.delete()
         else:
-            await query.message.edit(cap, show_alert=True)
+            await query.message.edit_text(cap)
         await query.answer()
 
 
