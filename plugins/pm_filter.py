@@ -2342,16 +2342,15 @@ async def advantage_spell_chok(client, msg):
                 InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
                 
             ])
-            btn.insert(0, [
+            btn = [
                 [
                     InlineKeyboardButton(
                         text=f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}",
                         callback_data=f"spol#{reqstr1}#{k}",
-                    ),
+                    )
                 ]
                 for k, movie_name in enumerate(movielist)
             ]
-        )
         
 #            btn.insert(0, [ 
 #                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
