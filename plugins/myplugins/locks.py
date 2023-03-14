@@ -99,7 +99,7 @@ async def lock(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == "PRIVATE":
+    if chat_type.name == "enums.ChatType.PRIVATE:"
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -122,9 +122,9 @@ async def lock(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status.value != "administrator"
-            and st.status.value != "owner"
-            and str(userid) not in ADMINS
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and userid not in ADMINS
     ):
         return
 
@@ -202,7 +202,7 @@ async def unlock(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == "PRIVATE":
+    if chat_type.name == "enums.ChatType.PRIVATE:"
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -225,9 +225,9 @@ async def unlock(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status.value != "administrator"
-            and st.status.value != "owner"
-            and str(userid) not in ADMINS
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and userid not in ADMINS
     ):
         return
 
@@ -331,7 +331,7 @@ async def list_locks(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == "PRIVATE":
+    if chat_type.name == "enums.ChatType.PRIVATE:"
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -354,9 +354,9 @@ async def list_locks(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status.value != "administrator"
-            and st.status.value != "owner"
-            and str(userid) not in ADMINS
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and userid not in ADMINS
     ):
         return
 
