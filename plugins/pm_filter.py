@@ -984,12 +984,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "im":
         
 #    search = msg.text
-        mention=msg.from_user.mention 
+        mention=query.msg.from_user.mention 
         
         
         mv_id = msg.id
         mv_rqst = msg.text
-        message = msg
+        message = query.msg
         searc = message.text                 
         reqstr1 = msg.from_user.id if msg.from_user else 0
         reqstr = await client.get_users(reqstr1)
