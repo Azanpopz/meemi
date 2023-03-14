@@ -1894,7 +1894,7 @@ async def auto_filter(client, msg, spoll=False):
     imdb = await get_poster(searchh) if IMDB else None
 
     if imdb:
-        cap = TEMPLATE.format(
+        cap = IMDB_TEMPLATE.format(
             query=searchh,            
             title=imdb['title'],
             votes=imdb['votes'],
@@ -1937,7 +1937,7 @@ async def auto_filter(client, msg, spoll=False):
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await msg.reply_photo(photo=imdb['poster'], caption=caption,
+            await msg.reply_photo(photo=imdb['poster'], cap=cap,
                                                 reply_markup=InlineKeyboardMarkup(btn))
         except Exception as e:
             logger.exception(e)
