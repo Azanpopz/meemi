@@ -99,7 +99,7 @@ async def lock(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == "enums.ChatType.PRIVATE:"
+    if chat_type.name == enums.ChatType.PRIVATE:
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -202,7 +202,7 @@ async def unlock(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == "enums.ChatType.PRIVATE:"
+    if chat_type.name == enums.ChatType.PRIVATE:
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
