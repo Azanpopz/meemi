@@ -1,7 +1,7 @@
 import logging.config
 from info import *
 from pyrogram.types import ChatPermissions, InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram import Client, filters, mime_types
+from pyrogram import Client, filters, enums, mime_types
 from database.connections_mdb import active_connection
 from database.locks_db import lock_db
 from pyrogram.errors import ChatAdminRequired, BadRequest
@@ -113,7 +113,7 @@ async def lock(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -216,7 +216,7 @@ async def unlock(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -345,7 +345,7 @@ async def list_locks(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
+    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
         title = message.chat.title
 
