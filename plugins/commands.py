@@ -794,7 +794,7 @@ async def requests(bot, message):
             if imdb and imdb.get('poster'):
                 try:
                                                         
-                    await bot.send_message(chat_id=REQST_CHANNEL, photo=imdb['poster'], text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                    await message.reply_photo(chat_id=admin, photo=imdb['poster'], text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {search} {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
                     
                     
                                                 
