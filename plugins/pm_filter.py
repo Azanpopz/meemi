@@ -796,75 +796,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 "Your connected group details ;\n\n",
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
-    elif "imdb" in query.data:
-        messages = query.message      
-        searc = query.message.text                 
-        
-        imdb = await get_poster(searc) if IMDB else None
-        btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"{imdb.get('title')}",
-                        url=imdb['url'],
-                    )
-                ]
-            ]
-        message = quer_y.message.reply_to_message or quer_y.message
-        if imdb:
-            caption = IMDB_TEMPLATE.format(
-                query = imdb['title'],
-                title = imdb['title'],
-                votes = imdb['votes'],
-                aka = imdb["aka"],
-                seasons = imdb["seasons"],
-                box_office = imdb['box_office'],
-                localized_title = imdb['localized_title'],
-                kind = imdb['kind'],
-                imdb_id = imdb["imdb_id"],
-                cast = imdb["cast"],
-                runtime = imdb["runtime"],
-                countries = imdb["countries"],
-                certificates = imdb["certificates"],
-                languages = imdb["languages"],
-                director = imdb["director"],
-                writer = imdb["writer"],
-                producer = imdb["producer"],
-                composer = imdb["composer"],
-                cinematographer = imdb["cinematographer"],
-                music_team = imdb["music_team"],
-                distributors = imdb["distributors"],
-                release_date = imdb['release_date'],
-                year = imdb['year'],
-                genres = imdb['genres'],
-                poster = imdb['poster'],
-                plot = imdb['plot'],
-                rating = imdb['rating'],
-                url = imdb['url'],
-                **locals()
-            )
-        else:
-            caption = "No Results"
-        if imdb.get('poster'):
-            try:
-                await quer_y.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await quer_y.message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(btn))
-            except Exception as e:
-                logger.exception(e)
-                await quer_y.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-            await quer_y.message.delete()
-        else:
-            await quer_y.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await quer_y.answer()
-
-
-
-
-
-
-
 
     elif "gfilteralert" in query.data:
         grp_id = query.message.chat.id
@@ -1051,60 +982,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await k.edit_text(text=f"<b>Successfully deleted {deleted} CamRip files.</b>")
 
 
-    elif query.data == "im":
-        messages = query.message      
-        searc = query.message.text                 
-        
-        imdb = await get_poster(searc) if IMDB else None                
-        if imdb:
-                await query.message.edit_text(IMDB_TEMPLATE.format(
-                query=searc,
-                title=imdb['title'],
-                votes=imdb['votes'],
-                aka=imdb["aka"],
-                seasons=imdb["seasons"],
-                box_office=imdb['box_office'],
-                localized_title=imdb['localized_title'],
-                kind=imdb['kind'],
-                imdb_id=imdb["imdb_id"],
-                cast=imdb["cast"],
-                runtime=imdb["runtime"],
-                countries=imdb["countries"],
-                certificates=imdb["certificates"],
-                languages=imdb["languages"],
-                director=imdb["director"],
-                writer=imdb["writer"],
-                producer=imdb["producer"],
-                composer=imdb["composer"],
-                cinematographer=imdb["cinematographer"],
-                music_team=imdb["music_team"],
-                distributors=imdb["distributors"],
-                release_date=imdb['release_date'],
-                year=imdb['year'],
-                genres=imdb['genres'],
-                poster=imdb['poster'],
-                plot=imdb['plot'],
-                rating=imdb['rating'],
-                url=imdb['url'],
-                **locals()
-            ))
-        
-        if imdb.get('poster'):
-            try:
-                await query.message.edit_text(cap=cap)
-                                
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.message.edit_text(cap=cap)
-                                                
-            except Exception as e:
-                logger.exception(e)
-                await query.message.edit_text(cap=cap)
-            await query.message.delete()
-        else:
-            await query.message.edit_text(cap)
-        await query.answer()
+
 
 
 
@@ -1125,7 +1003,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "imd":
-        await query.answer(TEMPLATE.format(title=imdb['title'], **locals()), show_alert=True)
+        await query.answer(<b><spoiler>{search}</spoiler></b>, show_alert=True)
     elif query.data == "minfo":
         await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴀᴠᴀᴛᴀʀ: ᴛʜᴇ ᴡᴀʏ ᴏғ ᴡᴀᴛᴇʀ\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©️ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
     elif query.data == "sinfo":
