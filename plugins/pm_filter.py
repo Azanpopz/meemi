@@ -1060,14 +1060,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]]
         
         if query.from_user.id in ADMINS:
-            
+            message = msg
+            search = message.text
             user = await client.get_users(query.from_user.id)
             reply_markup = InlineKeyboardMarkup(buttons)
             content = query.message.text
             req = query.from_user.id
             chat_id = query.message.chat.id
             message = query.message
-            k = await query.message.edit_text(f"{query.from_user.mention} 💕")
+            k = await query.message.edit_text(f"{query.from_user.mention} {search} 💕")
             await query.message.edit_reply_markup(reply_markup)
             await asyncio.sleep(600)
             await k.delete()
