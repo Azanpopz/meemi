@@ -983,7 +983,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "imdb":
 #        i, movie = query.data.split('#')
-        imdb = await get_poster(imdb['title']) if IMDB else None
+        imdb = await get_poster(searc) if IMDB else None
+        votes=imdb['votes']
         btn = [
             [
                 InlineKeyboardButton(
@@ -994,7 +995,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]
         if imdb:
             cap = IMDB_TEMPLATE.format(
-                query=imdb['title'],
+                query=searc,
                 title=imdb['title'],
                 votes=imdb['votes'],
                 aka=imdb["aka"],
@@ -1063,7 +1064,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "im":
-        await query.answer("imdb['url'] {imdb.get('title')} {cap} cap imdb['title'] {imdb['title']} year {year} query=imdb['title'] {query=imdb['title']}", show_alert=True)
+        await query.answer("votes=imdb['votes'] {votes=imdb['votes']}, imdb['votes'] {imdb['votes']}", show_alert=True)
     elif query.data == "minfo":
         await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴀᴠᴀᴛᴀʀ: ᴛʜᴇ ᴡᴀʏ ᴏғ ᴡᴀᴛᴇʀ\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©️ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
     elif query.data == "sinfo":
@@ -2033,6 +2034,8 @@ async def auto_filter(client, msg, spoll=False):
 
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
+        imdb = await get_poster(search) if IMDB else None
+        caption = IMDB_TEMPLATE.format(query=search, title=imdb['title'],votes=imdb['votes']
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         try:
