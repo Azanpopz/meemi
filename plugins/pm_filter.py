@@ -984,24 +984,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "im":
         
-#    search = msg.text                         
-        
-        
-        
         searc = query.message.text                 
-        reqstr1 = query.message.from_user.id if query.message.from_user else 0
-        reqstr = await client.get_users(reqstr1)
-        i, movie = query.data.split('#')
-        imdb = await get_poster(searc) if IMDB else None
-        votes=imdb['votes']
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{imdb.get('title')}",
-                    url=imdb['url'],
-                )
-            ]
-        ]
+        
+        imdb = await get_poster(searc) if IMDB else None                
         if imdb:
             cap = IMDB_TEMPLATE.format(
                 query=searc,
@@ -1034,23 +1019,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 url=imdb['url'],
                 **locals()
             )
-        else:
-            caption = "No Results"
+        
         if imdb.get('poster'):
             try:
-                await query.answer(cap=cap)
+                await query.answer(cap=cap, show_alert=True)
                                 
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.answer(cap=cap)
+                await query.answer(cap=cap, show_alert=True)
                                                 
             except Exception as e:
                 logger.exception(e)
-                await query.answer(cap=cap)
+                await query.answer(cap=cap, show_alert=True)
             await query.message.delete()
         else:
-            await query.message.edit(cap)
+            await query.message.edit(cap, show_alert=True)
         await query.answer()
 
 
