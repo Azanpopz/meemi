@@ -983,8 +983,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "im":
-        message = query.message      
-        searc = message.text                 
+        messages = message      
+        searc = query.message.text                 
         
         imdb = await get_poster(searc) if IMDB else None                
         if imdb:
