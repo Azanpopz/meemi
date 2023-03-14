@@ -150,8 +150,8 @@ async def imdb_search(client, message):
 
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot: Client, quer_y: CallbackQuery):
-    messages = query.message      
-    searc = query.message.text                         
+    messages = quer_y.message      
+    searc = quer_y.message.text                         
     imdb = await get_poster(searc) if IMDB else None
     btn = [
             [
