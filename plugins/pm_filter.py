@@ -2344,7 +2344,7 @@ async def advantage_spell_chok(client, msg):
             ])
 
             btn.insert(0, [ 
-                InlineKeyboardButton(f"🔰{movie.get('title')} - {movie.get('year')}🔰", 'imd'),           
+                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", 'imd'),           
                 InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update")                
             ])
 
