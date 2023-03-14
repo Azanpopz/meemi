@@ -1888,14 +1888,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     
-    imdb = await get_poster(query=search) if IMDB else None
-    search = message.text
-    message = msg
+    imdb = await get_poster(search) if IMDB else None
+
+                
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
     if imdb:
-        cap = IMDB_TEMPLATE.format(query=search, title=imdb['title'], votes=imdb['votes'])
-    
+        cap = IMDB_TEMPLATE.format(query=search, title=imdb['title'], votes=imdb['votes'], poster=imdb['poster'], **locals())
+    if imdb and imdb.get('poster'):
     if not spoll:
         message = msg        
         settings = await get_settings(message.chat.id)
