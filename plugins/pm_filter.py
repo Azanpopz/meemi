@@ -1018,7 +1018,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 rating=imdb['rating'],
                 url=imdb['url'],
                 **locals()
-            )
+            ))
         
         if imdb.get('poster'):
             try:
