@@ -792,31 +792,7 @@ async def requests(bot, message):
             )
         
             if imdb and imdb.get('poster'):
-                try:
-                                                        
-                    btn = [[
-                            InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
-                            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                          ]]
-                    reported_post = await bot.send_message(chat_id=admins, text=f"🤯𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
-                    for admin in ADMINS:
-                        btn = [[
-                                InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
-                                InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                              ]]
-                        reported_post = await bot.send_message(chat_id=admin, text=f"🙂𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
-                        success = True
-                    
-                    
-                                                
-                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                    pic = imdb.get('poster')
-                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                    await bot.send_message(chat_id=REQST_CHANNEL, photo=imdb['poster'], text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
-                                                
-                except Exception as e:
-                    logger.exception(e)
-                    
+                
                 try:
                     if REQST_CHANNEL is not None:
                         btn = [[
