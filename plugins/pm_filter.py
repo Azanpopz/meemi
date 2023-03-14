@@ -1942,7 +1942,7 @@ async def auto_filter(client, msg, spoll=False):
         except Exception as e:
             logger.exception(e)
                               
-try:
+
         
     if not spoll:
         message = msg        
