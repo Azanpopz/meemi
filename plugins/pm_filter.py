@@ -1942,9 +1942,8 @@ async def auto_filter(client, msg, spoll=False):
         except Exception as e:
             logger.exception(e)
                               
-    try:
-        movies = await get_poster(mv_rqst, bulk=True)              
-
+try:
+        
     if not spoll:
         message = msg        
         settings = await get_settings(message.chat.id)
