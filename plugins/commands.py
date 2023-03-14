@@ -749,74 +749,127 @@ async def requests(bot, message):
         mention = message.from_user.mention
         success = True
         content = message.reply_to_message.text
-        try:
-            if REQST_CHANNEL is not None:
-                btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"🤯𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
-                success = True
-            elif len(content) >= 3:
-                for admin in ADMINS:
-                    btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                    reported_post = await bot.send_message(chat_id=admin, text=f"🙂𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
-                    success = True
-            else:
-                if len(content) < 3:
-                    await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
-            if len(content) < 3:
-                success = False
-        except Exception as e:
-            await message.reply_text(f"Error: {e}")
-            pass
+        imdb = await get_poster(search) if IMDB else None
+      
+    if imdb:
+            caption = IMDB_TEMPLATE.format(
+                query=search,                
+                title=imdb['title'],
+                votes=imdb['votes'],
+                aka=imdb["aka"],
+                seasons=imdb["seasons"],
+                box_office=imdb['box_office'],
+                localized_title=imdb['localized_title'],
+                kind=imdb['kind'],
+                imdb_id=imdb["imdb_id"],
+                cast=imdb["cast"],
+                runtime=imdb["runtime"],
+                countries=imdb["countries"],
+                certificates=imdb["certificates"],
+                languages=imdb["languages"],
+                director=imdb["director"],
+                writer=imdb["writer"],
+                producer=imdb["producer"],
+                composer=imdb["composer"],
+                cinematographer=imdb["cinematographer"],
+                music_team=imdb["music_team"],
+                distributors=imdb["distributors"],
+                release_date=imdb['release_date'],
+                year=imdb['year'],
+                genres=imdb['genres'],
+                poster=imdb['poster'],
+                plot=imdb['plot'],
+                rating=imdb['rating'],
+                url=imdb['url'],
+                **locals()
+            )
         
-    elif SUPPORT_CHAT_ID == message.chat.id:
-        chat_id = message.chat.id
-        reporter = str(message.from_user.id)
-        mention = message.from_user.mention
-        success = True
-        content = message.text
-        keywords = ["#request", "/request", "#Request", "/Request"]
-        for keyword in keywords:
-            if keyword in content:
-                content = content.replace(keyword, "")
-        try:
-            if REQST_CHANNEL is not None and len(content) >= 3:
-                btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
-                success = True
-            elif len(content) >= 3:
-                for admin in ADMINS:
+            if imdb and imdb.get('poster'):
+                try:
                     btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                    reported_post = await bot.send_message(chat_id=admin, text=f"🥺𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                        InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+                    ]]                                      
+                    await msg.reply_photo(photo=imdb['poster'],
+                    reply_markup=InlineKeyboardMarkup(btn))
+                    
+                                                
+                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                    pic = imdb.get('poster')
+                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+                except Exception as e:
+                    logger.exception(e)
+                    
+            try:
+        
+                if REQST_CHANNEL is not None:
+                    btn = [[
+                            InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
+                            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                          ]]
+                    reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"🤯𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
                     success = True
-            else:
+                elif len(content) >= 3:
+                    for admin in ADMINS:
+                        btn = [[
+                            InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
+                            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                          ]]
+                        reported_post = await bot.send_message(chat_id=admin, text=f"🙂𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                        success = True
+                else:
+                    if len(content) < 3:
+                        await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
                 if len(content) < 3:
-                    await message.reply_text("You must type about your request [Minimum 3 Characters]. Requests can't be empty.")
-            if len(content) < 3:
-                success = False
-        except Exception as e:
-            await message.reply_text(f"Error: {e}")
-            pass
+                    success = False
+            except Exception as e:
+                await message.reply_text(f"Error: {e}")
+                pass
+        
+        elif SUPPORT_CHAT_ID == message.chat.id:
+            chat_id = message.chat.id
+            reporter = str(message.from_user.id)
+            mention = message.from_user.mention
+            success = True
+            content = message.text
+            keywords = ["#request", "/request", "#Request", "/Request"]
+            for keyword in keywords:
+                if keyword in content:
+                    content = content.replace(keyword, "")
+            try:
+                if REQST_CHANNEL is not None and len(content) >= 3:
+                    btn = [[
+                            InlineKeyboardButton('View Request', url=f"{message.link}"),
+                            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                          ]]
+                    reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                    success = True
+                elif len(content) >= 3:
+                    for admin in ADMINS:
+                        btn = [[
+                            InlineKeyboardButton('View Request', url=f"{message.link}"),
+                            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                        ]]
+                        reported_post = await bot.send_message(chat_id=admin, text=f"🥺𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                        success = True
+                else:
+                    if len(content) < 3:
+                        await message.reply_text("You must type about your request [Minimum 3 Characters]. Requests can't be empty.")
+                if len(content) < 3:
+                    success = False
+            except Exception as e:
+                await message.reply_text(f"Error: {e}")
+                pass
 
-    else:
-        success = False
+        else:
+            success = False
     
-    if success:
-        btn = [[
-                InlineKeyboardButton('View Request', url=f"{reported_post.link}")
-              ]]
-        await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
+        if success:
+            btn = [[
+                    InlineKeyboardButton('View Request', url=f"{reported_post.link}")
+                  ]]
+            await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
         
 
