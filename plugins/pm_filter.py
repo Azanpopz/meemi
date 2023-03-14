@@ -992,7 +992,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #    search = msg.text                         
         
         
-        message = qmsg
+        
         searc = message.text                 
         reqstr1 = msg.from_user.id if msg.from_user else 0
         reqstr = await client.get_users(reqstr1)
