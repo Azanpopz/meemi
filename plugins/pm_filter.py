@@ -1024,7 +1024,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             try:
                                                   
                 await query.message.edit_text(f"{imdb.get('year')}")
-                reply_markup=InlineKeyboardMarkup(btn))
+                reply_markup=InlineKeyboardMarkup(btn)
                     
                                                 
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
