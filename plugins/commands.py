@@ -808,7 +808,6 @@ async def requests(bot, message):
                     logger.exception(e)
                     
             try:
-        
                 if REQST_CHANNEL is not None:
                     btn = [[
                             InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
@@ -833,7 +832,7 @@ async def requests(bot, message):
                 await message.reply_text(f"Error: {e}")
                 pass
         
-            elif SUPPORT_CHAT_ID == message.chat.id:
+        elif SUPPORT_CHAT_ID == message.chat.id:
             chat_id = message.chat.id
             reporter = str(message.from_user.id)
             mention = message.from_user.mention
@@ -856,7 +855,7 @@ async def requests(bot, message):
                         btn = [[
                             InlineKeyboardButton('View Request', url=f"{message.link}"),
                             InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                        ]]
+                          ]]
                         reported_post = await bot.send_message(chat_id=admin, text=f"🥺𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
                         success = True
                 else:
@@ -877,6 +876,7 @@ async def requests(bot, message):
                   ]]
             await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
+        
         
 
 
