@@ -797,10 +797,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
     elif "im" in query.data:
-        mv_id = query.msg.id
-        mv_rqst = query.msg.text
+        
         message = query.msg
-        searc = qurry.message.text
+        searc = query.message.text
         i = query.data.split(":")[1]
         keyword = query.data.split(":")[2]
         reply_text, btn, alerts, fileid = await find_gfilter('gfilters', keyword)
@@ -1000,7 +999,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         
         message = query.msg
-        searc = message.text                 
+        searc = query.message.text                 
         reqstr1 = msg.from_user.id if msg.from_user else 0
         reqstr = await client.get_users(reqstr1)
 #        i, movie = query.data.split('#')
