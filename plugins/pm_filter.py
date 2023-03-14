@@ -2323,13 +2323,13 @@ async def advantage_spell_chok(client, msg):
        
                 return
             movielist += [movie.get('title') for movie in movies]
-            movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]           
+            movielist += [f"🔍{movie.get('title')} {movie.get('year')}🔎" for movie in movies]           
             mv_rqst = msg.text
             SPELL_CHECK[mv_id] = movielist
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=movie_name.strip() {imdb.get('year')},
+                        text=movie_name.strip(),
                         callback_data=f"spol#{reqstr1}#{k}",
                     )
                 ]
