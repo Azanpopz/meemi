@@ -2346,25 +2346,26 @@ async def advantage_spell_chok(client, msg):
                 [
                     InlineKeyboardButton(
                         text=f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}",
-                        callback_data=f"spol#{reqstr1}#{k}"
-                    )
+                        callback_data=f"spol#{reqstr1}#{k}",
+                    ),
                 ]
                 for k, movie_name in enumerate(movielist)
-            ])
+            ]
+        )
         
 #            btn.insert(0, [ 
 #                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
 #            ])
 
-            k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+        k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 
-            await asyncio.sleep(1)
+        await asyncio.sleep(1)
 
-            await k.delete()
+        await k.delete()
             
-            await msg.reply_photo(photo=imdb['poster'], caption=caption,
+        await msg.reply_photo(photo=imdb['poster'], caption=caption,
                                         reply_markup=InlineKeyboardMarkup(btn))
-            await msg.delete()
+        await msg.delete()
 
 
 async def manual_filters(client, message, text=False):
