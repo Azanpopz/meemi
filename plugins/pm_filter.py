@@ -983,10 +983,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "im":
         
-#    search = msg.text
-        mention=query.msg.from_user.mention 
-        
-        
+#    search = msg.text                         
         mv_id = msg.id
         mv_rqst = msg.text
         message = query.msg
