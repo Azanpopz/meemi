@@ -1029,20 +1029,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
             caption = "No Results"
         if imdb.get('poster'):
             try:
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
+                await query.message.reply_photo(photo=imdb['poster'], {cap}, cap = {cap},
                                                 reply_markup=InlineKeyboardMarkup(btn))
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
+                await query.message.reply_photo(photo=imdb['poster'], cap=cap,
                                                 reply_markup=InlineKeyboardMarkup(btn))
             except Exception as e:
                 logger.exception(e)
-                await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
+                await query.message.reply(cap, reply_markup=InlineKeyboardMarkup(btn),
                                           disable_web_page_preview=False)
             await query.message.delete()
         else:
-            await query.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+            await query.message.edit(cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
         await query.answer()
 
 
@@ -1888,7 +1888,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     imdb = await get_poster(search) if IMDB else None
-    caption = IMDB_TEMPLATE.format(query=search, title=imdb['title'],votes=imdb['votes']
+    cap = IMDB_TEMPLATE.format(query=search, title=imdb['title'],votes=imdb['votes'])
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
     if not spoll:
