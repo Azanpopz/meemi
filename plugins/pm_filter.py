@@ -2068,7 +2068,7 @@ async def auto_filter(client, msg, spoll=False):
     btn.insert(0, [
         InlineKeyboardButton(f'🌷ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs🌷', url='https://t.me/nasrani_update')
     ])
-    btn.insert(11, [
+    btn.insert(15, [
         InlineKeyboardButton(f"🗓️{imdb.get('year')}🗓️", url=imdb['url'])
     ])
 
@@ -2344,9 +2344,9 @@ async def advantage_spell_chok(client, msg):
             ])
             
         
-#            btn.insert(0, [ 
-#                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
-#            ])
+            btn.insert(0, [ 
+                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
+            ])
 
             k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 
