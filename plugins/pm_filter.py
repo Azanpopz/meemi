@@ -1017,6 +1017,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             caption = IMDB_TEMPLATE.format(
                 query=imdb['title'],
                 title=imdb['title'],
+                url=imdb['url'],
                 **locals()
             )
         if imdb.get('poster'):
