@@ -321,6 +321,19 @@ Elsa
  
 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©{message.chat.title}"""
 
+
+
+
+
+TEMPLATE_TXT = """
+<b>🔖 ᴛɪᴛʟᴇ :<a href={url}>{title}</a>
+📆 ʏᴇᴀʀ : {release_date}
+🗞 ʟᴀɴɢᴜᴀɢᴇ : {languages}
+©{message.chat.title}</b>
+"""
+
+
+
     CUSTOM_FILE_CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
 
 
