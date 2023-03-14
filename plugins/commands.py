@@ -935,4 +935,16 @@ async def shortlink(bot, message):
 
 
 
+@Client.on_message(filters.command("update") & filters.user(ADMINS))
+async def update_restart(bot, message):
+    try:
+        out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
+        if "Already up to date." in str(out):
+            return await message.reply_text("Its Already Up-To Date!")
+        await message.reply_text(f"```{out}```")
+    except Exception as e:
+        return await message.reply_text(str(e))
+    m = await message.reply_text(
+        "**Updated With Default Branch, Restarting Now.**")
+    await restart(m)
 
