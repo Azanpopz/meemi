@@ -1067,7 +1067,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             req = query.from_user.id
             chat_id = query.message.chat.id
             message = query.message
-            k = await query.message.edit_text(f"{query.from_user.mention}  {content}💕")
+            k = await query.message.edit_text(f"{query.from_user.mention} 💕")
             await query.message.edit_reply_markup(reply_markup)
             await asyncio.sleep(600)
             await k.delete()
