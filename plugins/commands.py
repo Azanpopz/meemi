@@ -794,7 +794,18 @@ async def requests(bot, message):
             if imdb and imdb.get('poster'):
                 try:
                                                         
-                    await message.reply_photo(chat_id=admin, photo=imdb['poster'], text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {search} {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                    btn = [[
+                            InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
+                            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                          ]]
+                    reported_post = await bot.send_message(chat_id=admins, text=f"🤯𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                for admin in ADMINS:
+                    btn = [[
+                            InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
+                            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                          ]]
+                   reported_post = await bot.send_message(chat_id=admin, text=f"🙂𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                   success = True
                     
                     
                                                 
