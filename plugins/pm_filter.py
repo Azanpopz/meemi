@@ -981,7 +981,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await k.edit_text(text=f"<b>Successfully deleted {deleted} CamRip files.</b>")
 
 
-    elif query.data == "imdb":
+    elif query.data == "im":
 #        i, movie = query.data.split('#')
         imdb = await get_poster(searc) if IMDB else None
         votes=imdb['votes']
@@ -1029,20 +1029,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             caption = "No Results"
         if imdb.get('poster'):
             try:
-                await query.message.reply_photo(photo=imdb['poster'],cap=cap,
-                                                reply_markup=InlineKeyboardMarkup(btn))
+                await query.answer(cap=cap)
+                                
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.message.reply_photo(photo=imdb['poster'], cap=cap,
-                                                reply_markup=InlineKeyboardMarkup(btn))
+                await query.answer(cap=cap)
+                                                
             except Exception as e:
                 logger.exception(e)
-                await query.message.reply(cap, reply_markup=InlineKeyboardMarkup(btn),
-                                          disable_web_page_preview=False)
+                await query.answer(cap=cap)
             await query.message.delete()
         else:
-            await query.message.edit(cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+            await query.message.edit(cap)
         await query.answer()
 
 
@@ -1063,7 +1062,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-    elif query.data == "im":
+    elif query.data == "imd":
         await query.answer(TEMPLATE.format(title=imdb['title'], **locals()), show_alert=True)
     elif query.data == "minfo":
         await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴀᴠᴀᴛᴀʀ: ᴛʜᴇ ᴡᴀʏ ᴏғ ᴡᴀᴛᴇʀ\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©️ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
