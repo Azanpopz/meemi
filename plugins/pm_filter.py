@@ -2296,7 +2296,7 @@ async def advantage_spell_chok(client, msg):
                         photo=SPELL_IMG, 
                         caption=script.I_CUDNT.format(mv_rqst),
                         reply_markup=InlineKeyboardMarkup(buttons)
-                    )                                              reply_markup=InlineKeyboardMarkup(btn))                
+                    )                                                              
                     
             try:
                 movies = await get_poster(mv_rqst, bulk=True)
