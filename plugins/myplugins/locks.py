@@ -51,7 +51,7 @@ REST_GROUP = 2
 async def restr_members(bot, chat_id, members, messages=False, media=False, other=False, previews=False):
     for mem in members:
         if (
-                mem.status != 'administrator' and
+                mem.status != enums.ChatMemberStatus.ADMINISTRATOR and
                 mem.status != 'creator' and
                 str(mem.user.id) not in ADMINS and
                 mem.user.is_bot != True
