@@ -2306,95 +2306,56 @@ async def advantage_spell_chok(client, msg):
                     await k.delete()
 
 
-
-
-
-
-                                                          
-                    await msg.reply_photo(photo=imdb['poster'],
-                    reply_markup=InlineKeyboardMarkup(btn))
-                    
-                                                
-                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                    pic = imdb.get('poster')
-                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
-                except Exception as e:
-                    logger.exception(e)
-            try:
-                movies = await get_poster(mv_rqst, bulk=True)
-            except Exception as e:
-                logger.exception(e)
-                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-                k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
-                await asyncio.sleep(8)
-                await k.delete()
-                return
-            movielist = []
-            if not movies:
-                reqst_gle = mv_rqst.replace(" ", "+")
-                buttons = [[
-                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-                ]]
-                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-                k = await msg.reply_photo(
-                    photo=SPELL_IMG, 
-                    caption=script.I_CUDNT.format(mv_rqst),
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                await asyncio.sleep(30)
-                await k.delete()
        
-                return
-#            movielist += [movie.get('title') for movie in movies]
-            movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]           
-            mv_rqst = msg.text
-            SPELL_CHECK[msg.id] = movielist
-            i = 1
-            pre_len = {}
-            btn = []
+                    return
+#               movielist += [movie.get('title') for movie in movies]
+                movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]           
+                mv_rqst = msg.text
+                SPELL_CHECK[msg.id] = movielist
+                i = 1
+                pre_len = {}
+                btn = []
     
-            for k, movie in enumerate(movielist):
-                text = movie.strip()  # args[2]
-                same = False
-                if (i % 2) == 0:
-                    if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
-                        same = False
-                    else:
-                        same = True
-                else:
-                    pre_len["text_len"] = len(text)
+                for k, movie in enumerate(movielist):
+                    text = movie.strip()  # args[2]
                     same = False
+                    if (i % 2) == 0:
+                        if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
+                            same = False
+                        else:
+                            same = True
+                    else:
+                        pre_len["text_len"] = len(text)
+                        same = False
 
-                i += 2
+                    i += 2
 
-                btn.append([text, f"spol#{reqstr1}#{k}", same])
+                    btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-            btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
-            btn = build_keyboard(btn)
+                btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
+                btn = build_keyboard(btn)
 
-            btn.insert(0, [
-                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-                InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
-            ])
+                btn.insert(0, [
+                    InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+                    InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+                ])
 
-            btn.insert(0, [
-                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
-            ])
+                btn.insert(0, [
+                    InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
+                ])
     
-            btn.insert(10, [
-                InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
+                btn.insert(10, [
+                    InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
                 InlineKeyboardButton(f"🧭𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n⌚️{imdb.get('runtime')}", callback_data=f"spol#{reqstr1}#{k}")
-            ])
+                ])
 
-            d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
-                                    f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
-                                    f"Did You Mean Any One Of These 👇🏻?",
-                                    reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(180)
-            await d_msg.delete()
-            await msg.delete()
+                d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
+                                        f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
+                                        f"Did You Mean Any One Of These 👇🏻?",
+                                        reply_markup=InlineKeyboardMarkup(btn))
+                await asyncio.sleep(180)
+                await d_msg.delete()
+                await msg.delete()
 
 
 def build_keyboard(buttons):
