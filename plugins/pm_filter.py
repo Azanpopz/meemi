@@ -2325,23 +2325,89 @@ async def advantage_spell_chok(client, msg):
             movielist += [movie.get('title') for movie in movies]
             movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]           
             mv_rqst = msg.text
-            SPELL_CHECK[mv_id] = movielist
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=movie_name.strip(),
-                        callback_data=f"spol#{reqstr1}#{k}",
-                    )
-                ]
-                for k, movie_name in enumerate(movielist)
-            ]
-            btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
-            btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-            btn.insert(1, [
-                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-                InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
-                
-            ])
+            SPELL_CHECK[msg.id] = movielist
+            i = 1
+            pre_len = {}
+            btn = []
+    
+            for k, movie in enumerate(movielist):
+                text = movie.strip()  # args[2]
+                same = False
+            if (i % 2) == 0:
+                if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                    same = False
+                else:
+                    same = True
+            else:
+                pre_len["text_len"] = len(text)
+                same = False
+
+            i += 1
+
+            btn.append([text, f"spolling#{user}#{k}", same])
+
+        btn.append(["❌ Close", f'spolling#{user}#close_spellcheck', False])
+        btn = build_keyboard(btn)
+
+        btn.insert(0, [
+            InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UniversalFilmStudioo"),
+            InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
+        ])
+
+        btn.insert(0, [
+            InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
+        ])
+    #
+    # btn.insert(0, [
+    #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
+    #     InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
+    # ])
+
+      d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
+                            f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
+                            f"Did You Mean Any One Of These 👇🏻?",
+                            reply_markup=InlineKeyboardMarkup(btn))
+      await asyncio.sleep(180)
+      await d_msg.delete()
+      await msg.delete()
+
+
+def build_keyboard(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn[2] and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        else:
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+
+    return keyb
+
+
+
+
+
+
+
+
+
+
+#            SPELL_CHECK[mv_id] = movielist
+#            btn = [
+#                [
+#                    InlineKeyboardButton(
+#                        text=movie_name.strip(),
+#                        callback_data=f"spol#{reqstr1}#{k}",
+#                    )
+#                ]
+#                for k, movie_name in enumerate(movielist)
+#            ]
+#            btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
+#            btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+#            btn.insert(1, [
+#                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+#                InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+#                
+#            ])
             
         
             btn.insert(0, [ 
