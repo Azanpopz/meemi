@@ -2335,12 +2335,12 @@ async def advantage_spell_chok(client, msg):
                 same = False
                 if (i % 2) == 0:
                     if len(text) > 5 or len(str(pre_len["text_len"])) > 5:
-                        same = False
+                        same = True
                     else:
                         same = True
                 else:
                     pre_len["text_len"] = len(text)
-                    same = False
+                    same = True
 
                 i += 1
 
