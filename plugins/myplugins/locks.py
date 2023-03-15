@@ -1,7 +1,7 @@
 import logging.config
 from info import *
 from pyrogram.types import ChatPermissions, InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram import Client, filters, enums, mime_types
+from pyrogram import Client, filters, mime_types
 from database.connections_mdb import active_connection
 from database.locks_db import lock_db
 from pyrogram.errors import ChatAdminRequired, BadRequest
@@ -51,7 +51,7 @@ REST_GROUP = 2
 async def restr_members(bot, chat_id, members, messages=False, media=False, other=False, previews=False):
     for mem in members:
         if (
-                mem.status != enums.ChatMemberStatus.ADMINISTRATOR and
+                mem.status != 'administrator' and
                 mem.status != 'creator' and
                 str(mem.user.id) not in ADMINS and
                 mem.user.is_bot != True
@@ -91,7 +91,7 @@ async def locktypes(client, message):
     await message.reply_text("\n - ".join(["Locks: "] + list(LOCK_TYPES) + list(RESTRICTION_TYPES)), quote=True)
 
 
-@Client.on_message(filters.command("lock"))    # & ~filters.edited
+@Client.on_message(filters.command("lock") & filters.private)    # & ~filters.edited
 async def lock(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -99,7 +99,7 @@ async def lock(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == enums.ChatType.PRIVATE:
+    if chat_type.name == "PRIVATE":
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -113,7 +113,7 @@ async def lock(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -122,9 +122,9 @@ async def lock(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status != enums.ChatMemberStatus.ADMINISTRATOR
-            and st.status != enums.ChatMemberStatus.OWNER
-            and userid not in ADMINS
+            st.status.value != "administrator"
+            and st.status.value != "owner"
+            and str(userid) not in ADMINS
     ):
         return
 
@@ -194,7 +194,7 @@ async def lock(client, message):
         return
 
 
-@Client.on_message(filters.command("unlock"))    # & ~filters.edited
+@Client.on_message(filters.command("unlock") & filters.private)    # & ~filters.edited
 async def unlock(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -202,7 +202,7 @@ async def unlock(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == enums.ChatType.PRIVATE:
+    if chat_type.name == "PRIVATE":
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -216,7 +216,7 @@ async def unlock(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -225,9 +225,9 @@ async def unlock(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status != enums.ChatMemberStatus.ADMINISTRATOR
-            and st.status != enums.ChatMemberStatus.OWNER
-            and userid not in ADMINS
+            st.status.value != "administrator"
+            and st.status.value != "owner"
+            and str(userid) not in ADMINS
     ):
         return
 
@@ -323,7 +323,7 @@ async def build_lock_message(chat_id):
     return res
 
 
-@Client.on_message(filters.command("locks"))    # & ~filters.edited
+@Client.on_message(filters.command("locks") & filters.private)    # & ~filters.edited
 async def list_locks(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -331,7 +331,7 @@ async def list_locks(client, message):
     chat_type = message.chat.type
     args = message.text.html.split(None, 1)
 
-    if chat_type.name == enums.ChatType.PRIVATE:
+    if chat_type.name == "PRIVATE":
         grpid = await active_connection(str(userid))
         if grpid is not None:
             grp_id = grpid
@@ -345,7 +345,7 @@ async def list_locks(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+    elif chat_type.name in ["GROUP", "SUPERGROUP"]:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -354,9 +354,9 @@ async def list_locks(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            st.status != enums.ChatMemberStatus.ADMINISTRATOR
-            and st.status != enums.ChatMemberStatus.OWNER
-            and userid not in ADMINS
+            st.status.value != "administrator"
+            and st.status.value != "owner"
+            and str(userid) not in ADMINS
     ):
         return
 
