@@ -2282,9 +2282,7 @@ async def advantage_spell_chok(client, msg):
         
             if imdb and imdb.get('poster'):
                 try:
-                    buttons = [[
-                        InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-                    ]]
+                    
                     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
                     k = await msg.reply_photo(
                         photo=SPELL_IMG, 
@@ -2294,10 +2292,11 @@ async def advantage_spell_chok(client, msg):
                 except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                     pic = imdb.get('poster')
                     poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
-                except Exception as e:
-                    logger.exception(e)
+                    k = await msg.reply_photo(
+                        photo=SPELL_IMG, 
+                        caption=script.I_CUDNT.format(mv_rqst),
+                        reply_markup=InlineKeyboardMarkup(buttons)
+                    )                                              reply_markup=InlineKeyboardMarkup(btn))                
                     
             try:
                 movies = await get_poster(mv_rqst, bulk=True)
