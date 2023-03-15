@@ -1914,9 +1914,7 @@ async def auto_filter(client, msg, spoll=False):
         )
     if imdb and imdb.get('poster'):
         try:
-            btn = [[
-                InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
-            ]]                                      
+                                                  
             await msg.reply_photo(photo=imdb['poster'],
             reply_markup=InlineKeyboardMarkup(btn))
                     
