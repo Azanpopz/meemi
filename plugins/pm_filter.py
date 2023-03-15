@@ -2291,7 +2291,7 @@ async def advantage_spell_chok(client, msg):
         # await k.delete()
         return
     SPELL_CHECK[msg.id] = movielist
-    i = 2
+    i = 3
     pre_len = {}
     btn = []
     # movielist.sort(key=len)
@@ -2299,7 +2299,7 @@ async def advantage_spell_chok(client, msg):
         text = movie.strip()  # args[2]
         same = False
         if (i % 2) == 0:
-            if len(text) > 1 or len(str(pre_len["text_len"])) > 10:
+            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
                 same = False
             else:
                 same = True
@@ -2308,6 +2308,7 @@ async def advantage_spell_chok(client, msg):
             same = False
 
         i += 1
+
 
         btn.append([text, f"spolling#{user}#{k}", same])
 
@@ -2341,9 +2342,9 @@ def build_keyboard(buttons):
     keyb = []
     for btn in buttons:
         if btn[2] and keyb:
-            keyb[1].append(InlineKeyboardButton(btn[2], callback_data=btn[1]))
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
         else:
-            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[2])])
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
 
     return keyb
 
