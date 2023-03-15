@@ -1915,8 +1915,8 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                   
-            await msg.reply_photo(photo=imdb['poster'],
-            reply_markup=InlineKeyboardMarkup(btn))
+            await msg.reply_photo(photo=imdb['poster'])
+            
                     
                                                 
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
@@ -2347,14 +2347,9 @@ async def advantage_spell_chok(client, msg):
                 InlineKeyboardButton(f"🧭𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n⌚️{imdb.get('runtime')}", callback_data=f"spol#{reqstr1}#{k}")
                 ])
 
-                d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
-                                        f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
-                                        f"Did You Mean Any One Of These 👇🏻?",
-                                        reply_markup=InlineKeyboardMarkup(btn))
-                await asyncio.sleep(180)
-                await d_msg.delete()
+                await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                            reply_markup=InlineKeyboardMarkup(btn))
                 await msg.delete()
-
 
 def build_keyboard(buttons):
     keyb = []
