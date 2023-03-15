@@ -2333,30 +2333,30 @@ async def advantage_spell_chok(client, msg):
             for k, movie in enumerate(movielist):
                 text = movie.strip()  # args[2]
                 same = False
-            if (i % 2) == 0:
-                if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                    same = False
+                if (i % 2) == 0:
+                    if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                        same = False
+                    else:
+                        same = True
                 else:
-                    same = True
-            else:
-                pre_len["text_len"] = len(text)
-                same = False
+                    pre_len["text_len"] = len(text)
+                    same = False
 
-            i += 1
+                i += 1
 
-            btn.append([text, f"spolling#{user}#{k}", same])
+                btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-        btn.append(["❌ Close", f'spolling#{user}#close_spellcheck', False])
-        btn = build_keyboard(btn)
+            btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
+            btn = build_keyboard(btn)
 
-        btn.insert(0, [
-            InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UniversalFilmStudioo"),
-            InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
-        ])
+            btn.insert(0, [
+                InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UniversalFilmStudioo"),
+                InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
+            ])
 
-        btn.insert(0, [
-            InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
-        ])
+            btn.insert(0, [
+                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
+            ])
     #
     # btn.insert(0, [
     #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
