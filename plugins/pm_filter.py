@@ -2335,14 +2335,14 @@ async def advantage_spell_chok(client, msg):
                 same = False
                 if (i % 2) == 0:
                     if len(text) > 5 or len(str(pre_len["text_len"])) > 5:
-                        same = True
+                        same = False
                     else:
                         same = True
                 else:
                     pre_len["text_len"] = len(text)
-                    same = True
+                    same = False
 
-                i += 1
+                i += 2
 
                 btn.append([text, f"spol#{reqstr1}#{k}", same])
 
@@ -2355,12 +2355,12 @@ async def advantage_spell_chok(client, msg):
             ])
 
             btn.insert(0, [
-                InlineKeyboardButton(f"📽️{imdb.get('title')}📽️", url=imdb['url'])
+                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")
             ])
     
             btn.insert(0, [
-                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd"),
-                InlineKeyboardButton(f"🔰{imdb.get('cast')} - {imdb.get('year')}🔰", callback_data="imd")
+                InlineKeyboardButton(f"📽️{imdb.get('title')}📽️", url=imdb['url'])),
+                InlineKeyboardButton(f"🔰{imdb.get('cast')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
             ])
 
             d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
