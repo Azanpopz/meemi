@@ -9,7 +9,7 @@ async def admin_check(message: Message) -> bool:
     if not message.from_user:
         return False
 
-    if message.chat.type.name not in ["SUPERGROUP", "CHANNEL"]:
+    if message.chat.type.name not in [enums.ChatType.SUPERGROUP, enums.ChatType.CHANNEL]:
         return False
 
     if message.from_user.id in [
