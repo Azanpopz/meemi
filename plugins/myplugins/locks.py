@@ -113,7 +113,7 @@ async def lock(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+    elif chat_type.name in enums.ChatType.GROUP, enums.ChatType.SUPERGROUP:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -216,7 +216,7 @@ async def unlock(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+    elif chat_type.name in enums.ChatType.GROUP, enums.ChatType.SUPERGROUP:
         grp_id = message.chat.id
         title = message.chat.title
 
@@ -345,7 +345,7 @@ async def list_locks(client, message):
             await message.reply_text("I'm not connected to any groups!", quote=True)
             return
 
-    elif chat_type.name in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+    elif chat_type.name in enums.ChatType.GROUP, enums.ChatType.SUPERGROUP:
         grp_id = message.chat.id
         title = message.chat.title
 
