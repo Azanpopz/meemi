@@ -91,7 +91,7 @@ async def locktypes(client, message):
     await message.reply_text("\n - ".join(["Locks: "] + list(LOCK_TYPES) + list(RESTRICTION_TYPES)), quote=True)
 
 
-@Client.on_message(filters.command("lock") & filters.private)    # & ~filters.edited
+@Client.on_message(filters.command("lock"))    # & ~filters.edited
 async def lock(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -194,7 +194,7 @@ async def lock(client, message):
         return
 
 
-@Client.on_message(filters.command("unlock") & filters.private)    # & ~filters.edited
+@Client.on_message(filters.command("unlock"))    # & ~filters.edited
 async def unlock(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -323,7 +323,7 @@ async def build_lock_message(chat_id):
     return res
 
 
-@Client.on_message(filters.command("locks") & filters.private)    # & ~filters.edited
+@Client.on_message(filters.command("locks"))    # & ~filters.edited
 async def list_locks(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
