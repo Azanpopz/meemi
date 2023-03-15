@@ -2265,13 +2265,13 @@ async def advantage_spell_chok(client, msg):
     user = msg.from_user.id if msg.from_user else 0
     movielist = []
     gs_parsed = list(dict.fromkeys(gs_parsed))  # removing duplicates https://stackoverflow.com/a/7961425
-    if len(gs_parsed) > 6:
-        gs_parsed = gs_parsed[:6]
+    if len(gs_parsed) > 3:
+        gs_parsed = gs_parsed[:3]
     if gs_parsed:
         for mov in gs_parsed:
             imdb_s = await get_poster(mov.strip(), bulk=True)  # searching each keyword in imdb
             if imdb_s:
-                movielist += [movie.get('title') for movie in imdb_s]
+                movielist += [movie.get('title') [movie.get('year') for movie in imdb_s]
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
     if not movielist:
@@ -2291,15 +2291,15 @@ async def advantage_spell_chok(client, msg):
         # await k.delete()
         return
     SPELL_CHECK[msg.id] = movielist
-    i = 5
+    i = 2
     pre_len = {}
     btn = []
     # movielist.sort(key=len)
     for k, movie in enumerate(movielist):
         text = movie.strip()  # args[2]
         same = False
-        if (i % 7) == 2:
-            if len(text) > 4 or len(str(pre_len["text_len"])) > 8:
+        if (i % 2) == 0:
+            if len(text) > 1 or len(str(pre_len["text_len"])) > 10:
                 same = False
             else:
                 same = True
@@ -2307,7 +2307,7 @@ async def advantage_spell_chok(client, msg):
             pre_len["text_len"] = len(text)
             same = False
 
-        i += 10
+        i += 1
 
         btn.append([text, f"spolling#{user}#{k}", same])
 
@@ -2340,10 +2340,10 @@ async def advantage_spell_chok(client, msg):
 def build_keyboard(buttons):
     keyb = []
     for btn in buttons:
-        if btn[3] and keyb:
-            keyb[2].append(InlineKeyboardButton(btn[2], callback_data=btn[2]))
+        if btn[2] and keyb:
+            keyb[1].append(InlineKeyboardButton(btn[2], callback_data=btn[1]))
         else:
-            keyb.append([InlineKeyboardButton(btn[1], callback_data=btn[3])])
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[2])])
 
     return keyb
 
