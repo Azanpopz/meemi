@@ -1,4 +1,6 @@
 from pyrogram.types import Message
+from pyrogram.errors import ChatAdminRequired, BadRequest
+from pyrogram import Client, filters, enums, mime_types
 
 from Script import script
 
@@ -25,8 +27,8 @@ async def admin_check(message: Message) -> bool:
         user_id=user_id
     )
     admin_strings = [
-        "owner",
-        "administrator"
+        enums.ChatMemberStatus.OWNER,
+        enums.ChatMemberStatus.ADMINISTRATOR
     ]
     # https://git.colinshark.de/PyroBot/PyroBot/src/branch/master/pyrobot/modules/admin.py#L69
     if check_status.status.value not in admin_strings:
