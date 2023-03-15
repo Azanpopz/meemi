@@ -2359,7 +2359,7 @@ async def advantage_spell_chok(client, msg):
             ])
     
             btn.insert(0, [
-                InlineKeyboardButton(f"📽️{imdb.get('title')}📽️", url=imdb['url'])),
+                InlineKeyboardButton(f"📽️{imdb.get('title')}📽️", url=imdb['url']),
                 InlineKeyboardButton(f"🔰{imdb.get('cast')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
             ])
 
