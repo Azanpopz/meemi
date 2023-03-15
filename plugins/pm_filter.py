@@ -2355,12 +2355,12 @@ async def advantage_spell_chok(client, msg):
             ])
 
             btn.insert(0, [
-                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")
+                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
             ])
     
-            btn.insert(0, [
-                InlineKeyboardButton(f"📽️{imdb.get('title')}📽️", url=imdb['url']),
-                InlineKeyboardButton(f"🔰{imdb.get('cast')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
+            btn.insert(10, [
+                InlineKeyboardButton(f"📽️{imdb.get('title')}📽️", callback_data=f"spol#{reqstr1}#{k}"),
+                InlineKeyboardButton(f"📀𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n {imdb.get('runtime')}⌚️", callback_data=f"spol#{reqstr1}#{k}")
             ])
 
             d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
