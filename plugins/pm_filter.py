@@ -2227,126 +2227,161 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
-    query = re.sub(
-        r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-        "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
-    query = query.strip() + " movie"
-    g_s = await search_gagala(query)
-    g_s += await search_gagala(msg.text)
-    gs_parsed = []
-    if not g_s:
-        Send_message = await client.send_video(
-            chat_id=msg.chat.id,
-            video="https://telegra.ph/file/3e9f7db0c98e6b236c2c7.mp4",
-            caption=f"Couldn't Find This Movie.Please Try Again Or Search On Our "
-                    f"<b><a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a></b>. \n\n"
-                    f"ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺",
-            reply_to_message_id=msg.id
-        )
-        await asyncio.sleep(15)  # in seconds
-        await Send_message.delete()
-        await msg.delete()
-        # k = await msg.reply("I couldn't find any movie in that name.")
-        # await asyncio.sleep(8)
-        # await k.delete()
-        return
-    regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
-    gs = list(filter(regex.match, g_s))
-    gs_parsed = [re.sub(
-        r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)',
-        '', i, flags=re.IGNORECASE) for i in gs]
-    if not gs_parsed:
-        reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*",
-                         re.IGNORECASE)  # match something like Watch Niram | Amazon Prime
-        for mv in g_s:
-            match = reg.match(mv)
-            if match:
-                gs_parsed.append(match.group(1))
     user = msg.from_user.id if msg.from_user else 0
-    movielist = []
-    gs_parsed = list(dict.fromkeys(gs_parsed))  # removing duplicates https://stackoverflow.com/a/7961425
-    if len(gs_parsed) > 3:
-        gs_parsed = gs_parsed[:3]
-    if gs_parsed:
-        for mov in gs_parsed:
-            imdb_s = await get_poster(mov.strip(), bulk=True)  # searching each keyword in imdb
-            if imdb_s:
-                movielist += [f"🙂{movie.get('title')} {movie.get('year')}🙂"  for movie in imdb_s]
-    movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
-    movielist = list(dict.fromkeys(movielist))  # removing duplicates
-    if not movielist:
-        Send_message = await client.send_video(
-            chat_id=msg.chat.id,
-            video="https://telegra.ph/file/3e9f7db0c98e6b236c2c7.mp4",
-            caption=f"Couldn't Find This Movie.Please Try Again Or Search On Our "
-                    f"<b><a href='https://t.me/+uuLR9YwyRjg0ODQ0'>Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs</a></b>. \n\n"
-                    f"ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺",
-            reply_to_message_id=msg.id
-        )
-        await asyncio.sleep(15)  # in seconds
-        await Send_message.delete()
-        await msg.delete()
-        # k = await msg.reply("I Couldn't Find Anything Related To That. Check Your Spelling")
-        # await asyncio.sleep(8)
-        # await k.delete()
-        return
-    SPELL_CHECK[msg.id] = movielist
-    i = 3
-    pre_len = {}
-    btn = []
-    # movielist.sort(key=len)
-    for k, movie in enumerate(movielist):
-        text = movie.strip()  # args[2]
-        same = False
-        if (i % 2) == 0:
-            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+#    search = msg.text
+    mention=msg.from_user.mention 
+    message = msg
+    search = message.text
+    mv_id = msg.id
+    mv_rqst = msg.text
+    reqstr1 = msg.from_user.id if msg.from_user else 0
+    reqstr = await client.get_users(reqstr1)
+    settings = await get_settings(msg.chat.id)
+   
+    # plis contribute some common words
+    see = re.sub(
+        r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
+        "", msg.text, flags=re.IGNORECASE)  
+    RQST = see.strip()
+    see = see.strip() + " movie" 
+    
+    imdb = await get_poster(search) if IMDB else None
+      
+    if imdb:
+            caption = IMDB_TEMPLATE.format(
+                query=search,                
+                title=imdb['title'],
+                votes=imdb['votes'],
+                aka=imdb["aka"],
+                seasons=imdb["seasons"],
+                box_office=imdb['box_office'],
+                localized_title=imdb['localized_title'],
+                kind=imdb['kind'],
+                imdb_id=imdb["imdb_id"],
+                cast=imdb["cast"],
+                runtime=imdb["runtime"],
+                countries=imdb["countries"],
+                certificates=imdb["certificates"],
+                languages=imdb["languages"],
+                director=imdb["director"],
+                writer=imdb["writer"],
+                producer=imdb["producer"],
+                composer=imdb["composer"],
+                cinematographer=imdb["cinematographer"],
+                music_team=imdb["music_team"],
+                distributors=imdb["distributors"],
+                release_date=imdb['release_date'],
+                year=imdb['year'],
+                genres=imdb['genres'],
+                poster=imdb['poster'],
+                plot=imdb['plot'],
+                rating=imdb['rating'],
+                url=imdb['url'],
+                **locals()
+            )
+        
+            if imdb and imdb.get('poster'):
+                try:
+                    btn = [[
+                        InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+                    ]]                                      
+                    await msg.reply_photo(photo=imdb['poster'],
+                    reply_markup=InlineKeyboardMarkup(btn))
+                    
+                                                
+                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                    pic = imdb.get('poster')
+                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+                except Exception as e:
+                    logger.exception(e)
+                    
+            try:
+                movies = await get_poster(mv_rqst, bulk=True)
+            except Exception as e:
+                logger.exception(e)
+                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+                k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
+                await asyncio.sleep(8)
+                await k.delete()
+                return
+            movielist = []
+            if not movies:
+                reqst_gle = mv_rqst.replace(" ", "+")
+                btn = [[
+                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+                ]]
+                await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+                k = await msg.reply_photo(
+                    photo=SPELL_IMG, 
+                    caption=script.I_CUDNT.format(mv_rqst),
+                    reply_markup=InlineKeyboardMarkup(btn)
+                )
+                await asyncio.sleep(30)
+                await k.delete()
+       
+                return
+            movielist += [movie.get('title') for movie in movies]
+            movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]           
+            mv_rqst = msg.text
+            SPELL_CHECK[msg.id] = movielist
+            i = 1
+            pre_len = {}
+            btn = []
+    
+            for k, movie in enumerate(movielist):
+                text = movie.strip()  # args[2]
                 same = False
-            else:
-                same = True
-        else:
-            pre_len["text_len"] = len(text)
-            same = False
+                if (i % 5) == 1:
+                    if len(text) > 5 or len(str(pre_len["text_len"])) > 5:
+                        same = False
+                    else:
+                        same = True
+                else:
+                    pre_len["text_len"] = len(text)
+                    same = False
 
-        i += 1
+                i += 1
 
+                btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-        btn.append([text, f"spolling#{user}#{k}", same])
+            btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
+            btn = build_keyboard(btn)
 
-    btn.append(["❌ Close", f'spolling#{user}#close_spellcheck', False])
-    btn = build_keyboard(btn)
+            btn.insert(0, [
+                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+                InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+            ])
 
-    btn.insert(0, [
-        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UniversalFilmStudioo"),
-        InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
-    ])
+            btn.insert(0, [
+                InlineKeyboardButton(f"📽️{imdb.get('title')}📽️", url=imdb['url']")
+            ])
+    
+            btn.insert(0, [
+                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd"),
+                InlineKeyboardButton(f"🔰{imdb.get('cast')} - {imdb.get('year')}🔰", callback_data="imd")
+            ])
 
-    btn.insert(0, [
-        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
-    ])
-    #
-    # btn.insert(0, [
-    #     InlineKeyboardButton("⭕️ ᴘᴍ ᴍᴇ ⭕️", url="https://t.me/UFSChatBot"),
-    #     InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UFSNewRelease")
-    # ])
-
-    d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
-                            f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
-                            f"Did You Mean Any One Of These 👇🏻?",
-                            reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(180)
-    await d_msg.delete()
-    await msg.delete()
+            d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
+                                    f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
+                                    f"Did You Mean Any One Of These 👇🏻?",
+                                    reply_markup=InlineKeyboardMarkup(btn))
+            await asyncio.sleep(180)
+            await d_msg.delete()
+            await msg.delete()
 
 
 def build_keyboard(buttons):
     keyb = []
     for btn in buttons:
-        if btn[2] and keyb:
-            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        if btn[1] and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[2]))
         else:
             keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
 
     return keyb
+
 
 
 
