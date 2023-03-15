@@ -1881,7 +1881,7 @@ async def auto_filter(client, msg, spoll=False):
     imdb = await get_poster(searchh) if IMDB else None
 
     if imdb:
-        cap = IMDB_TEMPLATE.format(
+        cap = TEMPLATE.format(
             query=searchh,            
             title=imdb['title'],
             votes=imdb['votes'],
@@ -2282,13 +2282,15 @@ async def advantage_spell_chok(client, msg):
         
             if imdb and imdb.get('poster'):
                 try:
-                    btn = [[
-                        InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
-                    ]]                                      
-                    await msg.reply_photo(photo=imdb['poster'],
-                    reply_markup=InlineKeyboardMarkup(btn))
-                    
-                                                
+                    buttons = [[
+                        InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+                    ]]
+                    await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+                    k = await msg.reply_photo(
+                        photo=SPELL_IMG, 
+                        caption=script.I_CUDNT.format(mv_rqst),
+                        reply_markup=InlineKeyboardMarkup(buttons)
+                    )    
                 except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                     pic = imdb.get('poster')
                     poster = pic.replace('.jpg', "._V1_UX360.jpg")
@@ -2309,14 +2311,14 @@ async def advantage_spell_chok(client, msg):
             movielist = []
             if not movies:
                 reqst_gle = mv_rqst.replace(" ", "+")
-                btn = [[
+                buttons = [[
                     InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
                 ]]
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
                 k = await msg.reply_photo(
                     photo=SPELL_IMG, 
                     caption=script.I_CUDNT.format(mv_rqst),
-                    reply_markup=InlineKeyboardMarkup(btn)
+                    reply_markup=InlineKeyboardMarkup(buttons)
                 )
                 await asyncio.sleep(30)
                 await k.delete()
