@@ -2265,8 +2265,8 @@ async def advantage_spell_chok(client, msg):
     user = msg.from_user.id if msg.from_user else 0
     movielist = []
     gs_parsed = list(dict.fromkeys(gs_parsed))  # removing duplicates https://stackoverflow.com/a/7961425
-    if len(gs_parsed) > 3:
-        gs_parsed = gs_parsed[:3]
+    if len(gs_parsed) > 6:
+        gs_parsed = gs_parsed[:6]
     if gs_parsed:
         for mov in gs_parsed:
             imdb_s = await get_poster(mov.strip(), bulk=True)  # searching each keyword in imdb
@@ -2291,15 +2291,15 @@ async def advantage_spell_chok(client, msg):
         # await k.delete()
         return
     SPELL_CHECK[msg.id] = movielist
-    i = 1
+    i = 5
     pre_len = {}
     btn = []
     # movielist.sort(key=len)
     for k, movie in enumerate(movielist):
         text = movie.strip()  # args[2]
         same = False
-        if (i % 2) == 0:
-            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+        if (i % 7) == 2:
+            if len(text) > 4 or len(str(pre_len["text_len"])) > 8:
                 same = False
             else:
                 same = True
@@ -2307,7 +2307,7 @@ async def advantage_spell_chok(client, msg):
             pre_len["text_len"] = len(text)
             same = False
 
-        i += 1
+        i += 10
 
         btn.append([text, f"spolling#{user}#{k}", same])
 
@@ -2340,10 +2340,10 @@ async def advantage_spell_chok(client, msg):
 def build_keyboard(buttons):
     keyb = []
     for btn in buttons:
-        if btn[2] and keyb:
-            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        if btn[3] and keyb:
+            keyb[2].append(InlineKeyboardButton(btn[2], callback_data=btn[2]))
         else:
-            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+            keyb.append([InlineKeyboardButton(btn[1], callback_data=btn[3])])
 
     return keyb
 
