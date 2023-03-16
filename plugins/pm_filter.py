@@ -1864,8 +1864,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return await query.answer(MSG_ALRT)
 
     elif query.data == "auto":
-        searchh = message.text                 
-        reqstr1 = msg.from_user.id if msg.from_user else 0
+        searchh = query.message.text                 
+        reqstr1 = query.message.from_user.id if query.message.from_user else 0
         reqstr = await client.get_users(reqstr1)                 
         imdb = await get_poster(searchh) if IMDB else None       
         if imdb:
