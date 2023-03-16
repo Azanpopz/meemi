@@ -1133,7 +1133,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         req = query.from_user.id
         chat_id = query.message.chat.id
         message = query.message
-        cap = IMDB_TEMPLATE.format(title=imdb['title'], **locals())         
+                 
             
         k = await query.message.edit_text(f" {title} \n {query.from_user.mention}💕")
         await query.message.edit_reply_markup(reply_markup)
