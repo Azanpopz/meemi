@@ -322,6 +322,11 @@ Elsa
 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 ©{message.chat.title}"""
 
 
+    IMDB_TXT = """
+
+🏷 𝐓𝐢𝐭𝐥𝐞 : {title}
+
+"""
 
 
 
