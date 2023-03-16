@@ -1075,8 +1075,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await asyncio.sleep(600)
         await k.delete()
           
-    elif query.data == "imdb":
-     
+
 
 
     elif query.data.startswith("check"):
