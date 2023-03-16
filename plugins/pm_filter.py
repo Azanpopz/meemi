@@ -1948,20 +1948,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 logger.exception(e)
 
     elif query.data == "auto":
-        imdb = await get_poster(searchh) if IMDB else None                       
-        total = await Media.count_documents()
-        users = await db.total_users_count()
-        chats = await db.total_chat_count()
-        monsize = await db.get_db_size()
-        free = 536870912 - monsize
-        monsize = get_size(monsize)
-        free = get_size(free)
+        imdb = await get_poster(searchh) if IMDB else None                               
         caption = IMDB_TEMPLATE.format(
             title=query.imdb['title'],
             **locals()                 
         )               
                 
-        await query.answer(f"𝙁𝙚𝙩𝙘𝙝𝙞𝙣𝙜 𝙈𝙤𝙣𝙜𝙤𝘿𝙗 𝘿𝙖𝙩𝙖𝘽𝙖𝙨𝙚", show_alert=True)
+        await query.answer(IMDB_TEMPLATE, show_alert=True)
             
 
 
