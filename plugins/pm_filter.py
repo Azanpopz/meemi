@@ -398,7 +398,7 @@ async def auto_filter(bot, query, k):
     k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
     await asyncio.sleep(180)
     await k.delete()
-        return
+    return
     if movie_ == "auto":
         return await query.message.delete()
 
