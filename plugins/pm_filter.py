@@ -1059,8 +1059,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🔒ᴄʟᴏꜱᴇ🔒', callback_data='close_data')
         
         ]]
-        imdb = await get_poster(searchh) if IMDB else None
-        template =  IMDB_TEMPLATE
+        imdb = await get_poster(search) if IMDB else None
+        title = title=imdb['title']                
         message = query.message
         search = query.message.text
         user = await client.get_users(query.from_user.id)
@@ -1070,7 +1070,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         chat_id = query.message.chat.id
         message = query.message
 
-        k = await query.message.edit_text(f" {template} \n {query.from_user.mention}💕")
+        k = await query.message.edit_text(f" {title} \n {query.from_user.mention}💕")
         await query.message.edit_reply_markup(reply_markup)
         await query.answer("🔍Search")
         await asyncio.sleep(600)
