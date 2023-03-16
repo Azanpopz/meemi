@@ -411,8 +411,7 @@ async def advantage_spoll_choker(bot, query):
             mention = query.message.from_user.mention
             content = query.message.reply_to_message.text
             reqstr1 = query.from_user.id if query.from_user else 0
-            reqstr = await bot.get_users(reqstr1)
-            imdb = await get_poster(search) if IMDB else None              
+            reqstr = await bot.get_users(reqstr1)                         
             if NO_RESULTS_MSG:
                 mention = query.message.from_user.mention
                 content = query.message.reply_to_message.text
