@@ -381,15 +381,14 @@ async def next_page(bot, query):
     await query.answer()
 
 
+
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
     content = query.message.reply_to_message.text
     mention = query.message.from_user.mention
     mv_rqst = query.message.text
-    imdb = await get_poster(search) if IMDB else None    
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
-          
     if not movies:
         content = query.message.reply_to_message.text
         mention = query.message.from_user.mention
@@ -397,7 +396,7 @@ async def advantage_spoll_choker(bot, query):
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
-        return await query.answer(f"{query.from_user.first_name}", show_alert=True)
+        return await query.answer(f" {query.from_user.first_name} ", show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer(script.TOP_ALRT_MSG)
     k = await manual_filters(bot, query.message, text=movie)
@@ -407,11 +406,10 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-
             mention = query.message.from_user.mention
             content = query.message.reply_to_message.text
             reqstr1 = query.from_user.id if query.from_user else 0
-            reqstr = await bot.get_users(reqstr1)                         
+            reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
                 mention = query.message.from_user.mention
                 content = query.message.reply_to_message.text
