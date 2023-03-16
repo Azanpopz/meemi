@@ -1949,7 +1949,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "auto":
                                        
-        await query.answer(IMDB_TEMPLATE, show_alert=True)
+        await query.answer(script.IMDB_TXT.format(query.from_user.first_name), show_alert=True)
             
 
 
