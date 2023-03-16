@@ -1060,8 +1060,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         ]]
 #        imdb = await get_poster(search) if IMDB else None
-        title = imdb['title'] 
-#        title = {imdb.get('title')}          
+#        title = imdb['title'] 
+        title = {imdb.get('title')}          
         message = query.message
         search = query.message.text
         user = await client.get_users(query.from_user.id)
