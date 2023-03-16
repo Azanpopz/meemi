@@ -445,7 +445,7 @@ async def advantage_spoll_choker(bot, query):
             )
         
             if imdb and imdb.get('poster'):
-            if NO_RESULTS_MSG:
+                if NO_RESULTS_MSG:
                 mention = query.message.from_user.mention
                 content = query.message.reply_to_message.text
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
