@@ -426,44 +426,44 @@ async def advantage_spoll_choker(bot, query):
         try:
             btn = [[
                 InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
-        ]]                                      
-        await message.reply_text(text=imdb['title'],
-    reply_markup=InlineKeyboardMarkup(btn))
+            ]]                                      
+            await message.reply_text(text=imdb['title'],
+            reply_markup=InlineKeyboardMarkup(btn))
                     
-    await advantage_spell_chok(bot, query)
-    _, user, movie_ = query.data.split('#')
-    content = query.message.reply_to_message.text
-    mention = query.message.from_user.mention
-    mv_rqst = query.message.text
-    movies = SPELL_CHECK.get(query.message.reply_to_message.id)
-    if not movies:        
-        content = query.message.reply_to_message.text
-        mention = query.message.from_user.mention
-        return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
-    if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
-    if movie_ == "close_spellcheck":
-        return await query.answer(f" {query.from_user.first_name} {content} ", show_alert=True)
-    movie = movies[(int(movie_))]
-    await query.answer(script.TOP_ALRT_MSG)
-    k = await manual_filters(bot, query.message, text=movie)
-    if k == False:
-        files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
-        if files:
-            k = (movie, files, offset, total_results)
-            await auto_filter(bot, query, k)
-        else:
-            mention = query.message.from_user.mention
+            await advantage_spell_chok(bot, query)
+            _, user, movie_ = query.data.split('#')
             content = query.message.reply_to_message.text
-            reqstr1 = query.from_user.id if query.from_user else 0
-            reqstr = await bot.get_users(reqstr1)
-            if NO_RESULTS_MSG:
+            mention = query.message.from_user.mention
+            mv_rqst = query.message.text
+            movies = SPELL_CHECK.get(query.message.reply_to_message.id)
+        if not movies:        
+            content = query.message.reply_to_message.text
+            mention = query.message.from_user.mention
+            return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
+        if int(user) != 0 and query.from_user.id != int(user):
+            return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
+        if movie_ == "close_spellcheck":
+            return await query.answer(f" {query.from_user.first_name} {content} ", show_alert=True)
+        movie = movies[(int(movie_))]
+        await query.answer(script.TOP_ALRT_MSG)
+        k = await manual_filters(bot, query.message, text=movie)
+        if k == False:
+            files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
+            if files:
+                k = (movie, files, offset, total_results)
+                await auto_filter(bot, query, k)
+            else:
                 mention = query.message.from_user.mention
                 content = query.message.reply_to_message.text
-                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
-            await asyncio.sleep(180)
-            await k.delete()
+                reqstr1 = query.from_user.id if query.from_user else 0
+                reqstr = await bot.get_users(reqstr1)
+                if NO_RESULTS_MSG:
+                    mention = query.message.from_user.mention
+                    content = query.message.reply_to_message.text
+                    await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+                k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
+                await asyncio.sleep(180)
+                await k.delete()
             
 #             l = await query.message.edit(text=f"△ 𝙷𝚎𝚢 𝚜𝚘𝚗𝚊 `{message.from_user.first_name}` 😎,\n\nʏᴏᴜʀ ʀᴇQᴜᴇꜱᴛ ʜᴀꜱ ʙᴇᴇɴ ꜱᴇɴᴛ ᴛᴏ ᴏᴜʀ **ᴀᴅᴍɪɴ'ꜱ ᴅᴀꜱʜʙᴏᴀʀᴅ** !\nᴘʟᴇᴀꜱᴇ ᴋᴇᴇᴘ ꜱᴏᴍᴇ ᴘᴀᴛɪᴇɴᴄᴇ !\nᴛʜᴇʏ ᴡɪʟʟ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴀꜱ ꜱᴏᴏɴ ᴀꜱ ᴘᴏꜱꜱɪʙʟᴇ.\n\n➟ 📝𝘾𝙤𝙣𝙩𝙚𝙣𝙩 𝙣𝙖𝙢𝙚 : `{search}`\n➟ 👮𝙍𝙚𝙦𝙪𝙚𝙨𝙩𝙚𝙙 𝘽𝙮 : `{message.from_user.first_name}`\n\n༺ @nasrani_update ༻\n\n🦋・‥☆𝘼𝘿𝙈𝙞𝙉 𝙨𝙪𝙥𝙥𝙤𝙧𝙩☆‥・🦋\n╰┈➤・☆ @nasrani_update\n╰┈➤・☆ @nasrani_update",
 #                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("━ • │▌║  ᗩᗪᗪ ʍɛ 2 ᑌᖇ Ǥᖇᗝᑌᑭ  ║▌│ • ━", url=f'http://t.me/{temp.U_NAME}?startgroup=true')],[InlineKeyboardButton("✪ Dev Ch- ✪", url="https://t.me/nasrani_update"), InlineKeyboardButton("✪ ＹＴ ✪", url="https://t.me/nasrani_update"), InlineKeyboardButton("✪ Main Ch- ✪", url="https://t.me/nasrani_update")],[InlineKeyboardButton("╚»♥️Thank u MoviesAdda™♥️«╝", callback_data="close_data")]]))
