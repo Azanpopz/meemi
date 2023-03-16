@@ -416,7 +416,7 @@ async def advantage_spoll_choker(bot, query):
             k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
             await asyncio.sleep(180)
             await k.delete()
-     return await query.message.delete()
+            return await query.message.delete()
 
 
 
