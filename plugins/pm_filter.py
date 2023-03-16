@@ -1059,7 +1059,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🔒ᴄʟᴏꜱᴇ🔒', callback_data='close_data')
         
         ]]
-        
+        imdb = await get_poster(searchh) if IMDB else None
         template =  IMDB_TEMPLATE
         message = query.message
         search = query.message.text
