@@ -1106,13 +1106,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             url=imdb['url'],
             **locals()
         )
-    if imdb and imdb.get('poster'):
-        try:
                                                   
-           k = await query.message.edit_text(f" {query.from_user.mention}💕")
-           await query.message.edit_reply_markup(reply_markup)
-           await asyncio.sleep(3)
-           await k.delete()       
+        k = await query.message.edit_text(f" {query.from_user.mention}💕")
+        await query.message.edit_reply_markup(reply_markup)
+        await asyncio.sleep(3)
+        await k.delete()       
       
 
 
