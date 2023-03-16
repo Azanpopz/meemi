@@ -2190,7 +2190,7 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close", auto#{reqstr1}#auto_filter', False),
+                    InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
