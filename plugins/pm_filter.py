@@ -424,8 +424,7 @@ async def advantage_spoll_choker(bot, query):
                 rating=imdb['rating'],
                 url=imdb['url'],
                 **locals()
-            )
-        if imdb and imdb.get('poster'):
+            )        
             return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
         if int(user) != 0 and query.from_user.id != int(user):
             return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
