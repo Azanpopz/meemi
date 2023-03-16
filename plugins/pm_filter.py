@@ -387,10 +387,7 @@ async def advantage_spoll_choker(bot, query):
     imdb = await get_poster(search) if IMDB else None
     content = query.message.reply_to_message.text
     mention = query.message.from_user.mention
-    mv_rqst = query.message.text
-    movies = SPELL_CHECK.get(query.message.reply_to_message.id)
-    
-    imdb = await get_poster(search) if IMDB else None                      
+    mv_rqst = query.message.text                                 
     content = query.message.reply_to_message.text
     mention = query.message.from_user.mention
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
@@ -400,7 +397,7 @@ async def advantage_spoll_choker(bot, query):
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
-        return await query.answer(f"{query.from_user.first_name}", show_alert=True)
+        return await query.answer({query.from_user.first_name}, show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer(script.TOP_ALRT_MSG)
     k = await manual_filters(bot, query.message, text=movie)
