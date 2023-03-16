@@ -421,6 +421,7 @@ async def advantage_spoll_choker(bot, query):
         url=imdb['url'],
         **locals()
         )
+    else:
     
         _, user, movie_ = query.data.split('#')        
         content = query.message.reply_to_message.text
