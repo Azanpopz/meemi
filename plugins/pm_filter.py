@@ -1060,7 +1060,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         ]]
         
-        template IMDB_TEMPLATE
+        template =  IMDB_TEMPLATE
         message = query.message
         search = query.message.text
         user = await client.get_users(query.from_user.id)
