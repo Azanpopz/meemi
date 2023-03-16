@@ -613,53 +613,6 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
 #languages
 
 
-@Client.on_callback_query()
-async def cb_handler(client: Client, query: CallbackQuery):
-    if query.data == "close_data":
-        await query.message.delete()
-
-    elif query.data == "imo":
-        
-        imdb = await get_poster(search) if IMDB else None
-      
-        if imdb:
-            caption = IMDB_TEMPLATE.format(
-                query=imdb['title'],
-                title=imdb['title'],
-                votes=imdb['votes'],
-                aka=imdb["aka"],
-                seasons=imdb["seasons"],
-                box_office=imdb['box_office'],
-                localized_title=imdb['localized_title'],
-                kind=imdb['kind'],
-                imdb_id=imdb["imdb_id"],
-                cast=imdb["cast"],
-                runtime=imdb["runtime"],
-                countries=imdb["countries"],
-                certificates=imdb["certificates"],
-                languages=imdb["languages"],
-                director=imdb["director"],
-                writer=imdb["writer"],
-                producer=imdb["producer"],
-                composer=imdb["composer"],
-                cinematographer=imdb["cinematographer"],
-                music_team=imdb["music_team"],
-                distributors=imdb["distributors"],
-                release_date=imdb['release_date'],
-                year=imdb['year'],
-                genres=imdb['genres'],
-                poster=imdb['poster'],
-                plot=imdb['plot'],
-                rating=imdb['rating'],
-                url=imdb['url'],
-                **locals()
-            )
-                    
-        try:
-                                             
-           k = await query.message.edit_text("🤯🤯!!", quote=True)
-           await asyncio.sleep(223)
-           await k.delete()
 
 
 
@@ -1122,6 +1075,51 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await asyncio.sleep(600)
         await k.delete()
           
+    elif query.data == "imdb":
+        
+        search = query.message.text                 
+        reqstr1 = msg.from_user.id if msg.from_user else 0
+        reqstr = await client.get_users(reqstr1)   
+        imdb = await get_poster(searchh) if IMDB else None
+
+        imdb = await get_poster(search) if IMDB else None
+        if imdb:
+            caption = IMDB_TEMPLATE.format(
+                query=imdb['title'],
+                title=imdb['title'],
+                votes=imdb['votes'],
+                aka=imdb["aka"],
+                seasons=imdb["seasons"],
+                box_office=imdb['box_office'],
+                localized_title=imdb['localized_title'],
+                kind=imdb['kind'],
+                imdb_id=imdb["imdb_id"],
+                cast=imdb["cast"],
+                runtime=imdb["runtime"],
+                countries=imdb["countries"],
+                certificates=imdb["certificates"],
+                languages=imdb["languages"],
+                director=imdb["director"],
+                writer=imdb["writer"],
+                producer=imdb["producer"],
+                composer=imdb["composer"],
+                cinematographer=imdb["cinematographer"],
+                music_team=imdb["music_team"],
+                distributors=imdb["distributors"],
+                release_date=imdb['release_date'],
+                year=imdb['year'],
+                genres=imdb['genres'],
+                poster=imdb['poster'],
+                plot=imdb['plot'],
+                rating=imdb['rating'],
+                url=imdb['url'],
+                **locals()
+            )
+            if imdb and imdb.get('poster'):
+                try:
+                    await query.message.edit_text("Make s😅😅😅!!", quote=True)
+                    return await query.answer(MSG_ALRT)
+
 
 
     elif query.data.startswith("check"):
