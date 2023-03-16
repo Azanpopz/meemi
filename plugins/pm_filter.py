@@ -426,9 +426,9 @@ async def advantage_spoll_choker(bot, query):
         try:
             btn = [[
                 InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
-            ]]                                      
-            await msg.reply_photo(photo=imdb['poster'],
-            reply_markup=InlineKeyboardMarkup(btn))
+        ]]                                      
+        await msg.reply_photo(photo=imdb['poster'],
+    reply_markup=InlineKeyboardMarkup(btn))
                     
     await advantage_spell_chok(bot, query)
     _, user, movie_ = query.data.split('#')
