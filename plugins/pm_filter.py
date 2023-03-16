@@ -1060,7 +1060,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         ]]
         
-        
+        template IMDB_TEMPLATE
         message = query.message
         search = query.message.text
         user = await client.get_users(query.from_user.id)
@@ -1070,7 +1070,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         chat_id = query.message.chat.id
         message = query.message
 
-        k = await query.message.edit_text(f"{query.from_user.mention}💕")
+        k = await query.message.edit_text(f" {template} \n {query.from_user.mention}💕")
         await query.message.edit_reply_markup(reply_markup)
         await query.answer("🔍Search")
         await asyncio.sleep(600)
