@@ -424,13 +424,11 @@ async def advantage_spoll_choker(bot, query):
         )
     if imdb and imdb.get('poster'):
         try:
-            btn = [[
-                InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
-            ]]                                      
-            await message.reply_text(text=imdb['title'],
-            reply_markup=InlineKeyboardMarkup(btn))
+                                                  
+            await message.reply_text(text=imdb['title'])
+            
                     
-            await advantage_spell_chok(bot, query)
+            await advantage_spell_chok(bot, query):
             _, user, movie_ = query.data.split('#')
             content = query.message.reply_to_message.text
             mention = query.message.from_user.mention
