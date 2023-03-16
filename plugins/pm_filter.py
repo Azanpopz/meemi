@@ -1053,20 +1053,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-    elif query.data == "immd":
-        
-        if imdb:
-            caption = IMDB_TEMPLATE.format(
-                query=imdb['title'],
-                title=imdb['title'],
-                url=imdb['url'],
-                **locals()
-            )
-        if imdb and imdb.get('poster'):
-            try:
-                                                  
-                await query.answer(f"{imdb.get('title')}", show_alert=True)
-                
+    elif query.data == "auto":
+        await query.answer("f" {title}", show_alert=True)                
                     
                                                 
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
@@ -2193,7 +2181,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
                 ]
             )
 
@@ -2202,7 +2190,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
                 ]
             )
                 
@@ -2215,7 +2203,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close",f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
                 ]
             )
 
@@ -2224,7 +2212,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
                 ]
             )
     
