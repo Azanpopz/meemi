@@ -424,7 +424,7 @@ async def advantage_spoll_choker(bot, query):
             )
         
             if imdb and imdb.get('poster'):
-    if not movies:
+        if not movies:
         content = query.message.reply_to_message.text
         mention = query.message.from_user.mention
         return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
