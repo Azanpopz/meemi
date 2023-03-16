@@ -1053,10 +1053,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data.startswith("imd"):
+                
+        buttons = [[
+            InlineKeyboardButton('🗂️ᴜᴘʟᴏᴀᴅ🗂️', callback_data=f"upl#{query.from_user.id}")
+        ], [
+            InlineKeyboardButton('💡ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ💡', callback_data=f'unv#{query.from_user.id}'),
+            InlineKeyboardButton('🔒ᴄʟᴏꜱᴇ🔒', callback_data='close_data')
+        
+        ]]                 
+        message = query.message
+        search = query.message.text
+        user = await client.get_users(query.from_user.id)#        reply_markup = InlineKeyboardMarkup(buttons)
+        content = query.message.text
+        req = query.from_user.id
+        chat_id = query.message.chat.id
+        message = query.message
         searchh = message.text                 
         reqstr1 = message.from_user.id if message.from_user else 0
         reqstr = await client.get_users(reqstr1)
-        user = await client.get_users(query.from_user.id) 
+        user = await client.get_users(query.from_user.id)
+        reply_markup = InlineKeyboardMarkup(buttons)
         imdb = await get_poster(searchh) if IMDB else None
         if imdb:
             cap = IMDB_TEMPLATE.format(
@@ -1094,6 +1110,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         try:
                                                   
            k = await query.message.edit_text(f" {query.from_user.mention}💕")
+           await query.message.edit_reply_markup(reply_markup)
            await asyncio.sleep(3)
            await k.delete()       
       
