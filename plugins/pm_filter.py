@@ -1933,7 +1933,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if imdb and imdb.get('poster'):
             try:
                                                       
-                await query.message.reply_text(caption=caption,
+                await query.message.reply_text(caption=caption)
                 
                     
                                                 
