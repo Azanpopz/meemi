@@ -426,11 +426,9 @@ async def auto_filter(bot, query, k):
            **locals()
         )
 
-        if imdb and imdb.get('poster'):
-            await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
-            try:                                                              
-                    if movie_ == "auto":
-                        return await query.message.delete()
+        if movie_ == "auto":
+            return await query.message.delete()                                                                      
+                    
     
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
