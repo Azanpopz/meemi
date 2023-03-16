@@ -428,7 +428,7 @@ async def auto_filter(bot, query, k):
 
         if imdb and imdb.get('poster'):
             await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
-                try:                                                              
+            try:                                                              
                     if movie_ == "auto":
                         return await query.message.delete()
     
