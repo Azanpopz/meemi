@@ -1933,15 +1933,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if imdb and imdb.get('poster'):
             try:
                                                       
-                await msg.reply_photo(photo=imdb['poster'],
-                reply_markup=InlineKeyboardMarkup(btn))
+                await query.message.reply_text(caption=caption,
+                
                     
                                                 
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await msg.reply_photo(photo=imdb['poster'], cap=cap,
-                                                reply_markup=InlineKeyboardMarkup(btn))
+                await query.message.reply_photo(caption=caption)
+                                                
             except Exception as e:
                 logger.exception(e)
 
