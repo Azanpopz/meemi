@@ -1135,7 +1135,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         message = query.message
                  
             
-        k = await query.message.edit_text(f" {title} \n {query.from_user.mention}💕")
+        k = await query.message.edit_text(f" {query.from_user.mention}💕")
         await query.message.edit_reply_markup(reply_markup)
         await query.answer("🔍Search")
         await asyncio.sleep(600)
