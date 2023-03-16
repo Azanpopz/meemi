@@ -395,7 +395,7 @@ async def advantage_spoll_choker(bot, query):
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
-        return await query.message.delete()
+        return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer(script.TOP_ALRT_MSG)
     k = await manual_filters(bot, query.message, text=movie)
@@ -2368,7 +2368,7 @@ async def advantage_spell_chok(client, msg):
 
                     btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-                btn.append(["❌ Close", callback_data=f'check'])
+                btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
                 btn = build_keyboard(btn)
 
                 btn.insert(0, [
