@@ -1073,7 +1073,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reqstr = await client.get_users(reqstr1)
         user = await client.get_users(query.from_user.id)
         reply_markup = InlineKeyboardMarkup(buttons)
-        imdb = await get_poster(searchh) if IMDB else None
+#        imdb = await get_poster(searchh) if IMDB else None
         if imdb:
             cap = IMDB_TEMPLATE.format(
             query=searchh,            
