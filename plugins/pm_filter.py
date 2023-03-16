@@ -1930,10 +1930,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 url=imdb['url'],
                 **locals()
             )        
-        if imdb.get('poster'):
+        if imdb and imdb.get('poster'):
             try:
-                await query.answer("🥺🥺", show_alert=True)
-
+                                                      
+                await msg.reply_photo(photo=imdb['poster'],
+                reply_markup=InlineKeyboardMarkup(btn))
+                    
+                                                
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                pic = imdb.get('poster')
+                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                await msg.reply_photo(photo=imdb['poster'], cap=cap,
+                                                reply_markup=InlineKeyboardMarkup(btn))
+            except Exception as e:
+                logger.exception(e)
 
 
     elif query.data == "rfrsh":
@@ -2082,23 +2092,22 @@ async def auto_filter(client, msg, spoll=False):
             url=imdb['url'],
             **locals()
         )
-        if imdb.get('poster'):
-            try:
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
+    if imdb and imdb.get('poster'):
+        try:
+            btn = [[
+                InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+            ]]                                      
+            await msg.reply_photo(photo=imdb['poster'],
+            reply_markup=InlineKeyboardMarkup(btn))
+                    
+                                                
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            pic = imdb.get('poster')
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            await msg.reply_photo(photo=imdb['poster'], cap=cap,
                                                 reply_markup=InlineKeyboardMarkup(btn))
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
-            except Exception as e:
-                logger.exception(e)
-                await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
-                                          disable_web_page_preview=False)
-            await query.message.delete()
-        else:
-            await query.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await query.answer()                              
+        except Exception as e:
+            logger.exception(e)                              
 
         
     if not spoll:
