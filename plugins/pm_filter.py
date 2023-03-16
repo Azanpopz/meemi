@@ -425,14 +425,8 @@ async def auto_filter(bot, query, k):
             url=imdb['url'],
             **locals()
         )
-    if imdb and imdb.get('poster'):
-        try:
-                                                  
-            k = await msg.reply_photo(photo=imdb['poster'])
-            await asyncio.sleep(3)
-            await k.delete()
-        if movie_ == "auto":
-            return await query.message.delete()
+    if movie_ == "auto":
+        return await query.message.delete()
 
 
 @Client.on_callback_query(filters.regex(r"^spol"))
