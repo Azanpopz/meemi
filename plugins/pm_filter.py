@@ -425,14 +425,15 @@ async def auto_filter(bot, query, k):
             url=imdb['url'],
            **locals()
         )
-       
-        content = query.message.reply_to_message.text
-        mention = query.message.from_user.mention
-        return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
-    if int(user) != 0 and query.from_user.id != int(user):
+    if imdb and imdb.get('poster'):
+        try:      
+            content = query.message.reply_to_message.text
+            mention = query.message.from_user.mention
+            return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
+        if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
-    if movie_ == "auto":
-        return await query.message.delete()
+        if movie_ == "auto":
+            return await query.message.delete()
     
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
