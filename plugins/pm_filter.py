@@ -1069,7 +1069,42 @@ async def cb_handler(client: Client, query: CallbackQuery):
         req = query.from_user.id
         chat_id = query.message.chat.id
         message = query.message
-        k = await query.message.edit_text(f"{query.from_user.mention}💕")
+        imdb = await get_poster(searchh) if IMDB else None
+
+        if imdb:
+            cap = IMDB_TEMPLATE.format(
+            query=searchh,            
+            title=imdb['title'],
+            votes=imdb['votes'],
+            aka=imdb["aka"],
+            seasons=imdb["seasons"],
+            box_office=imdb['box_office'],
+            localized_title=imdb['localized_title'],
+            kind=imdb['kind'],
+            imdb_id=imdb["imdb_id"],
+            cast=imdb["cast"],
+            runtime=imdb["runtime"],
+            countries=imdb["countries"],
+            certificates=imdb["certificates"],
+            languages=imdb["languages"],
+            director=imdb["director"],
+            writer=imdb["writer"],
+            producer=imdb["producer"],
+            composer=imdb["composer"],
+            cinematographer=imdb["cinematographer"],
+            music_team=imdb["music_team"],
+            distributors=imdb["distributors"],
+            release_date=imdb['release_date'],
+            year=imdb['year'],
+            genres=imdb['genres'],
+            poster=imdb['poster'],
+            plot=imdb['plot'],
+            rating=imdb['rating'],
+            url=imdb['url'],
+            **locals()
+        )
+
+        k = await query.message.edit_text(f" {title} {query.from_user.mention}💕")
         await query.message.edit_reply_markup(reply_markup)
         await query.answer("🔍Search")
         await asyncio.sleep(600)
@@ -2077,7 +2112,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imo')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
             )
 
@@ -2086,7 +2121,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imo')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
             )
                 
@@ -2099,7 +2134,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imo')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
             )
 
@@ -2108,7 +2143,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imo')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
             )
     
