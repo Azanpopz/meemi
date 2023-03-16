@@ -380,55 +380,7 @@ async def next_page(bot, query):
         pass
     await query.answer()
 
-@Client.on_callback_query(filters.regex(r"^auto"))
-async def auto_filter(bot, query, k):
-    _, user, movie_ = query.data.split('#')
-    mention = query.message.from_user.mention
-    content = query.message.reply_to_message.text
-    reqstr1 = query.from_user.id if query.from_user else 0
-    reqstr = await bot.get_users(reqstr1)
-    message = msg
-    searchh = message.text                 
-    reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(searchh) if IMDB else None
 
-    if imdb:
-        cap = IMDB_TEMPLATE.format(
-            query=searchh,            
-            title=imdb['title'],
-            votes=imdb['votes'],
-            aka=imdb["aka"],
-            seasons=imdb["seasons"],
-            box_office=imdb['box_office'],
-            localized_title=imdb['localized_title'],
-            kind=imdb['kind'],
-            imdb_id=imdb["imdb_id"],
-            cast=imdb["cast"],
-            runtime=imdb["runtime"],
-            countries=imdb["countries"],
-            certificates=imdb["certificates"],
-            languages=imdb["languages"],
-            director=imdb["director"],
-            writer=imdb["writer"],
-            producer=imdb["producer"],
-            composer=imdb["composer"],
-            cinematographer=imdb["cinematographer"],
-            music_team=imdb["music_team"],
-            distributors=imdb["distributors"],
-            release_date=imdb['release_date'],
-            year=imdb['year'],
-            genres=imdb['genres'],
-            poster=imdb['poster'],
-            plot=imdb['plot'],
-            rating=imdb['rating'],
-            url=imdb['url'],
-           **locals()
-        )
-
-        if movie_ == "auto":
-            return await query.message.delete()                                                                      
-                    
     
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
@@ -1054,7 +1006,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "auto":
-        await query.answer(f"🙂🙂", show_alert=True)                
+        await query.answer(f"🙂🙂 {title}", show_alert=True)                
                     
                                                 
             
