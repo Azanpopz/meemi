@@ -1071,8 +1071,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         message = query.message
         imdb = await get_poster(searchh) if IMDB else None
 
-        if imdb:
-            cap = IMDB_TEMPLATE.format(
+        
+        cap = IMDB_TEMPLATE.format(
             query=searchh,            
             title=imdb['title'],
             votes=imdb['votes'],
@@ -1104,7 +1104,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             **locals()
         )
 
-        k = await query.message.edit_text(f" {title} {query.from_user.mention}💕")
+        k = await query.message.edit_text(f"{query.from_user.mention}💕")
         await query.message.edit_reply_markup(reply_markup)
         await query.answer("🔍Search")
         await asyncio.sleep(600)
