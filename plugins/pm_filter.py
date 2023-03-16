@@ -1006,7 +1006,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "auto":
-        await query.answer(f"🙂🙂 {title}", show_alert=True)                
+        await query.answer(f"IMDB_TEMPLATE", show_alert=True)                
                     
                                                 
             
