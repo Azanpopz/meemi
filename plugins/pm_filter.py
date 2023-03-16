@@ -380,7 +380,7 @@ async def next_page(bot, query):
         pass
     await query.answer()
 
-@Client.on_callback_query(filters.regex(r"^auto_filter"))
+@Client.on_callback_query(filters.regex(r"^auto"))
 async def auto_filter(bot, query, k):
     _, user, movie_ = query.data.split('#')
     mention = query.message.from_user.mention
@@ -2190,7 +2190,7 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close", auto_filter#{reqstr1}#auto', False),
+                    InlineKeyboardButton("❌ Close", auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
@@ -2199,7 +2199,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close", f'auto_filter#{reqstr1}#auto', False),
+                    InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
@@ -2212,7 +2212,7 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close",f'auto_filter#{reqstr1}#auto', False),
+                    InlineKeyboardButton("❌ Close",f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
@@ -2221,7 +2221,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close", f'auto_filter#{reqstr1}#auto', False),
+                    InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'imd')
                 ]
