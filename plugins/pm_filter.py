@@ -429,7 +429,7 @@ async def advantage_spoll_choker(bot, query):
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
-        return await query.answer(f" {query.from_user.first_name} {content}  {title} ", show_alert=True)
+        return await query.answer(f" {query.from_user.first_name} {content} ", show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer(script.TOP_ALRT_MSG)
     k = await manual_filters(bot, query.message, text=movie)
