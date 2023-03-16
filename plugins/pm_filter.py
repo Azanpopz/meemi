@@ -1052,7 +1052,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-    elif query.data.startswith("imd"):
+    elif query.data.startswith("imdo"):
                 
         buttons = [[
             InlineKeyboardButton('🗂️ᴜᴘʟᴏᴀᴅ🗂️', callback_data=f"upl#{query.from_user.id}")
@@ -1104,7 +1104,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             plot=imdb['plot'],
             rating=imdb['rating'],
             url=imdb['url'],
-            **locals()
+            
         )
                                                   
         k = await query.message.edit_text(f" {query.from_user.mention}💕")
@@ -1116,33 +1116,30 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-#    elif query.data.startswith("imomd"):
+    elif query.data.startswith("imd"):
         
-#        buttons = [[
-#            InlineKeyboardButton('🗂️ᴜᴘʟᴏᴀᴅ🗂️', callback_data=f"upl#{query.from_user.id}")
-#        ], [
-#            InlineKeyboardButton('💡ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ💡', callback_data=f'unv#{query.from_user.id}'),
-#            InlineKeyboardButton('🔒ᴄʟᴏꜱᴇ🔒', callback_data='close_data')
-#        
-#        ]]
-#        imdb = await get_poster(searchh) if IMDB else None
-#        imdb = await get_poster(search) if IMDB else None
-#        title = imdb['title'] 
-#        title = {imdb.get('title')}          
-#        message = query.message
-#        search = query.message.text
-#        user = await client.get_users(query.from_user.id)
-#        reply_markup = InlineKeyboardMarkup(buttons)
-#        content = query.message.text
-#        req = query.from_user.id
-#        chat_id = query.message.chat.id
-#        message = query.message
-#
-#        k = await query.message.edit_text(f" {title} \n {query.from_user.mention}💕")
-#        await query.message.edit_reply_markup(reply_markup)
-#        await query.answer("🔍Search")
-#        await asyncio.sleep(600)
-#        await k.delete()
+        buttons = [[
+            InlineKeyboardButton('🗂️ᴜᴘʟᴏᴀᴅ🗂️', callback_data=f"upl#{query.from_user.id}")
+        ], [
+            InlineKeyboardButton('💡ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ💡', callback_data=f'unv#{query.from_user.id}'),
+            InlineKeyboardButton('🔒ᴄʟᴏꜱᴇ🔒', callback_data='close_data')
+        
+        ]]
+                 
+        
+        user = await client.get_users(query.from_user.id)
+        reply_markup = InlineKeyboardMarkup(buttons)
+        content = query.message.text
+        req = query.from_user.id
+        chat_id = query.message.chat.id
+        message = query.message
+        cap = IMDB_TEMPLATE.format(title=imdb['title'], **locals())         
+            
+        k = await query.message.edit_text(f" {title} \n {query.from_user.mention}💕")
+        await query.message.edit_reply_markup(reply_markup)
+        await query.answer("🔍Search")
+        await asyncio.sleep(600)
+        await k.delete()
           
 
 
