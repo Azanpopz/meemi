@@ -654,8 +654,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 url=imdb['url'],
                 **locals()
             )
-        else:
-            
+                    
         try:
                                              
            k = await query.message.edit_text("🤯🤯!!", quote=True)
