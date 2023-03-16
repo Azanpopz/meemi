@@ -393,6 +393,7 @@ async def advantage_spoll_choker(bot, query):
     imdb = await get_poster(search) if IMDB else None                      
     content = query.message.reply_to_message.text
     mention = query.message.from_user.mention
+    movies = SPELL_CHECK.get(query.message.reply_to_message.id)
 #    if imdb:
     caption = IMDB_TEMPLATE.format(
         query=search,                
