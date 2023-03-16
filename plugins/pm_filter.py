@@ -383,8 +383,16 @@ async def next_page(bot, query):
 
 @Client.on_callback_query(filters.regex(r"^auto_filter"))
 async def auto_filter(bot, query, k):
+    
+    _, user, movie_ = query.data.split('#')
+    content = query.message.reply_to_message.text
+    mention = query.message.from_user.mention
+    mv_rqst = query.message.text
+    mention = query.message.from_user.mention
+    content = query.message.reply_to_message.text
+    reqstr1 = query.from_user.id if query.from_user else 0
+    reqstr = await bot.get_users(reqstr1)
     await auto_filter(bot, query, k)
-else:    
     _, user, movie_ = query.data.split('#')
     content = query.message.reply_to_message.text
     mention = query.message.from_user.mention
