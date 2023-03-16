@@ -1864,16 +1864,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return await query.answer(MSG_ALRT)
 
     elif query.data == "auto":
-        i, movie = query.data.split('#')
-        imdb = await get_poster(query=movie, id=True)
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{imdb.get('title')}",
-                    url=imdb['url'],
-                )
-            ]
-        ]
+        _, user, movie_ = query.data.split('#')
+        int(user) != 0 and query.from_user.id != int(user):
+        imdb = await get_poster(query=movie, id=True)       
         if imdb:
             caption = IMDB_TEMPLATE.format(
                 query=imdb['title'],
@@ -1905,26 +1898,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 rating=imdb['rating'],
                 url=imdb['url'],
                 **locals()
-            )
-        else:
-            caption = "No Results"
+            )        
         if imdb.get('poster'):
             try:
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
-            except Exception as e:
-                logger.exception(e)
-                await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
-                                          disable_web_page_preview=False)
-            await query.message.delete()
-        else:
-            await query.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await query.answer()
+                await query.answer("🥺🥺", show_alert=True)
 
 
 
