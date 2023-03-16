@@ -389,10 +389,7 @@ async def advantage_spoll_choker(bot, query):
     mention = query.message.from_user.mention
     mv_rqst = query.message.text
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
-    if not movies:
-        imdb = await get_poster(search) if IMDB else None
-        content = query.message.reply_to_message.text
-        mention = query.message.from_user.mention
+    imdb = await get_poster(search) if IMDB else None
     if imdb:
         caption = IMDB_TEMPLATE.format(
             query=search,                
@@ -425,7 +422,9 @@ async def advantage_spoll_choker(bot, query):
             url=imdb['url'],
             **locals()
         )
-        
+    if not movies:        
+        content = query.message.reply_to_message.text
+        mention = query.message.from_user.mention
         return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
