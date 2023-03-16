@@ -1863,7 +1863,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.edit_text("Make s😅😅😅!!", quote=True)
                 return await query.answer(MSG_ALRT)
 
-    elif query.data == "auto":
+    elif query.data == "autos":
         searchh = query.message.text                 
         reqstr1 = query.message.from_user.id if query.message.from_user else 0
         reqstr = await client.get_users(reqstr1)                 
@@ -1946,6 +1946,32 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                                 
             except Exception as e:
                 logger.exception(e)
+
+    elif query.data == "auto":
+        await query.answer("𝙁𝙚𝙩𝙘𝙝𝙞𝙣𝙜 𝙈𝙤𝙣𝙜𝙤𝘿𝙗 𝘿𝙖𝙩𝙖𝘽𝙖𝙨𝙚")
+        buttons = [[
+            InlineKeyboardButton('ʙᴀᴄᴋ', callback_data='start'),
+            InlineKeyboardButton('ʀᴇғʀᴇsʜ', callback_data='rfrsh')
+        ]]
+        
+        reply_markup = InlineKeyboardMarkup(buttons)
+        total = await Media.count_documents()
+        users = await db.total_users_count()
+        chats = await db.total_chat_count()
+        monsize = await db.get_db_size()
+        free = 536870912 - monsize
+        monsize = get_size(monsize)
+        free = get_size(free)
+        await query.message.edit_text(
+            text=script.STATUS_TXT.format(total, users, chats, monsize, free),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+
+
+
+
+
 
 
     elif query.data == "rfrsh":
