@@ -1948,12 +1948,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 logger.exception(e)
 
     elif query.data == "auto":
-        imdb = await get_poster(searchh) if IMDB else None                               
-        caption = IMDB_TEMPLATE.format(
-            title=query.imdb['title'],
-            **locals()                 
-        )               
-                
+                                       
         await query.answer(IMDB_TEMPLATE, show_alert=True)
             
 
