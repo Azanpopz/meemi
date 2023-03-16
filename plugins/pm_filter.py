@@ -1809,8 +1809,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             if imdb and imdb.get('poster'):
               
-            await query.message.edit_text("Make s😅😅😅!!", quote=True)
-            return await query.answer(MSG_ALRT)
+                await query.message.edit_text("Make s😅😅😅!!", quote=True)
+                return await query.answer(MSG_ALRT)
 
 
 
