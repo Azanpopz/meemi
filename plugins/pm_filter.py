@@ -421,8 +421,12 @@ async def advantage_spoll_choker(bot, query):
         url=imdb['url'],
         **locals()
         )
-    try:
-        
+    
+        _, user, movie_ = query.data.split('#')        
+        content = query.message.reply_to_message.text
+        mention = query.message.from_user.mention
+        mv_rqst = query.message.text
+        movies = SPELL_CHECK.get(query.message.reply_to_message.id)
         if not movies:
             content = query.message.reply_to_message.text
             mention = query.message.from_user.mention
