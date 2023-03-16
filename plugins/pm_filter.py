@@ -434,8 +434,8 @@ async def auto_filter(bot, query, k):
             content = query.message.reply_to_message.text
             mention = query.message.from_user.mention
                 
-        if movie_ == "auto":
-            return await query.message.delete()
+            if movie_ == "auto":
+                return await query.message.delete()
     
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
