@@ -2207,7 +2207,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', callback_data=f'auto')
                 ]
             )
 
@@ -2216,7 +2216,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', callback_data=f'auto')
                 ]
             )
                 
@@ -2229,7 +2229,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close",f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', callback_data=f'auto')
                 ]
             )
 
@@ -2238,7 +2238,7 @@ async def auto_filter(client, msg, spoll=False):
                 [
                     InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
                     InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'auto')
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', callback_data=f'auto')
                 ]
             )
     
