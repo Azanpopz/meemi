@@ -1864,8 +1864,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return await query.answer(MSG_ALRT)
 
     elif query.data == "auto":
-        _, user, movie_ = query.data.split('#')
-        int(user) != 0 and query.from_user.id != int(user):
+        _, user, movie_ = query.data.split('#')       
         imdb = await get_poster(query=movie, id=True)       
         if imdb:
             caption = IMDB_TEMPLATE.format(
