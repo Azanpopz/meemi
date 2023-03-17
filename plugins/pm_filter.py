@@ -2157,7 +2157,8 @@ async def auto_filter(client, msg, spoll=False):
             ]
         else:
 
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", url=f"https://www.google.com/search?q={reqst_gle}")],[InlineKeyboardButton("🔐𝐂𝐋𝐎𝐒𝐄🔐", callback_data="close_data")]]))
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", url=f"https://www.google.com/search?q={reqst_gle}")],
+                        [InlineKeyboardButton("🔐𝐂𝐋𝐎𝐒𝐄🔐", callback_data="close_data")]])
         
             
 
