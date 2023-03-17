@@ -1969,12 +1969,18 @@ async def auto_filter(client, msg, spoll=False):
         try:
                                                               
                                                   
-            k = await msg.reply_text(f"LOADING....")
+            k = await msg.reply_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
                     
 #            await msg.delete()                                   
-                                      
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            pic = imdb.get('poster')
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            await msg.reply_text(text=f"LOADING....")
+        except Exception as e:
+            logger.exception(e)
+                                                                    
 
         
     if not spoll:
