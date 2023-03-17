@@ -1995,7 +1995,7 @@ async def auto_filter(client, msg, spoll=False):
             
             
             await px.delete()
-            await msg.reply_photo(photo=1,quote=True,reply_markup=BTN)                                        
+            await msg.reply_photo(photo=I,quote=True,reply_markup=BTN)                                        
             k = await msg.edit_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
