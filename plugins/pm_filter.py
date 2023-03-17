@@ -1976,9 +1976,9 @@ async def auto_filter(client, msg, spoll=False):
                 photo=SPELL_IMG, 
                 caption=script.I_CUDNT.format(mv_rqst),
                 reply_markup=InlineKeyboardMarkup(button)
-                )
-                await asyncio.sleep(30)
-                await k.delete()
+            )
+            await asyncio.sleep(30)
+            await k.delete()
                                                 
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
