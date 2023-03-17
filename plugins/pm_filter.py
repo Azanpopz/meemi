@@ -45,7 +45,7 @@ BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
 
-BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', 'india')]])
+BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', callback_data=f'spol#{reqstr1}#india')]])
 
 A = """𝐒𝐞𝐚........................."""
 B = """𝐒𝐞𝐚𝐫𝐜........................"""
@@ -413,7 +413,7 @@ async def advantage_spoll_choker(bot, query):
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     if movie_ == "india":
-        return await query.answer({query.from_user.first_name}, show_alert=True)
+        return await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer(script.TOP_ALRT_MSG)
     k = await manual_filters(bot, query.message, text=movie)
