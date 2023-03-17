@@ -2356,7 +2356,7 @@ async def advantage_spell_chok(client, msg):
                           "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
                     RQST = query.strip()
                     query = query.strip() + " movie"
-                    movies = await get_poster(mv_rqst, bulk=True)
+                    movies = imdb = await get_poster(search) if IMDB else None
                 except Exception as e:
                     logger.exception(e)
                     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
