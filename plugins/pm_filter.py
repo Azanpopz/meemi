@@ -1933,7 +1933,8 @@ async def auto_filter(client, msg, spoll=False):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(searchh) if IMDB else None
-
+    reqst_gle = mv_rqst.replace(" ", "+")
+    mv_rqst = msg.text
     if imdb:
         cap = IMDB_TEMPLATE.format(
             query=searchh,            
@@ -1968,6 +1969,7 @@ async def auto_filter(client, msg, spoll=False):
         )
     if imdb and imdb.get('poster'):
         try:
+            reqst_gle = mv_rqst.replace(" ", "+")
             button = [[
                 InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
             ]]
