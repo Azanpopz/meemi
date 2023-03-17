@@ -2157,8 +2157,8 @@ async def auto_filter(client, msg, spoll=False):
             ]
         else:
 
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", url=f"https://www.google.com/search?q={reqst_gle}")],
-                        [InlineKeyboardButton("🔐𝐂𝐋𝐎𝐒𝐄🔐", callback_data="close_data")]])
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"🐠{file.file_name}", callback_data=f'{pre}#{file.file_id}')],
+                        [InlineKeyboardButton(f"🐠{get_size(file.file_size)}🐠", callback_data=f'{pre}#{file.file_id}')]])
         
             
 
