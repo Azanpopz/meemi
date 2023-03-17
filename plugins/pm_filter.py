@@ -436,6 +436,14 @@ async def advantage_spoll_choker(bot, query):
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
+                _, user, movie_ = query.data.split('#')
+                searchh = query.msg.text                 
+                reqstr1 = msg.from_user.id if msg.from_user else 0
+                reqstr = await client.get_users(reqstr1)
+                mention = query.msg.from_user.mention
+                content = query.msg.reply_to_msg.text
+                reqstr1 = query.from_user.id if query.from_user else 0
+                reqstr = await bot.get_users(reqstr1)
                 mention = query.message.from_user.mention
                 content = query.message.reply_to_message.text
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
@@ -481,7 +489,7 @@ async def advantage_spoll_choker(bot, query):
             ]]                                      
             await msg.reply_photo(photo=imdb['poster'],
             reply_markup=InlineKeyboardMarkup(btn))
-        if not movies:
+        
             _, user, movie_ = query.data.split('#')
             searchh = query.msg.text                 
             reqstr1 = msg.from_user.id if msg.from_user else 0
