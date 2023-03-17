@@ -1969,7 +1969,7 @@ async def auto_filter(client, msg, spoll=False):
         try:
                                                               
                                                   
-            k = await msg.reply_text(LOADING....)
+            k = await msg.reply_text(f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
                     
