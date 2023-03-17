@@ -47,35 +47,17 @@ FILTER_MODE = {}
 
 BTN = InlineKeyboardMarkup([[InlineKeyboardButton('✨ 🇮🇳 ❤️ INDIA ❤️ 🇮🇳✨', url='https://india.gov.in')]])
 
-A = """**........❤️🇮🇳❤️.........**"""
-
-B = """**⣿⣿⣿⣿⣿⣍⠀⠉⠻⠟⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿**"""
-
-C = """**⣿⣿⣿⣿⣿⣍⠀⠉⠻⠟⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿**"""
-
-D = """**⣿⣿⣿⣿⣿⣍⠀⠉⠻⠟⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠓⠀⠀⢒⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿**"""
-
-E = """**⣿⣿⣿⣿⣿⣍⠀⠉⠻⠟⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠓⠀⠀⢒⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿**"""
-
-F = """**⣿⣿⣿⣿⣿⣍⠀⠉⠻⠟⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠓⠀⠀⢒⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿
-⣿⡿⠋⠋⠀⠀⠀⠀⠀⠀⠈⠙⠻⢿⢿⣿⣿⡿⣿⣿⡟⠋⠀⢀⣩**"""
-
-G = """**⣿⣿⣿⣿⣿⣍⠀⠉⠻⠟⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠓⠀⠀⢒⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿
-⣿⡿⠋⠋⠀⠀⠀⠀⠀⠀⠈⠙⠻⢿⢿⣿⣿⡿⣿⣿⡟⠋⠀⢀⣩
-⣿⣿⡄⠀⠀⠀⠀⠀⠁⡀⠀⠀⠀⠀⠈⠉⠛⢷⣭⠉⠁⠀⠀⣿⣿**"""
-
+A = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
+B = """imdb['poster']"""
+C = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
+D = """imdb['poster']"""
+E = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
+F = """imdb['poster']"""
+G = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
+H = """imdb['poster']"""
+I = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
+J = """imdb['poster']"""
+K = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
 
 
 
@@ -2003,13 +1985,16 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                               
-            await msg.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
-            px = await msg.reply_photo(photo=imdb['poster'])
-            await px.edit_photo(photo="https://telegra.ph/file/49d95def4165d58c05910.jpg", reply_markup=BTN)
-            await px.edit_photo(photo=imdb['poster'], reply_markup=BTN)
-            await px.edit_photo(photo="https://telegra.ph/file/49d95def4165d58c05910.jpg", reply_markup=BTN)
+            await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
+            px = await update.reply_photo(A,quote=True)
+            await px.edit_photo(photo=C, reply_markup=BTN)
+            await px.edit_photo(photo=E, reply_markup=BTN)
+            await px.edit_photo(photo=G, reply_markup=BTN)
+            await px.edit_photo(photo=I, reply_markup=BTN)
+            await px.edit_photo(photo=K, reply_markup=BTN)
+            
             await px.delete()
-            await msg.reply_photo(photo=imdb['poster'],quote=True,reply_markup=BTN)                                        
+            await update.reply_photo(photo=K,quote=True,reply_markup=BTN)                                        
             k = await msg.edit_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
