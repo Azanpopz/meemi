@@ -414,7 +414,7 @@ async def advantage_spoll_choker(bot, query):
         return await query.message.delete()
 #    if movie_ == "india":       
         await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
-    if not movies:
+    if imdb and imdb.get('poster'):
         content = query.message.reply_to_message.text
         mention = query.message.from_user.mention
         return await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
