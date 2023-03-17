@@ -1070,21 +1070,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         if imdb and imdb.get('poster'):
             try:
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
+                await query.answer(f"Hey", show_alert=True)
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.message.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
+                await query.answer(f"😅😅", show_alert=True)
             except Exception as e:
                 logger.exception(e)
                 await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
                                           disable_web_page_preview=False)
             await query.message.delete()
         else:
-            await query.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await query.answer(😅😅)
+            await query.message.edit(cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+        await query.answer(f"😅😅")
 
     elif query.data == "reqinfo":
         await query.answer("⚠ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⚠\n\nᴀꜰᴛᴇʀ 10 ᴍɪɴᴜᴛᴇꜱ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴅᴇʟᴇᴛᴇᴅ\n\nɪꜰ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ꜱᴇᴇ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴍᴏᴠɪᴇ / sᴇʀɪᴇs ꜰɪʟᴇ, ʟᴏᴏᴋ ᴀᴛ ᴛʜᴇ ɴᴇxᴛ ᴘᴀɢᴇ\n\n❣ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
