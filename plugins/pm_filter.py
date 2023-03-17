@@ -1970,10 +1970,10 @@ async def auto_filter(client, msg, spoll=False):
                                                               
                                                   
             k = await msg.reply_photo(photo=imdb['poster'])
-            await asyncio.sleep(3)
+            await asyncio.sleep(2)
             await k.delete()
                     
-#            await msg.delete()                                   
+            await msg.delete()                                   
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
@@ -1999,12 +1999,14 @@ async def auto_filter(client, msg, spoll=False):
                 
                 
                 reqst_gle = search.replace(" ", "+")
-                hmm = await client.send_message(message.chat.id, text=f" {cap} \n 📂#𝙍𝙀𝙌𝙐𝙀𝙎𝙏𝙀𝘿_𝘾𝙊𝙉𝙏𝙀𝙉𝙏📂\n\n🤖ᴜꜱᴇʀ:-{message.from_user.mention}\n\n📝ᴄᴏɴᴛᴇɴᴛ ɴᴀᴍᴇ:-`{search}`\n\n👶🏻ʀᴇQᴜᴇꜱᴛᴇᴅ ʙʏ:- {message.from_user.first_name}\n\n 🃏ᴜꜱᴇʀ ɪᴅ:-{message.from_user.id}\n\n🗃️",
-                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", url=f"https://www.google.com/search?q={reqst_gle}")]]))
+                hmm = await msg.reply_cap(photo=cap,
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", url=f"https://www.google.com/search?q={reqst_gle}")]]))
+                
                 
                 
 #                await asyncio.sleep(180)
-#                await hmm.delete()                                                                                        
+#                await hmm.delete()
+                 await msg.delete()                                                                                      
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
@@ -2021,6 +2023,7 @@ async def auto_filter(client, msg, spoll=False):
                         )
                         await asyncio.sleep(30)
                         await k.delete()
+                        await msg.delete()
                     return
         else:
             return
