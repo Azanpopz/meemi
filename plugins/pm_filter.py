@@ -2157,11 +2157,14 @@ async def auto_filter(client, msg, spoll=False):
             ]
         else:
 
-            reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton(f"🐠{file.file_name}", callback_data=f'{pre}#{file.file_id}')],                        
-                        [InlineKeyboardButton(f"🐠{get_size(file.file_size)}🐠", callback_data=f'{pre}#{file.file_id}')]
-                        for file in files
-                        ])
+            btn.insert(0, 
+                [
+                    InlineKeyboardButton(f"🐠{get_size(file.file_size)} ", callback_data=f'{pre}#{file.file_id}')
+                    InlineKeyboardButton(f"{file.file_name}🐠", callback_data=f'{pre}#{file.file_id}'),
+                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', f'loading')
+                ]
+                for file in files
+            )
         
             
 
