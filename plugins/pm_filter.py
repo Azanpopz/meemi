@@ -1020,10 +1020,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "loading":
         user = await client.get_users(query.from_user.id)
-        reply_markup = InlineKeyboardMarkup(buttons)
+        _, user, search = query.data.split('#')        
+        query_by = query.message.text
         content = query.message.text
-        req = query.from_user.id
-        chat_id = query.message.chat.id
+        
         message = query.message
         search = query.message.text
         mention=query.message.from_user.first_name
@@ -1080,9 +1080,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
                                           disable_web_page_preview=False)
             await query.message.delete()
-        else:
-            await query.message.edit(cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await query.answer(f"😅😅")
+        else:           
+            await query.answer(f"😅😅")
+        if search == "loading":
+            return await query.message.delete()
 
     elif query.data == "reqinfo":
         await query.answer("⚠ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⚠\n\nᴀꜰᴛᴇʀ 10 ᴍɪɴᴜᴛᴇꜱ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴅᴇʟᴇᴛᴇᴅ\n\nɪꜰ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ꜱᴇᴇ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴍᴏᴠɪᴇ / sᴇʀɪᴇs ꜰɪʟᴇ, ʟᴏᴏᴋ ᴀᴛ ᴛʜᴇ ɴᴇxᴛ ᴘᴀɢᴇ\n\n❣ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
