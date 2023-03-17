@@ -1985,17 +1985,17 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                               
-            await msg.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
-            px = await msg.reply_photo(A,quote=True)
-            await px.edit_photo(photo=C, reply_markup=BTN)
-            await px.edit_photo(photo=D, reply_markup=BTN)
-            await px.edit_photo(photo=E, reply_markup=BTN)
-            await px.edit_photo(photo=F, reply_markup=BTN)
-            await px.edit_photo(photo=G, reply_markup=BTN)
-            await px.edit_photo(photo=H, reply_markup=BTN)
-            await px.edit_photo(photo=I, reply_markup=BTN)
-            await px.edit_photo(photo=J, reply_markup=BTN)
-            await px.edit_photo(photo=K, reply_markup=BTN)
+            await message.reply_chat_action(enums.ChatAction.TYPING)
+            px = await msg.reply_text(A,quote=True)
+            await px.edit_text(text=C, reply_markup=BTN)
+            await px.edit_text(text=D, reply_markup=BTN)
+            await px.edit_text(text=E, reply_markup=BTN)
+            await px.edit_text(text=F, reply_markup=BTN)
+            await px.edit_text(text=G, reply_markup=BTN)
+            await px.edit_text(text=H, reply_markup=BTN)
+            await px.edit_text(text=I, reply_markup=BTN)
+            await px.edit_text(text=J, reply_markup=BTN)
+            await px.edit_text(text=K, reply_markup=BTN)
             
             await px.delete()
             await msg.reply_photo(photo=K,quote=True,reply_markup=BTN)                                        
