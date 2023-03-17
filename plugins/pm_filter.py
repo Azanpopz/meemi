@@ -2004,10 +2004,10 @@ async def auto_filter(client, msg, spoll=False):
         try:
                                                               
             await msg.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
-            px = await message.reply_photo(photo=imdb['poster'])
-            await px.message.edit_photo(photo="https://telegra.ph/file/49d95def4165d58c05910.jpg", reply_markup=BTN)
-            await px.message.edit_photo(photo=imdb['poster'], reply_markup=BTN)
-            await px.message.edit_photo(photo="https://telegra.ph/file/49d95def4165d58c05910.jpg", reply_markup=BTN)
+            px = await msg.reply_photo(photo=imdb['poster'])
+            await px.await msg.edit_photo(photo="https://telegra.ph/file/49d95def4165d58c05910.jpg", reply_markup=BTN)
+            await px.await msg.edit_photo(photo=imdb['poster'], reply_markup=BTN)
+            await px.await msg.edit_photo(photo="https://telegra.ph/file/49d95def4165d58c05910.jpg", reply_markup=BTN)
             await px.delete()
             await msg.reply_photo(photo=imdb['poster'],quote=True,reply_markup=BTN)                                        
             k = await msg.edit_text(text=f"LOADING....")
