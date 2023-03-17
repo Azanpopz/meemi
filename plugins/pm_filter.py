@@ -1968,8 +1968,24 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                               
-            await msg.reply_chat_action(chat_id=msg.chat.id,enums.ChatAction.TYPING)                                                
-            k = await msg.reply_text(text=f"LOADING....")
+            await msg.edit_text(
+
+            text="▣▢▢"
+
+            )
+
+            await msg.edit_text(
+
+            text="▣▣▢"
+
+            )
+
+            await msg.edit_text(
+
+            text="▣▣▣"
+
+            )                                                
+            k = await msg.edit_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
                     
