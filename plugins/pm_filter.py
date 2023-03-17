@@ -2004,9 +2004,9 @@ async def auto_filter(client, msg, spoll=False):
                 
                 
                 
-#                await asyncio.sleep(180)
-#                await hmm.delete()
-                 await msg.delete()                                                                                      
+                await asyncio.sleep(180)
+                await hmm.delete()
+                await msg.delete()                                                                                      
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
