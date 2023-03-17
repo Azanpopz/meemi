@@ -2347,14 +2347,14 @@ async def advantage_spell_chok(client, msg):
                 movielist = []
                 if not movies:
                     reqst_gle = mv_rqst.replace(" ", "+")
-                    buttons = [[
-                        InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+                    button = [[
+                               InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
                     ]]
                     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
                     k = await msg.reply_photo(
                         photo=SPELL_IMG, 
                         caption=script.I_CUDNT.format(mv_rqst),
-                        reply_markup=InlineKeyboardMarkup(buttons)
+                        reply_markup=InlineKeyboardMarkup(button)
                     )
                     await asyncio.sleep(30)
                     await k.delete()
