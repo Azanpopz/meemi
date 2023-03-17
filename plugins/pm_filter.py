@@ -47,17 +47,15 @@ FILTER_MODE = {}
 
 BTN = InlineKeyboardMarkup([[InlineKeyboardButton('✨ 🇮🇳 ❤️ INDIA ❤️ 🇮🇳✨', url='https://india.gov.in')]])
 
-A = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
-B = imdb['poster']
-C = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
-D = imdb['poster']
-E = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
-F = imdb['poster']
-G = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
-H = imdb['poster']
-I = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
-J = imdb['poster']
-K = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
+A = """𝐒𝐞𝐚"""
+B = """𝐒𝐞𝐚𝐫𝐜"""
+C = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢"""
+D = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠"""
+E = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘"""
+F = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮"""
+G = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫"""
+H = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫 𝐅𝐢"""
+I = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞"""
 
 
 
@@ -1994,11 +1992,10 @@ async def auto_filter(client, msg, spoll=False):
             await px.edit_text(text=G, reply_markup=BTN)
             await px.edit_text(text=H, reply_markup=BTN)
             await px.edit_text(text=I, reply_markup=BTN)
-            await px.edit_text(text=J, reply_markup=BTN)
-            await px.edit_text(text=K, reply_markup=BTN)
+            
             
             await px.delete()
-            await msg.reply_photo(photo=K,quote=True,reply_markup=BTN)                                        
+            await msg.reply_photo(photo=1,quote=True,reply_markup=BTN)                                        
             k = await msg.edit_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
