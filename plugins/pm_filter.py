@@ -2359,7 +2359,7 @@ async def advantage_spell_chok(client, msg):
                     await asyncio.sleep(30)
                     await k.delete()
                     return
-                if AUTH_CHANNEL and not await is_subscribed(client, message):
+                if AUTH_CHANNEL and not await is_subscribed(client, msg):
                     try:
                         invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
                     except ChatAdminRequired:
@@ -2385,11 +2385,11 @@ async def advantage_spell_chok(client, msg):
                             btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{file_id}")])
                         except (IndexError, ValueError):
                             btn.append([InlineKeyboardButton(" 🔄 Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-                    m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
+                    m=await msg.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
                     await asyncio.sleep(1)
                     await m.delete()
                     await client.send_message(
-                    chat_id=message.from_user.id,
+                    chat_id=msg.from_user.id,
                     text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
                     reply_markup=InlineKeyboardMarkup(btn),
                     parse_mode=enums.ParseMode.MARKDOWN
@@ -2431,10 +2431,7 @@ async def advantage_spell_chok(client, msg):
 
                 btn.insert(0, [
                     InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
-                ])
-                btn.insert(3, [
-                    InlineKeyboardButton(f"😞😞", 'auto')
-                ])
+                ])         
     
                 btn.insert(10, [
                     InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
