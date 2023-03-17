@@ -409,7 +409,8 @@ async def advantage_spoll_choker(bot, query):
     mv_rqst = query.message.text
     reqstr1 = query.message.from_user.id if measage.from_user else 0
     reqstr = await client.get_users(reqstr1)
-    imdb = await get_poster(search) if IMDB else None
+    i, movie = query.data.split('#')
+    imdb = await get_poster(query=movie, id=True)
       
     if not movies:
         content = query.message.reply_to_message.text
@@ -424,9 +425,11 @@ async def advantage_spoll_choker(bot, query):
         
     movie = movies[(int(movie_))]
     await query.answer(script.TOP_ALRT_MSG)
+    i, movie = query.data.split('#')
+    imdb = await get_poster(query=movie, id=True)
     if imdb:
         caption = IMDB_TEMPLATE.format(
-            query=search,                
+            query=imdb['title'],                
             title=imdb['title'],
             votes=imdb['votes'],
             aka=imdb["aka"],
@@ -457,13 +460,14 @@ async def advantage_spoll_choker(bot, query):
             **locals()
         )
        
-        if imdb and imdb.get('poster'):
-            
-            btn = [[
-                InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
-            ]]                                      
+#        if imdb and imdb.get('poster'):
+    else:
+        caption = "No Results"
+    if imdb.get('poster'):
+        try:    
+                                                  
             await query.message.reply_photo(photo=imdb['poster'],
-            reply_markup=InlineKeyboardMarkup(btn))                   
+                               
 
             
 #    if movie_ == "india":       
