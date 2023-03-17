@@ -2347,7 +2347,7 @@ async def advantage_spell_chok(client, msg):
             if imdb and imdb.get('poster'):
                 try:
                     
-                    movies = imdb = await get_poster(search, bulk=True)
+                    movies = imdb = await get_poster(mv_rqst, bulk=True)
                 except Exception as e:
                     logger.exception(e)
                     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
