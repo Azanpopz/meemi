@@ -2359,15 +2359,15 @@ async def advantage_spell_chok(client, msg):
                     await asyncio.sleep(30)
                     await k.delete()
                 try:      
-                    if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query, msg):
-                        await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                    if AUTH_CHANNEL and not await is_subscribed(client, msg):
+                        await msg.reply_text(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
                         return
                     elif settings['botpm']:
-                        await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                        await msg.reply_text(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
                         return
                     else:
                         await client.send_cached_media(
-                            chat_id=query.from_user.id,
+                            chat_id=msg.from_user.id,
                             file_id=file_id,
                             caption=f_caption,
                             protect_content=True if ident == "filep" else False,
