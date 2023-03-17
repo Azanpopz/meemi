@@ -1998,7 +1998,7 @@ async def auto_filter(client, msg, spoll=False):
             await px.edit_text(text=H, reply_markup=BTN)
             await px.edit_text(text=I, reply_markup=BTN)                                   
             await px.delete()
-            await msg.reply_text(text=I,quote=True,InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                       
+            await msg.reply_text(text=I,quote=True,InlineKeyboardMarkup([InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]))                                      
 #            k = await msg.edit_text(text=f"LOADING....")
 #            await asyncio.sleep(2)
 #            await k.delete()
