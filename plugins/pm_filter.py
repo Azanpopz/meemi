@@ -1970,15 +1970,13 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                               
-            k = await msg.reply_photo(photo=imdb['poster'])                               
-            await msg.reply_photo(
-                photo=SPELL_IMG, 
-                caption=script.I_CUDNT.format(mv_rqst),
-                reply_markup=InlineKeyboardMarkup(button)
-            )
-            await asyncio.sleep(3)
-            await k.delete()
-            await msg.delete()                                   
+            btn = [[
+                InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+            ]]                                      
+            await msg.reply_photo(photo=imdb['poster'],
+            reply_markup=InlineKeyboardMarkup(btn))
+                    
+#            await msg.delete()                                   
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
