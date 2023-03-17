@@ -2010,7 +2010,18 @@ async def auto_filter(client, msg, spoll=False):
                     return await advantage_spell_chok(client, msg)
                 else:
                     if NO_RESULTS_MSG:
+                        reqst_gle = mv_rqst.replace(" ", "+")
+                        button = [[
+                            InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+                        ]]
                         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
+                        k = await msg.reply_photo(
+                            photo=SPELL_IMG, 
+                            caption=script.I_CUDNT.format(mv_rqst),
+                            reply_markup=InlineKeyboardMarkup(button)
+                        )
+                        await asyncio.sleep(30)
+                        await k.delete()
                     return
         else:
             return
