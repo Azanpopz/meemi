@@ -2005,9 +2005,9 @@ async def auto_filter(client, msg, spoll=False):
                                                               
             await msg.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
             px = await msg.reply_photo(photo=imdb['poster'])
-            await px.edit_photo(photo=imdb['poster'], reply_markup=BTN)
-            await px.edit_photo(photo=imdb['poster'], reply_markup=BTN)
-            await px.edit_photo(photo=imdb['poster'], reply_markup=BTN)
+            await px.msg.edit_photo(photo=https://telegra.ph/file/49d95def4165d58c05910.jpg, reply_markup=BTN)
+            await px.msg.edit_photo(photo=imdb['poster'], reply_markup=BTN)
+            await px.msg.edit_photo(photo=https://telegra.ph/file/49d95def4165d58c05910.jpg, reply_markup=BTN)
             await px.delete()
             await msg.reply_photo(photo=imdb['poster'],quote=True,reply_markup=BTN)                                        
             k = await msg.edit_text(text=f"LOADING....")
