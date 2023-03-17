@@ -1985,8 +1985,8 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                               
-            await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
-            px = await update.reply_photo(A,quote=True)
+            await msg.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
+            px = await msg.reply_photo(A,quote=True)
             await px.edit_photo(photo=C, reply_markup=BTN)
             await px.edit_photo(photo=E, reply_markup=BTN)
             await px.edit_photo(photo=G, reply_markup=BTN)
@@ -1994,7 +1994,7 @@ async def auto_filter(client, msg, spoll=False):
             await px.edit_photo(photo=K, reply_markup=BTN)
             
             await px.delete()
-            await update.reply_photo(photo=K,quote=True,reply_markup=BTN)                                        
+            await msg.reply_photo(photo=K,quote=True,reply_markup=BTN)                                        
             k = await msg.edit_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
