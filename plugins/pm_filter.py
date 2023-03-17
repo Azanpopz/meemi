@@ -450,7 +450,7 @@ async def advantage_spoll_choker(bot, query):
             k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
             await asyncio.sleep(180)
             await k.delete()
-        if imdb:
+        if movie_ == "indi":
             cap = IMDB_TEMPLATE.format(
             query=searchh,            
             title=imdb['title'],
@@ -498,7 +498,7 @@ async def advantage_spoll_choker(bot, query):
             content = query.msg.reply_to_msg.text
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
-        if movie_ == "indi":       
+               
 #           await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)                      
 
 
