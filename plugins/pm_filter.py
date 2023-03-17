@@ -1999,8 +1999,8 @@ async def auto_filter(client, msg, spoll=False):
                 
                 
                 reqst_gle = search.replace(" ", "+")
-                hmm = await msg.reply_text(text=f"LOADING😅....",
-                      reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", url=f"https://www.google.com/search?q={reqst_gle}")]]))
+                hmm = await msg.reply_text(text=f" `{message.from_user.mention}`\nᴍᴏᴠɪᴇ:`{search}`\nꜱᴇᴀʀᴄʜɪɴɢ ꜰɪɴɪꜱʜ✔️",
+                      reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", url=f"https://www.google.com/search?q={reqst_gle}")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", callback_data="close_data")]]))
                 await asyncio.sleep(10)
                 await hmm.delete()
                 
