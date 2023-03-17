@@ -1932,9 +1932,7 @@ async def auto_filter(client, msg, spoll=False):
     searchh = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(searchh) if IMDB else None
-    reqst_gle = mv_rqst.replace(" ", "+")
-    mv_rqst = msg.text
+    imdb = await get_poster(searchh) if IMDB else None    
     if imdb:
         cap = IMDB_TEMPLATE.format(
             query=searchh,            
