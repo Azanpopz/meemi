@@ -416,16 +416,17 @@ async def advantage_spoll_choker(bot, query):
     await query.answer(script.TOP_ALRT_MSG)
 #    if movie_ == "india":       
 #        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
-    await auto_filter(bot, query, k)
-    _, user, movie_ = query.data.split('#')
-    imdb = await get_poster(searchh) if IMDB else None
-    content = query.message.reply_to_message.text
-    mention = query.message.from_user.മെൻഷൻ
-    searchh = message.text                 
-    reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)
-    if imdb:
-        cap = IMDB_TEMPLATE.format(
+         await auto_filter(bot, query, k)
+     else:
+        _, user, movie_ = query.data.split('#')
+        imdb = await get_poster(searchh) if IMDB else None
+        content = query.message.reply_to_message.text
+        mention = query.message.from_user.മെൻഷൻ
+        searchh = message.text                 
+        reqstr1 = msg.from_user.id if msg.from_user else 0
+        reqstr = await client.get_users(reqstr1)
+        if imdb:
+            cap = IMDB_TEMPLATE.format(
             query=searchh,            
             title=imdb['title'],
             votes=imdb['votes'],
