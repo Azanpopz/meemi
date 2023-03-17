@@ -419,6 +419,8 @@ async def advantage_spoll_choker(bot, query):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
+    movie = movies[(int(movie_))]
+    await query.answer(script.TOP_ALRT_MSG)
     if imdb:
         caption = IMDB_TEMPLATE.format(
             query=search,                
@@ -460,8 +462,7 @@ async def advantage_spoll_choker(bot, query):
                 await msg.reply_photo(photo=imdb['poster'],
                 reply_markup=InlineKeyboardMarkup(btn))                   
 
-            movie = movies[(int(movie_))]
-            await query.answer(script.TOP_ALRT_MSG)
+            
 #    if movie_ == "india":       
 #        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
 #        await auto_filter(bot, query, k)               
