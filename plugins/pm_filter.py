@@ -1019,12 +1019,55 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
 
     elif query.data == "loading":
+        search = query.message.text
         mention=query.message.from_user.first_name
         imdb = await get_poster(search) if IMDB else None
         query_by = f"<b>ɴᴏ ᴏғ ғɪʟᴇs :</b> <code><b><i>{total_results}</i></b></code>\n" \
                    f"<b>ʏᴏᴜʀ ϙᴜᴇʀʏ :</b> <code><b><i>{search}</i></b></code>\n" \
                    f"<b>Qᴜᴀʟɪᴛʏ :</b> <code><b><i>{Quality}</i></b></code>\n" \
                    f"<b>ʀᴇϙᴜᴇsᴛᴇᴅ ʙʏ :</b> {query.message.from_user.first_name}</b>"
+        if imdb:
+            cap = IMDB_TEMPLATE.format(
+                query=query_by,
+                title=imdb['title'],
+                votes=imdb['votes'],
+                aka=imdb["aka"],
+                seasons=imdb["seasons"],
+                box_office=imdb['box_office'],
+                localized_title=imdb['localized_title'],
+                kind=imdb['kind'],
+                imdb_id=imdb["imdb_id"],
+                cast=imdb["cast"],
+                runtime=imdb["runtime"],
+                countries=imdb["countries"],
+                certificates=imdb["certificates"],
+                languages=imdb["languages"],
+                director=imdb["director"],
+                writer=imdb["writer"],
+                producer=imdb["producer"],
+                composer=imdb["composer"],
+                cinematographer=imdb["cinematographer"],
+                music_team=imdb["music_team"],
+                distributors=imdb["distributors"],
+                release_date=imdb['release_date'],
+                year=imdb['year'],
+                genres=imdb['genres'],
+                poster=imdb['poster'],
+                plot=imdb['plot'],
+                rating=imdb['rating'],
+                url=imdb['url'],
+                chat=message.chat.title,
+                **locals()
+            )
+        else:
+            cap = query_by  # f"Here Is What I Found For Your Query {search}"
+
+        if imdb and imdb.get('poster'):
+            try:
+                d_msg = await query.message.reply_photo(photo=imdb.get('poster'), caption=cap,
+                                                  reply_markup=InlineKeyboardMarkup(btn))
+
+
         await query.answer(f"{mention} 𝐋𝐨𝐚𝐝𝐢𝐧𝐠..𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
 
     elif query.data == "reqinfo":
