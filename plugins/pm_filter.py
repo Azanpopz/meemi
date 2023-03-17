@@ -1968,7 +1968,7 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                               
-                                                  
+            await msg.send_chat_action(chat_id, enums.ChatAction.TYPING)                                                
             k = await msg.reply_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
