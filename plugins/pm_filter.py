@@ -45,7 +45,7 @@ BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
 
-BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', url='Loading')]])
+BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', 'Loading')]])
 
 A = """𝐒𝐞𝐚........................."""
 B = """𝐒𝐞𝐚𝐫𝐜........................"""
