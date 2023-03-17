@@ -2358,74 +2358,74 @@ async def advantage_spell_chok(client, msg):
                     )
                     await asyncio.sleep(30)
                     await k.delete()
-                try:      
-                    if AUTH_CHANNEL and not await is_subscribed(client, msg):
-                        await msg.reply_text(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-                        return
-                    elif settings['botpm']:
-                        await msg.reply_text(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-                        return
-                    else:
-                        await client.send_cached_media(
-                            chat_id=msg.from_user.id,
-                            file_id=file_id,
-                            caption=f_caption,
-                            protect_content=True if ident == "filep" else False,
-                            reply_markup=InlineKeyboardMarkup(
-                                [
-                                 [
-                                  InlineKeyboardButton("🔰 ᴊᴏɪɴ ꜰᴏʀ ᴍᴏᴠɪᴇs​ 🔰", url="https://t.me/at3movies")
-                                 ]
-                                ]
+                    try:      
+                        if AUTH_CHANNEL and not await is_subscribed(client, msg):
+                            await msg.reply_text(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                            return
+                        elif settings['botpm']:
+                            await msg.reply_text(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                            return
+                        else:
+                            await client.send_cached_media(
+                                chat_id=msg.from_user.id,
+                                file_id=file_id,
+                                caption=f_caption,
+                                protect_content=True if ident == "filep" else False,
+                                reply_markup=InlineKeyboardMarkup(
+                                    [
+                                     [
+                                      InlineKeyboardButton("🔰 ᴊᴏɪɴ ꜰᴏʀ ᴍᴏᴠɪᴇs​ 🔰", url="https://t.me/at3movies")
+                                     ]
+                                    ]
+                                )
                             )
-                        )
 
        
-                        return
-#               movielist += [movie.get('title') for movie in movies]
-                    movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]           
-                    mv_rqst = msg.text
-                    SPELL_CHECK[msg.id] = movielist
-                    i = 1
-                    pre_len = {}
-                    btn = []
+                            return
+#                   movielist += [movie.get('title') for movie in movies]
+                        movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]           
+                        mv_rqst = msg.text
+                        SPELL_CHECK[msg.id] = movielist
+                        i = 1
+                        pre_len = {}
+                        btn = []
     
-                    for k, movie in enumerate(movielist):
-                        text = movie.strip()  # args[2]
-                        same = False
-                        if (i % 2) == 0:
-                            if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
-                                same = False
-                            else:
-                                same = True
-                        else:
-                            pre_len["text_len"] = len(text)
+                        for k, movie in enumerate(movielist):
+                            text = movie.strip()  # args[2]
                             same = False
+                            if (i % 2) == 0:
+                                if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
+                                    same = False
+                                else:
+                                    same = True
+                            else:
+                                pre_len["text_len"] = len(text)
+                                same = False
 
-                        i += 2
+                            i += 2
 
-                        btn.append([text, f"spol#{reqstr1}#{k}", same])
+                            btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-                    btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
-                    btn = build_keyboard(btn)
+                        btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
+                        btn = build_keyboard(btn)
 
-                    btn.insert(0, [
-                        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-                        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
-                    ])
+                        btn.insert(0, [
+                            InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+                            InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+                        ])
 
-                    btn.insert(0, [
-                        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
-                    ])         
+                        btn.insert(0, [
+                            InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
+                        ])         
     
-                    btn.insert(10, [
-                        InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
-                    InlineKeyboardButton(f"🧭𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n⌚️{imdb.get('runtime')}", callback_data=f"spol#{reqstr1}#{k}")
-                    ])
+                        btn.insert(10, [
+                            InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
+                        InlineKeyboardButton(f"🧭𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n⌚️{imdb.get('runtime')}", callback_data=f"spol#{reqstr1}#{k}")
+                        ])
 
-                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                        await msg.reply_photo(photo=imdb['poster'], caption=caption,
                                             reply_markup=InlineKeyboardMarkup(btn))
-                    await msg.delete()
+                        await msg.delete()
 
 def build_keyboard(buttons):
     keyb = []
