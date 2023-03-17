@@ -2000,24 +2000,16 @@ async def auto_filter(client, msg, spoll=False):
                 
                 reqst_gle = search.replace(" ", "+")
                 hmm = await client.send_message(message.chat.id, text=f" {cap} \n 📂#𝙍𝙀𝙌𝙐𝙀𝙎𝙏𝙀𝘿_𝘾𝙊𝙉𝙏𝙀𝙉𝙏📂\n\n🤖ᴜꜱᴇʀ:-{message.from_user.mention}\n\n📝ᴄᴏɴᴛᴇɴᴛ ɴᴀᴍᴇ:-`{search}`\n\n👶🏻ʀᴇQᴜᴇꜱᴛᴇᴅ ʙʏ:- {message.from_user.first_name}\n\n 🃏ᴜꜱᴇʀ ɪᴅ:-{message.from_user.id}\n\n🗃️",
-                                                                                      
+                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", url=f"https://www.google.com/search?q={reqst_gle}")]]))
+                
+                
+#                await asyncio.sleep(180)
+#                await hmm.delete()                                                                                        
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
                     if NO_RESULTS_MSG:
-                        reqst_gle = mv_rqst.replace(" ", "+")
-                        button = [[
-                            InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-                        ]]
                         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
-                        k = await msg.reply_photo(
-                            photo=SPELL_IMG, 
-                            caption=script.I_CUDNT.format(mv_rqst),
-                            reply_markup=InlineKeyboardMarkup(button)
-                        )
-                        await asyncio.sleep(30)
-                        await k.delete()
-                        await msg.delete()
                     return
         else:
             return
