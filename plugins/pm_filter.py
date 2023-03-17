@@ -460,12 +460,7 @@ async def advantage_spoll_choker(bot, query):
             **locals()
         )
        
-#        if imdb and imdb.get('poster'):
-    else:
-        caption = "No Results"
-    if imdb.get('poster'):
-        try:    
-                                                  
+        if imdb and imdb.get('poster'):                                                       
             await query.message.reply_photo(photo=imdb['poster'],
                                
 
