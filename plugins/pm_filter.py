@@ -1068,14 +1068,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             cap = query_by  # f"Here Is What I Found For Your Query {search}"
 
-        if imdb and imdb.get('poster'):  
+        if imdb and imdb.get('poster'):
             try:
-                await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)       
-            except UserIsBlocked:
-                await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
-        else:
-            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
-
+                if query.message.chat.id == SUPPORT_CHAT_ID:
+                    await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
+                else:
+                    await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 #            d_msg = await query.message.reply_photo(photo=imdb.get('poster'), caption=cap,                                               reply_markup=InlineKeyboardMarkup(btn))
 #            await query.answer(f" {query.from_user.mention} 𝐋𝐨𝐚𝐝𝐢𝐧𝐠..𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
 
