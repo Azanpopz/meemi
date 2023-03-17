@@ -419,7 +419,7 @@ async def advantage_spoll_choker(bot, query):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
-    if movie_ == "indi":       
+    if movie_ == "india":       
         await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
         
     movie = movies[(int(movie_))]
@@ -462,7 +462,7 @@ async def advantage_spoll_choker(bot, query):
             btn = [[
                 InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
             ]]                                      
-            await msg.reply_photo(photo=imdb['poster'],
+            await query.message.reply_photo(photo=imdb['poster'],
             reply_markup=InlineKeyboardMarkup(btn))                   
 
             
@@ -2045,14 +2045,14 @@ async def auto_filter(client, msg, spoll=False):
                                                               
             await msg.reply_chat_action(enums.ChatAction.TYPING)
             px = await msg.reply_text(A,quote=True)
-            await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
-            await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
-            await px.edit_text(text=D, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
-            await px.edit_text(text=E, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
-            await px.edit_text(text=H, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
-            await px.edit_text(text=I, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))                                   
+            await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+            await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+            await px.edit_text(text=D, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+            await px.edit_text(text=E, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+            await px.edit_text(text=H, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+            await px.edit_text(text=I, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                   
             await px.delete()
-            await msg.reply_text(text=I,quote=True,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))                                      
+            await msg.reply_text(text=I,quote=True,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                      
 #            k = await msg.edit_text(text=f"LOADING....")
 #            await asyncio.sleep(2)
 #            await k.delete()
