@@ -2004,7 +2004,7 @@ async def auto_filter(client, msg, spoll=False):
         try:
                                                               
             await msg.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
-            px = await msg.reply_photo(A,quote=True)
+            px = await msg.reply_photo(photo=imdb['poster'])
             await px.edit_text(photo=imdb['poster'], reply_markup=BTN)
             await px.edit_text(photo=imdb['poster'], reply_markup=BTN)
             await px.edit_text(photo=imdb['poster'], reply_markup=BTN)
