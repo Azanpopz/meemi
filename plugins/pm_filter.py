@@ -47,17 +47,17 @@ FILTER_MODE = {}
 
 BTN = InlineKeyboardMarkup([[InlineKeyboardButton('✨ 🇮🇳 ❤️ INDIA ❤️ 🇮🇳✨', url='https://india.gov.in')]])
 
-A = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
-B = """imdb['poster']"""
-C = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
-D = """imdb['poster']"""
-E = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
-F = """imdb['poster']"""
-G = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
-H = """imdb['poster']"""
-I = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
-J = """imdb['poster']"""
-K = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"""
+A = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
+B = imdb['poster']
+C = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
+D = imdb['poster']
+E = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
+F = imdb['poster']
+G = """https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
+H = imdb['poster']
+I = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
+J = imdb['poster']
+K = "https://telegra.ph/file/0d28b22f80c78844235b4.jpg"
 
 
 
@@ -1987,15 +1987,15 @@ async def auto_filter(client, msg, spoll=False):
                                                               
             await msg.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
             px = await msg.reply_photo(A,quote=True)
-            await px.edit_photo(photo="C", reply_markup=BTN)
+            await px.edit_photo(photo=C, reply_markup=BTN)
             await px.edit_photo(photo=D, reply_markup=BTN)
-            await px.edit_photo(photo="E", reply_markup=BTN)
+            await px.edit_photo(photo=E, reply_markup=BTN)
             await px.edit_photo(photo=F, reply_markup=BTN)
-            await px.edit_photo(photo="G", reply_markup=BTN)
+            await px.edit_photo(photo=G, reply_markup=BTN)
             await px.edit_photo(photo=H, reply_markup=BTN)
-            await px.edit_photo(photo="I", reply_markup=BTN)
+            await px.edit_photo(photo=I, reply_markup=BTN)
             await px.edit_photo(photo=J, reply_markup=BTN)
-            await px.edit_photo(photo="K", reply_markup=BTN)
+            await px.edit_photo(photo=K, reply_markup=BTN)
             
             await px.delete()
             await msg.reply_photo(photo=K,quote=True,reply_markup=BTN)                                        
