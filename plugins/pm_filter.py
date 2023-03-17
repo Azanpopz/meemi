@@ -44,8 +44,9 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
+reqstr = await client.get_users(reqstr1
 reqstr1 = msg.from_user.id if msg.from_user else 0
-BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#{reqstr1}#india', False])]])
+BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#{reqstr1}#india', False)]])
 
 A = """𝐒𝐞𝐚........................."""
 B = """𝐒𝐞𝐚𝐫𝐜........................"""
