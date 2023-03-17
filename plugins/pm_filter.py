@@ -1989,17 +1989,12 @@ async def auto_filter(client, msg, spoll=False):
                                                               
             await message.reply_chat_action(enums.ChatAction.TYPING)
             px = await msg.reply_text(A,quote=True)
-            await px.edit_text(text=C, reply_markup=BTN)
-            await px.edit_text(text=D, reply_markup=BTN)
-            await px.edit_text(text=E, reply_markup=BTN)
-            await px.edit_text(text=F, reply_markup=BTN)
-            await px.edit_text(text=G, reply_markup=BTN)
-            await px.edit_text(text=H, reply_markup=BTN)
-            await px.edit_text(text=I, reply_markup=BTN)
-            
-            
+            await px.edit_text(text=C, reply_markup=BTN)            
+            await px.edit_text(text=E, reply_markup=BTN)            
+            await px.edit_text(text=G, reply_markup=BTN)            
+            await px.edit_text(text=I, reply_markup=BTN)                        
             await px.delete()
-            await msg.reply_photo(photo=I,quote=True,reply_markup=BTN)                                        
+            await msg.reply_text(text=I,quote=True,reply_markup=BTN)                                        
             k = await msg.edit_text(text=f"LOADING....")
             await asyncio.sleep(2)
             await k.delete()
