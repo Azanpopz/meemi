@@ -1025,7 +1025,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                    f"<b>ʏᴏᴜʀ ϙᴜᴇʀʏ :</b> <code><b><i>{search}</i></b></code>\n" \
                    f"<b>Qᴜᴀʟɪᴛʏ :</b> <code><b><i>{Quality}</i></b></code>\n" \
                    f"<b>ʀᴇϙᴜᴇsᴛᴇᴅ ʙʏ :</b> {query.message.from_user.first_name}</b>"
-        await query.answer("{mention} 𝐋𝐨𝐚𝐝𝐢𝐧𝐠..𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
+        await query.answer(f"{mention} 𝐋𝐨𝐚𝐝𝐢𝐧𝐠..𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
 
     elif query.data == "reqinfo":
         await query.answer("⚠ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⚠\n\nᴀꜰᴛᴇʀ 10 ᴍɪɴᴜᴛᴇꜱ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴅᴇʟᴇᴛᴇᴅ\n\nɪꜰ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ꜱᴇᴇ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴍᴏᴠɪᴇ / sᴇʀɪᴇs ꜰɪʟᴇ, ʟᴏᴏᴋ ᴀᴛ ᴛʜᴇ ɴᴇxᴛ ᴘᴀɢᴇ\n\n❣ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄɪɴᴇᴍᴀʟᴀ.ᴄᴏᴍ", show_alert=True)
