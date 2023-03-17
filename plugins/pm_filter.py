@@ -413,7 +413,7 @@ async def advantage_spoll_choker(bot, query):
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movie = movies[(int(movie_))]
-        await query.answer(script.TOP_ALRT_MSG)
+    await query.answer(script.TOP_ALRT_MSG)
 #    if movie_ == "india":       
 #        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
     if imdb:
