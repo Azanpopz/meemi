@@ -404,40 +404,88 @@ async def advantage_spoll_choker(bot, query):
     mention = query.message.from_user.mention
     mv_rqst = query.message.text
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
+    search = query.message.text
+    mv_id = query.message.id
+    mv_rqst = query.message.text
+    reqstr1 = query.message.from_user.id if measage.from_user else 0
+    reqstr = await client.get_users(reqstr1)
+    imdb = await get_poster(search) if IMDB else None
+      
     if not movies:
         content = query.message.reply_to_message.text
         mention = query.message.from_user.mention
-        return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
+        return await query.answer(f"query.from_user.first_name}", show_alert=True)
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
-    movie = movies[(int(movie_))]
-    await query.answer(script.TOP_ALRT_MSG)
+    if imdb:
+        caption = IMDB_TEMPLATE.format(
+            query=search,                
+            title=imdb['title'],
+            votes=imdb['votes'],
+            aka=imdb["aka"],
+            seasons=imdb["seasons"],
+            box_office=imdb['box_office'],
+            localized_title=imdb['localized_title'],
+            kind=imdb['kind'],
+            imdb_id=imdb["imdb_id"],
+            cast=imdb["cast"],
+            runtime=imdb["runtime"],
+            countries=imdb["countries"],
+            certificates=imdb["certificates"],
+            languages=imdb["languages"],
+            director=imdb["director"],
+            writer=imdb["writer"],
+            producer=imdb["producer"],
+            composer=imdb["composer"],
+            cinematographer=imdb["cinematographer"],
+            music_team=imdb["music_team"],
+            distributors=imdb["distributors"],
+            release_date=imdb['release_date'],
+            year=imdb['year'],
+            genres=imdb['genres'],
+            poster=imdb['poster'],
+            plot=imdb['plot'],
+            rating=imdb['rating'],
+            url=imdb['url'],
+            **locals()
+        )
+       
+        if imdb and imdb.get('poster'):
+            try:
+                btn = [[
+                    InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+                ]]                                      
+                await msg.reply_photo(photo=imdb['poster'],
+                reply_markup=InlineKeyboardMarkup(btn))                   
+
+            movie = movies[(int(movie_))]
+            await query.answer(script.TOP_ALRT_MSG)
 #    if movie_ == "india":       
 #        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
 #        await auto_filter(bot, query, k)               
 #    if movie_ == "india":
 #        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
 
-    k = await manual_filters(bot, query.message, text=movie)
-    if k == False:
-        files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
-        if files:
-            k = (movie, files, offset, total_results)
-            await auto_filter(bot, query, k)
-        else:
-            mention = query.message.from_user.mention
-            content = query.message.reply_to_message.text
-            reqstr1 = query.from_user.id if query.from_user else 0
-            reqstr = await bot.get_users(reqstr1)
-            if NO_RESULTS_MSG:
-                mention = query.message.from_user.mention
-                content = query.message.reply_to_message.text
-                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
-            await asyncio.sleep(180)
-            await k.delete()
+            k = await manual_filters(bot, query.message, text=movie)
+            if k == False:
+                files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
+                if files:
+                    k = (movie, files, offset, total_results)
+                    await auto_filter(bot, query, k)
+                else:
+                    mention = query.message.from_user.mention
+                    content = query.message.reply_to_message.text
+                    reqstr1 = query.from_user.id if query.from_user else 0
+                    reqstr = await bot.get_users(reqstr1)
+                    if NO_RESULTS_MSG:
+                        mention = query.message.from_user.mention
+                        content = query.message.reply_to_message.text
+                        await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+                    k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
+                    await asyncio.sleep(180)
+                    await k.delete()
 
 
 
