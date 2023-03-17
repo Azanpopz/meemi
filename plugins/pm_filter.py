@@ -416,15 +416,32 @@ async def advantage_spoll_choker(bot, query):
     await query.answer(script.TOP_ALRT_MSG)
 #    if movie_ == "india":       
 #        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
-        await auto_filter(bot, query, k)
-    else:
-        _, user, movie_ = query.data.split('#')
-        imdb = await get_poster(searchh) if IMDB else None
-        content = query.message.reply_to_message.text
-        mention = query.message.from_user.മെൻഷൻ
-        searchh = message.text                 
-        reqstr1 = msg.from_user.id if msg.from_user else 0
-        reqstr = await client.get_users(reqstr1)
+        await auto_filter(bot, query, k)               
+#    if movie_ == "india":
+#        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
+
+    k = await manual_filters(bot, query.message, text=movie)
+    if k == False:
+        files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
+        if files:
+            k = (movie, files, offset, total_results)
+            await auto_filter(bot, query, k)
+        else:
+            _, user, movie_ = query.data.split('#')
+            searchh = query.msg.text                 
+            reqstr1 = msg.from_user.id if msg.from_user else 0
+            reqstr = await client.get_users(reqstr1)
+            mention = query.msg.from_user.mention
+            content = query.msg.reply_to_msg.text
+            reqstr1 = query.from_user.id if query.from_user else 0
+            reqstr = await bot.get_users(reqstr1)
+            if NO_RESULTS_MSG:
+                mention = query.message.from_user.mention
+                content = query.message.reply_to_message.text
+                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
+            await asyncio.sleep(180)
+            await k.delete()
         if imdb:
             cap = IMDB_TEMPLATE.format(
             query=searchh,            
@@ -458,35 +475,23 @@ async def advantage_spoll_choker(bot, query):
             **locals()
         )
     if imdb and imdb.get('poster'):
-        imdb = await get_poster(searchh) if IMDB else None
-        content = query.message.reply_to_message.text
-        mention = query.message.from_user.മെൻഷൻ
-        searchh = message.text                 
-        reqstr1 = msg.from_user.id if msg.from_user else 0
-        reqstr = await client.get_users(reqstr1)            
-    if movie_ == "india":
-        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
-
-    k = await manual_filters(bot, query.message, text=movie)
-    if k == False:
-        files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
-        if files:
-            k = (movie, files, offset, total_results)
-            await auto_filter(bot, query, k)
-        else:
-            mention = query.message.from_user.mention
-            content = query.message.reply_to_message.text
+        try:
+            btn = [[
+                InlineKeyboardButton(f"{imdb.get('title')}", url="imdb['url']")
+            ]]                                      
+            await msg.reply_photo(photo=imdb['poster'],
+            reply_markup=InlineKeyboardMarkup(btn))
+        if not movies:
+            _, user, movie_ = query.data.split('#')
+            searchh = query.msg.text                 
+            reqstr1 = msg.from_user.id if msg.from_user else 0
+            reqstr = await client.get_users(reqstr1)
+            mention = query.msg.from_user.mention
+            content = query.msg.reply_to_msg.text
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
-            if NO_RESULTS_MSG:
-                mention = query.message.from_user.mention
-                content = query.message.reply_to_message.text
-                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
-            await asyncio.sleep(180)
-            await k.delete()
-
-            
+        if movie_ == "indi":       
+#           await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)                      
 
 
 
@@ -2042,14 +2047,14 @@ async def auto_filter(client, msg, spoll=False):
                                                               
             await msg.reply_chat_action(enums.ChatAction.TYPING)
             px = await msg.reply_text(A,quote=True)
-            await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=D, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=E, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=H, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=I, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                   
+            await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
+            await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
+            await px.edit_text(text=D, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
+            await px.edit_text(text=E, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
+            await px.edit_text(text=H, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))
+            await px.edit_text(text=I, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))                                   
             await px.delete()
-            await msg.reply_text(text=I,quote=True,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                      
+            await msg.reply_text(text=I,quote=True,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#indi#{reqstr1}', False)]]))                                      
 #            k = await msg.edit_text(text=f"LOADING....")
 #            await asyncio.sleep(2)
 #            await k.delete()
