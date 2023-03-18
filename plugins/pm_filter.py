@@ -2421,7 +2421,7 @@ async def advantage_spell_chok(client, msg):
     search = message.text
     mv_id = msg.id
     mv_rqst = msg.text
-    imdb = await get_poster(search) if IMDB else None
+    imdb = await get_poster(mv_rqst) if IMDB else None
  
     SPELL_CHECK[mv_id] = movielist
     btn = [
