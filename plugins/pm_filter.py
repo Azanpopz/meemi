@@ -854,7 +854,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if CUSTOM_FILE_CAPTION:
             try:
                 f_caption = CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME,
-                                                       use_name='' if user_mention is None else user_mention,
+                                                       user_mention='' if user_name is None else user_name,
                                                        file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
                                                        file_caption='' if f_caption is None else f_caption)
@@ -952,7 +952,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         f_caption = files.caption
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
+                f_caption = CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME,
+                                                       user_mention='' if user_name is None else user_name,
+                                                       file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
                                                        file_caption='' if f_caption is None else f_caption)
             except Exception as e:
