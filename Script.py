@@ -392,7 +392,7 @@ Elsa
 
 
 
-    CAPTION = """
+    CAPTION = """<b>
 •───────────────────•
 𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {user_mention}
 
@@ -400,10 +400,12 @@ Elsa
 
 📁 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐍𝐚𝐦𝐞: `{file_name}</code>`
 
-🧲 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞:: ```{file_size}```
+🧲 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞:: {file_size}
+
+➢ <a href='https://t.me/.nasrani_update'>𝐉𝐨𝐢𝐧 𝐍𝐨𝐰</a>"""
 
 ✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » @nasrani_update
-◈ ━━━━━━━━ ● ━━━━━━━ ◈"""
+◈ ━━━━━━━━ ● ━━━━━━━ ◈</b>"""
 
 
 
