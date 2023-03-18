@@ -9,7 +9,6 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.users_chats_db import db
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
-from database.restart_db import start_restart_stage
 
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, MSG_ALRT, MAIN_CHANNEL, MY_CHANNEL, BATCH_GROUP, IMDB_TEMPLATE, IMDB
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, MAX_B_TN, VERIFY, MVG_LNK, OWN_LNK
@@ -935,16 +934,4 @@ async def shortlink(bot, message):
 
 
 
-@Client.on_message(filters.command("update") & filters.user(ADMINS))
-async def update_restart(bot, message):
-    try:
-        out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
-        if "Already up to date." in str(out):
-            return await message.reply_text("Its Already Up-To Date!")
-        await message.reply_text(f"```{out}```")
-    except Exception as e:
-        return await message.reply_text(str(e))
-    m = await message.reply_text(
-        "**Updated With Default Branch, Restarting Now.**")
-    await restart(m)
 
