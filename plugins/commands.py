@@ -291,7 +291,7 @@ async def start(client, message):
 
                 
             await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
-     
+            await db.add_user(message.from_user.id, message.from_user.first_name)
             filetype = msg.media
             mention = message.from_user.first_name
             file = getattr(msg, filetype.value)
@@ -308,6 +308,7 @@ async def start(client, message):
         except:
             pass
         return await message.reply('No such file exist.')
+    await db.add_user(message.from_user.id, message.from_user.first_name)
     files = files_[0]
     title = files.file_name
     mention = message.from_user.first_name
