@@ -2456,102 +2456,140 @@ async def advantage_spell_chok(client, msg):
                     return
 #               movielist += [movie.get('title') for movie in movies]
                 movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]           
-                mv_rqst = msg.text
-                SPELL_CHECK[msg.id] = movielist
-                i = 1
-                pre_len = {}
-                btn = []
-  
-                for k, movie in enumerate(movielist):
-                    text = movie.strip()  # args[2]
-                    same = False
-                    if (i % 2) == 0:
-                        if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
-                            same = False
-                        else:
-                            same = True
-                    else:
-                        pre_len["text_len"] = len(text)
-                        same = False
-
-                        i += 2
-
-                        btn.append([text, f"spol#{reqstr1}#{k}", same])
-
-                    btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
-                    btn = build_keyboard(btn)
-
-                    btn.insert(0, [
-                        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-                        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
-                    ])
-
-                    btn.insert(0, [
-                        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
-                    ])         
-    
-                    btn.insert(10, [
-                        InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
-                        InlineKeyboardButton(f"🧭𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n⌚️{imdb.get('runtime')}", callback_data=f"spol#{reqstr1}#{k}")
-                    ])
-
-                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-                                                reply_markup=InlineKeyboardMarkup(btn))
-#                    await msg.delete()
-
-def build_keyboard(buttons):
-    keyb = []
-    for btn in buttons:
-        if btn[2] and keyb:
-            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
-        else:
-            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
-
-    return keyb
-
-
-
-
-
-
-
-
-
-
-
-
-#            SPELL_CHECK[mv_id] = movielist
-#            btn = [
-#                [
-#                    InlineKeyboardButton(
-#                        text=movie_name.strip(),
-#                        callback_data=f"spol#{reqstr1}#{k}",
-#                    )
-#                ]
-#                for k, movie_name in enumerate(movielist)
-#            ]
-#            btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
-#            btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
-#            btn.insert(1, [
-#                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-#                InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
-#                
-#            ])
+                mv_rqst = msg.text.
+                SPELL_CHECK[mv_id] = movielist
+                btn = [
+                    [
+                        InlineKeyboardButton(
+                            text=movie_name.strip(),
+                            callback_data=f"spol#{reqstr1}#{k}",
+                        )
+                    ]
+                    for k, movie_name in enumerate(movielist)
+                ]
+                btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
+                btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
+                btn.insert(1, [
+                    InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+                    InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+                
+                ])
             
         
-#            btn.insert(0, [ 
-#                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
-#            ])
+                btn.insert(0, [ 
+                    InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
+                ])
+
+                k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+
+                await asyncio.sleep(1)
+
+                await k.delete()
+            
+                await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                        reply_markup=InlineKeyboardMarkup(btn))
+                await msg.delete()
+
+
+
+
+
+
+#                SPELL_CHECK[msg.id] = movielist
+#                i = 1
+#                pre_len = {}
+#                btn = []
+#  
+#                for k, movie in enumerate(movielist):
+#                    text = movie.strip()  # args[2]
+#                    same = False
+#                    if (i % 2) == 0:
+#                        if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
+#                            same = False
+#                        else:
+#                            same = True
+#                    else:
+#                        pre_len["text_len"] = len(text)
+#                        same = False
 #
-#            k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+#                        i += 2
 #
-#            await asyncio.sleep(1)
+#                        btn.append([text, f"spol#{reqstr1}#{k}", same])
 #
-#            await k.delete()
-#            
-#            await msg.reply_photo(photo=imdb['poster'], caption=caption,
-#                                        reply_markup=InlineKeyboardMarkup(btn))
-#            await msg.delete()
+#                    btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
+#                    btn = build_keyboard(btn)
+#
+#                    btn.insert(0, [
+#                        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+#                        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+#                    ])
+#
+#                    btn.insert(0, [
+#                        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
+#                    ])         
+#    
+#                    btn.insert(10, [
+#                        InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
+#                        InlineKeyboardButton(f"🧭𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n⌚️{imdb.get('runtime')}", callback_data=f"spol#{reqstr1}#{k}")
+#                    ])
+#
+#                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+#                                                reply_markup=InlineKeyboardMarkup(btn))
+#                    await msg.delete()
+
+#def build_keyboard(buttons):
+#    keyb = []
+#    for btn in buttons:
+#        if btn[2] and keyb:
+#            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+#        else:
+#            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+#
+#    return keyb
+
+
+
+
+
+
+
+
+
+
+
+
+            SPELL_CHECK[mv_id] = movielist
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=movie_name.strip(),
+                        callback_data=f"spol#{reqstr1}#{k}",
+                    )
+                ]
+                for k, movie_name in enumerate(movielist)
+            ]
+            btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
+            btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
+            btn.insert(1, [
+                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+                InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+                
+            ])
+            
+        
+            btn.insert(0, [ 
+                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
+            ])
+
+            k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+
+            await asyncio.sleep(1)
+
+            await k.delete()
+            
+            await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                        reply_markup=InlineKeyboardMarkup(btn))
+            await msg.delete()
 
 
 async def manual_filters(client, message, text=False):
