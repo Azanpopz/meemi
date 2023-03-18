@@ -2421,7 +2421,7 @@ async def advantage_spell_chok(client, msg):
     search = message.text
     mv_id = msg.id
     mv_rqst = msg.text
-    SPELL_CHECK[mv_id] = movielist
+#    SPELL_CHECK[mv_id] = movielist
     btn = [
         [
             InlineKeyboardButton(
