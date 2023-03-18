@@ -293,6 +293,7 @@ async def start(client, message):
             await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
      
             filetype = msg.media
+            mention = message.from_user.first_name
             file = getattr(msg, filetype.value)
             title = file.file_name
             size=get_size(file.file_size)
@@ -309,8 +310,9 @@ async def start(client, message):
         return await message.reply('No such file exist.')
     files = files_[0]
     title = files.file_name
+    mention = message.from_user.first_name
     size=get_size(files.file_size)
-    f_caption=files.caption
+    f_caption=files.caption    
     if CUSTOM_FILE_CAPTION:
         try:
             f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
