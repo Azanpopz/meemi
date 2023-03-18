@@ -2012,6 +2012,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
+    mv_rqst = msg.text
     message = msg
     searchh = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2074,6 +2075,7 @@ async def auto_filter(client, msg, spoll=False):
 
         
     if not spoll:
+        mv_rqst = msg.text
         message = msg        
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"): return  # ignore commands
@@ -2089,6 +2091,7 @@ async def auto_filter(client, msg, spoll=False):
                 
                 
                 reqst_gle = search.replace(" ", "+")
+                mv_rqst = msg.text
                 hmm = await msg.reply_text(text=f"𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: ☠`{message.from_user.mention}`☠\n\n𝐌𝐨𝐯𝐢𝐞: ⎙`{search}`⎙\n\n𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐢𝐧𝐢𝐬𝐡𝐞𝐝✔",
                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", url=f"https://www.google.com/search?q={reqst_gle}")],[InlineKeyboardButton("🔐𝐂𝐋𝐎𝐒𝐄🔐", callback_data="close_data")]]))
                 
@@ -2098,7 +2101,11 @@ async def auto_filter(client, msg, spoll=False):
                     return await advantage_spell_chok(client, msg)
                 else:
                     if NO_RESULTS_MSG:
-                        await client.send_message(chat_id=LOG_CHANNEL, text="😞")
+                        K = await msg.reply_photo(
+                            photo=SPELL_IMG, 
+                            caption=script.I_CUDNT.format(mv_rqst),
+                            reply_markup=InlineKeyboardMarkup(button)
+                            )
                     return
         else:
             return
@@ -2444,7 +2451,7 @@ async def advantage_spell_chok(client, msg):
                                InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
                     ]]
                     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-                    await client.send_message(
+                    K = await msg.reply_photo(
                         photo=SPELL_IMG, 
                         caption=script.I_CUDNT.format(mv_rqst),
                         reply_markup=InlineKeyboardMarkup(button)
