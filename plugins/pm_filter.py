@@ -2437,7 +2437,7 @@ async def advantage_spell_chok(client, msg):
     ])
 
     spell_check_del = await msg.reply_photo(
-        photo=imdb['poster'],
+        photo=(SPELL_IMG),
         caption=(script.CUDNT_FND.format(reqstr.mention)),
         reply_markup=InlineKeyboardMarkup(btn)
         )
