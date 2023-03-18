@@ -143,7 +143,7 @@ async def get_poster(query, bulk=False, id=False, file=None):
 
 
 
-async def io_poster(message, file=None):
+async def io_poster(query, message, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
         
@@ -174,7 +174,7 @@ async def io_poster(message, file=None):
             return movieid
         movieid = movieid[0].movieID
     else:
-        movieid = search
+        movieid = query
     movie = imdb.get_movie(movieid)
     if movie.get("original air date"):
         date = movie["original air date"]
