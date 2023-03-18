@@ -431,10 +431,11 @@ async def advantage_spoll_choker(bot, query):
             content = query.message.reply_to_message.text
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
+            chat_id=query.message.chat.id
             if NO_RESULTS_MSG:
                 mention = query.message.from_user.mention
                 content = query.message.reply_to_message.text
-                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+                await bot.send_message(chat_id=query.message.chat.id, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
             k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
             await asyncio.sleep(180)
             await k.delete()
