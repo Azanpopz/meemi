@@ -18,7 +18,7 @@ from info import LANGUAGES, MAX_BTN, ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_C
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
-from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, io_poster
+from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink
 
 from database.users_chats_db import db
 
@@ -1011,10 +1011,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
     elif query.data == "new":
         mv_id = query.message.id
-        search = query.message.text
-#        i, movie = query.data.split('#')
-        imdb = await io_poster(search) if IMDB else None
-        await query.answer(f"{imdb.get('title')}", show_alert=True)
+        query = query.message.text
+        imdb = await get_poster(query) if IMDB else None
+        await query.answer(f"😅😅", show_alert=True)
 
     elif query.data == "loading":
         user = await client.get_users(query.from_user.id)
