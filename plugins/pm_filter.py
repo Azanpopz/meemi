@@ -1010,8 +1010,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "pages":
         await query.answer()
     elif query.data == "new":
-        mv_id = msg.id
-        mv_rqst = msg.text
+        mv_id = query.message.id
+        mv_rqst = query.message.text
         imdb = await get_poster(mv_rqst) if IMDB else None
         await query.answer(f" {imdb.get('title')}", show_alert=True)
 
