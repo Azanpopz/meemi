@@ -143,7 +143,7 @@ async def get_poster(query, bulk=False, id=False, file=None):
 
 
 
-async def io_poster(query, message, msg, file=None):
+async def io_poster(message, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
         
@@ -151,7 +151,7 @@ async def io_poster(query, message, msg, file=None):
         year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
         if year:
             year = list_to_str(year[:1])
-            title = (query.replace(year, "")).strip()
+            title = (message.replace(year, "")).strip()
         elif file is not None:
             year = re.findall(r'[1-2]\d{3}', file, re.IGNORECASE)
             if year:
