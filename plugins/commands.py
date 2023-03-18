@@ -128,51 +128,6 @@ async def start(client, message):
     if not file_id:
         file_id = data
 
-        return
-    if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
-            return
-        btn = [
-                [
-                    InlineKeyboardButton(
-                        "JOIN CHANNEL", url=invite_link.invite_link
-                    ),
-                    InlineKeyboardButton(
-                        text="NEW MOVIES",
-                        url="https://t.me/+cACZdXU2LH8xOGE1"
-                    ),
-                ]
-                
-            ]
-        
-        if message.command[1] != "subscribe":
-            try:
-                kk, file_id = message.command[1].split("_", 1)
-                pre = 'checksubp' if kk == 'filep' else 'checksub' 
-                btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{file_id}")])
-            except (IndexError, ValueError):
-                btn.append([InlineKeyboardButton(" 🔄 Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
-        await asyncio.sleep(1)
-        await m.delete()
-        await client.send_message(
-            chat_id=message.from_user.id,
-            text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
-            reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode=enums.ParseMode.MARKDOWN
-            )
-        
-        return
-    data = message.command[1]
-    try:
-        pre, file_id = data.split('_', 1)
-    except:
-        file_id = data
-        pre = ""
-
     if data.split("-", 1)[0] == "BATCH":
         sts = await message.reply(f"<b><a href='https://t.me/nasrani_batch_store'>ʏᴏᴜʀ ᴍᴏᴠɪᴇ ꜰɪʟᴇꜱ ꜱᴇɴᴅᴇᴅ ᴛʜɪꜱ ɢʀᴏᴜᴘ.. ᴄʜᴀᴇᴄᴋ</a></b>")
         file_id = data.split("-", 1)[1]
