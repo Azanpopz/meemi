@@ -2432,11 +2432,15 @@ async def advantage_spell_chok(client, msg):
     ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
     btn.insert(0, [ 
-                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")                                          
-            ])
-    spell_check_del = await msg.reply_photo(photo=imdb['poster'], caption=caption,
-                      reply_markup=InlineKeyboardMarkup(btn)
-                      
+        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")                                          
+    ])
+    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+     await asyncio.sleep(1)
+     await k.delete()           
+     await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                 reply_markup=InlineKeyboardMarkup(btn))
+     await msg.delete()
+ 
 
 
     
