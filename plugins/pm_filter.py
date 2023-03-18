@@ -2149,7 +2149,7 @@ async def auto_filter(client, msg, spoll=False):
             ]
         else:
 
-            buttons = [
+            btn = [
                 [
                     InlineKeyboardButton(f'{file.file_name}🐠',
                                          callback_data=f'{pre}#{file.file_id}'),
@@ -2162,7 +2162,7 @@ async def auto_filter(client, msg, spoll=False):
                     InlineKeyboardButton('✅ ON' if settings["is_shortlink"] else '❌ OFF',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
                 ]
-#                for file in files 
+                for file in files 
             ]
 
         
