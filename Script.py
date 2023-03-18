@@ -402,6 +402,10 @@ Elsa
 
 🧲 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞: {file_size}
 
+<b>NOTE:</b>
+<b>- 𝙴𝙻𝚂𝙰 𝙸𝚂 𝙾𝙿𝙴𝙽 𝚂𝙾𝚄𝚁𝙲𝙴 𝙿𝚁𝙾𝙹𝙴𝙲𝚃. 
+- 𝚂𝙾𝚄𝚁𝙲𝙴 - 𝙲𝙻𝙸𝙲𝙺 𝚁𝙴𝙿𝙾 𝙱𝚄𝚃𝚃𝙾𝙽</b>
+<b>DEVS:</b>
 ➢ 𝐂𝐥𝐢𝐜𝐤 » <a href='https://t.me/nasrani_update'>𝐉𝐨𝐢𝐧 𝐍𝐨𝐰</a>
 
 ✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » @nasrani_update
