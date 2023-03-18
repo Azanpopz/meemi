@@ -1009,6 +1009,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "pages":
         await query.answer()
+    elif query.data == "new":
+        mv_id = msg.id
+        mv_rqst = msg.text
+        imdb = await get_poster(mv_rqst) if IMDB else None
+        await query.answer(f" {imdb.get('title')}", show_alert=True)
 
     elif query.data == "loading":
         user = await client.get_users(query.from_user.id)
@@ -2435,7 +2440,7 @@ async def advantage_spell_chok(client, msg):
     ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
     btn.insert(0, [ 
-        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
+        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", f"new")                                          
     ])
 
     spell_check_del = await msg.reply_photo(
