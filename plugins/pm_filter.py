@@ -1011,9 +1011,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
     elif query.data == "new":
         mv_id = query.message.id
-        movie = query.message.text
+        search = query.message.text
 #        i, movie = query.data.split('#')
-        imdb = await get_poster(query=movie, id=True)
+        imdb = await get_poster(query=search) if IMDB else None
         await query.answer(f"{imdb.get('title')}", show_alert=True)
 
     elif query.data == "loading":
