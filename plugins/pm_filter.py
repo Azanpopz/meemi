@@ -854,7 +854,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         settings = await get_settings(query.message.chat.id)
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption = CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME,
+                f_caption = CUSTOM_FILE_CAPTION.format(query.message.from_user.mention, temp.U_NAME, temp.B_NAME,
                                                        user_mention='' if user_name is None else user_name,
                                                        file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
@@ -954,7 +954,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         f_caption = files.caption
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption = CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME,
+                f_caption = CUSTOM_FILE_CAPTION.format(query.message.from_user.mention, temp.U_NAME, temp.B_NAME,
                                                        user_mention='' if user_name is None else user_name,
                                                        file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
