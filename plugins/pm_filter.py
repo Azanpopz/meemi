@@ -47,15 +47,10 @@ FILTER_MODE = {}
 
 BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india', False)]])
 
-A = """𝐒𝐞𝐚........................."""
-B = """𝐒𝐞𝐚𝐫𝐜........................"""
-C = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢......................."""
-D = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠....................."""
-E = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘..................."""
-F = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮................."""
-G = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫................."""
-H = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫 𝐅𝐢.............."""
-I = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞"""
+A = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠........"""
+B = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫..."""
+C = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞"""
+
 
 
 
@@ -2062,12 +2057,9 @@ async def auto_filter(client, msg, spoll=False):
             px = await msg.reply_text(A,quote=True)
             await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
             await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=D, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=E, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=H, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=I, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                   
+                                               
             await px.delete()
-            await msg.reply_text(text=I,quote=True,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                      
+                                                  
 #            k = await msg.edit_text(text=f"LOADING....")
 #            await asyncio.sleep(2)
 #            await k.delete()
@@ -2157,14 +2149,14 @@ async def auto_filter(client, msg, spoll=False):
             ]
         else:
 
-            btn.insert(0, 
+            btn = [
                 [
                     InlineKeyboardButton(f"🐠{get_size(file.file_size)}", callback_data=f'{pre}#{file.file_id}')
                     InlineKeyboardButton(f"{file.file_name}🐠", callback_data=f'{pre}#{file.file_id}')
                     
                 ]
                 for file in files
-            )
+            ]
         
             
 
