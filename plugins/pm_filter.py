@@ -431,16 +431,13 @@ async def advantage_spoll_choker(bot, query):
             content = query.message.reply_to_message.text
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
-            chat_id=query.message.chat.id
             if NO_RESULTS_MSG:
                 mention = query.message.from_user.mention
                 content = query.message.reply_to_message.text
-#                await bot.send_message(chat_id=query.message.chat.id, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-#            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
-#            await asyncio.sleep(180)
-#            await k.delete()
-            await query.message.reply_text(text=f"ok d")
-
+                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
+            await asyncio.sleep(180)
+            await k.delete()
 
 
 
@@ -2104,9 +2101,7 @@ async def auto_filter(client, msg, spoll=False):
                     return await advantage_spell_chok(client, msg)
                 else:
                     if NO_RESULTS_MSG:
-                        hmm = await msg.reply_text(text=f"𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: ☠`{message.from_user.mention}`☠\n\n𝐌𝐨𝐯𝐢𝐞: ⎙`{search}`⎙\n\n𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐢𝐧𝐢𝐬𝐡𝐞𝐝✔",
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", url=f"https://www.google.com/search?q={reqst_gle}")],[InlineKeyboardButton("🔐𝐂𝐋𝐎𝐒𝐄🔐", callback_data="close_data")]]))
-                
+                        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
                     return
         else:
             return
@@ -2440,30 +2435,26 @@ async def advantage_spell_chok(client, msg):
                     movies = await get_poster(mv_rqst, bulk=True)
                 except Exception as e:
                     logger.exception(e)
-                    await msg.reply_text(text=f"ok d")
-#                    await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-#                    k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
-#                    await asyncio.sleep(8)
-#                    await k.delete()
-                    return
+                    await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+                    k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
+                    await asyncio.sleep(8)
+                    await k.delete()
+                return
                 movielist = []
-                if not movies:
-                    chat_id = msg.chat.id
+                if not movies:                    
                     reqst_gle = mv_rqst.replace(" ", "+")
-#                    button = [[
-#                               InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-#                    ]]
-                    await client.send_message(chat_id=msg.chat.id, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-#                    k = await msg.reply_photo(
-#                        photo=SPELL_IMG, 
-#                        caption=script.I_CUDNT.format(mv_rqst),
-#                        reply_markup=InlineKeyboardMarkup(btn)
-#                    )
-                    await msg.reply_text(text=f"ok d")
-                     
-                    
-#                    await asyncio.sleep(30)
-#                    await k.delete()
+                    btn = [[
+                         InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+                    ]]
+                    await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+                    k = await msg.reply_photo(
+                        photo=SPELL_IMG, 
+                        caption=script.I_CUDNT.format(mv_rqst),
+                        reply_markup=InlineKeyboardMarkup(btn)
+                    )
+                    await msg.reply_text(text=f"ok d")                                        
+                    await asyncio.sleep(30)
+                    await k.delete()
                     
        
                     return
