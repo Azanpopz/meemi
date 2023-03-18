@@ -2152,12 +2152,21 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"🐠{file.file_name}{get_size(file.file_size)}", \n
+                        text=f"🐠{file.file_name}{get_size(file.file_size)}",
                         callback_data=f'{pre}#{file.file_id}',
                     ),
                 ]
                 for file in files
-            ]
+            
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"🐠{file.file_name}{get_size(file.file_size)}",
+                        callback_data=f'{pre}#{file.file_id}',
+                    ),
+                ]
+                for file in files
+            ]]
         
             
 
