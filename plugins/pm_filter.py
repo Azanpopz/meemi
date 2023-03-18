@@ -2436,7 +2436,7 @@ async def advantage_spell_chok(client, msg):
             ])
     spell_check_del = await msg.reply_photo(photo=imdb['poster'], caption=caption,
                       reply_markup=InlineKeyboardMarkup(btn)
-    await msg.delete()
+                      await msg.delete()
 
 
     try:
