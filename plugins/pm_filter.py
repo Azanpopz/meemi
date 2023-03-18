@@ -2416,8 +2416,10 @@ async def advantage_spell_chok(client, msg):
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
-    search = message.text
     message = msg
+    search = message.text
+    mv_id = msg.id
+    mv_rqst = msg.text
     imdb = await get_poster(search) if IMDB else None
     btn = [
         [
