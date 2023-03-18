@@ -1009,76 +1009,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "pages":
         await query.answer()
-    elif query.data == "new":
-        mv_id = query.message.id
-        query = query.message.text
-        imdb = await get_poster(query) if IMDB else None
-        await query.answer(f"😅😅", show_alert=True)
-
-    elif query.data == "loading":
-        user = await client.get_users(query.from_user.id)
-        _, user, search = query.data.split('#')        
-        query_by = query.message.text
-        content = query.message.text
-        
-        message = query.message
-        search = query.message.text
-        mention=query.message.from_user.first_name
-        imdb = await get_poster(search) if IMDB else None
-        query_by = f"<b>ɴᴏ ᴏғ ғɪʟᴇs :</b> <code><b><i>{total_results}</i></b></code>\n" \
-                   f"<b>ʏᴏᴜʀ ϙᴜᴇʀʏ :</b> <code><b><i>{search}</i></b></code>\n" \
-                   f"<b>Qᴜᴀʟɪᴛʏ :</b> <code><b><i>{Quality}</i></b></code>\n" \
-                   f"<b>ʀᴇϙᴜᴇsᴛᴇᴅ ʙʏ :</b> {query.message.from_user.first_name}</b>"
-        if imdb:
-            cap = IMDB_TEMPLATE.format(
-                query=query_by,
-                title=imdb['title'],
-                votes=imdb['votes'],
-                aka=imdb["aka"],
-                seasons=imdb["seasons"],
-                box_office=imdb['box_office'],
-                localized_title=imdb['localized_title'],
-                kind=imdb['kind'],
-                imdb_id=imdb["imdb_id"],
-                cast=imdb["cast"],
-                runtime=imdb["runtime"],
-                countries=imdb["countries"],
-                certificates=imdb["certificates"],
-                languages=imdb["languages"],
-                director=imdb["director"],
-                writer=imdb["writer"],
-                producer=imdb["producer"],
-                composer=imdb["composer"],
-                cinematographer=imdb["cinematographer"],
-                music_team=imdb["music_team"],
-                distributors=imdb["distributors"],
-                release_date=imdb['release_date'],
-                year=imdb['year'],
-                genres=imdb['genres'],
-                poster=imdb['poster'],
-                plot=imdb['plot'],
-                rating=imdb['rating'],
-                url=imdb['url'],
-                chat=message.chat.title,
-                **locals()
-            )
-        else:
-            cap = query_by  # f"Here Is What I Found For Your Query {search}"
-
-        if imdb and imdb.get('poster'):
-            try:
-                await query.answer(f"Hey", show_alert=True)
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                await query.answer(f"😅😅", show_alert=True)
-            except Exception as e:
-                logger.exception(e)
-                await query.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn),
-                                          disable_web_page_preview=False)
-            await query.message.delete()
-        else:           
-            await query.answer(f"😅😅")
+    
         if search == "loading":
             return await query.message.delete()
 
