@@ -396,7 +396,7 @@ Elsa
 •───────────────────•
 𝙷𝙴𝙻𝙾 {},
 𝙼𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 <a href=https://t.me/{}>{}</a>
-{message.from_user.first_name}
+{message.from_user.mention}
 📁 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑵𝒂𝒎𝒆 : {file_name}
 🧲 ➤ 𝒀𝒐𝒖𝒓 𝑭𝒊𝒍𝒆 𝑺𝒊𝒛𝒆 : {file_size}
 ✮ 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 » <a href='https://t.me/nasrani_update'>nasrani_update</a>
