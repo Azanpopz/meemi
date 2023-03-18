@@ -294,6 +294,7 @@ async def start(client, message):
             await db.add_user(message.from_user.id, message.from_user.first_name)
             filetype = msg.media
             mention = message.from_user.first_name
+            user = message.from_user.mention
             file = getattr(msg, filetype.value)
             title = file.file_name
             size=get_size(file.file_size)
@@ -312,6 +313,7 @@ async def start(client, message):
     files = files_[0]
     title = files.file_name
     mention = message.from_user.first_name
+    user = message.from_user.mention
     size=get_size(files.file_size)
     f_caption=files.caption    
     if CUSTOM_FILE_CAPTION:
