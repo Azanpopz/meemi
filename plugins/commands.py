@@ -294,14 +294,14 @@ async def start(client, message):
             await db.add_user(message.from_user.id, message.from_user.first_name)
             filetype = msg.media
             mention = message.from_user.first_name
-            user = message.from_user.mention
+            user_name = message.from_user.mention
             file = getattr(msg, filetype.value)
             title = file.file_name
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
                 try:
-                    f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.first.name, message.from_user.mention, temp.U_NAME, temp.B_NAME, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
+                    f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME, user_mention= '' if user_name is None else user_name, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
                 except:
                     return
             await msg.edit_caption(f_caption)
@@ -313,12 +313,12 @@ async def start(client, message):
     files = files_[0]
     title = files.file_name
     mention = message.from_user.first_name
-    user = message.from_user.mention
+    user_name = message.from_user.mention
     size=get_size(files.file_size)
     f_caption=files.caption    
     if CUSTOM_FILE_CAPTION:
         try:
-            f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.first.name, message.from_user.mention, temp.U_NAME, temp.B_NAME, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+            f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME, user_mention= '' if user_name is None else user_name, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
         except Exception as e:
             logger.exception(e)
             f_caption=f_caption
