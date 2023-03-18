@@ -2165,7 +2165,7 @@ async def auto_filter(client, msg, spoll=False):
                         callback_data=f'{pre}#{file.file_id}',
                     ),
                 ]
-                for file in files
+                
             ]]
         
             
