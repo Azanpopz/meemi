@@ -1,3 +1,4 @@
+import imp
 import os
 import logging
 import random
@@ -6,20 +7,26 @@ from Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, MSG_ALRT, MAIN_CHANNEL, MY_CHANNEL, BATCH_GROUP
+from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 
+
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, MSG_ALRT, MAIN_CHANNEL, MY_CHANNEL, BATCH_GROUP, IMDB_TEMPLATE, IMDB
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, MAX_B_TN, VERIFY, MVG_LNK, OWN_LNK
-from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token
-from database.connections_mdb import active_connection
+
+from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink
+
 from plugins.fsub import ForceSub
+from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token
+
+from database.connections_mdb import active_connection
 import re
 import json
 import base64
 logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
+
 force_channel = "nasrani_batch_store"
 
 
@@ -28,7 +35,7 @@ async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
             [
-                InlineKeyboardButton('🤖 Updates', url="https://t.me/czdbotz")
+                InlineKeyboardButton('🤖 Updates', url=(MAIN_CHANNEL))
             ],
             [
                 InlineKeyboardButton('ʜᴇʟᴘ', url=f"https://t.me/{temp.U_NAME}?start=help"),
@@ -47,62 +54,111 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('〆 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 〆', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('sᴇᴀʀᴄʜ​', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('♚ ᴏᴡɴᴇʀ ♚', callback_data='owner_info')
-            ],[      
-            InlineKeyboardButton('〄 ʜᴇʟᴘ 〄', callback_data='help2'),
-            InlineKeyboardButton('⍟ ᴀʙᴏᴜᴛ ⍟', callback_data='about')
-            ],[
-            InlineKeyboardButton('⌬ sᴜᴘᴘᴏʀᴛ ⌬', callback_data='support_group')
-        ]]                  
+            InlineKeyboardButton('× ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ×', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+        ], [
+            InlineKeyboardButton('🔹ᴀᴜᴛᴏ', callback_data='autofilter'),
+            InlineKeyboardButton('ᴀᴅᴅ🔹', callback_data='add')
+        ], [
+            InlineKeyboardButton('🔹ᴀᴜᴅʙᴏᴏᴋ', callback_data='abook'),
+            InlineKeyboardButton('ᴄʜᴀᴛ🔹', callback_data='chat')
+        ], [
+            InlineKeyboardButton('🔹ᴄᴀʀʙᴏɴ', callback_data='carb'),
+            InlineKeyboardButton('ᴄᴏɴɴᴇᴄᴛ🔹', callback_data='coct')
+        ], [
+            InlineKeyboardButton('🔹ᴄᴏᴠɪᴅ', callback_data='corona'),
+            InlineKeyboardButton('ᴄᴏᴜɴᴛʀʏ🔹', callback_data='country')
+        ], [
+            InlineKeyboardButton('🔹ᴅᴇᴘʟᴏʏ', callback_data='deploy'),
+            InlineKeyboardButton('ᴇxᴛʀᴀ🔹', callback_data='extra')
+        ], [
+            InlineKeyboardButton('🔹ꜰᴏɴᴛ', callback_data='font'),
+            InlineKeyboardButton('ɢᴀᴍᴇꜱ🔹', callback_data='fun')
+        ], [
+            InlineKeyboardButton('🔹ɪᴅ', callback_data='id'),
+            InlineKeyboardButton('ᴊꜱᴏɴ🔹', callback_data='json')
+        ], [
+            InlineKeyboardButton('🔹ᴋᴀɴɢ', callback_data='kang'),
+            InlineKeyboardButton('ᴍᴀɴᴜᴇʟ🔹', callback_data='manuelfilter')
+        ], [
+            InlineKeyboardButton('🔹ᴘɪɴɢ', callback_data='pings'),
+            InlineKeyboardButton('Qᴜᴛᴏᴇꜱ🔹', callback_data='quote')
+        ], [
+            InlineKeyboardButton('🔹ʀᴇQᴜᴇꜱᴛ', callback_data='request'),
+            InlineKeyboardButton('ꜱᴛᴀᴛᴜꜱ🔹', callback_data='status')
+        ], [
+            InlineKeyboardButton('🔹ꜱᴏɴɢ', callback_data='song'),
+            InlineKeyboardButton('ꜱᴛɪᴄᴋᴇʀ🔹', callback_data='sticker')
+        ], [
+            InlineKeyboardButton('🔹ᴛᴛꜱ', callback_data='tts'),
+            InlineKeyboardButton('ᴛɢʀᴀᴘʜ🔹', callback_data='tele')
+        ], [
+            InlineKeyboardButton('🔹ᴛᴏʀʀᴇɴᴛ', callback_data='torrent'),
+            InlineKeyboardButton('ᴜʀʟꜱʜᴏʀᴛ🔹', callback_data='urlshort')
+        ], [
+            InlineKeyboardButton('🔹ᴠɪᴅᴇᴏ', callback_data='video'),
+            InlineKeyboardButton('ᴡʜᴏɪꜱ🔹', callback_data='whois')
+        ], [
+            InlineKeyboardButton('🔹𝐇𝐢𝐝𝐞 𝐂𝐨𝐦𝐦𝐚𝐧𝐝', callback_data='help'),
+            InlineKeyboardButton('𝐬𝐩𝐞𝐜𝐢𝐚𝐥🔹', callback_data='about')
+        ], [
+            InlineKeyboardButton('🔹𝐆𝐫𝐨𝐮𝐩', callback_data='help'),
+            InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞🔹', callback_data='about')
+        ], [
+            InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA") 
+        await asyncio.sleep(1)
+        await m.delete()        
+        await message.reply_text(            
+            text=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
         return
-
-    if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help", "start", "hehe"]:
-        if message.command[1] == "subscribe":
-            await ForceSub(client, message)
-
-        return
-    if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
-        buttons = [[
-            InlineKeyboardButton('〆 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 〆', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('sᴇᴀʀᴄʜ​', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('♚ ᴏᴡɴᴇʀ ♚', callback_data='owner_info')
-            ],[      
-            InlineKeyboardButton('〄 ʜᴇʟᴘ 〄', callback_data='help2'),
-            InlineKeyboardButton('⍟ ᴀʙᴏᴜᴛ ⍟', callback_data='about')
-            ],[
-            InlineKeyboardButton('⌬ sᴜᴘᴘᴏʀᴛ ⌬', callback_data='support_group')
-        ]]         
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-
-        return
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
+        try:
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            return
+        btn = [
+                [
+                    InlineKeyboardButton(
+                        "JOIN CHANNEL", url=invite_link.invite_link
+                    ),
+                    InlineKeyboardButton(
+                        text="NEW MOVIES",
+                        url="https://t.me/+cACZdXU2LH8xOGE1"
+                    ),
+                ]
                 
-    kk, file_id = message.command[1].split("_", 1) if "_" in message.command[1] else (False, False)
-    pre = ('checksubp' if kk == 'filep' else 'checksub') if kk else False
-
-    status = await ForceSub(client, message, file_id=file_id, mode=pre)
-    if not status:
+            ]
+        
+        if message.command[1] != "subscribe":
+            try:
+                kk, file_id = message.command[1].split("_", 1)
+                pre = 'checksubp' if kk == 'filep' else 'checksub' 
+                btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{file_id}")])
+            except (IndexError, ValueError):
+                btn.append([InlineKeyboardButton(" 🔄 Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
+        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
+        await asyncio.sleep(1)
+        await m.delete()
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.MARKDOWN
+            )
+        
         return
-
     data = message.command[1]
-    if not file_id:
+    try:
+        pre, file_id = data.split('_', 1)
+    except:
         file_id = data
+        pre = ""
 
     if data.split("-", 1)[0] == "BATCH":
         sts = await message.reply(f"<b><a href='https://t.me/nasrani_batch_store'>ʏᴏᴜʀ ᴍᴏᴠɪᴇ ꜰɪʟᴇꜱ ꜱᴇɴᴅᴇᴅ ᴛʜɪꜱ ɢʀᴏᴜᴘ.. ᴄʜᴀᴇᴄᴋ</a></b>")
@@ -151,8 +207,8 @@ async def start(client, message):
                              )
                 
                 await message.reply_text(
-                    chat_id=force_channel,
-                    text=script.STARTS_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),)
+                    chat_id=BATCH_GROUP,
+                    text=script.BATCH_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),)
                     
                 
                 
@@ -295,17 +351,15 @@ async def start(client, message):
 
                 
             await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
-            await db.add_user(message.from_user.id, message.from_user.first_name)
+     
             filetype = msg.media
-            mention = message.from_user.first_name
-            user_name = message.from_user.first_name
             file = getattr(msg, filetype.value)
             title = file.file_name
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
                 try:
-                    f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME, user_mention= '' if user_name is None else user_name, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
+                    f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
                 except:
                     return
             await msg.edit_caption(f_caption)
@@ -313,16 +367,13 @@ async def start(client, message):
         except:
             pass
         return await message.reply('No such file exist.')
-    await db.add_user(message.from_user.id, message.from_user.first_name)
     files = files_[0]
     title = files.file_name
-    mention = message.from_user.first_name
-    user_name = message.from_user.first_name
     size=get_size(files.file_size)
-    f_caption=files.caption    
+    f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
         try:
-            f_caption=CUSTOM_FILE_CAPTION.format(temp.B_NAME, user_mention= '' if user_name is None else user_name, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+            f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
         except Exception as e:
             logger.exception(e)
             f_caption=f_caption
@@ -694,82 +745,122 @@ async def save_template(client, message):
 async def requests(bot, message):
     if REQST_CHANNEL is None or SUPPORT_CHAT_ID is None: return # Must add REQST_CHANNEL and SUPPORT_CHAT_ID to use this feature
     if message.reply_to_message and SUPPORT_CHAT_ID == message.chat.id:
+        message = msg
+        search = message.text
+        mv_id = message.id
+        
+
+
         chat_id = message.chat.id
         reporter = str(message.from_user.id)
         mention = message.from_user.mention
         success = True
         content = message.reply_to_message.text
-        try:
-            if REQST_CHANNEL is not None:
-                btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-                success = True
-            elif len(content) >= 3:
-                for admin in ADMINS:
-                    btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                    reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-                    success = True
-            else:
-                if len(content) < 3:
-                    await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
-            if len(content) < 3:
-                success = False
-        except Exception as e:
-            await message.reply_text(f"Error: {e}")
-            pass
+        imdb = await get_poster(search) if IMDB else None
+      
+        if imdb:
+            caption = IMDB_TEMPLATE.format(
+                query=search,                
+                title=imdb['title'],
+                votes=imdb['votes'],
+                aka=imdb["aka"],
+                seasons=imdb["seasons"],
+                box_office=imdb['box_office'],
+                localized_title=imdb['localized_title'],
+                kind=imdb['kind'],
+                imdb_id=imdb["imdb_id"],
+                cast=imdb["cast"],
+                runtime=imdb["runtime"],
+                countries=imdb["countries"],
+                certificates=imdb["certificates"],
+                languages=imdb["languages"],
+                director=imdb["director"],
+                writer=imdb["writer"],
+                producer=imdb["producer"],
+                composer=imdb["composer"],
+                cinematographer=imdb["cinematographer"],
+                music_team=imdb["music_team"],
+                distributors=imdb["distributors"],
+                release_date=imdb['release_date'],
+                year=imdb['year'],
+                genres=imdb['genres'],
+                poster=imdb['poster'],
+                plot=imdb['plot'],
+                rating=imdb['rating'],
+                url=imdb['url'],
+                **locals()
+            )
         
-    elif SUPPORT_CHAT_ID == message.chat.id:
-        chat_id = message.chat.id
-        reporter = str(message.from_user.id)
-        mention = message.from_user.mention
-        success = True
-        content = message.text
-        keywords = ["#request", "/request", "#Request", "/Request"]
-        for keyword in keywords:
-            if keyword in content:
-                content = content.replace(keyword, "")
-        try:
-            if REQST_CHANNEL is not None and len(content) >= 3:
-                btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-                success = True
-            elif len(content) >= 3:
-                for admin in ADMINS:
-                    btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-                      ]]
-                    reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-                    success = True
-            else:
-                if len(content) < 3:
-                    await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
-            if len(content) < 3:
-                success = False
-        except Exception as e:
-            await message.reply_text(f"Error: {e}")
-            pass
-
-    else:
-        success = False
-    
-    if success:
-        btn = [[
-                InlineKeyboardButton('View Request', url=f"{reported_post.link}")
-              ]]
-        await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
-
+            if imdb and imdb.get('poster'):
                 
+                try:
+                    if REQST_CHANNEL is not None:
+                        btn = [[
+                                InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
+                                InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                               ]]
+                        reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"🤯𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                        success = True
+                    elif len(content) >= 3:
+                        for admin in ADMINS:
+                            btn = [[
+                                InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}"),
+                                InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                              ]]
+                            reported_post = await bot.send_message(chat_id=admin, text=f"🙂𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                            success = True
+                    else:
+                        if len(content) < 3:
+                            await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
+                    if len(content) < 3:
+                        success = False
+                except Exception as e:
+                    await message.reply_text(f"Error: {e}")
+                    pass
+        
+            elif SUPPORT_CHAT_ID == message.chat.id:
+                chat_id = message.chat.id
+                reporter = str(message.from_user.id)
+                mention = message.from_user.mention
+                success = True
+                content = message.text
+                keywords = ["#request", "/request", "#Request", "/Request"]
+                for keyword in keywords:
+                    if keyword in content:
+                        content = content.replace(keyword, "")
+                try:
+                    if REQST_CHANNEL is not None and len(content) >= 3:
+                        btn = [[
+                                InlineKeyboardButton('View Request', url=f"{message.link}"),
+                                InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                              ]]
+                        reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"😍𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})  \n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                        success = True
+                    elif len(content) >= 3:
+                        for admin in ADMINS:
+                            btn = [[
+                                InlineKeyboardButton('View Request', url=f"{message.link}"),
+                                InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                              ]]
+                            reported_post = await bot.send_message(chat_id=admin, text=f"🥺𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}", reply_markup=InlineKeyboardMarkup(btn))
+                            success = True
+                    else:
+                        if len(content) < 3:
+                            await message.reply_text("You must type about your request [Minimum 3 Characters]. Requests can't be empty.")
+                    if len(content) < 3:
+                        success = False
+                except Exception as e:
+                    await message.reply_text(f"Error: {e}")
+                    pass
+
+            else:
+                success = False
     
+            if success:
+                btn = [[
+                        InlineKeyboardButton('View Request', url=f"{reported_post.link}")
+                      ]]
+                await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
         
         
