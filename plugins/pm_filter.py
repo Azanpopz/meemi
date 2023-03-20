@@ -394,50 +394,34 @@ async def next_page(bot, query):
     
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
-    __, user, movie_ = query.data.split('#')
-    content = query.message.reply_to_message.text
-    mention = query.message.from_user.mention
-    mv_rqst = query.message.text
+    _, user, movie_ = query.data.split('#')
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
-        content = query.message.reply_to_message.text
-        mention = query.message.from_user.mention
         return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
-    if movie_ == "india":       
-        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
-
     movie = movies[(int(movie_))]
     await query.answer(script.TOP_ALRT_MSG)
     k = await manual_filters(bot, query.message, text=movie)
-    if k == False:                               
-
-            
-#    if movie_ == "india":       
-#        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
-#        await auto_filter(bot, query, k)               
-#    if movie_ == "india":
-#        await query.answer(f"{query.from_user.first_name} \n𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧", show_alert=True)
-
+    if k == False:
         files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
         if files:
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            mention = query.message.from_user.mention
-            content = query.message.reply_to_message.text
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
-                mention = query.message.from_user.mention
-                content = query.message.reply_to_message.text
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
-            await asyncio.sleep(180)
+            k = await query.message.edit(script.MVE_NT_FND)
+            await asyncio.sleep(10)
             await k.delete()
+
+#languages
+
+            
 
 
 
@@ -2441,7 +2425,9 @@ async def advantage_spell_chok(client, msg):
     btn.insert(0, [ 
         InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")                                          
     ])
-
+    btn.insert(0, [
+        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
+    ])         
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
     await asyncio.sleep(1)
     await k.delete()
