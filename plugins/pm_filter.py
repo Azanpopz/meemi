@@ -1109,65 +1109,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-    elif query.data.startswith("imdo"):
-                
-        buttons = [[
-            InlineKeyboardButton('🗂️ᴜᴘʟᴏᴀᴅ🗂️', callback_data=f"upl#{query.from_user.id}")
-        ], [
-            InlineKeyboardButton('💡ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ💡', callback_data=f'unv#{query.from_user.id}'),
-            InlineKeyboardButton('🔒ᴄʟᴏꜱᴇ🔒', callback_data='close_data')
-        
-        ]]                 
-        message = query.message
-        search = query.message.text
-        user = await client.get_users(query.from_user.id)#        reply_markup = InlineKeyboardMarkup(buttons)
-        content = query.message.text
-        req = query.from_user.id
-        chat_id = query.message.chat.id
-        message = query.message
-        searchh = message.text                 
-        reqstr1 = message.from_user.id if message.from_user else 0
-        reqstr = await client.get_users(reqstr1)
-        user = await client.get_users(query.from_user.id)
-        reply_markup = InlineKeyboardMarkup(buttons)
-#        imdb = await get_poster(searchh) if IMDB else None
-        if imdb:
-            cap = IMDB_TEMPLATE.format(
-            query=searchh,            
-            title=imdb['title'],
-            votes=imdb['votes'],
-            aka=imdb["aka"],
-            seasons=imdb["seasons"],
-            box_office=imdb['box_office'],
-            localized_title=imdb['localized_title'],
-            kind=imdb['kind'],
-            imdb_id=imdb["imdb_id"],
-            cast=imdb["cast"],
-            runtime=imdb["runtime"],
-            countries=imdb["countries"],
-            certificates=imdb["certificates"],
-            languages=imdb["languages"],
-            director=imdb["director"],
-            writer=imdb["writer"],
-            producer=imdb["producer"],
-            composer=imdb["composer"],
-            cinematographer=imdb["cinematographer"],
-            music_team=imdb["music_team"],
-            distributors=imdb["distributors"],
-            release_date=imdb['release_date'],
-            year=imdb['year'],
-            genres=imdb['genres'],
-            poster=imdb['poster'],
-            plot=imdb['plot'],
-            rating=imdb['rating'],
-            url=imdb['url'],
-            
-        )
-                                                  
-        k = await query.message.edit_text(f" {query.from_user.mention}💕")
-        await query.message.edit_reply_markup(reply_markup)
-        await asyncio.sleep(3)
-        await k.delete()       
+
+                   
       
 
 
@@ -1430,6 +1373,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if int(query.from_user.id) == int(from_user):
             user = await client.get_users(from_user)
             await query.answer(f"Hᴇʏ {user.first_name}, Dvd ഇറങ്ങിക്കോട്ടെ!", show_alert=True)
+        else:
+            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
+
+
+    elif query.data.startswith("shows"):
+        ident, search = query.data.split("#")
+        chat_id = msg.chat.id
+        mv_rqst = msg.text
+        message = msg
+        searchh = message.text                 
+        reqstr1 = msg.from_user.id if msg.from_user else 0
+        reqstr = await client.get_users(reqstr1)   
+        
+        if int(query.search) == int(search):
+            imdb = await get_poster(search) if IMDB else None           
+            await query.answer(f"Hᴇʏ {title}, Dvd ഇറങ്ങിക്കോട്ടെ!", show_alert=True)
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
@@ -2434,7 +2393,7 @@ async def advantage_spell_chok(client, msg):
     btn = build_keyboard(btn)
     btn.insert(0, [
         InlineKeyboardButton("🖇️𝐂𝐡𝐚𝐧𝐧𝐞𝐥🖇️", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("🏷️𝐈𝐧𝐟𝐨🏷️", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("🏷️𝐈𝐧𝐟𝐨🏷️", "shows"),
         InlineKeyboardButton("⌛𝐒𝐞𝐚𝐫𝐜𝐡⌛", url=f"https://www.google.com/search?q={mv_rqst}")
     ])
 
