@@ -2419,7 +2419,7 @@ async def advantage_spell_chok(client, msg):
 
 
    
-             btn.append([text, f"spol#{reqstr1}#{k}", same])
+         btn.append([text, f"spol#{reqstr1}#{k}", same])
          btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
          btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
          btn.append([InlineKeyboardButton(text=f"photo", url=imdb['poster'])])
