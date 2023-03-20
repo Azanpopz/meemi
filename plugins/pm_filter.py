@@ -1378,19 +1378,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data.startswith("shows"):
-        ident, search = query.data.split("#")
-        chat_id = msg.chat.id
-        mv_rqst = msg.text
-        message = msg
-        searchh = message.text                 
-        reqstr1 = msg.from_user.id if msg.from_user else 0
-        reqstr = await client.get_users(reqstr1)   
+        search = query.data.split("#")     
+        search = query.message.text                                  
         
         if int(query.search) == int(search):
             imdb = await get_poster(search) if IMDB else None           
             await query.answer(f"Hᴇʏ {title}, Dvd ഇറങ്ങിക്കോട്ടെ!", show_alert=True)
-        else:
-            await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
+        
+
 
 
 
