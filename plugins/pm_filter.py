@@ -2433,11 +2433,16 @@ async def advantage_spell_chok(client, msg):
     ])
 
     btn.insert(0, [
-        InlineKeyboardButton(f"📤{imdb.get('title')} - {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
+        InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
     ])
     btn.insert(1, [
         InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐃𝐚𝐭𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
-    ])   
+    ]) 
+    btn.insert(20, [
+        InlineKeyboardButton("🖇️𝐂𝐡𝐚𝐧𝐧𝐞𝐥🖇️", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("🏷️𝐈𝐧𝐟𝐨🏷️", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("⌛𝐒𝐞𝐚𝐫𝐜𝐡⌛", url=f"https://www.google.com/search?q={mv_rqst}")
+    ])
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
     
     
