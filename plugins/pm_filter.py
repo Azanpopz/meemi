@@ -2406,7 +2406,15 @@ async def advantage_spell_chok(client, msg):
         ]
         for k, movie_name in enumerate(movielist)
     ]
-
+    btn.append([
+        [
+            InlineKeyboardButton(
+                text=f"🔰{imdb.get('year')}🔰",
+                callback_data=f"spol#{reqstr1}#{k}",
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ])
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
 
 
@@ -2548,8 +2556,6 @@ async def advantage_spell_chok(client, msg):
 #            await msg.reply_photo(photo=imdb['poster'], caption=caption,
 #                                        reply_markup=InlineKeyboardMarkup(btn))
 #            await msg.delete()
-
-
 async def manual_filters(client, message, text=False):
     settings = await get_settings(message.chat.id)
     group_id = message.chat.id
@@ -2683,6 +2689,7 @@ async def manual_filters(client, message, text=False):
     else:
         return False
 
+                        
 async def global_filters(client, message, text=False):
     settings = await get_settings(message.chat.id)
     group_id = message.chat.id
