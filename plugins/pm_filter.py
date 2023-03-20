@@ -2402,47 +2402,51 @@ async def advantage_spell_chok(client, msg):
     search = message.text
     imdb = await get_poster(search) if IMDB else None
     i = 1
-    pre_len = {}             
+    pre_len = {}
     btn = []
+    # movielist.sort(key=len)
     for k, movie in enumerate(movielist):
         text = movie.strip()  # args[2]
         same = False
         if (i % 2) == 0:
-            if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
+            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
                 same = False
             else:
                 same = True
         else:
             pre_len["text_len"] = len(text)
             same = False
-            i += 2
 
+        i += 1
 
-   
-                 btn.append([text, f"spol#{reqstr1}#{k}", same])
-         btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
-         btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
-         btn.append([InlineKeyboardButton(text=f"photo", url=imdb['poster'])])
-         btn.append([InlineKeyboardButton(text="🔐url🔐", url=imdb['url'])])
-         btn.insert(1, [
-             InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-             InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+        btn.append([text, f"spolling#{user}#{k}", same])
+
+    btn.append(["❌ Close", f'spolling#{user}#close_spellcheck', False])
+    btn = build_keyboard(btn)
+
+    btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
+    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
+    btn.append([InlineKeyboardButton(text=f"photo", url=imdb['poster'])])
+    btn.append([InlineKeyboardButton(text="🔐url🔐", url=imdb['url'])])
+    btn.insert(1, [
+        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
                 
-         ])
+    ])
             
-        
-         btn.insert(0, [ 
-             InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")                                          
-         ])
-         btn.insert(0, [
-             InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
-         ])         
-         k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-         await asyncio.sleep(1)
-         await k.delete()
+       
+    btn.insert(0, [ 
+        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")                                          
+    ])
+    btn.insert(2, [
+        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
+    ])         
+    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+    await asyncio.sleep(1)
+    await k.delete()
                      
-         await msg.reply_photo(photo=imdb['poster'], caption=(script.CUDNT_FND.format(reqstr.mention)),
-                                     reply_markup=InlineKeyboardMarkup(btn))
+    await msg.reply_photo(photo=imdb['poster'], caption=(script.CUDNT_FND.format(reqstr.mention)),
+                                reply_markup=InlineKeyboardMarkup(btn))
     
 
 def build_keyboard(buttons):
