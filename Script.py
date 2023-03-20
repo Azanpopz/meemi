@@ -343,11 +343,11 @@ Elsa
 
 
 
-    CUSTOM_FILE_CAPTION = """<b>@at3movies {file_name}
+    CUSTOM_FILE_CAPTION = """<b>@nasrani_update {file_name}
 ╭────── • ◆ • ──────╮
-📮ᴊᴏɪɴ : <a href='https://t.me/New_Movies_Fastly'>ᴄʜᴀɴɴᴇʟ</a>
-🔖 ᴍᴏᴠɪᴇs : <a href='https://t.me/at3movies'>ɢʀᴏᴜᴘ</a>
-🖤 Dᴀʀᴋ Mᴏᴅᴇ : <a href='https://t.me/addtheme/DQ_The_File_Donor_Theme'>Tᴏᴜᴄʜ</a>
+📮ᴊᴏɪɴ : <a href='https://t.me/nasrani_update'>ᴄʜᴀɴɴᴇʟ</a>
+🔖 ᴍᴏᴠɪᴇs : <a href='https://t.me/nasrani_update'>ɢʀᴏᴜᴘ</a>
+🖤 Dᴀʀᴋ Mᴏᴅᴇ : <a href='https://t.me/addtheme/HWyC5JgYOmydc1CH'>Tᴏᴜᴄʜ</a>
 ╰────── • ◆ • ──────╯
   ♡ ㅤ  ❍ㅤ     ⎙     ⌲
   ˡᶦᵏᵉ ᶜᵒᵐᵐᵉⁿᵗ  ˢᵃᵛᵉ  ˢʰᵃʳᵉ</b>"""
@@ -415,11 +415,11 @@ Elsa
 
 
     CAPTION = """
-<b>@at3movies {file_name}
+<b>@nasrani_update {file_name}
 ╭────── • ◆ • ──────╮
-📮ᴊᴏɪɴ : <a href='https://t.me/New_Movies_Fastly'>ᴄʜᴀɴɴᴇʟ</a>
-🔖 ᴍᴏᴠɪᴇs : <a href='https://t.me/at3movies'>ɢʀᴏᴜᴘ</a>
-🖤 Dᴀʀᴋ Mᴏᴅᴇ : <a href='https://t.me/addtheme/DQ_The_File_Donor_Theme'>Tᴏᴜᴄʜ</a>
+📮ᴊᴏɪɴ : <a href='https://t.me/nasrani_update'>ᴄʜᴀɴɴᴇʟ</a>
+🔖 ᴍᴏᴠɪᴇs : <a href='https://t.me/nasrani_update'>ɢʀᴏᴜᴘ</a>
+🖤 Dᴀʀᴋ Mᴏᴅᴇ : <a href='https://t.me/addtheme/HWyC5JgYOmydc1CH'>Tᴏᴜᴄʜ</a>
 ╰────── • ◆ • ──────╯
   ♡ ㅤ  ❍ㅤ     ⎙     ⌲
   ˡᶦᵏᵉ ᶜᵒᵐᵐᵉⁿᵗ  ˢᵃᵛᵉ  ˢʰᵃʳᵉ</b>"""
