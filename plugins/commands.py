@@ -353,7 +353,7 @@ async def start(client, message):
             await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
             await db.add_chat(message.chat.id, message.chat.title)
             await db.add_user(message.from_user.id, message.from_user.first_name)
-            username = message.from_user.first_name
+            mention = message.from_user.first_name
             filetype = msg.media
             file = getattr(msg, filetype.value)
             title = file.file_name
@@ -378,7 +378,7 @@ async def start(client, message):
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
         try:
-            f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.U_NAME, temp.B_NAME)
+            f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.B_NAME, user_name= '' if username is None else username)
         except Exception as e:
             logger.exception(e)
             f_caption=f_caption
