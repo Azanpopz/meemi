@@ -2254,7 +2254,7 @@ async def advantage_spell_chok(client, msg):
         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await msg.reply_photo(
             photo=SPELL_IMG, 
-            caption=f"𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: ☠`{msg.from_user.mention}`☠\n\n𝐌𝐨𝐯𝐢𝐞: ⎙`{mv_rqst}`⎙\n\n𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐢𝐧𝐢𝐬𝐡𝐞𝐝✔",
+            caption=f"➤ 𝐏𝐥𝐞𝐚𝐬𝐞 𝐒𝐞𝐚𝐫𝐜𝐡 𝐆𝐨𝐨𝐠𝐥𝐞 𝐎𝐫 𝐓𝐲𝐩𝐞 𝐂𝐨𝐫𝐫𝐞𝐜𝐭 𝐍𝐚𝐦𝐞 \n\n👥𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: `{msg.from_user.mention}`\n\n📀𝐌𝐨𝐯𝐢𝐞: `{mv_rqst}`⎙\n\n✖ 𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐚𝐢𝐥𝐞𝐝 ✖",
             reply_markup=InlineKeyboardMarkup(button)
         )
         await asyncio.sleep(30)
