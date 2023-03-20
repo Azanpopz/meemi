@@ -2404,6 +2404,7 @@ async def advantage_spell_chok(client, msg):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(search) if IMDB else None
+    for k, movie in enumerate(movielist):
     btn = [
         [
             InlineKeyboardButton(
@@ -2414,18 +2415,9 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    btn.insert(1, [
-        [
-            InlineKeyboardButton(
-                text=f"🥺🥺🥺",
-                callback_data="close_data",
-            )
-        ]
-        for k, movie_name in enumerate(movielist)
-    ])
+    
       
-    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-
+    
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 
     await asyncio.sleep(1)
