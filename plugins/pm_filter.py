@@ -2423,7 +2423,7 @@ async def advantage_spell_chok(client, msg):
     
         btn.append([
             InlineKeyboardButton(f"📑info📑", url="https://t.me/nasrani_update"),
-            InlineKeyboardButton(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False]),
+            InlineKeyboardButton(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{reqstr1}#close_spellcheck']),
             InlineKeyboardButton("🔍photo🔎", url=imdb['poster'])                
         ])            
            
