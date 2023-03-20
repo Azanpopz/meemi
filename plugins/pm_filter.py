@@ -2415,33 +2415,65 @@ async def advantage_spell_chok(client, msg):
     SPELL_CHECK[mv_id] = movielist
     search = msg.text
     imdb = await get_poster(search) if IMDB else None
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=movie_name.strip(),
-                callback_data=f"spol#{reqstr1}#{k}",
-            )
+    if imdb:
+        cap = IMDB_TEMPLATE.format(
+            query=searchh,            
+            title=imdb['title'],
+            votes=imdb['votes'],
+            aka=imdb["aka"],
+            seasons=imdb["seasons"],
+            box_office=imdb['box_office'],
+            localized_title=imdb['localized_title'],
+            kind=imdb['kind'],
+            imdb_id=imdb["imdb_id"],
+            cast=imdb["cast"],
+            runtime=imdb["runtime"],
+            countries=imdb["countries"],
+            certificates=imdb["certificates"],
+            languages=imdb["languages"],
+            director=imdb["director"],
+            writer=imdb["writer"],
+            producer=imdb["producer"],
+            composer=imdb["composer"],
+            cinematographer=imdb["cinematographer"],
+            music_team=imdb["music_team"],
+            distributors=imdb["distributors"],
+            release_date=imdb['release_date'],
+            year=imdb['year'],
+            genres=imdb['genres'],
+            poster=imdb['poster'],
+            plot=imdb['plot'],
+            rating=imdb['rating'],
+            url=imdb['url'],
+            **locals()
+        )
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=movie_name.strip(),
+                    callback_data=f"spol#{reqstr1}#{k}",
+                )
+            ]
+            for k, movie_name in enumerate(movielist)
         ]
-        for k, movie_name in enumerate(movielist)
-    ]
-    btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
-    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
-    btn.insert(1, [
-        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+        btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
+        btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
+        btn.insert(1, [
+            InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
+            InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
                 
-    ])
+        ])
             
         
-    btn.insert(0, [ 
-        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
-    ])
+        btn.insert(0, [ 
+            InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
+        ])
 
-    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-    await asyncio.sleep(1)
-    await k.delete()            
-    await msg.reply_photo(photo=imdb['poster'], cap=cap,
-                               reply_markup=InlineKeyboardMarkup(btn))
+        k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+        await asyncio.sleep(1)
+        await k.delete()            
+        await msg.reply_photo(photo=imdb['poster'], cap=cap,
+                                   reply_markup=InlineKeyboardMarkup(btn))
             
 
             
