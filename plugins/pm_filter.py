@@ -2428,7 +2428,7 @@ async def advantage_spell_chok(client, msg):
     imdb = await get_poster(search) if IMDB else None
     if imdb:
         cap = IMDB_TEMPLATE.format(
-            query=search,            
+            title=search,            
             title=imdb['title'],
             votes=imdb['votes'],
             aka=imdb["aka"],
