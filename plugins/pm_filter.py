@@ -2394,8 +2394,8 @@ async def advantage_spell_chok(client, msg):
         await asyncio.sleep(30)
         await k.delete()
         return
-    movielist += [movie.get('title') for movie in movies]
-    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+#    movielist += [movie.get('title') for movie in movies]
+    movielist += [f"🎭{movie.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {movie.get('release_date')}🎭" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
     chat_id = msg.chat.id
     mv_rqst = msg.text
@@ -2436,13 +2436,14 @@ async def advantage_spell_chok(client, msg):
         InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
     ])
     btn.insert(1, [
-        InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐃𝐚𝐭𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
+        InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
     ]) 
-    btn.insert(20, [
+    btn.append([
         InlineKeyboardButton("🖇️𝐂𝐡𝐚𝐧𝐧𝐞𝐥🖇️", url="https://t.me/nasrani_update"),
         InlineKeyboardButton("🏷️𝐈𝐧𝐟𝐨🏷️", url="https://t.me/nasrani_update"),
         InlineKeyboardButton("⌛𝐒𝐞𝐚𝐫𝐜𝐡⌛", url=f"https://www.google.com/search?q={mv_rqst}")
     ])
+    btn = build_keyboard(btn)
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
     
     
