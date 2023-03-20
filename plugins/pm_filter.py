@@ -2395,7 +2395,7 @@ async def advantage_spell_chok(client, msg):
         await k.delete()
         return
     movielist += [movie.get('title') for movie in movies]
-    movielist += [f"🎭{movie.get('title')} {movie.get('year')}🎭" for movie in movies]
+    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
     btn = [
         [
@@ -2406,151 +2406,32 @@ async def advantage_spell_chok(client, msg):
         ]
         for k, movie_name in enumerate(movielist)
     ]
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+
+    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+
+    await asyncio.sleep(1)
+
+    await k.delete()
     spell_check_del = await msg.reply_photo(
         photo=(SPELL_IMG),
-        caption=(script.CUDNT_FND.format(mv_rqst)),
-        reply_markup=InlineKeyboardMarkup(btn),
-        reply_to_message_id=msg.id
-    )
+        caption=(script.CUDNT_FND.format(reqstr.mention)),
+        reply_markup=InlineKeyboardMarkup(btn)
+        )
+    await msg.delete()
 
-    
+    try:
+        if settings['auto_delete']:
+            await asyncio.sleep(600)
+            await spell_check_del.delete()
+    except KeyError:
+            grpid = await active_connection(str(message.from_user.id))
+            await save_group_settings(grpid, 'auto_delete', True)
+            settings = await get_settings(message.chat.id)
+            if settings['auto_delete']:
+                await asyncio.sleep(600)
+                await spell_check_del.delete()
 
-#    btn.insert(0, [
-#        InlineKeyboardButton(f"🔰{imdb.get('year')}🔰", url="https://t.me/nasrani_update"),
-#        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🎭", url="https://t.me/nasrani_update"),    
-#        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")               
-#    ])
-
-    
-#    btn.append([
-#        InlineKeyboardButton(f"📑info📑", url="https://t.me/nasrani_update"),
-#        InlineKeyboardButton(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False]),
-#        InlineKeyboardButton("🔍photo🔎", url=imdb['poster'])
-#                
-#    ])            
-#           
-#    btn.insert(1, [
-#        InlineKeyboardButton(f"📤{imdb.get('title')} - {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
-#    ])        
-#    btn.insert(2, [
-#        InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐃𝐚𝐭𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
-#    ])         
-#    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-#    await asyncio.sleep(1)
-#    await k.delete()
-                     
-    await msg.reply_photo(photo=imdb['poster'],
-#                                reply_markup=InlineKeyboardMarkup(btn))
-    
-
-                
-                
-                
-                    
-       
-                    
-
-
-
-
-
-
-#                SPELL_CHECK[msg.id] = movielist
-#                i = 1
-#                pre_len = {}
-#                btn = []
-#  
-#                for k, movie in enumerate(movielist):
-#                    text = movie.strip()  # args[2]
-#                    same = False
-#                    if (i % 2) == 0:
-#                        if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
-#                            same = False
-#                        else:
-#                            same = True
-#                    else:
-#                        pre_len["text_len"] = len(text)
-#                        same = False
-#
-#                        i += 2
-#
-#                        btn.append([text, f"spol#{reqstr1}#{k}", same])
-#
-#                    btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
-#                     btn = build_keyboard(btn)
-#
-#                    btn.insert(0, [
-#                        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-#                        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
-#                    ])
-#
-#                    btn.insert(0, [
-#                        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
-#                    ])         
-#    
-#                    btn.insert(10, [
-#                        InlineKeyboardButton(f"📽️{imdb.get('title')} \n🔍{imdb.get('languages')}", callback_data=f"spol#{reqstr1}#{k}"),
-#                        InlineKeyboardButton(f"🧭𝐑𝐮𝐧𝐓𝐢𝐦𝐞 \n⌚️{imdb.get('runtime')}", callback_data=f"spol#{reqstr1}#{k}")
-#                    ])
-#
-#                    await msg.reply_photo(photo=imdb['poster'], caption=caption,
-#                                                reply_markup=InlineKeyboardMarkup(btn))
-#                    await msg.delete()
-
-#def build_keyboard(buttons):
-#    keyb = []
-#    for btn in buttons:
-#        if btn[2] and keyb:
-#            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
-#        else:
-#            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
-#
-#    return keyb
-
-
-
-
-
-
-
-
-
-
-
-
-#            SPELL_CHECK[mv_id] = movielist
-#            btn = [
-#                [
-#                    InlineKeyboardButton(
-#                        text=movie_name.strip(),
-#                        callback_data=f"spol#{reqstr1}#{k}",
-#                    )
-#                ]
-#                for k, movie_name in enumerate(movielist)
-#            ]
-#            btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
-#            btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
-#            btn.insert(1, [
-#                InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-#                InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
-#                
-#            ])
-#            
-#        
-#            btn.insert(0, [ 
-#                InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data="imd")                                          
-#            ])
-#
-#            k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-#
-#            await asyncio.sleep(1)
-#
-#            await k.delete()
-#            
-#            await msg.reply_photo(photo=imdb['poster'], caption=caption,
-#                                        reply_markup=InlineKeyboardMarkup(btn))
-#            await msg.delete()
 async def manual_filters(client, message, text=False):
     settings = await get_settings(message.chat.id)
     group_id = message.chat.id
@@ -2684,7 +2565,6 @@ async def manual_filters(client, message, text=False):
     else:
         return False
 
-                        
 async def global_filters(client, message, text=False):
     settings = await get_settings(message.chat.id)
     group_id = message.chat.id
@@ -2755,6 +2635,9 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
+
+
 
 
 
