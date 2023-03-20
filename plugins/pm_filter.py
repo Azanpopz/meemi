@@ -2422,7 +2422,8 @@ async def advantage_spell_chok(client, msg):
         await k.delete()
         return
     movielist += [movie.get('title') for movie in movies]
-    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+    movielist += [movie.get('year') for movie in movies]
+    movielist += [f"🎭{movie.get('title')} {movie.get('year')}🎭" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
     btn = [
         [
@@ -2434,12 +2435,9 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    spell_check_del = await msg.reply_photo(
-        photo=(SPELL_IMG),
-        caption=(script.CUDNT_FND.format(mv_rqst)),
-        reply_markup=InlineKeyboardMarkup(btn),
-        reply_to_message_id=msg.id
-    )
+    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                reply_markup=InlineKeyboardMarkup(btn))
+
             
                 
                 
