@@ -2255,7 +2255,7 @@ async def advantage_spell_chok(client, msg):
         k = await msg.reply_photo(
             photo=SPELL_IMG, 
             caption=f"𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: ☠`{msg.from_user.mention}`☠\n\n𝐌𝐨𝐯𝐢𝐞: ⎙`{mv_rqst}`⎙\n\n𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐢𝐧𝐢𝐬𝐡𝐞𝐝✔"),
-                    reply_markup=InlineKeyboardMarkup(button)
+        reply_markup=InlineKeyboardMarkup(button)
         )
         await asyncio.sleep(30)
         await k.delete()
