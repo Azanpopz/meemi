@@ -2418,8 +2418,7 @@ async def advantage_spell_chok(client, msg):
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
 
 
-    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{reqstr1}#close_spellcheck', False])
-    btn = build_keyboard(btn)
+    
 
 #    btn.insert(0, [
 #        InlineKeyboardButton(f"🔰{imdb.get('year')}🔰", url="https://t.me/nasrani_update"),
