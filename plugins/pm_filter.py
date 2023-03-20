@@ -2415,21 +2415,34 @@ async def advantage_spell_chok(client, msg):
             for k, movie_name in enumerate(movielist)
         ]
         btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+        btn.insert(0, [
+            InlineKeyboardButton(f"🔰{imdb.get('year')}🔰", url="https://t.me/nasrani_update"),
+            InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🎭", url="https://t.me/nasrani_update"),    
+            InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")               
+        ])
+    
+        btn.append([
+            InlineKeyboardButton(f"📑info📑", url="https://t.me/nasrani_update"),
+            InlineKeyboardButton(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False]),
+            InlineKeyboardButton("🔍photo🔎", url=imdb['poster'])                
+        ])            
+           
         btn.insert(1, [
             InlineKeyboardButton(f"📤{imdb.get('title')} - {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
-        ])         
-      
+        ])        
+        btn.insert(2, [
+            InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
+        ])      
     
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 
     await asyncio.sleep(1)
 
     await k.delete()
-    spell_check_del = await msg.reply_photo(
-        photo=(SPELL_IMG),
-        caption=(script.CUDNT_FND.format(reqstr.mention)),
-        reply_markup=InlineKeyboardMarkup(btn)
-        )
+    spell_check_del = await msg.reply_photo(photo=imdb['poster'],
+                      reply_markup=InlineKeyboardMarkup(btn))
+    
+        
     await msg.delete()
 
     try:
