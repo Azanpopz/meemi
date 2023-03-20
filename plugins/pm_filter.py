@@ -840,7 +840,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             try:
                 f_caption = CUSTOM_FILE_CAPTION.format(message.from_user.mention,
                                                        temp.B_NAME,
-                                                       user_name= '' if mention is None else mention
+                                                       user_name= '' if mention is None else mention,
                                                        file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
                                                        file_caption='' if f_caption is None else f_caption)
@@ -941,7 +941,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             try:
                 f_caption = CUSTOM_FILE_CAPTION.format(message.from_user.mention,
                                                        temp.B_NAME,
-                                                       user_name= '' if mention is None else mention
+                                                       user_name= '' if mention is None else mention,
                                                        file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
                                                        file_caption='' if f_caption is None else f_caption)
