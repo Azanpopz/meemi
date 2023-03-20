@@ -2417,7 +2417,7 @@ async def advantage_spell_chok(client, msg):
     imdb = await get_poster(search) if IMDB else None
     if imdb:
         cap = IMDB_TEMPLATE.format(
-            query=searchh,            
+            query=search,            
             title=imdb['title'],
             votes=imdb['votes'],
             aka=imdb["aka"],
@@ -2473,7 +2473,7 @@ async def advantage_spell_chok(client, msg):
         await asyncio.sleep(1)
         await k.delete()            
         await msg.reply_photo(photo=imdb['poster'], cap=cap,
-                                   reply_markup=InlineKeyboardMarkup(btn))
+                                    reply_markup=InlineKeyboardMarkup(btn))
             
 
             
