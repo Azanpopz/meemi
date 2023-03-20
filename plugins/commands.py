@@ -367,6 +367,7 @@ async def start(client, message):
         except:
             pass
         return await message.reply('No such file exist.')
+    await db.add_chat(message.chat.id, message.chat.title)
     files = files_[0]
     mention = message.from_user.first_name
     title = files.file_name
