@@ -2397,29 +2397,27 @@ async def advantage_spell_chok(client, msg):
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"🎭{movie.get('title')} {movie.get('year')}🎭" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
-    user = msg.from_user.id if msg.from_user else 0 
-    message = msg
-    search = message.text
-    imdb = await get_poster(search) if IMDB else None
-    i = 1
-    pre_len = {}
-    btn = []
-    # movielist.sort(key=len)
-    for k, movie in enumerate(movielist):
-        text = movie.strip()  # args[2]
-        same = False
-        if (i % 2) == 0:
-            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                same = False
-            else:
-                same = True
-        else:
-            pre_len["text_len"] = len(text)
-            same = False
+    user SPELL_CHECK[mv_id] = movielist
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=movie_name.strip(),
+                callback_data=f"spol#{reqstr1}#{k}",
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ]
+    btn.append([
+        [
+            InlineKeyboardButton(
+                text=f"🔰{imdb.get('year')}🔰",
+                callback_data=f"spol#{reqstr1}#{k}",
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ])
+    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
 
-        i += 1
-
-        btn.append([text, f"spol#{user}#{k}", same])
 
     btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False])
     btn = build_keyboard(btn)
