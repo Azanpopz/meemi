@@ -2404,35 +2404,47 @@ async def advantage_spell_chok(client, msg):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(search) if IMDB else None
+    i = 1
+    pre_len = {}
+    btn = []
+    # movielist.sort(key=len)
     for k, movie in enumerate(movielist):
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=movie_name.strip(),
-                    callback_data=f"spol#{reqstr1}#{k}",
-                )
-            ]
-            for k, movie_name in enumerate(movielist)
-        ]
-        btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-        btn.insert(0, [
-            InlineKeyboardButton(f"🔰{imdb.get('year')}🔰", url="https://t.me/nasrani_update"),
-            InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🎭", url="https://t.me/nasrani_update"),    
-            InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")               
-        ])
+        text = movie.strip()  # args[2]
+        same = False
+        if (i % 2) == 0:
+            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                same = False
+            else:
+                same = True
+        else:
+            pre_len["text_len"] = len(text)
+            same = False
+
+        i += 1
+
+        btn.append([text, f"spol#{user}#{k}", same])
+
+    btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
+    btn = build_keyboard(btn)
+
+    btn.insert(0, [
+        InlineKeyboardButton(f"🔰{imdb.get('year')}🔰", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🎭", url="https://t.me/nasrani_update"),    
+        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")               
+    ])
     
-        btn.append([
-            InlineKeyboardButton(f"📑info📑", url="https://t.me/nasrani_update"),
-            InlineKeyboardButton(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{reqstr1}#close_spellcheck']),
-            InlineKeyboardButton("🔍photo🔎", url=imdb['poster'])                
-        ])            
+    btn.append([
+        InlineKeyboardButton(f"📑info📑", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{reqstr1}#close_spellcheck']),
+        InlineKeyboardButton("🔍photo🔎", url=imdb['poster'])                
+    ])            
            
-        btn.insert(1, [
-            InlineKeyboardButton(f"📤{imdb.get('title')} - {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
-        ])        
-        btn.insert(2, [
-            InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
-        ])      
+    btn.insert(1, [
+        InlineKeyboardButton(f"📤{imdb.get('title')} - {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
+    ])        
+    btn.insert(2, [
+        InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
+    ])      
     
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 
@@ -2443,6 +2455,17 @@ async def advantage_spell_chok(client, msg):
                                 reply_markup=InlineKeyboardMarkup(btn))
     
         
+def build_keyboard(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn[2] and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        else:
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+
+    return keyb
+
+
     
 async def manual_filters(client, message, text=False):
     settings = await get_settings(message.chat.id)
