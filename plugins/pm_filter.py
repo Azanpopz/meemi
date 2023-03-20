@@ -2406,6 +2406,15 @@ async def advantage_spell_chok(client, msg):
         ]
         for k, movie_name in enumerate(movielist)
     ]
+    btn.append([
+        [
+            InlineKeyboardButton(
+                text=f"🥺🥺🥺",
+                callback_data="close_data",
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ])
     btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
 
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
