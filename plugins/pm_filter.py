@@ -2395,7 +2395,7 @@ async def advantage_spell_chok(client, msg):
         await k.delete()
         return
     movielist += [movie.get('title') for movie in movies]
-    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+    movielist += [f"🎭{movie.get('title')} {movie.get('year')}🎭" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
     user = msg.from_user.id if msg.from_user else 0 
     message = msg
@@ -2421,25 +2421,28 @@ async def advantage_spell_chok(client, msg):
 
         btn.append([text, f"spol#{user}#{k}", same])
 
-    btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
+    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False])
     btn = build_keyboard(btn)
 
-    btn.append([InlineKeyboardButton(text=f"📽️{imdb.get('title')}📽️", url=imdb['url'])])
-    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#check')])
-    btn.append([InlineKeyboardButton(text=f"photo", url=imdb['poster'])])
-    btn.append([InlineKeyboardButton(text="🔐url🔐", url=imdb['url'])])
-    btn.insert(1, [
-        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+    btn.insert(0, [
+        InlineKeyboardButton(f"🔰{imdb.get('year')}🔰", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🎭", url="https://t.me/nasrani_update"),    
+        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")               
+    ])
+
+    
+    btn.append([
+        InlineKeyboardButton(f"📑info📑", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False]),
+        InlineKeyboardButton("🔍photo🔎", url=imdb['poster'])
                 
-    ])
-            
-       
-    btn.insert(0, [ 
-        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")                                          
-    ])
+    ])            
+           
+    btn.insert(1, [
+        InlineKeyboardButton(f"📤{imdb.get('title')} - {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
+    ])        
     btn.insert(2, [
-        InlineKeyboardButton(f"🔰{imdb.get('title')} - {imdb.get('year')}🔰", callback_data=f"spol#{reqstr1}#{k}")
+        InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐃𝐚𝐭𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
     ])         
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
     await asyncio.sleep(1)
