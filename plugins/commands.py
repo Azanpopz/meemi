@@ -369,13 +369,13 @@ async def start(client, message):
         return await message.reply('No such file exist.')
     await db.add_chat(message.chat.id, message.chat.title)
     files = files_[0]
-    mention = message.from_user.first_name
+    username = message.from_user.first_name
     title = files.file_name
     size=get_size(files.file_size)
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
         try:
-            f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.B_NAME, user_name= '' if mention is None else mention, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+            f_caption=CUSTOM_FILE_CAPTION.format(message.from_user.mention, temp.B_NAME, user_name= '' if username is None else username, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
         except Exception as e:
             logger.exception(e)
             f_caption=f_caption
