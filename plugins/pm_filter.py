@@ -2405,17 +2405,17 @@ async def advantage_spell_chok(client, msg):
     pre_len = {}             
     btn = []
     for k, movie in enumerate(movielist):
-    text = movie.strip()  # args[2]
-    same = False
+        text = movie.strip()  # args[2]
+        same = False
         if (i % 2) == 0:
             if len(text) > 15 or len(str(pre_len["text_len"])) > 15:
                 same = False
             else:
                 same = True
         else:
-             pre_len["text_len"] = len(text)
-             same = False
-             i += 2
+            pre_len["text_len"] = len(text)
+            same = False
+            i += 2
 
 
    
@@ -2453,7 +2453,15 @@ async def advantage_spell_chok(client, msg):
                                          reply_markup=InlineKeyboardMarkup(btn))
     
 
-            
+def build_keyboard(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn[2] and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        else:
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+
+    return keyb            
                 
                 
                 
