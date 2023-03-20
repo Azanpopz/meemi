@@ -344,7 +344,8 @@ Elsa
 
 
     CUSTOM_FILE_CAPTION = """
-𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {username}
+𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {message.from_user.first_name}
+𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {}
 
 𝐌𝐲 𝐍𝐚𝐦𝐞:{}"""
 
