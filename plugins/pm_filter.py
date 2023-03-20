@@ -831,16 +831,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if not files_:
             return await query.answer('No such file exist.')
         files = files_[0]
-        mention = query.message.from_user.first_name
+        username = query.message.from_user.first_name
         title = files.file_name
         size = get_size(files.file_size)
         f_caption = files.caption
         settings = await get_settings(query.message.chat.id)
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption = CUSTOM_FILE_CAPTION.format(query.message.from_user.mention,
-                                                       temp.B_NAME,
-                                                       user_name= '' if mention is None else mention,
+                f_caption = CUSTOM_FILE_CAPTION.format(temp.B_NAME,
+                                                       user_name= '' if username is None else username,
                                                        file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
                                                        file_caption='' if f_caption is None else f_caption)
@@ -933,15 +932,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if not files_:
             return await query.answer('No such file exist.')
         files = files_[0]
-        mention = query.message.from_user.first_name
+        username = query.message.from_user.first_name
         title = files.file_name
         size = get_size(files.file_size)
         f_caption = files.caption
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption = CUSTOM_FILE_CAPTION.format(query.message.from_user.mention,
-                                                       temp.B_NAME,
-                                                       user_name= '' if mention is None else mention,
+                f_caption = CUSTOM_FILE_CAPTION.format(temp.B_NAME,
+                                                       user_name= '' if username is None else username,
                                                        file_name='' if title is None else title,
                                                        file_size='' if size is None else size,
                                                        file_caption='' if f_caption is None else f_caption)
