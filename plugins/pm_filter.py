@@ -2495,7 +2495,7 @@ def build_keyboard(buttons):
 #                        btn.append([text, f"spol#{reqstr1}#{k}", same])
 #
 #                    btn.append(["❌ Close", f'spol#{reqstr1}#close_spellcheck', False])
-#                    btn = build_keyboard(btn)
+#                     btn = build_keyboard(btn)
 #
 #                    btn.insert(0, [
 #                        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/nasrani_update"),
