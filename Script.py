@@ -415,6 +415,8 @@ Elsa
 
 
     CAPTION = """
+Me {}
+you {}
 <b>@nasrani_update {file_name}
 ╭────── • ◆ • ──────╮
 📮ᴊᴏɪɴ : <a href='https://t.me/nasrani_update'>ᴄʜᴀɴɴᴇʟ</a>
