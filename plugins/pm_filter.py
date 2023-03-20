@@ -2405,15 +2405,15 @@ async def advantage_spell_chok(client, msg):
     reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(search) if IMDB else None
     for k, movie in enumerate(movielist):
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=movie_name.strip(),
-                callback_data=f"spol#{reqstr1}#{k}",
-            )
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=movie_name.strip(),
+                    callback_data=f"spol#{reqstr1}#{k}",
+                )
+            ]
+            for k, movie_name in enumerate(movielist)
         ]
-        for k, movie_name in enumerate(movielist)
-    ]
     btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
     
       
