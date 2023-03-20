@@ -2396,8 +2396,7 @@ async def advantage_spell_chok(client, msg):
         return
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"🎭{movie.get('title')} {movie.get('year')}🎭" for movie in movies]
-    SPELL_CHECK[mv_id] = movielist
-    user SPELL_CHECK[mv_id] = movielist
+    SPELL_CHECK[mv_id] = movielist    
     btn = [
         [
             InlineKeyboardButton(
@@ -2419,7 +2418,7 @@ async def advantage_spell_chok(client, msg):
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spol#{reqstr1}#close_spellcheck')])
 
 
-    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False])
+    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{reqstr1}#close_spellcheck', False])
     btn = build_keyboard(btn)
 
 #    btn.insert(0, [
