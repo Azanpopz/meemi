@@ -343,12 +343,12 @@ Elsa
 
 
 
-    CUSTOM_FILE_CAPTION = """
+    CUSTOM_FILE_CAPTION = """<b>
 𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {mention}
 
 𝐌𝐲 𝐍𝐚𝐦𝐞:{}
 
-📁 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐍𝐚𝐦𝐞 <b> {file_name}
+📁 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐍𝐚𝐦𝐞  {file_name}
 
 🧲 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞: {file_size}
 ╭────── • ◆ • ──────╮
@@ -421,12 +421,12 @@ Elsa
 
 
 
-    CAPTION = """
+    CAPTION = """<b>
 𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞: {mention}
 
 𝐌𝐲 𝐍𝐚𝐦𝐞:{}
 
-📁 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐍𝐚𝐦𝐞 <b> {file_name}
+📁 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐍𝐚𝐦𝐞 {file_name}
 
 🧲 ➤ 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞: {file_size}
 ╭────── • ◆ • ──────╮
