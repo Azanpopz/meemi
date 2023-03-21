@@ -56,21 +56,20 @@ async def ping(bot, message):
 
 
 @Client.on_message(filters.command(["getsticker"]))
-async def getstickerasfile(bot, message):  
-    if message.reply_to_message.sticker.is_animated:
-        try :     
+async def getstickerasfile(bot, message):      
+    try :     
                      
-            tx = await message.reply_text("Downloading...")
-            file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
-            await message.reply_to_message.download(file_path)   
-            await tx.edit("Downloaded")
-            await tx.edit("Uploading...")
-            start = time.time()
-            await message.reply_document(file_path,caption="©NASRANI_UPDATE")
-            await tx.delete()   
-            os.remove(file_path)
-        except Exception as error:
-            print(error)    
+        tx = await message.reply_text("Downloading...")
+        file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.png"
+        await message.reply_to_message.download(file_path)   
+        await tx.edit("Downloaded")
+        await tx.edit("Uploading...")
+        start = time.time()
+        await message.reply_document(file_path,caption="©NASRANI_UPDATE")
+        await tx.delete()   
+        os.remove(file_path)
+    except Exception as error:
+        print(error)    
 
 
 
