@@ -56,14 +56,14 @@ if is_env:
         bot_token=BOT_TOKEN,
         workers=200
     )
-else:
-    app_config = configparser.ConfigParser()
-    app_config.read("config.ini")
-    bot_api_key = app_config.get("bot-configuration", "api_key")
+# else:
+#    app_config = configparser.ConfigParser()
+#    app_config.read("config.ini")
+#    bot_api_key = app_config.get("bot-configuration", "api_key")
 
     some_sticker_bot = Client(
         session_name="some_sticker_bot",
-        bot_token=bot_api_key,
+        bot_token=BOT_TOKEN,
         workers=200
     )
 
