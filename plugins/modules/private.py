@@ -9,7 +9,7 @@ import re
 
 # Private Chat
 
-@Client.on_message(filters.private & ~filters.command(["start", "help"]))
+@Client.on_message(filters.private)
 async def private_link_handler(bot, message: Message):
     if message.from_user.id in ADMINS:
 
