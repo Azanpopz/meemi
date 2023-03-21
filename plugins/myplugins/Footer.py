@@ -7,7 +7,7 @@ import os
 import time
 from Script import script
 from pyrogram.types import Message
-
+from database.Db import get_user
 
 @Client.on_message(filters.command('footer') & filters.private)
 async def footer_handler(client, message):
