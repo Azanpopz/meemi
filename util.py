@@ -4,7 +4,14 @@ import requests
 from pyrogram.types import MessageEntity
 import ast
 from pyrogram.types.list import List
+import json
+from config import MDISK_API
+import re
+from mdisky import Mdisk
+from pyrogram.types import Message
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+mdisk = Mdisk(MDISK_API)
 ####################  Mdisk  ####################
 
 async def get_mdisk(link):
