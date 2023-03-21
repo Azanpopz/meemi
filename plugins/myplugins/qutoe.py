@@ -73,12 +73,12 @@ async def get_y_and_heights(text_wrapped, dimensions, margin, font):
     line_heights = [font.getmask(text_line).getbbox()[3] + descent + margin for text_line in text_wrapped]
     line_heights[-1] -= margin
     height_text = sum(line_heights)
-    y = (dimensions[1] - height_text) // 2
+    y = (dimensions[1] - height_text) // 5
     return y, line_heights
 
 
 async def crop_to_circle(im):
-    bigsize = (im.size[0] * 3, im.size[1] * 3)
+    bigsize = (im.size[0] * 5, im.size[1] * 5)
     mask = Image.new("L", bigsize, 0)
     ImageDraw.Draw(mask).ellipse((0, 0) + bigsize, fill=255)
     mask = mask.resize(im.size, Image.ANTIALIAS)
@@ -99,7 +99,7 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
     )
     rectangle.pieslice(
         [(bottom_right_point[0] - corner_radius * 2, bottom_right_point[1] - corner_radius * 2), bottom_right_point],
-        0,
+        2,
         90,
         fill=fill,
         outline=outline
@@ -212,12 +212,12 @@ async def create_sticker(c: Client, m: Message):
     await rounded_rectangle(draw, ((95, in_y), (525, rec_y + line_heights[-1])), 10, fill="#FF0000")
 
     f_user = m.from_user.first_name + " " + m.from_user.last_name if m.from_user.last_name else m.from_user.first_name
-    draw.text((110, y), f"{f_user}»", "#00FF00", font=font_who)
+    draw.text((130, y), f"{f_user}»", "#00FF00", font=font_who)
 
-    y = (y + (line_heights[0] * (20/100))) if wrap_size >= 40 else y
+    y = (y + (line_heights[0] * (50/110))) if wrap_size >= 70 else y
 
     for i, line in enumerate(text_lines):
-        x = 100
+        x = 150
         y += line_heights[i]
         draw.text((x, y), line, "#ffffff", font=AKKU)
 
@@ -229,9 +229,9 @@ async def create_sticker(c: Client, m: Message):
         logging.error(e)
 
     im = Image.open(photo).convert("RGBA")
-    im.thumbnail((80, 80))
+    im.thumbnail((95, 95))
     await crop_to_circle(im)
-    img.paste(im, (30, in_y))
+    img.paste(im, (40, in_y))
 
     sticker_file = f"{secrets.token_hex(2)}.webp"
 
