@@ -35,7 +35,7 @@ async def start(bot, message):
     
 
 
-@Client.on_message(filters.command('mdisk'))
+@Client.on_message(filters.group)
 async def Doodstream_uploader(bot, message):
     new_string = str(message.text)
     conv = await message.reply("Ruko jara Sabar kro ✋")
