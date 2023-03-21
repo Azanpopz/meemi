@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from config import ADMINS, SOURCE_CODE
 from pyrogram.types import Message
 
-from utils import main_convertor_handler
+from util import main_convertor_handler
 
 
 import json
