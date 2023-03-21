@@ -25,7 +25,7 @@ async def start(client, message):
 
 @Client.on_message(filters.command(['mdisk']))
 async def mdisk(client, message):
-    await app.send_chat_action(chat_id, enums.ChatAction.TYPING)
+    await app.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
     
     mt = message.text
     if (" " in message.text):
