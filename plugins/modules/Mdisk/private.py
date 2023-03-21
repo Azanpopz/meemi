@@ -16,8 +16,8 @@ from info import BATCH_GROUP
 
 # Private Chat
 
-@Client.on_message(filters.command("m") & filters.chat(BATCH_GROUP) & (
-        filters.channel | filters.group) & filters.incoming & filters.forwarded)
+@Client.on_message(filters.command("m") & filters.chat(BATCH_GROUP) & (filters.channel | filters.group) & filters.incoming & filters.forwarded)
+        
 
 
 #@Client.on_message(filters.command("m") & filters.text & filters.photo & filters.chat(BATCH_GROUP))
