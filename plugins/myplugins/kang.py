@@ -117,7 +117,7 @@ def conver_webp(c, m):
 
 
 
-@Client.on_message(@Client.on_message(filters.command(['kangs']) & filters.incoming & (filters.sticker | filters.photo))
+@Client.on_message(filters.command(['kangs']) & filters.incoming & (filters.sticker | filters.photo))
 async def sticker_image(_, msg: Message):
     user_id = msg.from_user.id
     message_id = msg.message_id
