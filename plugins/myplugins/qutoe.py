@@ -192,8 +192,10 @@ async def create_sticker_private_handler(c: Client, m: Message):
 
 @Client.on_message(filters.command(["q"]) & filters.reply & filters.private)
 async def create_sticker_private_handler(c: Client, m: Message):
-    await m.reply_sticker(
+    s = await m.reply_text(
+        text=("...")
         chat_id=m.chat.id,
         reply_to_message_id=m.id
    )
        await create_sticker(reply_to_message_id=m.id)
+       await s.delete()
