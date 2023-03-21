@@ -65,8 +65,5 @@ doodstream
 unshortenit
 mdisky
 
-bs4
-errorsolvers
-domainers 
 
 
