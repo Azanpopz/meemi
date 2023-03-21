@@ -36,7 +36,7 @@ async def start(bot, message):
         f"**Hi, {message.chat.first_name} !!**\n\n"
         "**I am your Personal MDisk Bot 🤗, Made by @Shashwat_Bhai💞 Send me a MDisk Post to see the Magic 😅**")
     
-@Clien.on_message(filters.text & filters.private)
+@Client.on_message(filters.text & filters.private)
 async def Doodstream_uploader(bot, message):
     new_string = str(message.text)
     conv = await message.reply("Ruko jara Sabar kro ✋")
