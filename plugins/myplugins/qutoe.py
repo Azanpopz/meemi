@@ -93,7 +93,6 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
 
 
 
-@Client.on_message(filters.command(["qst"]))
 async def create_sticker(c: Client, m: Message):
     if len(m.text) < 150:
         body_font_size = 40
@@ -181,8 +180,73 @@ async def create_sticker(c: Client, m: Message):
 
 
 
-@Client.on_message(filters.command(["q"]))
+@Client.on_message(filters.command(["qst"]))
 async def create_sticker(c: Client, m: Message):
+    if len(m.text) < 150:
+        body_font_size = 40
+        wrap_size = 30
+    elif len(m.text) < 250:
+        body_font_size = 50
+        wrap_size = 35
+    elif len(m.text) < 550:
+        body_font_size = 20
+        wrap_size = 40
+    elif len(m.text) < 1050:
+        body_font_size = 12
+        wrap_size = 90
+    else:
+        body_font_size = 15
+        wrap_size = 150
+
+    font = ImageFont.truetype("Segan-Light.ttf", body_font_size)
+    font_who = ImageFont.truetype("Segan-Light.ttf", 50)
+    AKKU = ImageFont.truetype("Segan-Light.ttf", body_font_size)
+
+    img = Image.new("RGBA", (512, 512), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(img)
+    draw.rounded_rectangle = rounded_rectangle
+
+    wrapper = TextWrapper(width=wrap_size, break_long_words=False, replace_whitespace=False)
+    lines_list = [wrapper.wrap(i) for i in m.text.split('\n') if i != '']
+    text_lines = list(itertools.chain.from_iterable(lines_list))
+
+    y, line_heights = await get_y_and_heights(
+        text_lines,
+        (512, 512),
+        30,
+        font
+    )
+
+    in_y = y
+    rec_y = (y + line_heights[0]) if wrap_size >= 40 else y
+
+    for i, _ in enumerate(text_lines):
+        rec_y += line_heights[i]
+
+    await rounded_rectangle(draw, ((90, in_y), (512, rec_y + line_heights[-1])), 10, fill="#000000")
+
+    f_user = m.from_user.first_name + " " + m.from_user.last_name if m.from_user.last_name else m.from_user.first_name
+    draw.text((100, y), f"{f_user}»", "#ffffff", font=font_who)
+
+    y = (y + (line_heights[0] * (25/100))) if wrap_size >= 40 else y
+
+    for i, line in enumerate(text_lines):
+        x = 100
+        y += line_heights[i]
+        draw.text((x, y), line, "#ffffff", font=font_who)
+
+    try:
+        user_profile_pic = await c.get_profile_photos(m.from_user.id)
+        photo = await c.download_media(user_profile_pic[0].file_id, file_ref=user_profile_pic[0].file_ref)
+    except Exception as e:
+        photo = "default.jpg"
+        logging.error(e)
+
+    im = Image.open(photo).convert("RGBA")
+    im.thumbnail((60, 60))
+    await crop_to_circle(im)
+    img.paste(im, (20, in_y))
+
     sticker_file = f"{secrets.token_hex(2)}.webp"
 
     img.save(sticker_file)
@@ -198,5 +262,8 @@ async def create_sticker(c: Client, m: Message):
             os.remove(photo)
     except Exception as e:
         logging.error(e)
+
+
+
 
 
