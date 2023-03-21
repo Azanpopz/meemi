@@ -216,5 +216,5 @@ async def create_sticker(bot, message):
 async def create_sticker(bot, msg, message):
     message_id = message.message_id
     msg = message_id
-    await create_sticker(msg.reply_to_message_message.id)
+    await create_sticker(message.reply_to_message_message.id)
     
