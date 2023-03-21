@@ -25,7 +25,7 @@ bot = Client('Doodstream bot',
              sleep_threshold=0)
 
 
-@bot.on_message(filters.command('start') & filters.private)
+@bot.on_message(filters.command('starts') & filters.private)
 async def start(bot, message):
     await message.reply(
         f"**Hi, {message.chat.first_name} !!**\n\n"
