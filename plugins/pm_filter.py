@@ -1905,8 +1905,8 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     if imdb and imdb.get('poster'):
-        try:
-                                                              
+#        try:
+#                                                              
 #            await msg.reply_chat_action(enums.ChatAction.TYPING)
 #            px = await msg.reply_text(A,quote=True)
 #            await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
@@ -1922,7 +1922,7 @@ async def auto_filter(client, msg, spoll=False):
 #        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
 #            pic = imdb.get('poster')
 #            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await msg.reply_text(text=f"LOADING....")
+#            await msg.reply_text(text=f"LOADING....")
 #        except Exception as e:
 #            logger.exception(e)
                                                                     
