@@ -168,21 +168,21 @@ async def start_handler(c: Client, m: Message): await m.reply_text(
 
 
 async def create_sticker(c: Client, m: Message):
-    if len(m.text) < 100:
+    if len(m.text) < 130:
+        body_font_size = 70
+        wrap_size = 450
+    elif len(m.text) < 220:
         body_font_size = 50
-        wrap_size = 30
-    elif len(m.text) < 200:
-        body_font_size = 40
         wrap_size = 35
-    elif len(m.text) < 500:
-        body_font_size = 30
-        wrap_size = 40
+    elif len(m.text) < 550:
+        body_font_size = 45
+        wrap_size = 50
     elif len(m.text) < 1000:
-        body_font_size = 18
-        wrap_size = 80
+        body_font_size = 25
+        wrap_size = 90
     else:
-        body_font_size = 14
-        wrap_size = 100
+        body_font_size = 22
+        wrap_size = 110
 
     font = ImageFont.truetype("Segan-Light.ttf", body_font_size)
     font_who = ImageFont.truetype("Segan-Light.ttf", 24)
@@ -209,7 +209,7 @@ async def create_sticker(c: Client, m: Message):
     for i, _ in enumerate(text_lines):
         rec_y += line_heights[i]
 
-    await rounded_rectangle(draw, ((95, in_y), (525, rec_y + line_heights[-1])), 10, fill="#FF0000")
+    await rounded_rectangle(draw, ((95, in_y), (525, rec_y + line_heights[-1])), 10, fill="#00FF00")
 
     f_user = m.from_user.first_name + " " + m.from_user.last_name if m.from_user.last_name else m.from_user.first_name
     draw.text((130, y), f"{f_user}»", "#00FF00", font=font_who)
