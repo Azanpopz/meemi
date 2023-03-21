@@ -61,11 +61,11 @@ logging.getLogger(__name__)
 #    app_config.read("config.ini")
 #    bot_api_key = app_config.get("bot-configuration", "api_key")
 
-    some_sticker_bot = Client(
-        session_name="some_sticker_bot",
-        bot_token=BOT_TOKEN,
-        workers=200
-    )
+#    some_sticker_bot = Client(
+#        session_name="some_sticker_bot",
+#        bot_token=BOT_TOKEN,
+#        workers=200
+#    )
 
 
 async def get_y_and_heights(text_wrapped, dimensions, margin, font):
