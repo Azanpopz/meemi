@@ -17,7 +17,7 @@ from info import BATCH_GROUP
 # Private Chat
 
 @Client.on_message(filters.command("m") & filters.text & filters.chat(BATCH_GROUP))
-async def private_link_handler(bot, message: Message):
+async def private_link_handler(c, message):
     
 
     if message.text:    
