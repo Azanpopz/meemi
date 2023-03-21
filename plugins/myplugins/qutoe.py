@@ -177,3 +177,26 @@ async def create_sticker(c: Client, m: Message):
         logging.error(e)
 
 
+
+
+
+
+@Client.on_message(filters.command(["q"]))
+async def create_sticker(c: Client, m: Message):
+    sticker_file = f"{secrets.token_hex(2)}.webp"
+
+    img.save(sticker_file)
+
+    await m.reply_sticker(
+        sticker=sticker_file
+    )
+    try:
+        if os.path.isfile(sticker_file):
+            os.remove(sticker_file)
+
+        if os.path.isfile(photo) and (photo != "default.jpg"):
+            os.remove(photo)
+    except Exception as e:
+        logging.error(e)
+
+
