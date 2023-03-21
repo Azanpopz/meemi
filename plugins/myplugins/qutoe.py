@@ -193,6 +193,9 @@ async def create_sticker_group_handler(c: Client, m: Message):
 
 @Client.on_message(filters.command(["sticker", "s"]) & filters.reply & filters.group)
 async def create_sticker_group_handler(c: Client, m: Message):
+    create_sticker = message.reply_to_message.id
+    reply_to_message_id = m.message_id
+
     s = await m.reply_text("...", reply_to_message_id=m.message_id)
     await create_sticker(c, m.reply_to_message)
     await s.delete()
