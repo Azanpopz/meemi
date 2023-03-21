@@ -26,7 +26,7 @@ cancel_button = [[
 channel_id = ""
 
 
-@Client.on_message(filters.private & filters.command('mdisk'))
+@Client.on_message(filters.private & filters.command('bmdisk'))
 async def batch(c, m):
     if m.from_user.id in ADMINS:
 
