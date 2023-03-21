@@ -1907,12 +1907,12 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
                                                               
-            await msg.reply_chat_action(enums.ChatAction.TYPING)
-            px = await msg.reply_text(A,quote=True)
-            await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-            await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+#            await msg.reply_chat_action(enums.ChatAction.TYPING)
+#            px = await msg.reply_text(A,quote=True)
+#            await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+#            await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
                                                
-            await px.delete()
+#            await px.delete()
                                                   
 #            k = await msg.edit_text(text=f"LOADING....")
 #            await asyncio.sleep(2)
