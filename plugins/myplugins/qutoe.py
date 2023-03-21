@@ -43,19 +43,19 @@ async def cb_handler(bot, update):
 
 logging.getLogger(__name__)
 
-is_env = bool(os.environ.get("ENV", None))
-if is_env:
+#is_env = bool(os.environ.get("ENV", None))
+#if is_env:
     API_ID = int(os.environ.get("API_ID"))
     API_HASH = os.environ.get("API_HASH")
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
-    some_sticker_bot = Client(
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_name=":memory:",
-        bot_token=BOT_TOKEN,
-        workers=200
-    )
+#    some_sticker_bot = Client(
+#        api_id=API_ID,
+#        api_hash=API_HASH,
+##        session_name=":memory:",
+#        bot_token=BOT_TOKEN,
+#        workers=200
+#    )
 # else:
 #    app_config = configparser.ConfigParser()
 #    app_config.read("config.ini")
