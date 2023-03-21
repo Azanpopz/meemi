@@ -1,8 +1,9 @@
 
 from motor.motor_asyncio import *
-from config import *
-client = AsyncIOMotorClient(DATABASE_URL)
-db = client[DATABASE_NAME]
+import motor.motor_asyncio
+from info import DATABASE_NAME, DATABASE_URI, IMDB, IMDB_TEMPLATE, MELCOW_NEW_USERS, P_TTI_SHOW_OFF, SINGLE_BUTTON, SPELL_CHECK_REPLY, PROTECT_CONTENT, REDIRECT_TO, redirected_env
+
+class Database:
 col = db["users"]
 
 
