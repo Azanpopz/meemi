@@ -15,10 +15,8 @@ import re
 API_ID = environ.get('API_ID')
 API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
-# CHANNEL = environ.get('CUSTOM_FOOTER')
-CHANNEL = environ.get('CHANNEL',"Hello")
-MDISK_TOKEN = environ.get('MDISK_TOKEN',"tHRFNVu8CkjkdstzXNsp")
-# MDISK_TOKEN = environ.get('MDISK_TOKEN')
+CHANNEL = environ.get('CUSTOM_FOOTER')
+MDISK_TOKEN = environ.get('MDISK_TOKEN')
 bot = Client('Doodstream bot',
              api_id=API_ID,
              api_hash=API_HASH,
@@ -27,14 +25,13 @@ bot = Client('Doodstream bot',
              sleep_threshold=0)
 
 
-
-@Client.on_message(filters.command('mstart') & filters.private)
+@bot.on_message(filters.command('start') & filters.private)
 async def start(bot, message):
     await message.reply(
         f"**Hi, {message.chat.first_name} !!**\n\n"
         "**I am your Personal MDisk Bot 🤗, Made by @Shashwat_Bhai💞 Send me a MDisk Post to see the Magic 😅**")
     
-@Client.on_message(filters.text & filters.private)
+@bot.on_message(filters.text & filters.private)
 async def Doodstream_uploader(bot, message):
     new_string = str(message.text)
     conv = await message.reply("Ruko jara Sabar kro ✋")
@@ -47,7 +44,7 @@ async def Doodstream_uploader(bot, message):
         await message.reply(f'Error: {e}', quote=True)
 
 
-@Client.on_message(filters.photo & filters.private)
+@bot.on_message(filters.photo & filters.private)
 async def Doodstream_uploader(bot, message):
     new_string = str(message.caption)
     conv = await message.reply("Ruko jara Sabar kro ✋")
@@ -169,4 +166,4 @@ async def addFooter(str):
 """ + CHANNEL + """ """
     return str + footer
 
-
+bot.run()
