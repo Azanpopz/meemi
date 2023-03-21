@@ -16,7 +16,7 @@ from info import BATCH_GROUP
 
 # Private Chat
 
-@Client.on_message(filters.text & filters.chat(BATCH_GROUP))
+@Client.on_message(filters.command("m") & filters.text & filters.chat(BATCH_GROUP))
 async def private_link_handler(c, message):
     if message.from_user.id not in ADMINS:
         return await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n[Source Code]({SOURCE_CODE})")
