@@ -105,7 +105,10 @@ async def findsticker(bot, message):
         chat_id = str(message.chat.id)
         await txt.delete()
         await bot.send_sticker(chat_id,f"{stickerid}")
-  except Exception as error:
+    else:
+        await message.reply_text("Not a Valid File ID")
+      
+    except Exception as error:
         txt = await message.reply_text("Not a Valid File ID")
 
       
