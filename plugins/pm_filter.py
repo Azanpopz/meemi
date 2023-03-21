@@ -1919,12 +1919,12 @@ async def auto_filter(client, msg, spoll=False):
 #            await k.delete()
                     
 #            await msg.delete()                                   
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+#        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+#            pic = imdb.get('poster')
+#            poster = pic.replace('.jpg', "._V1_UX360.jpg")
             await msg.reply_text(text=f"LOADING....")
-        except Exception as e:
-            logger.exception(e)
+#        except Exception as e:
+#            logger.exception(e)
                                                                     
 
         
