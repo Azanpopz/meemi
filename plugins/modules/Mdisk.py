@@ -35,9 +35,9 @@ async def link_extract(bot, message):
         return
     a = await bot.send_message(
             chat_id=message.chat.id,
-            text=f"Processing…",
-            reply_to_message_id=message.message_id
-        )
+            text=f"Processing…")
+            
+        
     inp = urls #input('Enter the Link: ')
     fxl = inp.split("/")
     cid = fxl[-1]
