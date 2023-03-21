@@ -92,8 +92,8 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
 
     rectangle.pieslice(
         [upper_left_point, (upper_left_point[0] + corner_radius * 2, upper_left_point[1] + corner_radius * 2)],
-        180,
-        270,
+        280,
+        370,
         fill=fill,
         outline=outline
     )
@@ -106,15 +106,15 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
     )
     rectangle.pieslice([(upper_left_point[0], bottom_right_point[1] - corner_radius * 2),
                         (upper_left_point[0] + corner_radius * 2, bottom_right_point[1])],
-                       90,
-                       180,
+                       190,
+                       280,
                        fill=fill,
                        outline=outline
                        )
     rectangle.pieslice([(bottom_right_point[0] - corner_radius * 2, upper_left_point[1]),
                         (bottom_right_point[0], upper_left_point[1] + corner_radius * 2)],
-                       270,
-                       360,
+                       370,
+                       460,
                        fill=fill,
                        outline=outline
                        )
@@ -169,19 +169,19 @@ async def start_handler(c: Client, m: Message): await m.reply_text(
 
 async def create_sticker(c: Client, m: Message):
     if len(m.text) < 100:
-        body_font_size = 35
+        body_font_size = 50
         wrap_size = 30
     elif len(m.text) < 200:
-        body_font_size = 30
+        body_font_size = 40
         wrap_size = 35
     elif len(m.text) < 500:
-        body_font_size = 20
+        body_font_size = 30
         wrap_size = 40
     elif len(m.text) < 1000:
-        body_font_size = 12
+        body_font_size = 18
         wrap_size = 80
     else:
-        body_font_size = 8
+        body_font_size = 14
         wrap_size = 100
 
     font = ImageFont.truetype("Segan-Light.ttf", body_font_size)
