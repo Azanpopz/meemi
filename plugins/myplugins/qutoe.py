@@ -209,10 +209,10 @@ async def create_sticker(c: Client, m: Message):
     for i, _ in enumerate(text_lines):
         rec_y += line_heights[i]
 
-    await rounded_rectangle(draw, ((90, in_y), (512, rec_y + line_heights[-1])), 10, fill="#000000")
+    await rounded_rectangle(draw, ((95, in_y), (525, rec_y + line_heights[-1])), 10, fill="#FF0000")
 
     f_user = m.from_user.first_name + " " + m.from_user.last_name if m.from_user.last_name else m.from_user.first_name
-    draw.text((100, y), f"{f_user}»", "#ffffff", font=font_who)
+    draw.text((110, y), f"{f_user}»", "#00FF00", font=font_who)
 
     y = (y + (line_heights[0] * (20/100))) if wrap_size >= 40 else y
 
@@ -229,9 +229,9 @@ async def create_sticker(c: Client, m: Message):
         logging.error(e)
 
     im = Image.open(photo).convert("RGBA")
-    im.thumbnail((60, 60))
+    im.thumbnail((80, 80))
     await crop_to_circle(im)
-    img.paste(im, (20, in_y))
+    img.paste(im, (30, in_y))
 
     sticker_file = f"{secrets.token_hex(2)}.webp"
 
