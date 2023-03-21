@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from config import ADMINS, SOURCE_CODE
 from pyrogram.types import Message
 
-
+from utils import main_convertor_handler
 
 
 import json
@@ -80,7 +80,7 @@ async def private_link_handler(bot, message: Message):
     elif message.from_user.id not in ADMINS:
         await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n"
                                  f"[Source Code]({SOURCE_CODE})")
-@Client.on_message(filters.private & filters.incoming)
+@Client.on_message(filters.group & filters.incoming)
 async def private_link_handler(c, message):
     if message.from_user.id not in ADMINS:
         return await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n[Source Code]({SOURCE_CODE})")
