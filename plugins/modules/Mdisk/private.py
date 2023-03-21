@@ -16,7 +16,7 @@ from info import BATCH_GROUP
 
 # Private Chat
 
-@Client.on_message(filters.chat("BATCH_GROUP") & filters.group & filters.incoming)
+@Client.on_message(filters.chat(BATCH_GROUP) & filters.group & filters.incoming)
 async def private_link_handler(bot, message: Message):
     if message.from_user.id in ADMINS:
 
@@ -80,7 +80,7 @@ async def private_link_handler(bot, message: Message):
     elif message.from_user.id not in ADMINS:
         await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n"
                                  f"[Source Code]({SOURCE_CODE})")
-@Client.on_message(filters.group & filters.incoming)
+@Client.on_messagefilters.chat(BATCH_GROUP) & filters.incoming)
 async def private_link_handler(c, message):
     if message.from_user.id not in ADMINS:
         return await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n[Source Code]({SOURCE_CODE})")
