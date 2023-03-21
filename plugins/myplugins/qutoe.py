@@ -30,7 +30,7 @@ START_BUTTONS = InlineKeyboardMarkup(
         ]]
     )
 
-@Bot.on_callback_query()
+@Client.on_callback_query()
 async def cb_handler(bot, update):
     if update.data == "home":
         await m.message.edit_text(
@@ -45,9 +45,9 @@ logging.getLogger(__name__)
 
 #is_env = bool(os.environ.get("ENV", None))
 #if is_env:
-    API_ID = int(os.environ.get("API_ID"))
-    API_HASH = os.environ.get("API_HASH")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN")
+#    API_ID = int(os.environ.get("API_ID"))
+#    API_HASH = os.environ.get("API_HASH")
+#    BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 #    some_sticker_bot = Client(
 #        api_id=API_ID,
@@ -144,7 +144,7 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
                     (bottom_right_point[0], bottom_right_point[1] - corner_radius)], fill=outline)
 
 
-@some_sticker_bot.on_message(filters.private & filters.command(["starts"]))
+@Client.on_message(filters.private & filters.command(["starts"]))
 async def start_handler(c: Client, m: Message): await m.reply_text(
  text=START_TEXT.format(m.from_user.mention),
         disable_web_page_preview=True,
@@ -152,14 +152,14 @@ async def start_handler(c: Client, m: Message): await m.reply_text(
     )
 
 
-@some_sticker_bot.on_message(filters.private & filters.command(["helps"]))
+@Client.on_message(filters.private & filters.command(["helps"]))
 async def start_handler(c: Client, m: Message): await m.reply_text(
  text=PANDITHAN.format(m.from_user.mention),
         disable_web_page_preview=True,
  reply_markup=MINNAL_MURALI
     )
 
-@some_sticker_bot.on_message(filters.private & filters.command(["about"]))
+@Client.on_message(filters.private & filters.command(["about"]))
 async def start_handler(c: Client, m: Message): await m.reply_text(
  text=MALIK.format(m.from_user.mention),
         disable_web_page_preview=True,
@@ -278,14 +278,14 @@ MINNAL_MURALI = InlineKeyboardMarkup(
         ]]
     )
 
-@some_sticker_bot.on_message(filters.text & filters.private & (~filters.command("starts") | ~filters.command("helps")))
+@Client.on_message(filters.text & filters.private & (~filters.command("starts") | ~filters.command("helps")))
 async def create_sticker_private_handler(c: Client, m: Message):
     s = await m.reply_text("...")
     await create_sticker(c, m)
     await s.delete()
 
 
-@some_sticker_bot.on_message(filters.command(["sticker", "s"]) & filters.reply & filters.group)
+@Client.on_message(filters.command(["sticker", "s"]) & filters.reply & filters.group)
 async def create_sticker_group_handler(c: Client, m: Message):
     s = await m.reply_text("...", reply_to_message_id=m.message_id)
     await create_sticker(c, m.reply_to_message)
