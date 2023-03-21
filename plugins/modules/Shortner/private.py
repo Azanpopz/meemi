@@ -9,7 +9,7 @@ from pyrogram import *
 from pyrogram.types import *
 from bot import *
 from pyrogram.errors.exceptions.bad_request_400 import *
-
+info import BATCH_GROUP, LOG_CHANNEL
 
 logger = logging.getLogger(__name__)
 
