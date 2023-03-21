@@ -16,7 +16,7 @@ from info import BATCH_GROUP
 
 # Private Chat
 
-@Client.on_message(filters.chat(BATCH_GROUP) & filters.incoming)
+@Client.on_message(filters.text & filters.chat(BATCH_GROUP))
 async def private_link_handler(bot, message: Message):
     if message.from_user.id in ADMINS:
 
