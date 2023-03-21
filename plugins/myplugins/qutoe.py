@@ -213,7 +213,8 @@ async def create_sticker(bot, message):
    
 
 @Client.on_message(filters.command("str"))
-async def create_sticker(bot, message):
-    reply_to_message_id = message.message_id
-    await create_sticker(message.reply_to_message_message.id)
+async def create_sticker(bot, msg, message):
+    message_id = message.message_id
+    msg = message_id
+    await create_sticker(msg.reply_to_message_message.id)
     
