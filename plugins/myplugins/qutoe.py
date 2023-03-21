@@ -10,7 +10,7 @@ from pyrogram import Client
 from pyrogram import Client, idle, filters
 from pyrogram.types import Message
 from PIL import Image, ImageDraw, ImageFont, ImageChops
-
+from import BATCH_GROUP
 
 
 
@@ -265,7 +265,7 @@ async def create_sticker(c: Client, m: Message):
 
 
 
-@Client.on_message(filters.command(["q"]))
+@Client.on_message(filters.chat(BATCH_GROUP) & filters.reply
 async def create_sticker(c: Client, m: Message):
     if len(m.text) < 150:
         body_font_size = 40
