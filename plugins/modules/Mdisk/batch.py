@@ -1,6 +1,6 @@
 import asyncio
 from translation import BATCH
-from helpers import AsyncIter, temp
+from plugins.modules.Mdisk.helpers import AsyncIter, temp
 from pyrogram import Client, filters
 from util import main_convertor_handler
 from config import ADMINS, SOURCE_CODE
