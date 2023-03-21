@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 
 # Private Chat
-@Client.on_message(filters.group & filters.incoming)
+@Client.on_message(filters.command("mds") & filters.group & filters.incoming)
 async def private_link_handler(c, message):
     if message.from_user.id not in ADMINS:
         return await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n[Source Code]({SOURCE_CODE})")
