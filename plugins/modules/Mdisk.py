@@ -3,7 +3,7 @@ import string
 import asyncio
 import requests
 from mdisky import Mdisk
-from database.database import *
+
 from pyrogram import Client, filters
 
 
