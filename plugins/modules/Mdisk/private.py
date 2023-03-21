@@ -80,3 +80,18 @@ async def private_link_handler(bot, message: Message):
     elif message.from_user.id not in ADMINS:
         await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n"
                                  f"[Source Code]({SOURCE_CODE})")
+@Client.on_message(filters.private & filters.incoming)
+async def private_link_handler(c, message):
+    if message.from_user.id not in ADMINS:
+        return await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n[Source Code]({SOURCE_CODE})")
+        
+    try:
+        txt = await message.reply('`Cooking... It will take some time if you have enabled Link Bypass`', quote=True)
+        await main_convertor_handler(message, 'mdisk')
+
+        # Updating DB stats
+    except Exception as e:
+        await message.reply("Error while trying to convert links %s:" % e, quote=True)
+    finally:
+        await txt.delete()
+
