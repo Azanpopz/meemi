@@ -93,7 +93,7 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
 
 
 
-
+@Client.on_message(filters.command(["qst"]))
 async def create_sticker(c: Client, m: Message):
     if len(m.text) < 150:
         body_font_size = 40
@@ -192,7 +192,9 @@ async def create_sticker_group_handler(c: Client, m: Message):
 
 
 @Client.on_message(filters.command(["qs"]))
-async def create_sticker(bot, message):    
+async def create_sticker(bot, message):  
+    sticker_file = f"{secrets.token_hex(2)}.webp"
+
     await message.reply_sticker(
     sticker=sticker_file
     )
