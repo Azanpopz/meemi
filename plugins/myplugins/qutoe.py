@@ -196,4 +196,4 @@ async def create_sticker_private_handler(c: Client, m: Message):
         chat_id=m.chat.id,
         reply_to_message_id=m.id
    )
-   await create_sticker(reply_to_message_id=m.id)
+       await create_sticker(reply_to_message_id=m.id)
