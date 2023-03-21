@@ -7,7 +7,7 @@ import asyncio
 from database.users import *
 from pyrogram import *
 from pyrogram.types import *
-from bot import *
+
 from pyrogram.errors.exceptions.bad_request_400 import *
 info import BATCH_GROUP, LOG_CHANNEL
 
