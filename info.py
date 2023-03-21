@@ -426,4 +426,5 @@ dispatcher = None
 
 #VALUES
 HRK_APP_NAME = environ.get('HRK_APP_NAME', 'mybots')
-HRK_API
+HRK_API = environ.get('HRK_API', '0')
+
