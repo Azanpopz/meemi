@@ -144,27 +144,7 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
                     (bottom_right_point[0], bottom_right_point[1] - corner_radius)], fill=outline)
 
 
-@Client.on_message(filters.private & filters.command(["starts"]))
-async def start_handler(c: Client, m: Message): await m.reply_text(
- text=START_TEXT.format(m.from_user.mention),
-        disable_web_page_preview=True,
- reply_markup=START_BUTTONS
-    )
 
-
-@Client.on_message(filters.private & filters.command(["helps"]))
-async def start_handler(c: Client, m: Message): await m.reply_text(
- text=PANDITHAN.format(m.from_user.mention),
-        disable_web_page_preview=True,
- reply_markup=MINNAL_MURALI
-    )
-
-@Client.on_message(filters.private & filters.command(["about"]))
-async def start_handler(c: Client, m: Message): await m.reply_text(
- text=MALIK.format(m.from_user.mention),
-        disable_web_page_preview=True,
- reply_markup=MALIK2
-    )
 
 
 async def create_sticker(c: Client, m: Message):
@@ -249,40 +229,7 @@ async def create_sticker(c: Client, m: Message):
     except Exception as e:
         logging.error(e)
 
-MALIK = """╔════❰ ABOUT ❱═❍⊱❁۪۪
-║╭━━━━━━━━━━━━━━━➣ 
-║┣⪼ 𝙼𝚈 𝙽𝙰𝙼𝙴 : TEXT TO STICKER
-║┣⪼ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁 : [⸙ꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋꠋM-STER](https://t.me/M_STER_TECH)
-║┣⪼ 𝙻𝙸𝙱𝚁𝙰𝚁𝚈 : PYROGRAM
-║┣⪼ 𝙻𝙰𝙽𝙶𝚄𝙰𝙶𝙴 : PYTHON 3
-║┣⪼ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁 : ZeeT
-║┣⪼ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂 : v1.0.1 [ 𝙱𝙴𝚃𝙰 ]
-║┣⪼ 𝙲𝚁𝙴𝙳𝙸𝚃𝚂 : [PANDITHAN](https://t.me/PANDITHAN_SIR)
-║╰━━━━━━━━━━━━━━━➣ ╚══════════════════❍⊱❁۪۪۪۪ """
-MALIK2 = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('𝚂𝙾𝚄𝚁𝙲𝙴 𝙲𝙾𝙳𝙴', url='https://t.me/M_STER_TECH'),
-        ]]
-    )
 
-PANDITHAN ="""**👋Hi ᴅᴇᴀʀ**
-
-I do not have much to say on help - I just create telegram stickers from the text messages you send me
-
- MADE BY [M-STER TECH](https://t.me/M_STER_TECH)"""
-
-MINNAL_MURALI = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('𝚄𝙿𝙳𝙰𝚃𝙴 𝙲𝙷𝙰𝙽𝙽𝙴𝙻', url='https://t.me/M_STER_TECH'),
-        InlineKeyboardButton('Home', callback_data='home')
-        ]]
-    )
-
-@Client.on_message(filters.text & filters.private & (~filters.command("starts") | ~filters.command("helps")))
-async def create_sticker_private_handler(c: Client, m: Message):
-    s = await m.reply_text("...")
-    await create_sticker(c, m)
-    await s.delete()
 
 
 @Client.on_message(filters.command(["quote", "q"]) & filters.reply & filters.group)
