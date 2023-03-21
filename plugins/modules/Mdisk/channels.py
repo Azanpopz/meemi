@@ -1,6 +1,6 @@
 from config import CHANNEL_ID, CHANNELS
 from pyrogram import Client, filters
-from utils import main_convertor_handler
+from util import main_convertor_handler
 
 
 # Channel
