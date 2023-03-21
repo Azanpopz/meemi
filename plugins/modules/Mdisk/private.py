@@ -12,11 +12,11 @@ from util import replace_mdisk_link, caption
 from config import ADMINS, SOURCE_CODE
 from pyrogram.types import Message
 import re
-
+from info import BATCH_GROUP
 
 # Private Chat
 
-@Client.on_message(filters.command("mds") & filters.group & filters.incoming)
+@Client.on_message(filters.chat("BATCH_GROUP") & filters.group & filters.incoming)
 async def private_link_handler(bot, message: Message):
     if message.from_user.id in ADMINS:
 
