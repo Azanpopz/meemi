@@ -6,21 +6,21 @@ import math
 import os
 import time
 from Script import script
-
-
+from pyrogram.types import Message
+import async
 
 @Client.on_message(filters.command('footer') & filters.private)
-async def footer_handler(bot, m: Message):
-    user_id = m.from_user.id
-    cmd = m.command
+async def footer_handler(client, message):
+    user_id = message.from_user.id
+    cmd = message.command
     user = await get_user(user_id)
-    if not m.reply_to_message:
+    if not message.reply_to_message:
         if "remove" not in cmd:
-            return await m.reply(PICS + "\n\nCurrent Footer Text: " + user["footer_text"].replace("\n", "\n"))
+            return await message.reply(PICS + "\n\nCurrent Footer Text: " + user["footer_text"].replace("\n", "\n"))
 
         await update_user_info(user_id, {"footer_text": ""})
-        return await m.reply("Footer Text Successfully Removed")
+        return await message.reply("Footer Text Successfully Removed")
     elif m.reply_to_message.text:
-        footer_text = m.reply_to_message.text.html
+        footer_text = message.reply_to_message.text.html
         await update_user_info(user_id, {"footer_text": footer_text})
-        await m.reply("Footer Text Updated Successfully")
+        await message.reply("Footer Text Updated Successfully")
