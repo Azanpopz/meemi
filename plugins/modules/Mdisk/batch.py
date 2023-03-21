@@ -2,7 +2,7 @@ import asyncio
 from translation import BATCH
 from helpers import AsyncIter, temp
 from pyrogram import Client, filters
-from utils import main_convertor_handler
+from util import main_convertor_handler
 from config import ADMINS, SOURCE_CODE
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
