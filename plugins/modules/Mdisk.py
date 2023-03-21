@@ -27,12 +27,11 @@ async def start(client, message):
 @Client.on_message(filters.private & filters.text)
 async def link_extract(bot, message):
     urls = message.text
-    
+    reply = message.reply_to_message
     if not message.text.startswith("https://mdisk.me"):
-        await message.reply_text(
-            f"**INVALID LINK**",
-            reply_to_message_id=message.message_id
-        )
+        await message.reply_text(f"**INVALID LINK**")
+            
+            
         return
     a = await bot.send_message(
             chat_id=message.chat.id,
