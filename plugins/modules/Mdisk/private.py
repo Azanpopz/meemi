@@ -78,5 +78,5 @@ async def private_link_handler(bot, message: Message):
             await message.reply_document(fileid, caption=link)
 
         
-            await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n"
-                                 f"[Source Code]({SOURCE_CODE})")
+            await message.reply_text(f"This good"
+                                 
