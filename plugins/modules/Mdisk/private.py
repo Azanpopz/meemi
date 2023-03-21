@@ -77,6 +77,6 @@ async def private_link_handler(bot, message: Message):
             link = await replace_mdisk_link(text)
             await message.reply_document(fileid, caption=link)
 
-    elif message.from_user.id not in ADMINS:
-        await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n"
+        
+            await message.reply_text(f"This bot works only for ADMINS of this bot. Make your own Bot.\n\n"
                                  f"[Source Code]({SOURCE_CODE})")
