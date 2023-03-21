@@ -168,27 +168,27 @@ async def start_handler(c: Client, m: Message): await m.reply_text(
 
 
 async def create_sticker(c: Client, m: Message):
-    if len(m.text) < 100:
-        body_font_size = 35
-        wrap_size = 30
-    elif len(m.text) < 200:
-        body_font_size = 30
+    if len(m.text) < 105:
+        body_font_size = 40
         wrap_size = 35
-    elif len(m.text) < 500:
-        body_font_size = 20
-        wrap_size = 40
-    elif len(m.text) < 1000:
-        body_font_size = 12
-        wrap_size = 80
+    elif len(m.text) < 205:
+        body_font_size = 35
+        wrap_size = 35
+    elif len(m.text) < 505:
+        body_font_size = 25
+        wrap_size = 45
+    elif len(m.text) < 1005:
+        body_font_size = 17
+        wrap_size = 85
     else:
-        body_font_size = 8
-        wrap_size = 100
+        body_font_size = 13
+        wrap_size = 105
 
     font = ImageFont.truetype("Segan-Light.ttf", body_font_size)
     font_who = ImageFont.truetype("Segan-Light.ttf", 24)
     AKKU = ImageFont.truetype("Segan-Light.ttf", body_font_size)
 
-    img = Image.new("RGBA", (512, 512), (255, 255, 255, 0))
+    img = Image.new("RGBA", (550, 550), (275, 275, 275, 0))
     draw = ImageDraw.Draw(img)
     draw.rounded_rectangle = rounded_rectangle
 
@@ -198,8 +198,8 @@ async def create_sticker(c: Client, m: Message):
 
     y, line_heights = await get_y_and_heights(
         text_lines,
-        (512, 512),
-        10,
+        (550, 550),
+        20,
         font
     )
 
@@ -229,9 +229,9 @@ async def create_sticker(c: Client, m: Message):
         logging.error(e)
 
     im = Image.open(photo).convert("RGBA")
-    im.thumbnail((60, 60))
+    im.thumbnail((110, 110))
     await crop_to_circle(im)
-    img.paste(im, (20, in_y))
+    img.paste(im, (60, in_y))
 
     sticker_file = f"{secrets.token_hex(2)}.webp"
 
