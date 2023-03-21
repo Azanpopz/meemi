@@ -16,6 +16,8 @@ API_ID = environ.get('API_ID')
 API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
 # CHANNEL = environ.get('CUSTOM_FOOTER')
+CHANNEL = environ.get('CHANNEL',"Hello")
+MDISK_TOKEN = environ.get('MDISK_TOKEN',"tHRFNVu8CkjkdstzXNsp")
 # MDISK_TOKEN = environ.get('MDISK_TOKEN')
 bot = Client('Doodstream bot',
              api_id=API_ID,
@@ -24,10 +26,6 @@ bot = Client('Doodstream bot',
              workers=50,
              sleep_threshold=0)
 
-MDISK_TOKEN = "tHRFNVu8CkjkdstzXNsp"
-
-
-CHANNEL = "Hello"
 
 
 @Client.on_message(filters.command('mstart') & filters.private)
