@@ -9,9 +9,9 @@ CAPTION = 'converted by nasrani_update' # caption of the files
 
 api_id = 123456789 #int of api id get from my.telegram.org
 api_hash = " Your Api Hash Here " #str of api hash get from my.telegram.org
-Bot_token = ' Your Bot Token here ' #str of token get from BotFather
+token = ' Your Bot Token here ' #str of token get from BotFather
 
-bot = Client('Session_Name', api_id, api_hash, bot_token=Bot_token, workers = 4 )
+bot = Client('Session_Name', api_id, api_hash, bot_token=token, workers = 4 )
 
 
 @Client.on_message(filters.command(['converts']))
