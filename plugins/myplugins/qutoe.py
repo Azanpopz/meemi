@@ -99,14 +99,14 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
     )
     rectangle.pieslice(
         [(bottom_right_point[0] - corner_radius * 2, bottom_right_point[1] - corner_radius * 2), bottom_right_point],
-        2,
+        0,
         90,
         fill=fill,
         outline=outline
     )
     rectangle.pieslice([(upper_left_point[0], bottom_right_point[1] - corner_radius * 2),
                         (upper_left_point[0] + corner_radius * 2, bottom_right_point[1])],
-                       190,
+                       140,
                        280,
                        fill=fill,
                        outline=outline
@@ -168,21 +168,21 @@ async def start_handler(c: Client, m: Message): await m.reply_text(
 
 
 async def create_sticker(c: Client, m: Message):
-    if len(m.text) < 130:
-        body_font_size = 70
-        wrap_size = 450
-    elif len(m.text) < 220:
-        body_font_size = 50
+    if len(m.text) < 100:
+        body_font_size = 35
+        wrap_size = 30
+    elif len(m.text) < 200:
+        body_font_size = 30
         wrap_size = 35
-    elif len(m.text) < 550:
-        body_font_size = 45
-        wrap_size = 50
+    elif len(m.text) < 500:
+        body_font_size = 20
+        wrap_size = 40
     elif len(m.text) < 1000:
-        body_font_size = 25
-        wrap_size = 90
+        body_font_size = 12
+        wrap_size = 80
     else:
-        body_font_size = 22
-        wrap_size = 110
+        body_font_size = 8
+        wrap_size = 100
 
     font = ImageFont.truetype("Segan-Light.ttf", body_font_size)
     font_who = ImageFont.truetype("Segan-Light.ttf", 24)
@@ -209,15 +209,15 @@ async def create_sticker(c: Client, m: Message):
     for i, _ in enumerate(text_lines):
         rec_y += line_heights[i]
 
-    await rounded_rectangle(draw, ((95, in_y), (525, rec_y + line_heights[-1])), 10, fill="#00FF00")
+    await rounded_rectangle(draw, ((90, in_y), (512, rec_y + line_heights[-1])), 10, fill="#000000")
 
     f_user = m.from_user.first_name + " " + m.from_user.last_name if m.from_user.last_name else m.from_user.first_name
-    draw.text((145, y), f"{f_user}»", "#00FF00", font=font_who)
+    draw.text((300, y), f"{f_user}»", "#FF0000", font=font_who)
 
-    y = (y + (line_heights[0] * (50/110))) if wrap_size >= 70 else y
+    y = (y + (line_heights[0] * (20/100))) if wrap_size >= 40 else y
 
     for i, line in enumerate(text_lines):
-        x = 150
+        x = 100
         y += line_heights[i]
         draw.text((x, y), line, "#ffffff", font=AKKU)
 
@@ -229,9 +229,9 @@ async def create_sticker(c: Client, m: Message):
         logging.error(e)
 
     im = Image.open(photo).convert("RGBA")
-    im.thumbnail((95, 95))
+    im.thumbnail((60, 60))
     await crop_to_circle(im)
-    img.paste(im, (40, in_y))
+    img.paste(im, (20, in_y))
 
     sticker_file = f"{secrets.token_hex(2)}.webp"
 
