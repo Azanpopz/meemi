@@ -4,7 +4,7 @@ import asyncio
 import requests
 from mdisky import Mdisk
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "5082443380:AAHrI25NGvbdr6cRXJfiwq2a1iiargGKqwE")
@@ -25,7 +25,7 @@ async def start(client, message):
 
 @Client.on_message(filters.command(['mdisk']))
 async def mdisk(client, message):
-    await client.send_chat_action(message.chat.id, "typing")
+    await app.send_chat_action(chat_id, enums.ChatAction.TYPING)
     
     mt = message.text
     if (" " in message.text):
