@@ -13,7 +13,7 @@ from pyrogram.errors.exceptions.bad_request_400 import *
 
 logger = logging.getLogger(__name__)
 
-channel = UPDATE_CHANNEL
+channel = BATCH_GROUP
 
 ft = f"Due To Overload Only Channel Sub Are Use This Bot Join @Shortnerfly."
 
