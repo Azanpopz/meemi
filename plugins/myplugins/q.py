@@ -108,7 +108,7 @@ async def quotly_func(client, message: Message):
         if arg[0]:
             if arg[1] < 2 or arg[1] > 10:
                 return await m.edit("Argument must be between 2-10.")
-
+            messages = [message.reply_to_message]
             count = arg[1]
 
             # Fetching 5 extra messages so that we can ignore media
