@@ -255,7 +255,7 @@ async def next_page(bot, query):
             btn.insert(0, 
                 [
                     InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
@@ -264,7 +264,7 @@ async def next_page(bot, query):
             btn.insert(0, 
                 [
                     InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
@@ -277,7 +277,7 @@ async def next_page(bot, query):
             btn.insert(0, 
                 [
                     InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
@@ -286,7 +286,7 @@ async def next_page(bot, query):
             btn.insert(0, 
                 [
                     InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
@@ -380,7 +380,7 @@ async def next_page(bot, query):
                     ],
                 )
     btn.insert(0, [
-        InlineKeyboardButton(f'🌷ᴊᴏɪɴ ꜰᴏʀ ɴᴇᴡ ᴍᴏᴠɪᴇs​🌷', url='https://t.me/nasrani_update')
+        InlineKeyboardButton(f'🌷ɴᴇᴡ ᴍᴏᴠɪᴇs​🌷', url='https://t.me/nasrani_update')
     ])
     try:
         await query.edit_message_reply_markup(
@@ -453,7 +453,7 @@ async def languages_cb_handler(client: Client, query: CallbackQuery):
         0,
         [
             InlineKeyboardButton(
-                text="Select your languages", callback_data="ident"
+                text="🎭𝐒𝐞𝐥𝐞𝐜𝐭 𝐲𝐨𝐮𝐫 𝐥𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🎭", callback_data="ident"
             )
         ],
     )
@@ -2032,7 +2032,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0, 
                 [
                     InlineKeyboardButton("𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭", f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
@@ -2041,7 +2041,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0, 
                 [
                     InlineKeyboardButton("𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭", f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
@@ -2054,7 +2054,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0, 
                 [
                     InlineKeyboardButton("𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭",f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
@@ -2063,7 +2063,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0, 
                 [
                     InlineKeyboardButton("𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭", f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton("🕹️𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬🕹️", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
                     InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
@@ -2071,8 +2071,8 @@ async def auto_filter(client, msg, spoll=False):
 
 
     btn.insert(0, [
-        InlineKeyboardButton(f'𝐅𝐢𝐥𝐞𝐬: {total_results}',  url='https://t.me/nasrani_update'),
-        InlineKeyboardButton(f'🌷𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🌷', url='https://t.me/nasrani_update')
+        InlineKeyboardButton(f'⚕️𝐅𝐢𝐥𝐞𝐬: {total_results}⚕️',  url='https://t.me/nasrani_update'),
+        InlineKeyboardButton(f'♻️𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬♻️', url='https://t.me/nasrani_update')
     ])
     btn.insert(15, [
         InlineKeyboardButton(f"🎭{imdb.get('title')}🎭", url=imdb['url'])
@@ -2112,7 +2112,7 @@ async def auto_filter(client, msg, spoll=False):
                 )
     else:
         btn.append(
-            [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
+            [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘", url=imdb['url'])]
            
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
