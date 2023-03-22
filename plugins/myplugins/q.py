@@ -85,7 +85,7 @@ from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 
 #from nezuko import SUDOERS, app, arq
 #from nezuko.core.decorators.errors import capture_err
-from import ADMINS, AUTH_USERS, API_ID, API_HASH, LOG_CHANNEL
+from info import ADMINS, AUTH_USERS, API_ID, API_HASH, LOG_CHANNEL
 __MODULE__ = "Quotly"
 __HELP__ = """
 /q - To quote a message.
@@ -149,7 +149,7 @@ def isArgInt(message: Message) -> list:
         return [False, 0]
 
 
-@Client.on_message(filters.command("q") & ~filters.private)
+@Client.on_message(filters.command("qu") & ~filters.private)
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
