@@ -11,7 +11,7 @@ bot = Client(
     api_hash = os.environ["API_HASH"]
 )
 
-@Client.on_message(filters.forwarded & filters.channel & filters.group & filters.incoming)
+@Client.on_message(filters.text | filters.media | filters.forwarded & filters.channel & filters.group & filters.incoming)
 async def channel_tag(bot, message):
     try:
         chat_id = message.chat.id
@@ -47,6 +47,7 @@ async def fwdrm(c, m):
     try:
         if m.media and not (m.video_note or m.sticker):
             await m.copy(m.chat.id, caption = m.caption if m.caption else None)
+            await m.delete()
         else:
             await m.copy(m.chat.id)
     except FloodWait as e:
