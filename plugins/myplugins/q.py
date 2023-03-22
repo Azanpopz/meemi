@@ -99,50 +99,9 @@ def isArgInt(message: Message) -> list:
 @Client.on_message(filters.command("qu"))
 @capture_err
 async def quotly_func(client, message: Message):   
-    m = await message.reply_text("Quoting Messages")
-    if len(message.command) < 2:
-        messages = [message.reply_to_message]
-
-    elif len(message.command) == 2:
-        arg = isArgInt(message)
-        if arg[0]:
-            if arg[1] < 2 or arg[1] > 10:
-                return await m.edit("Argument must be between 2-10.")
-            messages = [message.reply_to_message]
-            count = arg[1]
-
-            # Fetching 5 extra messages so that we can ignore media
-            # messages and still end up with correct offset
-            messages = [
-                i
-                for i in await client.get_messages(
-                    message.chat.id,
-                    range(
-                        message.reply_to_message.id,
-                        message.reply_to_message.id + (count + 5),
-                    ),
-                    replies=0,
-                )
-                if not i.empty and not i.media
-            ]
-            messages = messages[:count]
-        else:
-            if getArg(message) != "r":
-                return await m.edit(
-                    "Incorrect Argument, Pass **'r'** or **'INT'**, **EX:** __/q 2__"
-                )
-            reply_message = await client.get_messages(
-                message.chat.id,
-                
-                replies=1,
-            )
-            messages = [reply_message]
-    else:
-        return await m.edit("Incorrect argument, check quotly module in help section.")
+    
     try:
-        if not message:
-            return await m.edit("Something went wrong.")
-
+        
         sticker = await quotify(messages)
         if not sticker[0]:
             await message.reply_text(sticker[1])
