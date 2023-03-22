@@ -2071,7 +2071,7 @@ async def auto_filter(client, msg, spoll=False):
 
 
     btn.insert(0, [
-        InlineKeyboardButton('𝐅𝐢𝐥𝐞𝐬: {total_results}',  url='https://t.me/nasrani_update'),
+        InlineKeyboardButton(f'𝐅𝐢𝐥𝐞𝐬: {total_results}',  url='https://t.me/nasrani_update'),
         InlineKeyboardButton(f'🌷𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🌷', url='https://t.me/nasrani_update')
     ])
     btn.insert(15, [
