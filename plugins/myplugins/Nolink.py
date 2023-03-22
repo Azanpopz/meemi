@@ -40,7 +40,7 @@ PHOTO_LINK = [
 
 
 
-@Client.on_message(filters.command("start", "help")) 
+@Client.on_message(filters.command(["start", "help]")) 
 async def no_command(bot, message)
         
 	try:
