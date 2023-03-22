@@ -53,10 +53,8 @@ async def nolink(bot,message):
 	try:
                  
                 
-                await client.delete_messages(
-                chat_id=chat_id,
-                message_ids=message.id
-                )
+                # Delete commands
+                await bot.delete_bot_commands()
                 await message.delete()
                 return
                 
