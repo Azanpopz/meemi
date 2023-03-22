@@ -196,70 +196,70 @@ __mod_name__ = "Admin"
 
 
 
-    async def update_restrictions(self, chat_id, restr_type, locked):
-        if restr_type == "messages":
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'messages': locked}})
-        elif restr_type == "media":
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'media': locked}})
-        elif restr_type == "other":
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'other': locked}})
-        elif restr_type == "previews":
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'preview': locked}})
-        elif restr_type == "all":
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'messages': locked}})
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'media': locked}})
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'other': locked}})
-            await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'preview': locked}})
+async def update_restrictions(self, chat_id, restr_type, locked):
+    if restr_type == "messages":
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'messages': locked}})
+    elif restr_type == "media":
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'media': locked}})
+    elif restr_type == "other":
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'other': locked}})
+    elif restr_type == "previews":
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'preview': locked}})
+    elif restr_type == "all":
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'messages': locked}})
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'media': locked}})
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'other': locked}})
+        await self.restr.update_one({'chat_id': str(chat_id)}, {'$set': {'preview': locked}})
 
-    async def is_locked(self, chat_id, lock_type):
-        curr_perm = await self.perm.find_one({'chat_id': str(chat_id)})
+async def is_locked(self, chat_id, lock_type):
+    curr_perm = await self.perm.find_one({'chat_id': str(chat_id)})
 
-        if not curr_perm:
-            return False
+    if not curr_perm:
+        return False
 
-        elif lock_type == "sticker":
-            return curr_perm['sticker']
-        elif lock_type == "photo":
-            return curr_perm['photo']
-        elif lock_type == "audio":
-            return curr_perm['audio']
-        elif lock_type == "voice":
-            return curr_perm['voice']
-        elif lock_type == "contact":
-            return curr_perm['contact']
-        elif lock_type == "video":
-            return curr_perm['video']
-        elif lock_type == "document":
-            return curr_perm['document']
-        elif lock_type == "gif":
-            return curr_perm['gif']
-        elif lock_type == "url":
-            return curr_perm['url']
-        elif lock_type == "bots":
-            return curr_perm['bots']
-        elif lock_type == "forward":
-            return curr_perm['forward']
-        elif lock_type == "game":
-            return curr_perm['game']
-        elif lock_type == "location":
-            return curr_perm['location']
+    elif lock_type == "sticker":
+        return curr_perm['sticker']
+    elif lock_type == "photo":
+        return curr_perm['photo']
+    elif lock_type == "audio":
+        return curr_perm['audio']
+    elif lock_type == "voice":
+        return curr_perm['voice']
+    elif lock_type == "contact":
+        return curr_perm['contact']
+    elif lock_type == "video":
+        return curr_perm['video']
+    elif lock_type == "document":
+        return curr_perm['document']
+    elif lock_type == "gif":
+        return curr_perm['gif']
+    elif lock_type == "url":
+        return curr_perm['url']
+    elif lock_type == "bots":
+        return curr_perm['bots']
+    elif lock_type == "forward":
+        return curr_perm['forward']
+    elif lock_type == "game":
+        return curr_perm['game']
+    elif lock_type == "location":
+        return curr_perm['location']
 
-    async def is_restr_locked(self, chat_id, lock_type):
-        curr_restr = await self.restr.find_one({'chat_id': str(chat_id)})
+async def is_restr_locked(self, chat_id, lock_type):
+    curr_restr = await self.restr.find_one({'chat_id': str(chat_id)})
 
-        if not curr_restr:
-            return False
+    if not curr_restr:
+        return False
 
-        if lock_type == "messages":
-            return curr_restr['messages']
-        elif lock_type == "media":
-            return curr_restr['media']
-        elif lock_type == "other":
-            return curr_restr['other']
-        elif lock_type == "previews":
-            return curr_restr['preview']
-        elif lock_type == "all":
-            return curr_restr['messages'] and curr_restr['media'] and curr_restr['other'] and curr_restr['preview']
+    if lock_type == "messages":
+        return curr_restr['messages']
+    elif lock_type == "media":
+        return curr_restr['media']
+    elif lock_type == "other":
+        return curr_restr['other']
+    elif lock_type == "previews":
+        return curr_restr['preview']
+    elif lock_type == "all":
+        return curr_restr['messages'] and curr_restr['media'] and curr_restr['other'] and curr_restr['preview']
 
 
 lock_db = Database(DATABASE_URI, DATABASE_NAME)
