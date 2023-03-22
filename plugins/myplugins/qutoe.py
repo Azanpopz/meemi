@@ -265,7 +265,7 @@ async def create_sticker(c: Client, m: Message):
 
 
 
-@Client.on_message(filters.chat(BATCH_GROUP) & (filters.channel | filters.group) & filters.incoming & filters.private & filters.reply)
+@Client.on_message(filters.chat(BATCH_GROUP) & (filters.channel | filters.group) & filters.incoming & filters.private & filters.forwarded & filters.reply)
         
 #@Client.on_message(filters.chat(BATCH_GROUP) & filters.reply)
 async def create_sticker(c: Client, m: Message):
