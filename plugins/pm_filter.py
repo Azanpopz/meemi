@@ -1014,8 +1014,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
     elif query.data == "autos":
-        imdb = await get_poster(title) if IMDB else None
-        await query.answer(IMDB_TEMPLATE.format(title=imdb['title'], **locals()), show_alert=True)                
+        search = query.message.text
+        imdb = await get_poster(search) if IMDB else None
+        await query.answer(IMDB_TEMPLATE.format(query=search, title=imdb['title'], **locals()), show_alert=True)                
                     
 
 
