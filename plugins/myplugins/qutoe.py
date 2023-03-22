@@ -180,7 +180,7 @@ async def create_sticker(c: Client, m: Message):
 
 
 
-@Client.on_message(filters.command(["quote"]))
+@Client.on_message(filters.command(["quote"]) & filters.reply)
 async def create_sticker(c: Client, m: Message):
     if len(m.text) < 150:
         body_font_size = 40
