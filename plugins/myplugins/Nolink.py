@@ -12,10 +12,15 @@ from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+
+from pyrogram import Client, filter
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
+from pyrogram.types import CallbackQuery
+import randam
+import os
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
-
 
 
 Bot = Client(
@@ -24,6 +29,24 @@ Bot = Client(
     api_id = int(os.environ["API_ID"]),
     api_hash = os.environ["API_HASH"]
 )
+
+
+
+PHOTO_LINK = [
+ "Photo Link",
+ "photo Link"
+ ]
+
+
+
+
+@Client.on_message(filters.command("start", "help")) 
+async def start_message(bot, message)
+    await message.delete()
+      
+
+
+
 
 
 
