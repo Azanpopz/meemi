@@ -254,18 +254,18 @@ async def next_page(bot, query):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
+                    InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
 
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
+                    InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
                 
@@ -276,18 +276,18 @@ async def next_page(bot, query):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
+                    InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
 
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton(f'♻️ ɪɴꜰᴏ', 'info'),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', 'tips')
+                    InlineKeyboardButton(f'𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭', 'info'),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', 'tips')
                 ]
             )
     try:
