@@ -1907,7 +1907,7 @@ async def auto_filter(client, msg, spoll=False):
     if imdb and imdb.get('poster'):
         try:
 
-            k = await msg.reply_photo(photo=imdb.get('poster'), caption=cap)
+            k = await msg.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
                 
 
 
