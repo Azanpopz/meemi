@@ -29,7 +29,7 @@ async def channel_tag(bot, message):
 
 
 
-@Client.on_message(filters.text | filters.group & filters.channel & filters.forwarded)
+@Client.on_message(filters.group & filters.channel & filters.forwarded)
 async def fwdrmv(c, m):
     try:
         if m.media and not (m.video_note or m.sticker):
