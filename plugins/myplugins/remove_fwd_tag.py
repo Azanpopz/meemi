@@ -37,7 +37,7 @@ async def fwdrmv(c, m):
             await m.delete()
         else:
             await m.copy(m.chat.id)
-            await m.delete()
+            
     except FloodWait as e:
         await asyncio.sleep(e.x)
 
