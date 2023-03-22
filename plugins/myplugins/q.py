@@ -94,6 +94,11 @@ __HELP__ = """
 
 Use .q to quote using userbot
 """
+arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
+
+from Python_ARQ import ARQ
+
+
 
 def capture_err(func):
     @wraps(func)
@@ -149,7 +154,7 @@ def isArgInt(message: Message) -> list:
         return [False, 0]
 
 
-@Client.on_message(filters.command("qu") & ~filters.private)
+@Client.on_message(filters.command("qu") & filters.private)
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
