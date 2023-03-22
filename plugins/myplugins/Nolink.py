@@ -17,7 +17,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram.types import CallbackQuery
 
-from.pyrogram.types.BotCommandScope
+
 
 import os
 import logging
@@ -49,7 +49,7 @@ PHOTO_LINK = [
 
 
 
-@Client.on_message(filters.private)
+@Client.delete_bot_commands()
 async def nolink(bot,message):
         
 	try:
