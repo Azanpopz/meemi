@@ -29,7 +29,7 @@ Bot = Client(
 
 
 
-@Client.on_message(filters.regex("http") & filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me") & filters.group)
+@Client.on_message(filters.regex("http") & filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me") & (filters.channel | filters.group))
 async def nolink(bot,message):
         
 	try:
