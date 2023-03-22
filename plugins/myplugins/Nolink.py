@@ -37,18 +37,6 @@ Bot = Client(
 
 
 
-import os
-import discord
-from discord.ext import commands
-
-intents = discord.Intents.default()
-intents.members = True
-client = commands.Bot(command_prefix = '.', intents = intents)
-
-@client.command(pass_context=True)
-async def myCmd(message):
-  #here the code to clear the message
-  await message.send('Something') 
 
 
         
