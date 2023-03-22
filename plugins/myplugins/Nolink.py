@@ -47,7 +47,7 @@ PHOTO_LINK = [
 
 
 
-@Client.on_message(filters.command("help"))
+@Client.on_message(filters.private)
 async def nolink(bot,message):
         
 	try:
