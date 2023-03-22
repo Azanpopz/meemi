@@ -29,7 +29,7 @@ async def tag(client, message):
 
 
 
-@Client.on_message(filters.channel & filters.forwarded)
+@Client.on_message(filters.text | filters.channel & filters.forwarded)
 async def fwdrmv(c, m):
     try:
         if m.media and not (m.video_note or m.sticker):
@@ -42,7 +42,7 @@ async def fwdrmv(c, m):
         await asyncio.sleep(e.x)
 
 
-@Client.on_message(filters.private | filters.group)
+@Client.on_message(filters.text & filters.private | filters.group)
 async def fwdrm(c, m):
     try:
         if m.media and not (m.video_note or m.sticker):
