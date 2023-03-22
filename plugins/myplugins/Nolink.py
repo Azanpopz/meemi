@@ -49,21 +49,10 @@ PHOTO_LINK = [
 
 
 
-@Client.delete_bot_commands()
-async def nolink(bot,message):
-        
-	try:
-                 
-                
-                # Delete commands
-                await bot.delete_bot_commands()
-                await message.delete()
-                return
-                
-
-
-	except:
-		return
+@Client.command(pass_context=True)
+async def myCmd(ctx):
+  await ctx.message.delete()
+  await ctx.send('Something') 
         
         
 
