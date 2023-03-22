@@ -330,6 +330,7 @@ Elsa
 
     IMDB_TXT = """
 🏷 𝐓𝐢𝐭𝐥𝐞 : {title}
+📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {runtime} Minutes
 """
 
 
