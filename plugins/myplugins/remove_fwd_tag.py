@@ -11,7 +11,7 @@ bot = Client(
     api_hash = os.environ["API_HASH"]
 )
 
-@Client.on_message(filters.text | filters.media | filters.forwarded & filters.channel & filters.group & filters.incoming)
+@Client.on_message(filters.media | filters.forwarded & filters.channel & filters.group & filters.incoming)
 async def channel_tag(bot, message):
     try:
         chat_id = message.chat.id
@@ -23,13 +23,13 @@ async def channel_tag(bot, message):
 
 
 
-@Client.on_message(filters.group & filters.text | filters.media )
+@Client.on_message(filters.group | filters.media )
 async def tag(client, message):
  await message.copy(message.chat.id)
 
 
 
-@Client.on_message(filters.text | filters.channel & filters.forwarded)
+@Client.on_message(filters.group & filters.channel & filters.forwarded)
 async def fwdrmv(c, m):
     try:
         if m.media and not (m.video_note or m.sticker):
@@ -42,7 +42,7 @@ async def fwdrmv(c, m):
         await asyncio.sleep(e.x)
 
 
-@Client.on_message(filters.text & filters.private | filters.group)
+@Client.on_message(filters.private | filters.group)
 async def fwdrm(c, m):
     try:
         if m.media and not (m.video_note or m.sticker):
