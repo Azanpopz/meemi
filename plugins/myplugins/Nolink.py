@@ -47,19 +47,13 @@ PHOTO_LINK = [
 
 
 
-@Client.on_message(filters.command("start"))
+@Client.on_message(filters.command("help"))
 async def nolink(bot,message):
         
 	try:
                  
-                buttons = [[
-                    InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='https://t.me/nasrani_update')
-                ]]
-                reply_markup = InlineKeyboardMarkup(buttons)
-                k = await message.reply_sticker("CAACAgUAAx0CXPjPGAACAmVkAAHLpxQlUkQIctGPhN_l36xk9psAAlcJAAKTvwlU-kg3cws4x6geBA") 
-                await asyncio.sleep(2)      
-                k = await k.delete()
-                hmm = await message.delete()
+                
+                await message.delete()
                 return
                 
 
