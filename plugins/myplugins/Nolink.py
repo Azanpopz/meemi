@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from info import BOT_TOKEN, API_ID, API_HASH
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 import asyncio
-
+from info import SUPPORT_CHAT
 
 
 
@@ -29,7 +29,7 @@ Bot = Client(
 
 
 
-@Client.on_message((filters.channel | filters.group) & filters.regex("http") & filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
+@Client.on_message((filters.chat(SUPPORT_CHAT) & filters.regex("http") & filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me"))
 async def nolink(bot,message):
         
 	try:
