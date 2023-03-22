@@ -66,7 +66,7 @@ CMD_HELP.update(
 )
 
 
-@Client.on_message(filters.command("kangs")
+@Client.on_message(filters.command("kangs"))
 async def kang(client, message):
     user = await app.get_me()
     replied = message.reply_to_message
