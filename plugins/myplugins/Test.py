@@ -5,7 +5,7 @@
 # Please see < https://github.com/okay-retard/ZectUserBot/blob/master/LICENSE >
 #
 # All rights reserved.
-
+from database.users_chats_db import db
 import io
 import os
 import random
@@ -59,7 +59,7 @@ def get_args(message):
 
 @Client.on_message(filters.command("kangs"))
 async def kang(client, message):
-    user = await app.get_me()
+    user = await db.add_user(message.from_user.id, message.from_user.first_name)
     replied = message.reply_to_message
     photo = None
     emoji_ = None
