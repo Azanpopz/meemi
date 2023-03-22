@@ -26,9 +26,19 @@ from traceback import format_exc
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from functools import wraps
 
 # from wbb import SUDOERS, USERBOT_PREFIX, app, app2, arq
 # from wbb.core.decorators.errors import capture_err
+
+import sys
+import traceback
+from functools import wraps
+
+from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
+
+from info import ADMINS, API_ID, API_HASH, LOG_CHANNEL
+
 
 __MODULE__ = "Quotly"
 __HELP__ = """
