@@ -2031,18 +2031,18 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', f'loading')
+                    InlineKeyboardButton("𝐂𝐥𝐨𝐬𝐞", f'auto#{reqstr1}#auto_filter', False),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
 
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', f'loading')
+                    InlineKeyboardButton("𝐂𝐥𝐨𝐬𝐞", f'auto#{reqstr1}#auto_filter', False),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
                 
@@ -2053,18 +2053,18 @@ async def auto_filter(client, msg, spoll=False):
         if settings['auto_delete']:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close",f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', f'loading')
+                    InlineKeyboardButton("𝐂𝐥𝐨𝐬𝐞",f'auto#{reqstr1}#auto_filter', False),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
 
         else:
             btn.insert(0, 
                 [
-                    InlineKeyboardButton("❌ Close", f'auto#{reqstr1}#auto_filter', False),
-                    InlineKeyboardButton("Languages", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
-                    InlineKeyboardButton(f'ᴛɪᴘs​ ⚜', f'loading')
+                    InlineKeyboardButton("𝐂𝐥𝐨𝐬𝐞", f'auto#{reqstr1}#auto_filter', False),
+                    InlineKeyboardButton("𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬", callback_data=f"languages#{search.replace(' ', '_')}#{key}"),
+                    InlineKeyboardButton(f'𝐈𝐧𝐟𝐨', f'loading')
                 ]
             )
     
