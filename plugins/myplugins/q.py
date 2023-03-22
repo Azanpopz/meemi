@@ -105,13 +105,13 @@ async def quotly_func(client, message: Message):
         sticker = await quotify(messages)
         if not sticker[0]:
             await message.reply_text(sticker[1])
-            return await m.delete()
+            
         sticker = sticker[1]
         await message.reply_sticker(sticker)
-        await m.delete()
+        
         sticker.close()
     except Exception as e:
-        await m.edit(
+        await message.edit(
             "Something went wrong while quoting messages,"
             + " This error usually happens when there's a "
             + " message containing something other than text,"
