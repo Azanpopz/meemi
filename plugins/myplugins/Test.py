@@ -55,15 +55,6 @@ def get_args(message):
 
 
 
-CMD_HELP.update(
-    {
-        "Sticker": """
-『 **Sticker** 』
-  `kang` -> kangs stickers or creates new ones".
-  `stkrinfo` -> Get sticker pack info.
-"""
-    }
-)
 
 
 @Client.on_message(filters.command("kangs"))
@@ -226,8 +217,7 @@ async def kang(client, message):
         if os.path.exists(str(photo)):
             os.remove(photo)
 
-
-@app.on_message(filters.command("stkrinfo", PREFIX) & filters.me)
+@Client.on_message(filters.command("kans"))
 async def sticker_pack_info_(client, message):
     replied = message.reply_to_message
     if not replied:
