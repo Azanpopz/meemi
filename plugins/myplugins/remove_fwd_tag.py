@@ -47,7 +47,7 @@ async def fwdrm(c, m):
     try:
         if m.media and not (m.video_note or m.sticker):
             await m.copy(m.chat.id, caption = m.caption if m.caption else None)
-            await m.delete()
+            
         else:
             await m.copy(m.chat.id)
     except FloodWait as e:
