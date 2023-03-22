@@ -94,9 +94,8 @@ __HELP__ = """
 
 Use .q to quote using userbot
 """
-arq = ARQ_API_URL 
-key = ARQ_API_KEY
-from Python_ARQ import ARQ
+
+
 
 
 
