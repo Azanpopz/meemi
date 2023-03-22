@@ -18,7 +18,7 @@ from pyrogram.raw.types import InputStickerSetShortName
 from pyrogram.errors import YouBlockedUser, StickersetInvalid
 # from Zect.helpers.pyrohelper import get_args
 # from Zect import app, CMD_HELP
-from config import PREFIX
+# from config import PREFIX
 
 from pyrogram.types import Message, User
 from pyrogram import Client
