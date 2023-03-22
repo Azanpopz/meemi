@@ -23,7 +23,7 @@ SOFTWARE.
 """
 from io import BytesIO
 from traceback import format_exc
-
+from aiohttp import ClientSession
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from functools import wraps
