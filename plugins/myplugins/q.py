@@ -49,6 +49,52 @@ __HELP__ = """
 Use .q to quote using userbot
 """
 
+"""
+MIT License
+
+Copyright (c) 2021 TheHamkerCat
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+from io import BytesIO
+from traceback import format_exc
+
+from pyrogram import filters
+from pyrogram.types import Message
+import sys
+import traceback
+from functools import wraps
+
+from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
+
+#from nezuko import SUDOERS, app, arq
+#from nezuko.core.decorators.errors import capture_err
+from import ADMINS, AUTH_USERS, API_ID, API_HASH, LOG_CHANNEL
+__MODULE__ = "Quotly"
+__HELP__ = """
+/q - To quote a message.
+/q [INTEGER] - To quote more than 1 messages.
+/q r - to quote a message with it's reply
+
+Use .q to quote using userbot
+"""
+
 def capture_err(func):
     @wraps(func)
     async def capture(client, message, *args, **kwargs):
@@ -80,7 +126,6 @@ def capture_err(func):
 
 
 
-
 async def quotify(messages: list):
     response = await arq.quotly(messages)
     if not response.ok:
@@ -92,8 +137,7 @@ async def quotify(messages: list):
 
 
 def getArg(message: Message) -> str:
-    arg = message.text.strip().split(None, 1)[1].strip()
-    return arg
+    return message.text.strip().split(None, 1)[1].strip()
 
 
 def isArgInt(message: Message) -> list:
@@ -105,14 +149,15 @@ def isArgInt(message: Message) -> list:
         return [False, 0]
 
 
-# @app2.on_message(filters.command("q", prefixes=USERBOT_PREFIX) & SUDOERS)
-@Client.on_message(filters.command("qu") & filters.private)
+@Client.on_message(filters.command("q") & ~filters.private)
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
         return await message.reply_text("Reply to a message to quote it.")
     if not message.reply_to_message.text:
-        return await message.reply_text("Replied message has no text, can't quote it.")
+        return await message.reply_text(
+            "Replied message has no text, can't quote it."
+        )
     m = await message.reply_text("Quoting Messages")
     if len(message.command) < 2:
         messages = [message.reply_to_message]
@@ -125,7 +170,7 @@ async def quotly_func(client, message: Message):
 
             count = arg[1]
 
-            # Fetching 5 extra messages so that we can ignore media
+            # Fetching 5 extra messages so tha twe can ignore media
             # messages and still end up with correct offset
             messages = [
                 i
@@ -152,7 +197,9 @@ async def quotly_func(client, message: Message):
             )
             messages = [reply_message]
     else:
-        return await m.edit("Incorrect argument, check quotly module in help section.")
+        return await m.edit(
+            "Incorrect argument, check quotly module in help section."
+        )
     try:
         if not message:
             return await m.edit("Something went wrong.")
