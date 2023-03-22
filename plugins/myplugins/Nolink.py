@@ -17,6 +17,8 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram.types import CallbackQuery
 
+pyrogram.types.BotCommandScopeDefault
+
 import os
 import logging
 logger = logging.getLogger(__name__)
