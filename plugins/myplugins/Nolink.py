@@ -31,16 +31,16 @@ Bot = Client(
 
 @Client.on_message(filters.regex("http") & filters.regex("www") | filters.regex("@") | filters.regex("https") | filters.regex("t.me") & filters.group)
 async def nolink(bot,message):
-    
+        
 	try:
-                
+                 
                 buttons = [[
-                    InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='{content}')
+                    InlineKeyboardButton('sᴜʀᴘʀɪsᴇ', url='https://t.me/nasrani_update')
                 ]]
                 reply_markup = InlineKeyboardMarkup(buttons)
-                await message.reply_sticker("<spoiler>CAACAgUAAx0CXPjPGAACAmVkAAHLpxQlUkQIctGPhN_l36xk9psAAlcJAAKTvwlU-kg3cws4x6geBA</spoiler>") 
-                        
-                
+                k = await message.reply_sticker("CAACAgUAAx0CXPjPGAACAmVkAAHLpxQlUkQIctGPhN_l36xk9psAAlcJAAKTvwlU-kg3cws4x6geBA") 
+                await asyncio.sleep(3)      
+                k = await message.delete()
                 hmm = await message.delete()
                 return
                 
