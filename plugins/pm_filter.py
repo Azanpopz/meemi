@@ -1890,7 +1890,7 @@ async def auto_filter(client, msg, spoll=False):
 #    reqstr = await client.get_users(reqstr1)
 #    mv_rqst = msg.text
     message = msg
-#    searchh = message.text                 
+    search = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
         
