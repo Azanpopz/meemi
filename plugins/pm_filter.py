@@ -2245,29 +2245,27 @@ async def advantage_spell_chok(client, msg):
     i = 1
     pre_len = {}
     btn = []
-    SPELL_CHECK[mv_id] = movielist
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=movie_name.strip(),
-                callback_data=f"spol#{reqstr1}#{k}",
-            )
-        ]
-        for k, movie_name in enumerate(movielist)
-    ]
-    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    # movielist.sort(key=len)
+    for k, movie in enumerate(movielist):
+        text = movie.strip()  # args[2]
+        same = False
+        if (i % 2) == 0:
+            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                same = False
+            else:
+                same = True
+        else:
+            pre_len["text_len"] = len(text)
+            same = False
 
-    btn.insert(0, [
-        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
-        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={mv_rqst}")
-    ])
+        i += 1
 
-    btn.insert(1, [
-        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("Gᴏᴏɢʟᴇ🎭", url=f"https://www.google.com/search?q={mv_rqst}")
-    ])
- 
+        btn.append([text, f"spol#{reqstr1}#{k}"])
+
+    btn.append(["❌ Close", f'spoll#{reqstr1}#close_spellcheck'])
+    btn = build_keyboard(btn)
+
+
 
     
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
@@ -2286,6 +2284,15 @@ async def advantage_spell_chok(client, msg):
 
 
 
+def build_keyboard(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn[2] and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        else:
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+
+    return keyb
 
     
 async def manual_filters(client, message, text=False):
