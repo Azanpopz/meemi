@@ -2243,11 +2243,9 @@ async def advantage_spell_chok(client, msg):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(search) if IMDB else None
-    i = 1
+        i = 1
     pre_len = {}
     btn = []
-
-
     # movielist.sort(key=len)
     for k, movie in enumerate(movielist):
         text = movie.strip()  # args[2]
