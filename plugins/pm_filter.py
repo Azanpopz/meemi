@@ -451,7 +451,7 @@ async def advantage_spoll_choker(bot, query):
             k = await query.message.edit(script.MVE_NT_FND)
             await asyncio.sleep(10)
             await k.delete()
-            if AUTH_CHANNEL and not await is_subscribed(client, message):
+            if AUTH_CHANNEL and not await is_subscribed(client, query.message):
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
             k = await query.message.edit(script.MVE_NT_FND)
             await asyncio.sleep(10)            
