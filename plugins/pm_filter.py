@@ -958,11 +958,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                              [
                                 [
-                                     InlineKeyboardButton('🎁3', url="https://t.me/+YCA-JWZDNsJkNmI1")
+                                     InlineKeyboardButton('📤𝐉𝐨𝐢𝐧📤', url="https://t.me/+7oxSIxY4X0c2ZGVl")
                                  ],
                                  [
-                                 InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url="https://t.me/NasraniChatGroup"),
-                                 InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://t.me/NasraniChatGroup")
+                                 InlineKeyboardButton('🧩𝐔𝐩𝐝𝐚𝐭𝐞🧩', url="https://t.me/bigmoviesworld"),
+                                 InlineKeyboardButton('☘𝐒𝐮𝐩𝐩𝐨𝐫𝐭☘', url="https://t.me/NasraniChatGroup")
                                  ]                            
                              ]
                          )
@@ -1931,7 +1931,10 @@ async def auto_filter(client, msg, spoll=False):
         )
     if imdb and imdb.get('poster'):
         try:
-
+            
+            btn = [[
+                InlineKeyboardButton("𝐉𝐨𝐢𝐧", url=f"https://t.me/nasrani_update")
+            ]]
             k = await msg.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
                 
 
