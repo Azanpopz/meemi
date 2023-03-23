@@ -47,9 +47,12 @@ FILTER_MODE = {}
 
 BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india', False)]])
 
-A = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠........"""
-B = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫..."""
-C = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐘𝐨𝐮𝐫 𝐅𝐢𝐥𝐞"""
+A = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▭▭▭▭▭\n▭▭▭▭▭........"""
+B = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▬▭▭▭▭\n▬▭▭▭▭........"""
+C = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▬▬▭▭▭\n▬▬▭▭▭"""
+D = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▬▬▬▬▭\n▬▬▬▬▭"""
+E = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▬▬▬▬▬▭\n▬▬▬▬▬▭"""
+F = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▬▬▬▬▬▬\n▬▬▬▬▬▬"""
 
 
 
@@ -2061,8 +2064,9 @@ async def auto_filter(client, msg, spoll=False):
 
     await msg.reply_chat_action(enums.ChatAction.TYPING)
     px = await msg.reply_text(A,quote=True)
-    await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
-    await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                              
+    await px.edit_text(text=C)
+    await px.edit_text(text=E)
+    await px.edit_text(text=F)                                              
     await px.delete()
                                                   
 
