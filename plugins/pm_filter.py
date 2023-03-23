@@ -1888,7 +1888,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 async def auto_filter(client, msg, spoll=False):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)
-    mv_rqst = msg.text
+#    mv_rqst = msg.text
     message = msg
     searchh = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -1920,7 +1920,7 @@ async def auto_filter(client, msg, spoll=False):
         await m.delete()
         await client.send_message(
             chat_id=message.chat.id,
-            text=f"𝐇𝐞𝐲 {message.from_user.mention} **𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐚𝐧𝐝 𝐑𝐞𝐪𝐮𝐬𝐭 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩\n\nജോയിൻ ചെയ്തതിനു ശേഷം റിക്വസ്റ്റ് അയക്കുക**",
+            text=f"𝐇𝐞𝐲 **𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐚𝐧𝐝 𝐑𝐞𝐪𝐮𝐬𝐭 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩\n\nജോയിൻ ചെയ്തതിനു ശേഷം റിക്വസ്റ്റ് അയക്കുക**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
@@ -2264,8 +2264,9 @@ async def advantage_spell_chok(client, msg):
         logger.exception(e)
         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
-        await asyncio.sleep(8)
+        await asyncio.sleep(120)
         await k.delete()
+        await msg.delete()
         return
     movielist = []
     if not movies:
@@ -2282,6 +2283,7 @@ async def advantage_spell_chok(client, msg):
         )
         await asyncio.sleep(30)
         await k.delete()
+        await msg.delete()
                
         return
 #    movielist += [movie.get('title') for movie in movies]
@@ -2330,8 +2332,9 @@ async def advantage_spell_chok(client, msg):
     ])
 
     
-    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-    
+    m=await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+    await asyncio.sleep(2)
+    await k.delete()
     
     await asyncio.sleep(1)
 
@@ -2340,7 +2343,10 @@ async def advantage_spell_chok(client, msg):
         caption=(script.CUDNT_FND.format(mv_rqst)),
         reply_markup=InlineKeyboardMarkup(btn),
         reply_to_message_id=msg.id
-    )    
+    )
+    await asyncio.sleep(120)
+    await spell_check_del.delete()
+    await msg.delete()
 
 def build_keyboard(buttons):
     keyb = []
