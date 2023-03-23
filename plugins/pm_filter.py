@@ -2021,8 +2021,14 @@ async def auto_filter(client, msg, spoll=False):
             )
     
 
-
     btn.insert(0, [
+        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
+        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={search}")
+    ])
+
+
+    btn.insert(1, [
         InlineKeyboardButton(f'⚕️𝐅𝐢𝐥𝐞𝐬: {total_results}⚕️', 'autos'),
         InlineKeyboardButton(f'♻️𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬♻️', url='https://t.me/nasrani_update')
     ])
@@ -2040,8 +2046,11 @@ async def auto_filter(client, msg, spoll=False):
 #    await px.edit_text(text=E)
 #    await px.edit_text(text=F)                                              
 #    await px.delete()
-                                                  
-
+                                                 
+    m=await message.reply_text("🔍") 
+    await asyncio.sleep(2)
+    await m.delete()
+        
 
 
     if offset != "":
@@ -2186,8 +2195,14 @@ async def auto_filter(client, msg, spoll=False):
                     await asyncio.sleep(300)
                     await fuk.delete()
                     await message.delete()
-                
-
+                k = await message.reply_photo(
+                    photo=random.choice(SP),
+                    caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                )
+                await asyncio.sleep(60)                   
+                await k.delete()
+                await message.delete() 
 
     if spoll:
         await msg.message.delete()
