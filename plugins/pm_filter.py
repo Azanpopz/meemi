@@ -1313,14 +1313,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
 
-    elif query.data("shows"):
-        search = query.data.split("#")     
-        search = query.message.text                                  
-        
-        if int(query.search) == int(search):
-            imdb = await get_poster(query=search) if IMDB else None           
-            await query.answer(f"Hᴇʏ {title}, Dvd ഇറങ്ങിക്കോട്ടെ!", show_alert=True)
-        
 
 
 
