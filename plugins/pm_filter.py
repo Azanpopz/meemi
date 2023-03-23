@@ -1886,8 +1886,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
 #    chat_id = msg.chat.id
-    mv_rqst = msg.text
-    message = msg
+#    mv_rqst = msg.text
+#    message = msg
     searchh = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
