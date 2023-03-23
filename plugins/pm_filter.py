@@ -2262,7 +2262,7 @@ async def advantage_spell_chok(client, msg):
 
         btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-    btn.append(["❌ Close", f'spoll#{reqstr1}#close_spellcheck', false])
+    btn.append(["❌ Close", f'spoll#{reqstr1}#close_spellcheck', False])
     btn = build_keyboard(btn)
 
     btn.insert(0, [
@@ -2291,15 +2291,7 @@ async def advantage_spell_chok(client, msg):
 
 
 
-def build_keyboard(buttons):
-    keyb = []
-    for btn in buttons:
-        if btn[0] and keyb:
-            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
-        else:
-            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
 
-    return keyb
 
     
 async def manual_filters(client, message, text=False):
