@@ -1890,12 +1890,11 @@ async def auto_filter(client, msg, spoll=False):
 #    reqstr1 = msg.from_user.id if msg.from_user else 0
 #    reqstr = await client.get_users(reqstr1)
     message = msg    
-    chat_id = message.chat.id
+#    chat_id = message.chat.id
     if AUTH_CHANNEL and not await is_subscribed(client, msg):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
+      
             return
         btn = [
                 [
