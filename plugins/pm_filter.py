@@ -1892,10 +1892,7 @@ async def auto_filter(client, msg, spoll=False):
     message = msg    
 #    chat_id = message.chat.id
     if AUTH_CHANNEL and not await is_subscribed(client, msg):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-      
-            return
+        
         btn = [
                 [
                     InlineKeyboardButton(
