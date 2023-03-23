@@ -1893,7 +1893,7 @@ async def auto_filter(client, msg, spoll=False):
 #    searchh = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(searchh) if IMDB else None    
+        
 
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
@@ -1950,6 +1950,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             return
     else:
+        imdb = await get_poster(search) if IMDB else None
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
     settings = await get_settings(message.chat.id)
