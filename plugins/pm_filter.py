@@ -1919,7 +1919,7 @@ async def auto_filter(client, msg, spoll=False):
         await asyncio.sleep(1)
         await m.delete()
         await client.send_message(
-            chat_id=message.from_user.id,
+            chat_id=message.chat.id,
             text=f"𝐇𝐞𝐲 {message.from_user.mention} **𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐚𝐧𝐝 𝐑𝐞𝐪𝐮𝐬𝐭 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩\n\nജോയിൻ ചെയ്തതിനു ശേഷം റിക്വസ്റ്റ് അയക്കുക**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
