@@ -2299,7 +2299,7 @@ async def advantage_spell_chok(client, msg):
         InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
     ])
     btn.insert(3, [
-        InlineKeyboardButton(f"🌲{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
+        InlineKeyboardButton(f"{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
     ]) 
 
     
@@ -2309,7 +2309,7 @@ async def advantage_spell_chok(client, msg):
     await asyncio.sleep(1)
 
     await k.delete()
-    await msg.reply_photo(photo=imdb['poster'],
+    await msg.reply_photo(photo=imdb['poster'],caption=(script.SPELL_TXT.format(mv_rqst)),
                                 reply_markup=InlineKeyboardMarkup(btn))
     
         
