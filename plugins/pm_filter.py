@@ -1927,7 +1927,8 @@ async def auto_filter(client, msg, spoll=False):
         text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
         reply_markup=InlineKeyboardMarkup(btn),
         parse_mode=enums.ParseMode.MARKDOWN
-    )
+        )
+        return
     #
         
 #                                                              
