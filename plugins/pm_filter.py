@@ -2213,43 +2213,101 @@ async def advantage_spell_chok(client, msg):
     movielist = []
     if not movies:
         reqst_gle = mv_rqst.replace(" ", "+")
+        mv_rqst = msg.text
         button = [[
                    InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
         await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await msg.reply_photo(
             photo=SPELL_IMG, 
-            caption=script.I_CUDNT.format(mv_rqst),
+            caption=f"➤ 𝐏𝐥𝐞𝐚𝐬𝐞 𝐒𝐞𝐚𝐫𝐜𝐡 𝐆𝐨𝐨𝐠𝐥𝐞 𝐎𝐫 𝐓𝐲𝐩𝐞 𝐂𝐨𝐫𝐫𝐞𝐜𝐭 𝐍𝐚𝐦𝐞 \n\n👥𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: `{msg.from_user.mention}`\n\n📀𝐌𝐨𝐯𝐢𝐞: `{mv_rqst}`⎙\n\n✖ 𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐚𝐢𝐥𝐞𝐝 ✖",
             reply_markup=InlineKeyboardMarkup(button)
         )
         await asyncio.sleep(30)
         await k.delete()
+
+               
+
+
+
+
         return
-    movielist += [movie.get('title') for movie in movies]
-    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+#    movielist += [movie.get('title') for movie in movies]
+    movielist += [f"🔹{movie.get('title')}🔹" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=movie_name.strip(),
-                callback_data=f"spol#{reqstr1}#{k}",
-            )
-        ]
-        for k, movie_name in enumerate(movielist)
-    ]
-    btn.append([InlineKeyboardButton(text="🔐𝐂𝐥𝐨𝐬𝐞🔐", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    chat_id = msg.chat.id
+    mv_rqst = msg.text
+    mention = msg.from_user.mention
+    message = msg
+    search = message.text                 
+    reqstr1 = msg.from_user.id if msg.from_user else 0
+    reqstr = await client.get_users(reqstr1)   
+    imdb = await get_poster(search) if IMDB else None
+    i = 1
+    pre_len = {}
+    btn = []
 
+
+    # movielist.sort(key=len)
+    for k, movie in enumerate(movielist):
+        text = movie.strip()  # args[2]
+        same = False
+        if (i % 2) == 0:
+            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
+                same = False
+            else:
+                same = True
+        else:
+            pre_len["text_len"] = len(text)
+            same = False
+
+        i += 1
+
+        btn.append([text, f"spol#{reqstr1}#{k}"])
+
+    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{reqstr1}#close_spellcheck', False])
+    btn = build_keyboard(btn)
+    btn.insert(0, [
+        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
+        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={mv_rqst}")
+    ])
+
+    btn.insert(1, [
+        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("Gᴏᴏɢʟᴇ🎭", url=f"https://www.google.com/search?q={mv_rqst}")
+    ])
+
+    btn.insert(2, [
+        InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
+    ])
+    btn.insert(3, [
+        InlineKeyboardButton(f"{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
+    ]) 
+
+    
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-
+    
+    
     await asyncio.sleep(1)
 
     await k.delete()
     spell_check_del = await msg.reply_photo(
         photo=(SPELL_IMG),
-        caption=(script.CUDNT_FND.format(reqstr.mention)),
-        reply_markup=InlineKeyboardMarkup(btn)
-        )
-    await msg.delete()
+        caption=(script.CUDNT_FND.format(mv_rqst)),
+        reply_markup=InlineKeyboardMarkup(btn),
+        reply_to_message_id=msg.id
+    )
+        
+def build_keyboard(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn[2] and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        else:
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+
+    return keyb
 
 
 
