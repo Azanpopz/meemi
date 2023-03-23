@@ -2276,12 +2276,12 @@ async def advantage_spell_chok(client, msg):
             else:
                 same = True
         else:
-            pre_len["text_len"] = len(text)
+            pre_len["🎭text_len🎭"] = len(text)
             same = False
 
         i += 1
 
-        btn.append([text, f"🎭spol#{user}#{k}🎭", same])
+        btn.append([text, f"spol#{user}#{k}", same])
 
     btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False])
     btn = build_keyboard(btn)
