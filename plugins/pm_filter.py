@@ -2243,7 +2243,7 @@ async def advantage_spell_chok(client, msg):
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(search) if IMDB else None
-        i = 1
+    i = 1
     pre_len = {}
     btn = []
     # movielist.sort(key=len)
@@ -2308,7 +2308,19 @@ def build_keyboard(buttons):
     return keyb
 
 
+def build_keyboard_cb_url(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn[2] and keyb and btn[3] == 'cb':
+            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
+        elif btn[2] and keyb and btn[3] == 'url':
+            keyb[-1].append(InlineKeyboardButton(btn[0], url=btn[1]))
+        elif btn[3] == 'cb':
+            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
+        else:
+            keyb.append([InlineKeyboardButton(btn[0], url=btn[1])])
 
+    return keyb
 
     
 async def manual_filters(client, message, text=False):
