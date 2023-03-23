@@ -2287,7 +2287,7 @@ async def advantage_spell_chok(client, msg):
     
     btn.insert(4, [
         InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{user}#{k}")
-    ]for k, movie in enumerate(movielist))
+    ])
 
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
     
