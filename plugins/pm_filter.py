@@ -1895,7 +1895,7 @@ async def auto_filter(client, msg, spoll=False):
     reqstr = await client.get_users(reqstr1)   
         
 
-    if AUTH_CHANNEL and not await is_subscribed(client, msg, message):
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
         except ChatAdminRequired:
