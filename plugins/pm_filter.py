@@ -422,7 +422,7 @@ async def advantage_spoll_choker(bot, query):
             await asyncio.sleep(10)
             await k.delete()
             await auto_filter(bot, query, m)
-        else:
+        
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
@@ -2278,7 +2278,7 @@ async def advantage_spell_chok(client, msg):
     ])
 
     btn.insert(2, [
-        InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}"),
+        InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{m}"),
     
         InlineKeyboardButton(f"{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}")
     ])
