@@ -2298,9 +2298,9 @@ async def advantage_spell_chok(client, msg):
 
         i += 1
 
-        btn.append([text, f"spolling#{reqstr1}#{k}", same])
+        btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spolling#{reqstr1}#close_spellcheck', False])
+    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{reqstr1}#close_spellcheck', False])
     btn = build_keyboard(btn)
     btn.insert(0, [
         InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
