@@ -2253,7 +2253,7 @@ async def advantage_spell_chok(client, msg):
 
         return
 #    movielist += [movie.get('title') for movie in movies]
-    movielist += [f"🎭{movie.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {movie.get('release_date')}🎭" for movie in movies]
+    movielist += [f"🔹{movie.get('title')}🔹" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
     chat_id = msg.chat.id
     mv_rqst = msg.text
@@ -2285,14 +2285,14 @@ async def advantage_spell_chok(client, msg):
     btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spolling#{reqstr1}#close_spellcheck', False])
     btn = build_keyboard(btn)
     btn.insert(0, [
-        InlineKeyboardButton("🖇️𝐂𝐡𝐚𝐧𝐧𝐞𝐥🖇️", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("🏷️𝐈𝐧𝐟𝐨🏷️", "shows"),
-        InlineKeyboardButton("⌛𝐒𝐞𝐚𝐫𝐜𝐡⌛", url=f"https://www.google.com/search?q={mv_rqst}")
+        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
+        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={mv_rqst}")
     ])
 
     btn.insert(1, [
-        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬🎭", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("🔍Gᴏᴏɢʟᴇ🔎", url=f"https://www.google.com/search?q={mv_rqst}")
+        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("Gᴏᴏɢʟᴇ🎭", url=f"https://www.google.com/search?q={mv_rqst}")
     ])
 
     btn.insert(2, [
