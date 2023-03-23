@@ -2217,17 +2217,7 @@ async def auto_filter(client, msg, spoll=False):
                     await asyncio.sleep(300)
                     await fuk.delete()
                     await message.delete()
-                buttons = [[                       
-                    InlineKeyboardButton(f"{message.from_user.first_name}", url=f"https://t.me/NasraniSeries"),
-                    InlineKeyboardButton('SUPPORT', url=f"https://t.me/NasraniChatGroup"),                    
-                 ]]
-                await message.reply_photo(
-                photo=random.choice(SP),
-                caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
-                reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-
+                
 
 
     if spoll:
@@ -2337,8 +2327,8 @@ async def advantage_spell_chok(client, msg):
     await asyncio.sleep(1)
 
     await k.delete()
-    await msg.reply_photo(photo=imdb['poster'],caption=(script.SPELL_TXT.format(msg.from_user.mention, mv_rqst)),
-                                reply_markup=InlineKeyboardMarkup(btn))
+    await msg.reply_photo(photo=imdb['poster'],caption=(script.SPELL_TXT.format(msg.from_user.mention, mv_rqst)))
+                                
     
         
 def build_keyboard(buttons):
