@@ -2300,7 +2300,10 @@ async def advantage_spell_chok(client, msg):
     ])
     btn.insert(3, [
         InlineKeyboardButton(f"{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{user}#{k}")
-    ]) 
+    ])
+    btn.append(
+        [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data=f"spol#{user}#{k}", same)]
+    )
 
     
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
