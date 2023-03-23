@@ -2334,7 +2334,7 @@ async def advantage_spell_chok(client, msg):
     
     m=await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
     await asyncio.sleep(2)
-    await k.delete()
+    await m.delete()
     
     await asyncio.sleep(1)
 
