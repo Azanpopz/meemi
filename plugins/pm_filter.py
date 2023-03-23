@@ -123,9 +123,9 @@ async def give_filter(client,message):
         await asyncio.sleep(1)
         await m.delete()
         await client.send_message(
-        chat_id=message.chat.id,
-        text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
-        reply_markup=InlineKeyboardMarkup(btn),
+            chat_id=message.chat.id,
+            text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
+            reply_markup=InlineKeyboardMarkup(btn),
         parse_mode=enums.ParseMode.MARKDOWN
     )
     await global_filters(client, message)
@@ -451,7 +451,10 @@ async def advantage_spoll_choker(bot, query):
             k = await query.message.edit(script.MVE_NT_FND)
             await asyncio.sleep(10)
             await k.delete()
-            
+            if AUTH_CHANNEL and not await is_subscribed(client, message):
+                await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
+            k = await query.message.edit(script.MVE_NT_FND)
+            await asyncio.sleep(10)            
 
 #languages
 
