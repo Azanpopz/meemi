@@ -2257,6 +2257,7 @@ async def advantage_spell_chok(client, msg):
     SPELL_CHECK[mv_id] = movielist
     chat_id = msg.chat.id
     mv_rqst = msg.text
+    mention = msg.from_user.mention
     message = msg
     search = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2309,7 +2310,7 @@ async def advantage_spell_chok(client, msg):
     await asyncio.sleep(1)
 
     await k.delete()
-    await msg.reply_photo(photo=imdb['poster'],caption=(script.SPELL_TXT.format(mv_rqst)),
+    await msg.reply_photo(photo=imdb['poster'],caption=(script.SPELL_TXT.format(msg.from_user.mention, mv_rqst)),
                                 reply_markup=InlineKeyboardMarkup(btn))
     
         
