@@ -2260,12 +2260,19 @@ async def advantage_spell_chok(client, msg):
 
         i += 1
 
-        btn.append([text, f"spol#{reqstr1}#{k}"])
+        btn.append([text, f"spol#{reqstr1}#{k}", same])
 
-    btn.append(["❌ Close", f'spoll#{reqstr1}#close_spellcheck'])
+    btn.append(["❌ Close", f'spoll#{reqstr1}#close_spellcheck', false])
     btn = build_keyboard(btn)
 
+    btn.insert(0, [
+        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UniversalFilmStudioo"),
+        InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
+    ])
 
+    btn.insert(0, [
+        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
+    ])
 
     
     k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
@@ -2287,7 +2294,7 @@ async def advantage_spell_chok(client, msg):
 def build_keyboard(buttons):
     keyb = []
     for btn in buttons:
-        if btn[2] and keyb:
+        if btn[0] and keyb:
             keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
         else:
             keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
