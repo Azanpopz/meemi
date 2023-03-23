@@ -123,11 +123,11 @@ async def give_filter(client,message):
         await asyncio.sleep(1)
         await m.delete()
         await client.send_message(
-            chat_id=message.chat.id,
-            text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
-            reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode=enums.ParseMode.MARKDOWN
-            )
+        chat_id=message.chat.id,
+        text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
+        reply_markup=InlineKeyboardMarkup(btn),
+        parse_mode=enums.ParseMode.MARKDOWN
+    )
     await global_filters(client, message)
     group_id = message.chat.id
     name = message.text
