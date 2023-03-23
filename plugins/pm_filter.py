@@ -1887,11 +1887,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
-    reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)
+#    reqstr1 = msg.from_user.id if msg.from_user else 0
+#    reqstr = await client.get_users(reqstr1)
     message = msg    
 
-    if AUTH_CHANNEL and not await is_subscribed(client, message):
+    if AUTH_CHANNEL and not await is_subscribed(client, msg):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
         except ChatAdminRequired:
@@ -1911,10 +1911,10 @@ async def auto_filter(client, msg, spoll=False):
             ]
         
         
-        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
-        await asyncio.sleep(1)
-        await m.delete()
-        await client.send_message(
+#        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
+#        await asyncio.sleep(1)
+#        await m.delete()
+        await message.reply_text(
             chat_id=message.chat.id,
             text=f"𝐇𝐞𝐲 **𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐚𝐧𝐝 𝐑𝐞𝐪𝐮𝐬𝐭 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩\n\nജോയിൻ ചെയ്തതിനു ശേഷം റിക്വസ്റ്റ് അയക്കുക**",
             reply_markup=InlineKeyboardMarkup(btn),
