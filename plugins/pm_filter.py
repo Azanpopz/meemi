@@ -2255,6 +2255,7 @@ async def advantage_spell_chok(client, msg):
         await k.delete()
         return
     SPELL_CHECK[msg.id] = movielist
+    mv_rqst = msg.text
     message = msg
     search = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
