@@ -2327,8 +2327,8 @@ async def advantage_spell_chok(client, msg):
     await asyncio.sleep(1)
 
     await k.delete()
-    await msg.reply_photo(photo=imdb['poster'],caption=(script.SPELL_TXT.format(msg.from_user.mention, mv_rqst)))
-                                
+    await msg.reply_photo(photo=imdb['poster'],caption=(script.SPELL_TXT.format(msg.from_user.mention, mv_rqst)),
+    reply_markup=InlineKeyboardMarkup(btn))                            
     
         
 def build_keyboard(buttons):
