@@ -150,17 +150,3 @@ async def callback_query_previous(_, message):
     )
 
 
-@Client.on_callback_query(filters.regex("delete"))
-async def callback_query_delete(_, message):
-    global m
-    global i
-    global a
-    global query
-    await m.delete()
-    m = None
-    i = 0
-    a = None
-    query = None
-
-
-
