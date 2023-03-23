@@ -2255,6 +2255,11 @@ async def advantage_spell_chok(client, msg):
         await k.delete()
         return
     SPELL_CHECK[msg.id] = movielist
+    message = msg
+    search = message.text                 
+    reqstr1 = msg.from_user.id if msg.from_user else 0
+    reqstr = await client.get_users(reqstr1)   
+    imdb = await get_poster(search) if IMDB else None
     i = 1
     pre_len = {}
     btn = []
@@ -2275,28 +2280,41 @@ async def advantage_spell_chok(client, msg):
 
         btn.append([text, f"spol#{user}#{k}", same])
 
-    btn.append(["❌ Close", f'spol#{user}#close_spellcheck', False])
+    btn.append(["🔐𝐂𝐥𝐨𝐬𝐞🔐", f'spol#{user}#close_spellcheck', False])
     btn = build_keyboard(btn)
 
     btn.insert(0, [
-        InlineKeyboardButton("⚜ ɴᴇᴡ ᴍᴏᴠɪᴇs ⚜", url="https://t.me/UniversalFilmStudioo"),
-        InlineKeyboardButton("🧲 Tᴏʀʀᴇɴᴛ Gʀᴏᴜᴘ", url="https://t.me/UFSLeechPublic")
+        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
+        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={mv_rqst}")
     ])
 
-    btn.insert(0, [
-        InlineKeyboardButton("⚜ Nᴇᴡ Oᴛᴛ Mᴏᴠɪᴇs ⚜", url="https://t.me/+uuLR9YwyRjg0ODQ0")
+    btn.insert(1, [
+        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬", url="https://t.me/nasrani_update"),
+        InlineKeyboardButton("Gᴏᴏɢʟᴇ🎭", url=f"https://www.google.com/search?q={mv_rqst}")
     ])
+
+    btn.insert(2, [
+        InlineKeyboardButton(f"📤{imdb.get('title')} 𝐘𝐞𝐚𝐫 {imdb.get('year')}📤", callback_data=f"spol#{reqstr1}#{k}")
+    ])
+    btn.insert(3, [
+        InlineKeyboardButton(f"{imdb.get('title')} 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 {imdb.get('release_date')}🌲", callback_data=f"spol#{reqstr1}#{k}")
+    ]) 
+
     
-      
+    k = await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+    
+    
+    await asyncio.sleep(1)
 
-    d_msg = await msg.reply(f"I Couldn't Find Anything Related To That\n\n"
-                            f"**എന്താണ്‌ മാഷേ, അയക്കും മുമ്പ്‌ കറക്റ്റ്‌ ആണോ ന്ന് ഒന്ന് ചെക്ക്‌ ചെയ്യ്‌.**\n\n"
-                            f"Did You Mean Any One Of These 👇🏻?",
-                            reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(180)
-    await d_msg.delete()
-    await msg.delete()
-
+    await k.delete()
+    spell_check_del = await msg.reply_photo(
+        photo=poster,
+        caption=(script.CUDNT_FND.format(mv_rqst)),
+        reply_markup=InlineKeyboardMarkup(btn),
+        reply_to_message_id=msg.id
+    )
+        
 def build_keyboard(buttons):
     keyb = []
     for btn in buttons:
