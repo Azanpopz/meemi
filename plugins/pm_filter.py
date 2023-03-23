@@ -2055,10 +2055,16 @@ async def auto_filter(client, msg, spoll=False):
         InlineKeyboardButton(f"🎭{imdb.get('title')}🎭", url=imdb['url'])
     ])
 
-    m=await message.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-    await asyncio.sleep(2)
-    await m.delete()
+#    m=await message.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+#    await asyncio.sleep(2)
+#    await m.delete()
 
+    await msg.reply_chat_action(enums.ChatAction.TYPING)
+    px = await msg.reply_text(A,quote=True)
+    await px.edit_text(text=B, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))
+    await px.edit_text(text=C, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india#{reqstr1}', False)]]))                                              
+    await px.delete()
+                                                  
 
 
 
