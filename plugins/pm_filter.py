@@ -2310,7 +2310,7 @@ async def advantage_spell_chok(client, msg):
 
     await k.delete()
     spell_check_del = await msg.reply_photo(
-        photo=poster,
+        photo=imdb['poster'],
         caption=(script.CUDNT_FND.format(mv_rqst)),
         reply_markup=InlineKeyboardMarkup(btn),
         reply_to_message_id=msg.id
