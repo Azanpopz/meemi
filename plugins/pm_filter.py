@@ -2030,12 +2030,12 @@ async def auto_filter(client, msg, spoll=False):
 #    await asyncio.sleep(2)
 #    await m.delete()
 
-    await msg.reply_chat_action(enums.ChatAction.TYPING)
-    px = await msg.reply_text(A,quote=True)
-    await px.edit_text(text=C)
-    await px.edit_text(text=E)
-    await px.edit_text(text=F)                                              
-    await px.delete()
+#    await msg.reply_chat_action(enums.ChatAction.TYPING)
+#    px = await msg.reply_text(A,quote=True)
+#    await px.edit_text(text=C)
+#    await px.edit_text(text=E)
+#    await px.edit_text(text=F)                                              
+#    await px.delete()
                                                   
 
 
