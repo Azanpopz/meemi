@@ -2022,9 +2022,9 @@ async def auto_filter(client, msg, spoll=False):
         InlineKeyboardButton(f'⚕️𝐅𝐢𝐥𝐞𝐬: {total_results}⚕️', 'autos'),
         InlineKeyboardButton(f'♻️𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬♻️', url='https://t.me/nasrani_update')
     ])
-    btn.insert(15, [
-        InlineKeyboardButton(f"🎭{imdb.get('title')}🎭", url=imdb['url'])
-    ])
+#    btn.insert(15, [
+#        InlineKeyboardButton(f"🎭{imdb.get('title')}🎭", url=imdb['url'])
+#    ])
 
 #    m=await message.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 #    await asyncio.sleep(2)
