@@ -2267,6 +2267,7 @@ async def advantage_spell_chok(client, msg):
     pre_len = {}
     btn = []
     # movielist.sort(key=len)
+    movielist += [f"📀{movie.get('title')} {movie.get('year')}📀" for movie in movies]
     for k, movie in enumerate(movielist):
         text = movie.strip()  # args[2]
         same = False
@@ -2276,7 +2277,7 @@ async def advantage_spell_chok(client, msg):
             else:
                 same = True
         else:
-            pre_len["🎭text_len🎭"] = len(text)
+            pre_len["text_len"] = len(text)
             same = False
 
         i += 1
