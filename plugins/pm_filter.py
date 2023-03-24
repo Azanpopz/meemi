@@ -2294,26 +2294,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
-
-                     
     reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)   
-       
+    reqstr = await client.get_users(reqstr1)
+
     if not spoll:
-        message = msg        
+        message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-  
-
             return
         if len(message.text) < 100:
             search = message.text
             files, offset, total_results = await get_search_results(message.chat.id ,search.lower(), offset=0, filter=True)
             if not files:
-                await client.send_message(message.chat.id, text=f"📂#𝙍𝙀𝙌𝙐𝙀𝙎𝙏𝙀𝘿_𝘾𝙊𝙉𝙏𝙀𝙉𝙏📂\n\n🤖ᴜꜱᴇʀ:-{message.from_user.mention}\n\n📝ᴄᴏɴᴛᴇɴᴛ ɴᴀᴍᴇ:-`{search}`\n\n👶🏻ʀᴇQᴜᴇꜱᴛᴇᴅ ʙʏ:- {message.from_user.first_name}\n\n 🃏ᴜꜱᴇʀ ɪᴅ:-{message.from_user.id}\n\n🗃️",
-                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍𝐂𝐇𝐄𝐂𝐊𝐄𝐃🔎", callback_data="check")],[InlineKeyboardButton("🔺 🔐𝐂𝐋𝐎𝐒𝐄🔐 🔺", callback_data="close_data")]]))
-                
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, msg)
                 else:
@@ -2429,39 +2422,14 @@ async def auto_filter(client, msg, spoll=False):
                 ]
             )
     
-
     btn.insert(0, [
-        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
-        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={search}")
+        InlineKeyboardButton(f'🔍 {search} 🔎', 'reqst1')
     ])
-
-
-    btn.insert(1, [
-        InlineKeyboardButton(f'⚕️𝐅𝐢𝐥𝐞𝐬: {total_results}⚕️', 'autos'),
-        InlineKeyboardButton(f'♻️𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬♻️', url='https://t.me/nasrani_update')
-    ])
-#    btn.insert(15, [
-#        InlineKeyboardButton(f"🎭{imdb.get('title')}🎭", url=imdb['url'])
-#    ])
-
-#    m=await message.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-#    await asyncio.sleep(2)
-#    await m.delete()
-
-#    await msg.reply_chat_action(enums.ChatAction.TYPING)
-#    px = await msg.reply_text(A,quote=True)
-#    await px.edit_text(text=C)
-#    await px.edit_text(text=E)
-#    await px.edit_text(text=F)                                              
-#    await px.delete()
-                                                 
+    await message.delete()
     m=await message.reply_text("🔍") 
-    await asyncio.sleep(2)
+    await asyncio.sleep(1)
     await m.delete()
-        
-
-
+     
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
         BUTTONS[key] = search
@@ -2470,26 +2438,26 @@ async def auto_filter(client, msg, spoll=False):
             settings = await get_settings(message.chat.id)
             if settings['max_btn']:
                 btn.append(
-                    [InlineKeyboardButton("ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results) / MAX_BTN)}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​ ≫",callback_data=f"next_{req}_{key}_{offset}")]
+                    [InlineKeyboardButton("📚 ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​⇛",callback_data=f"next_{req}_{key}_{offset}")]
                 )
             else:
                 btn.append(
-                    [InlineKeyboardButton("ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​ ≫",callback_data=f"next_{req}_{key}_{offset}")]
+                    [InlineKeyboardButton("📚 ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​⇛",callback_data=f"next_{req}_{key}_{offset}")]
                 )
         except KeyError:
             await save_group_settings(message.chat.id, 'max_btn', False)
             settings = await get_settings(message.chat.id)
             if settings['max_btn']:
                 btn.append(
-                    [InlineKeyboardButton("ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results) / MAX_BTN)}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​ ≫",callback_data=f"next_{req}_{key}_{offset}")]
+                    [InlineKeyboardButton("📚 ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​⇛",callback_data=f"next_{req}_{key}_{offset}")]
                 )
             else:
                 btn.append(
-                    [InlineKeyboardButton("ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​ ≫",callback_data=f"next_{req}_{key}_{offset}")]
+                    [InlineKeyboardButton("📚 ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​⇛",callback_data=f"next_{req}_{key}_{offset}")]
                 )
     else:
         btn.append(
-            [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
+            [InlineKeyboardButton(text="♨️ ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs ᴀᴠᴀɪʟᴀʙʟᴇ ♨️",callback_data="pages")]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
@@ -2526,31 +2494,148 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b><i>𝙃𝙚𝙧𝙚 𝙞𝙨 𝙬𝙝𝙖𝙩 𝙞𝙨 𝙛𝙤𝙪𝙣𝙙 𝙮𝙤𝙪𝙧 𝙦𝙪𝙚𝙧𝙮:\n {search}\n👤𝙍𝙚𝙦𝙪𝙚𝙨𝙩𝙚𝙙 𝘽𝙮 : {message.from_user.mention}\n👥𝙂𝙧𝙤𝙪𝙥 : {message.chat.title}</i></b>"
+        cap = f"<b>🎪 ᴛɪᴛɪʟᴇ {search}\n\n┏ 🤴 ᴀsᴋᴇᴅ ʙʏ : {message.from_user.mention}\n┣ ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href='https://t.me/TGxMULTIBOT'>ᴛᴏᴍ</a>\n┗ 🍁 ᴄʜᴀɴɴᴇʟ : <a href='https://t.me/CKTalkies'>ᴄᴋᴛᴀʟᴋɪᴇs</a>\n\n★ ᴘᴏᴡᴇʀᴇᴅ ʙʏ  <a href='https://t.me/MLZ_BOTZ'>ᴍʟᴢʙᴏᴛᴢ</a></b>"
     if imdb and imdb.get('poster'):
         try:
-            pic_fi=await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
-                                      reply_markup=InlineKeyboardMarkup(btn))
-            if settings["auto_delete"]:
-                await asyncio.sleep(600)
-                await pic_fi.delete()
-                await message.delete()
+            if message.chat.id == SUPPORT_CHAT_ID:
+                await message.reply_text(
+                    text=f"<b>Hᴇʏ {message.from_user.mention}\n\n{str(total_results)} Rᴇsᴜʟᴛs Aʀᴇ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ Bᴜᴛ I Cᴀɴ'ᴛ Gɪᴠᴇ Fɪʟᴇꜱ,\nBᴇᴄᴀᴜꜱᴇ Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ\nPʟᴇᴀꜱᴇ Rᴇǫᴜᴇꜱᴛ Oɴ Oᴜʀ Mᴏᴠɪᴇ Gʀᴏᴜᴘ</b>",
+                    reply_markup=InlineKeyboardMarkup(
+                        [[
+                            InlineKeyboardButton('📌 Rᴇǫᴜᴇꜱᴛ Hᴇʀᴇ', url ='https://t.me/at3movies')
+                        ]]
+                    )
+                )
+            else:
+                hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+                try:
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await hehe.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()                        
+                except KeyError:
+                    grpid = await active_connection(str(message.from_user.id))
+                    await save_group_settings(grpid, 'auto_delete', True)
+                    settings = await get_settings(message.chat.id)
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await hehe.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            pic_fil=await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-            if settings["auto_delete"]:
-                await asyncio.sleep(600)
-                await pic_fil.delete()
-                await message.delete()
+            if message.chat.id == SUPPORT_CHAT_ID:
+                await message.reply_text(
+                    text=f"<b>Hᴇʏ {message.from_user.mention}\n\n{str(total_results)} Rᴇsᴜʟᴛs Aʀᴇ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ Bᴜᴛ I Cᴀɴ'ᴛ Gɪᴠᴇ Fɪʟᴇꜱ,\nBᴇᴄᴀᴜꜱᴇ Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ\nPʟᴇᴀꜱᴇ Rᴇǫᴜᴇꜱᴛ Oɴ Oᴜʀ Mᴏᴠɪᴇ Gʀᴏᴜᴘ</b>",
+                    reply_markup=InlineKeyboardMarkup(
+                        [[
+                            InlineKeyboardButton('📌 Rᴇǫᴜᴇꜱᴛ Hᴇʀᴇ', url ='https://t.me/at3movies')
+                        ]]
+                    )
+                )
+            else:
+                pic = imdb.get('poster')
+                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+                try:
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await hmm.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()
+                except KeyError:
+                    grpid = await active_connection(str(message.from_user.id))
+                    await save_group_settings(grpid, 'auto_delete', True)
+                    settings = await get_settings(message.chat.id)
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await hmm.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()                         
         except Exception as e:
-            logger.exception(e)
-            pic_fi=await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
-                                      reply_markup=InlineKeyboardMarkup(btn))
-            if settings["auto_delete"]:
-                await asyncio.sleep(600)
-                await pic_fi.delete()
-                await message.delete()
+            if message.chat.id == SUPPORT_CHAT_ID:
+                await message.reply_text(
+                    text=f"<b>Hᴇʏ {message.from_user.mention}\n\n{str(total_results)} Rᴇsᴜʟᴛs Aʀᴇ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ Bᴜᴛ I Cᴀɴ'ᴛ Gɪᴠᴇ Fɪʟᴇꜱ,\nBᴇᴄᴀᴜꜱᴇ Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ\nPʟᴇᴀꜱᴇ Rᴇǫᴜᴇꜱᴛ Oɴ Oᴜʀ Mᴏᴠɪᴇ Gʀᴏᴜᴘ</b>",
+                    reply_markup=InlineKeyboardMarkup(
+                        [[
+                           InlineKeyboardButton('📌 Rᴇǫᴜᴇꜱᴛ Hᴇʀᴇ', url ='https://t.me/at3movies')
+                        ]]
+                    )
+                )
+            else:                
+                logger.exception(e)
+                fek = await message.reply_photo(photo=random.choice(NOR_IMG), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+                try:
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await fek.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()
+                except KeyError:
+                    grpid = await active_connection(str(message.from_user.id))
+                    await save_group_settings(grpid, 'auto_delete', True)
+                    settings = await get_settings(message.chat.id)
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await fek.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()                 
+    else:
+        if message.chat.id == SUPPORT_CHAT_ID:
+            await message.reply_text(
+                text=f"<b>Hᴇʏ {message.from_user.mention}\n\n{str(total_results)} Rᴇsᴜʟᴛs Aʀᴇ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ Bᴜᴛ I Cᴀɴ'ᴛ Gɪᴠᴇ Fɪʟᴇꜱ,\nBᴇᴄᴀᴜꜱᴇ Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ\nPʟᴇᴀꜱᴇ Rᴇǫᴜᴇꜱᴛ Oɴ Oᴜʀ Mᴏᴠɪᴇ Gʀᴏᴜᴘ</b>",
+                reply_markup=InlineKeyboardMarkup(
+                    [[
+                        InlineKeyboardButton('📌 Rᴇǫᴜᴇꜱᴛ Hᴇʀᴇ', url ='https://t.me/at3movies')
+                    ]]
+                )
+            )
+        else:
+            fuk = await message.reply_photo(photo=random.choice(NOR_IMG), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            try:
+                if settings['auto_delete']:
+                    await asyncio.sleep(IMDB_DLT_TIME)
+                    await fuk.delete()
+                    thega=await message.reply_photo(
+                        photo=random.choice(CLOSE_IMG),
+                        caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                    await asyncio.sleep(37)                   
+                    await thega.delete()  
+                    
+            except KeyError:
+                grpid = await active_connection(str(message.from_user.id))
+                await save_group_settings(grpid, 'auto_delete', True)
+                settings = await get_settings(message.chat.id)
+                if settings['auto_delete']:
+                    await asyncio.sleep(IMDB_DLT_TIME)
+                    await fuk.delete()
+                    thega=await message.reply_photo(
+                        photo=random.choice(CLOSE_IMG),
+                        caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                    await asyncio.sleep(37)                   
+                    await thega.delete()
+                                       
+    if spoll:
+        await msg.message.delete()
+
     
 
 
@@ -2568,107 +2653,72 @@ async def advantage_spell_chok(client, msg):
     query = re.sub(
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
         "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
-    RQST = query.strip()
     query = query.strip() + " movie"
     try:
         movies = await get_poster(mv_rqst, bulk=True)
     except Exception as e:
         logger.exception(e)
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
-        await asyncio.sleep(120)
-        await k.delete()
-        await msg.delete()
+        reqst_gle = mv_rqst.replace(" ", "+")
+        button = [[
+        InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ ᴏɴ ɢᴏᴏɢʟᴇ​ 🔎', url=f"https://www.google.com/search?q={reqst_gle}")            
+        ]]
+        if NO_RESULTS_MSG:
+            await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+  
+        k = await msg.reply_text(
+            text=("<b>sᴏʀʀʏ ɴᴏ ꜰɪʟᴇs ᴡᴇʀᴇ ꜰᴏᴜɴᴅ\n\nᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴘᴇʟʟɪɴɢ ɪɴ ɢᴏᴏɢʟᴇ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ !!</b>"),
+            reply_markup=InlineKeyboardMarkup(button),
+            reply_to_message_id=msg.id
+        )
+        await asyncio.sleep(30)
+        await k.delete()  
         return
     movielist = []
     if not movies:
         reqst_gle = mv_rqst.replace(" ", "+")
-        mv_rqst = msg.text
         button = [[
-                   InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
+        InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ ᴏɴ ɢᴏᴏɢʟᴇ​ 🔎', url=f"https://www.google.com/search?q={reqst_gle}")   
         ]]
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply_photo(
-            photo=SPELL_IMG, 
-            caption=f"➤ 𝐏𝐥𝐞𝐚𝐬𝐞 𝐒𝐞𝐚𝐫𝐜𝐡 𝐆𝐨𝐨𝐠𝐥𝐞 𝐎𝐫 𝐓𝐲𝐩𝐞 𝐂𝐨𝐫𝐫𝐞𝐜𝐭 𝐍𝐚𝐦𝐞 \n\n👥𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: `{msg.from_user.mention}`\n\n📀𝐌𝐨𝐯𝐢𝐞: `{mv_rqst}`⎙\n\n✖ 𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐚𝐢𝐥𝐞𝐝 ✖",
-            reply_markup=InlineKeyboardMarkup(button)
+        if NO_RESULTS_MSG:
+            await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
+        k = await msg.reply_text(
+            text=("<b>sᴏʀʀʏ ɴᴏ ꜰɪʟᴇs ᴡᴇʀᴇ ꜰᴏᴜɴᴅ\n\nᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴘᴇʟʟɪɴɢ ɪɴ ɢᴏᴏɢʟᴇ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ !!</b>"),
+            reply_markup=InlineKeyboardMarkup(button),
+            reply_to_message_id=msg.id
         )
         await asyncio.sleep(30)
-        await k.delete()
-        await msg.delete()
-               
+        await k.delete()          
         return
-#    movielist += [movie.get('title') for movie in movies]
-    movielist += [f"{movie.get('title')}" for movie in movies]
+    movielist = [movie.get('title') for movie in movies]
     SPELL_CHECK[mv_id] = movielist
-    chat_id = msg.chat.id
-    mv_rqst = msg.text
-    mention = msg.from_user.mention
-    message = msg
-    search = message.text                 
-    reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(search) if IMDB else None
-    i = 1
-    pre_len = {}
-    btn = []
-    # movielist.sort(key=len)
-    for k, movie in enumerate(movielist):
-        text = movie.strip()  # args[2]
-        same = False
-        if (i % 2) == 0:
-            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                same = False
-            else:
-                same = True
-        else:
-            pre_len["text_len"] = len(text)
-            same = False
-
-        i += 1
-
-        btn.append([text, f"spol#{reqstr1}#{k}", same])
-        
-    btn.append(["❌ Close", f'spoll#{reqstr1}#close_spellcheck', False])
-    btn = build_keyboard(btn)
-
-    btn.insert(0, [
-        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
-        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={mv_rqst}")
-    ])
-
-    btn.insert(1, [
-        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("Gᴏᴏɢʟᴇ🎭", url=f"https://www.google.com/search?q={mv_rqst}")
-    ])
-
-    
-    m=await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-    await asyncio.sleep(2)
-    await m.delete()
-    
-    await asyncio.sleep(1)
-
-    spell_check_del = await msg.reply_photo(
-        photo=imdb['poster'],
-        caption=(script.CUDNT_FND.format(mv_rqst)),
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=movie_name.strip(),
+                callback_data=f"spol#{reqstr1}#{k}",
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ]
+    btn.append([InlineKeyboardButton(text="✘ ᴄʟᴏsᴇ ✘", callback_data=f'spol#{reqstr1}#close_spellcheck')])
+    spell_check_del = await msg.reply_text(
+        text=(script.CUDNT_FND.format(mv_rqst)),
         reply_markup=InlineKeyboardMarkup(btn),
         reply_to_message_id=msg.id
     )
-    await asyncio.sleep(120)
-    await spell_check_del.delete()
-    await msg.delete()
+    try:
+        if settings['auto_delete']:
+            await asyncio.sleep(70)
+            await spell_check_del.delete()
+    except KeyError:
+            grpid = await active_connection(str(message.from_user.id))
+            await save_group_settings(grpid, 'auto_delete', True)
+            settings = await get_settings(message.chat.id)
+            if settings['auto_delete']:
+                await asyncio.sleep(70)
+                await spell_check_del.delete()
 
-def build_keyboard(buttons):
-    keyb = []
-    for btn in buttons:
-        if btn[2] and keyb:
-            keyb[-1].append(InlineKeyboardButton(btn[0], callback_data=btn[1]))
-        else:
-            keyb.append([InlineKeyboardButton(btn[0], callback_data=btn[1])])
 
-    return keyb
 
 
 
