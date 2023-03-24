@@ -45,6 +45,8 @@ BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
 
+BATCH_FILES = {}
+
 BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india', False)]])
 
 A = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▭▭▭▭▭\n▭▭▭▭▭........"""
@@ -714,9 +716,28 @@ async def select_files(bot, query):
 
     await query.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
 
+# deselect
 
+@Client.on_callback_query(filters.regex(r"^deselect"))
+async def deselect_all(bot, query):
+    ident, req, key, offset = query.data.split("_")
+    ad_user = query.from_user.id
+    if int(ad_user) in ADMINS:
+        pass
+    elif int(req) not in [query.from_user.id, 0]:
+        return await query.answer(
+            "കാര്യമൊക്കെ കൊള്ളാം, പക്ഷേ, ഇത്‌ നിങ്ങളുടേതല്ല.;\n"
+            "Nice Try! But, This Was Not Your Request, Request Yourself;",
+            show_alert=True)
 
+    if SELECT.get(int(req)):
+        del SELECT[int(req)]
 
+    if FILES.get(int(req)):
+        del FILES[int(req)]
+
+    SELECT[int(req)] = "DE-ACTIVE"
+    await auto_filter(bot, query.message.reply_to_message, cb=query)
 
 
 
@@ -2184,8 +2205,16 @@ async def auto_filter(client, msg, spoll=False):
                     [InlineKeyboardButton("ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​ ≫",callback_data=f"next_{req}_{key}_{offset}")]
                 )
     else:
-        btn.append(
+#        btn.append(
             [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
+        )
+        btn.append(
+            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
+             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
+        )
+    else:
+        btn.append(
+            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
