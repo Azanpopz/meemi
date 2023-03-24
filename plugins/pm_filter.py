@@ -348,8 +348,13 @@ async def next_page(bot, query):
 @Client.on_callback_query(filters.regex(r"^spol"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
+    content = query.message.reply_to_message.text
+    mention = query.message.from_user.mention
+    mv_rqst = query.message.text
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
+        content = query.message.reply_to_message.text
+        mention = query.message.from_user.mention
         return await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer(script.ALRT_TXT.format(query.from_user.first_name), show_alert=True)
@@ -365,16 +370,17 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            
+            mention = query.message.from_user.mention
+            content = query.message.reply_to_message.text
             reqstr1 = query.from_user.id if query.from_user else 0
             reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
                 mention = query.message.from_user.mention
-                content = query.message.reply_to_message.text                                   
+                content = query.message.reply_to_message.text
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-                k = await query.message.edit(script.MVE_NT_FND)
-                await asyncio.sleep(10)
-                await k.delete()
+            k = await query.message.edit(f"Hello {content} എന്നാ മൂവി ഡിവിഡി വന്നിട്ടില്ല. അല്ലെങ്കിൽ ഇതൊരു സിനിമ ആയിരിക്കില്ല")
+            await asyncio.sleep(180)
+            await k.delete()
              
 #languages
 
