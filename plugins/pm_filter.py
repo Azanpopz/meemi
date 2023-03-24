@@ -2548,7 +2548,7 @@ async def auto_filter(client, msg, spoll=False):
                         await asyncio.sleep(IMDB_DLT_TIME)
                         await hehe.delete()
                         thega=await message.reply_photo(
-                            photo=random.choice(CLOSE_IMG),
+                            photo=random.choice(SP),
                             caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
                         await asyncio.sleep(37)                   
                         await thega.delete()                        
@@ -2560,7 +2560,7 @@ async def auto_filter(client, msg, spoll=False):
                         await asyncio.sleep(IMDB_DLT_TIME)
                         await hehe.delete()
                         thega=await message.reply_photo(
-                            photo=random.choice(CLOSE_IMG),
+                            photo=random.choice(SP),
                             caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
                         await asyncio.sleep(37)                   
                         await thega.delete()
