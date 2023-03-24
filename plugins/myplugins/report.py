@@ -28,4 +28,4 @@ async def report_user(bot, message):
             else: # Skipping Bots
                 pass
         if success:
-            await message.reply_text(f"report admin..!!)
+            await message.reply_text(f"report admin..!!")
