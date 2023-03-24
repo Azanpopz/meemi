@@ -2594,6 +2594,8 @@ async def auto_filter(client, msg, spoll=False):
 
 
 async def advantage_spell_chok(client, msg):
+    message = msg
+    search = message.text
     mv_id = msg.id
     mv_rqst = msg.text
     reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2641,6 +2643,7 @@ async def advantage_spell_chok(client, msg):
     movielist = [movie.get('title') for movie in movies]
     SPELL_CHECK[mv_id] = movielist
     imdb = await get_poster(search) if IMDB else None
+    message = msg
     search = message.text
     btn = [
         [
