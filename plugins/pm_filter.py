@@ -2611,7 +2611,7 @@ async def auto_filter(client, msg, spoll=False):
                 )
             else:                
                 logger.exception(e)
-                fek = await message.reply_photo(photo=random.choice(NOR_IMG), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+                fek = await message.reply_photo(photo=random.choice(SP), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
                 try:
                     if settings['auto_delete']:
                         await asyncio.sleep(IMDB_DLT_TIME)
@@ -2644,7 +2644,7 @@ async def auto_filter(client, msg, spoll=False):
                 )
             )
         else:
-            fuk = await message.reply_photo(photo=random.choice(NOR_IMG), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            fuk = await message.reply_photo(photo=random.choice(SP), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(IMDB_DLT_TIME)
