@@ -656,10 +656,10 @@ async def settings(client, message):
         ]
 
         btn = [[                
-                InlineKeyboardButton("👤 Oᴘᴇɴ Iɴ Pʀɪᴠᴀᴛᴇ Cʜᴀᴛ", callback_data=f"opnsetpm#{grp_id}")
-              ],[
-                InlineKeyboardButton("👥 Oᴘᴇɴ Hᴇʀᴇ", callback_data=f"opnsetgrp#{grp_id}")
-              ]]
+            InlineKeyboardButton("👤 Oᴘᴇɴ Iɴ Pʀɪᴠᴀᴛᴇ Cʜᴀᴛ", callback_data=f"opnsetpm#{grp_id}")
+        ],[
+            InlineKeyboardButton("👥 Oᴘᴇɴ Hᴇʀᴇ", callback_data=f"opnsetgrp#{grp_id}")
+        ]]
 
         reply_markup = InlineKeyboardMarkup(buttons)
         if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
