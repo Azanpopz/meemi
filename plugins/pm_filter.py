@@ -203,7 +203,7 @@ async def next_page(bot, query):
         await query.answer("You Are Using One Of My Old Messages, Please Send The Request Again.", show_alert=True)
         return
 
-    files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
+    files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=offset, filter=True)
     try:
         n_offset = int(n_offset)
     except:
