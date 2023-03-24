@@ -2161,7 +2161,14 @@ async def auto_filter(client, msg, spoll=False):
 #    btn.insert(15, [
 #        InlineKeyboardButton(f"🎭{imdb.get('title')}🎭", url=imdb['url'])
 #    ])
-
+    btn.append(
+        [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
+        InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
+    )
+        
+    btn.append(
+        [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
+    )
 #    m=await message.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
 #    await asyncio.sleep(2)
 #    await m.delete()
@@ -2205,17 +2212,10 @@ async def auto_filter(client, msg, spoll=False):
                     [InlineKeyboardButton("ᴘᴀɢᴇ​", callback_data="pages"), InlineKeyboardButton(text=f"1/{math.ceil(int(total_results)/int(MAX_B_TN))}",callback_data="pages"), InlineKeyboardButton(text="ɴᴇxᴛ​ ≫",callback_data=f"next_{req}_{key}_{offset}")]
                 )
     else:
-#        btn.append(
-#            [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
-#        )
         btn.append(
-            [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
-             InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
+            [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
         )
-        else:
-            btn.append(
-            [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
-        )
+
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
