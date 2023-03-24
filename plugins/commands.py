@@ -855,14 +855,31 @@ async def requests(bot, message):
 
 @Client.on_message(filters.command("deletefiles") & filters.user(ADMINS))
 async def deletemultiplefiles(bot, message):
-    btn = [[
-            InlineKeyboardButton("Delete PreDVDs", callback_data="predvd"),
-            InlineKeyboardButton("Delete CamRips", callback_data="camrip")
-          ]]
-    await message.reply_text(
-        text="<b>Select the type of files you want to delete !\n\nThis will delete 100 files from the database for the selected type.</b>",
-        reply_markup=InlineKeyboardMarkup(btn)
-    )
+    chat_type = message.chat.type
+    if chat_type != enums.ChatType.PRIVATE:
+        return await message.reply_text(f"<b>Hey {message.from_user.mention}, This command won't work in groups. It only works on my PM !</b>")
+    else:
+        pass
+    try:
+        keyword = message.text.split(" ", 1)[1]
+    except:
+        return await message.reply_text(f"<b>Hey {message.from_user.mention}, Give me a keyword along with the command to delete files.</b>")
+    k = await bot.send_message(chat_id=message.chat.id, text=f"<b>Fetching Files for your query {keyword} on DB... Please wait...</b>")
+    files, next_offset, total = await get_bad_files(keyword)
+    await k.edit_text(f"<b>Found {total} files for your query {keyword} !\n\nFile deletion process will start in 5 seconds !</b>")
+    await asyncio.sleep(5)
+    deleted = 0
+    for file in files:
+        await k.edit_text(f"<b>Process started for deleting files from DB. Successfully deleted {str(deleted)} files from DB for your query {keyword} !\n\nPlease wait...</b>")
+        file_ids = file.file_id
+        file_name = file.file_name
+        result = await Media.collection.delete_one({
+            '_id': file_ids,
+        })
+        if result.deleted_count:
+            logger.info(f'File Found for your query {keyword}! Successfully deleted {file_name} from database.')
+        deleted += 1
+    await k.edit_text(text=f"<b>Process Completed for file deletion !\n\nSuccessfully deleted {str(deleted)} files from database for your query {keyword}.</b>")
 
 
 @Client.on_message(filters.command("send") & filters.user(ADMINS))
@@ -921,3 +938,25 @@ async def shortlink(bot, message):
 
 
 
+@Client.on_message(filters.command("deletefiles") & filters.user(ADMINS))
+async def deletemultiplefiles(bot, message):
+    btn = [[
+            InlineKeyboardButton("PʀᴇDVD", callback_data="predvd"),
+            InlineKeyboardButton("PʀᴇDVD Rɪᴘ", callback_data="predvdrip")
+          ],[
+            InlineKeyboardButton("HDᴛs", callback_data="hdts"),
+            InlineKeyboardButton("HD-ᴛs", callback_data="hdtss")
+          ],[
+            InlineKeyboardButton("HDCᴀᴍ", callback_data="hdcam"),
+            InlineKeyboardButton("HD-Cᴀᴍ", callback_data="hdcams")
+          ],[
+            InlineKeyboardButton("CᴀᴍRɪᴘ", callback_data="camrip"),
+            InlineKeyboardButton("S-Pʀɪɴᴛ", callback_data="sprint")
+          ],[
+            InlineKeyboardButton("Cᴀɴᴄᴇʟ", callback_data="close_data")
+          ]]
+    await message.reply_text(
+        text="<b>Sᴇʟᴇᴄᴛ Tʜᴇ Tʏᴘᴇ Oғ Fɪʟᴇs Yᴏᴜ Wᴀɴᴛ Tᴏ Dᴇʟᴇᴛᴇ..?</b>",
+        reply_markup=InlineKeyboardMarkup(btn),
+        quote=True
+    ) 
