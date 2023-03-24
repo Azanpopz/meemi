@@ -2642,6 +2642,12 @@ async def advantage_spell_chok(client, msg):
         return
     movielist = [movie.get('title') for movie in movies]
     SPELL_CHECK[mv_id] = movielist
+    mv_rqst = msg.text
+    mention = msg.from_user.mention
+    message = msg
+    search = message.text                 
+    reqstr1 = msg.from_user.id if msg.from_user else 0
+    reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(search) if IMDB else None
     message = msg
     search = message.text
