@@ -2648,7 +2648,7 @@ async def advantage_spell_chok(client, msg):
     search = message.text                 
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(search) if IMDB else None
+    imdb = await get_poster(mv_rqst) if IMDB else None
     message = msg
     search = message.text
     btn = [
