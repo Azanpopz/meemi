@@ -2577,7 +2577,7 @@ async def auto_filter(client, msg, spoll=False):
         except Exception as e:
 
                 logger.exception(e)
-                fek = await message.reply_photo(photo=NOR_IMG, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+                fek = await message.reply_photo(photo=SP, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
                 try:
                     if settings['auto_delete']:
                         await asyncio.sleep(300)
