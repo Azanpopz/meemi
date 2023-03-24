@@ -47,6 +47,17 @@ FILTER_MODE = {}
 
 BATCH_FILES = {}
 
+
+
+
+FILE_PROTECT = {}
+IMPORTED = {}
+HELPABLE = {}
+SELECT = {}
+FILES = {}
+dispatcher = None
+
+
 BTN = InlineKeyboardMarkup([[InlineKeyboardButton('𝐋𝐨𝐚𝐝𝐢𝐧𝐠....𝐒𝐜𝐫𝐞𝐞𝐧', f'spol#india', False)]])
 
 A = """𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠...\n▭▭▭▭▭\n▭▭▭▭▭........"""
