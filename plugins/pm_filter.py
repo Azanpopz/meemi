@@ -2295,13 +2295,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
 
-#    chat_id = msg.chat.id
-    mv_rqst = msg.text
-    message = msg
-    searchh = message.text                 
+                     
     reqstr1 = msg.from_user.id if msg.from_user else 0
     reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(searchh) if IMDB else None    
+       
     if not spoll:
         message = msg        
         settings = await get_settings(message.chat.id)
@@ -2326,7 +2323,7 @@ async def auto_filter(client, msg, spoll=False):
         else:
             return
     else:
-        imdb = await get_poster(search) if IMDB else None
+        
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
     settings = await get_settings(message.chat.id)
