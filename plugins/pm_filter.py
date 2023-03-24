@@ -11,7 +11,7 @@ from info import *
 from Script import script
 from pyrogram import Client, filters
 from database.users_chats_db import db
-from plugins.misc import paginate_modules
+from plugins.mics import paginate_modules
 from plugins.helper_func import TimeFormatter
 from database.filters_mdb import del_all, find_filter, get_filters
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp
