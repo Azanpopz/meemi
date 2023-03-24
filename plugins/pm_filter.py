@@ -356,7 +356,8 @@ async def advantage_spoll_choker(bot, query):
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movie = movies[(int(movie_))]
-    await query.answer(script.TOP_ALRT_MSG)
+    await query.answer(script.TOP_ALRT_MSG,
+    show_alert=True)
     k = await manual_filters(bot, query.message, text=movie)
     if k == False:
         files, offset, total_results = await get_search_results(query.message.chat.id, movie, offset=0, filter=True)
@@ -369,9 +370,7 @@ async def advantage_spoll_choker(bot, query):
             reqstr = await bot.get_users(reqstr1)
             if NO_RESULTS_MSG:
                 mention = query.message.from_user.mention
-                content = query.message.reply_to_message.text
-                    await query.answer(f"searching....", show_alert=True)
-                
+                content = query.message.reply_to_message.text                                   
                     await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                     k = await query.message.edit(script.MVE_NT_FND)
                     await asyncio.sleep(10)
