@@ -2212,8 +2212,8 @@ async def auto_filter(client, msg, spoll=False):
             [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
              InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
         )
-    else:
-        btn.append(
+        else:
+            btn.append(
             [InlineKeyboardButton(text="Select", callback_data=f"select_{req}_{key}_{offset}")]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
