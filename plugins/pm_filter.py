@@ -2551,14 +2551,7 @@ async def auto_filter(client, msg, spoll=False):
                 await asyncio.sleep(600)
                 await pic_fi.delete()
                 await message.delete()
-    else:
-        pic_fil=await message.reply_text(text=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
-        if settings["auto_delete"]:
-            await asyncio.sleep(600)
-            await pic_fil.delete()
-            await message.delete()
-    if spoll:
-        await msg.message.delete() 
+    
 
 
 
