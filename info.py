@@ -418,38 +418,6 @@ LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 
 
 
-FILE_PROTECT = {}
-IMPORTED = {}
-HELPABLE = {}
-SELECT = {}
-FILES = {}
-dispatcher = None
-# Others
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001685776403'))
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'TeamEvamaria')
-P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
-IMDB = is_enabled((environ.get('IMDB', "False")), True)
-SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "True")), False)
-CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
-IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "{query} \n\n🏷 ᴛɪᴛʟᴇ: <a href={url}>{title}</a>\n🏷 ᴀʟsᴏ ᴋɴᴏᴡɴ ᴀs: {aka}\n🎭 ɢᴇɴᴇʀᴇs: {genres}\n📆 ʏᴇᴀʀ: <a href={url}/releaseinfo>{year}</a>\n🌟 ʀᴀᴛɪɴɢ: <a href={url}/ratings>{rating}</a> / 10")
-LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False"), False)
-SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), True)
-MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
-SHORT_LINK_API_KEY = environ.get("SHORT_LINK_API_KEY", None)
-TG_MAX_MSG_SELECT = int(environ.get('TG_MAX_MSG_SELECT', 1000))
-USE_AS_BOT = environ.get("USE_AS_BOT", True)
-TMP_DOWNLOAD_DIRECTORY = "./UFSBotz/"
-AUTO_DELETE = True
-DELETE_TIME = 120
-BAN_STICKER = 'CAACAgIAAxkBAAIkmWC36kNKGGhvBWVWBSq7mAF_tgRgAAKAAwACzFRJCRNMmnwVWBmTHwQ'
-INDEX_REQ_CHANNEL = int(environ.get('INDEX_REQ_CHANNEL', LOG_CHANNEL))
-
-FILE_PROTECT = {}
-IMPORTED = {}
-HELPABLE = {}
-SELECT = {}
-FILES = {}
-dispatcher = None
 
 
 #VALUES
