@@ -2206,8 +2206,8 @@ async def auto_filter(client, msg, spoll=False):
                 )
     else:
 #        btn.append(
-            [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
-        )
+#            [InlineKeyboardButton(text="🔘 ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇs​ 🔘",callback_data="pages")]
+#        )
         btn.append(
             [InlineKeyboardButton(text=f"De-Select", callback_data=f"deselect_{req}_{key}_{offset}"),
              InlineKeyboardButton(text="Send", callback_data=f"send_{req}_{key}_{offset}")]
