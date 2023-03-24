@@ -84,70 +84,6 @@ async def fil_mod(client, message):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-@Client.on_message(filters.group & filters.text & filters.incoming)
-async def give_filter(client,message):
-    
-    await global_filters(client, message)
-    group_id = message.chat.id
-    name = message.text
-
-    keywords = await get_filters(group_id)
-    for keyword in reversed(sorted(keywords, key=len)):
-        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
-        if re.search(pattern, name, flags=re.IGNORECASE):
-            reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
-
-            if reply_text:
-                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
-
-            if btn is not None:
-                try:
-                    if fileid == "None":
-                        if btn == "[]":
-                            await message.reply_text(reply_text, disable_web_page_preview=True)
-                        else:
-                            button = eval(btn)
-                            await message.reply_text(
-                                reply_text,
-                                disable_web_page_preview=True,
-                                reply_markup=InlineKeyboardMarkup(button)
-                            )
-                    elif btn == "[]":
-                        await message.reply_cached_media(
-                            fileid,
-                            caption=reply_text or ""
-                        )
-                    else:
-                        button = eval(btn) 
-                        await message.reply_cached_media(
-                            fileid,
-                            caption=reply_text or "",
-                            reply_markup=InlineKeyboardMarkup(button)
-                        )
-                except Exception as e:
-                    print(e)
-                break 
-
-    else:
-        if FILTER_MODE.get(str(message.chat.id)) == "False":
-            return
-        else:
-            await auto_filter(client, message)
-
-
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
     if message.chat.id != SUPPORT_CHAT_ID:
@@ -164,6 +100,19 @@ async def give_filter(client, message):
             settings = await get_settings(message.chat.id)
             if settings['auto_ffilter']:
                 await auto_filter(client, message) 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 # @Client.on_message(filters.private & filters.text & filters.incoming)
@@ -2691,6 +2640,8 @@ async def advantage_spell_chok(client, msg):
         return
     movielist = [movie.get('title') for movie in movies]
     SPELL_CHECK[mv_id] = movielist
+    imdb = await get_poster(search) if IMDB else None
+    search = message.text
     btn = [
         [
             InlineKeyboardButton(
@@ -2701,11 +2652,10 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="✘ ᴄʟᴏsᴇ ✘", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    spell_check_del = await msg.reply_text(
-        text=(script.CUDNT_FND.format(mv_rqst)),
-        reply_markup=InlineKeyboardMarkup(btn),
-        reply_to_message_id=msg.id
-    )
+    await msg.reply_photo(photo=imdb['poster'], caption=caption,
+                                reply_markup=InlineKeyboardMarkup(btn))
+    await msg.delete()
+
     try:
         if settings['auto_delete']:
             await asyncio.sleep(70)
