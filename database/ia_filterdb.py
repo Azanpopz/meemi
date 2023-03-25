@@ -78,7 +78,7 @@ async def get_search_results(chat_id, query, file_type=None, max_results=10, off
         except KeyError:
             await save_group_settings(int(chat_id), 'max_btn', False)
             settings = await get_settings(int(chat_id))
-            max_results = 10 if settings['max_btn'] else int(MAX_B_TN)        
+            max_results = 20 if settings['max_btn'] else int(MAX_B)        
     query = query.strip()
     if not query:
         raw_pattern = '.'
