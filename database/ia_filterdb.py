@@ -9,7 +9,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from marshmallow.exceptions import ValidationError
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, MAX_BTN, MAX_B_TN, MAX_B
 from utils import get_settings, save_group_settings
-
+import random
 
 
 logger = logging.getLogger(__name__)
@@ -74,11 +74,11 @@ async def get_search_results(chat_id, query, file_type=None, max_results=10, off
     if chat_id is not None:
         settings = await get_settings(int(chat_id))
         try:
-            max_results = 10 if settings['max_btn'] else int(MAX_B_TN, MAX_B)
+            max_results = 10 if settings['max_btn'] else int(MAX_B_TN)
         except KeyError:
             await save_group_settings(int(chat_id), 'max_btn', False)
             settings = await get_settings(int(chat_id))
-            max_results = 10 if settings['max_btn'] else int(MAX_B_TN, MAX_B)        
+            max_results = 10 if settings['max_btn'] else int(MAX_B_TN)        
     query = query.strip()
     if not query:
         raw_pattern = '.'
