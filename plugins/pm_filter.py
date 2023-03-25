@@ -144,7 +144,6 @@ async def next_page(bot, query):
         return
 
     files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=offset, filter=True)
-    files, n_offset, total = await get_max_results(query.message.chat.id, search, offset=offset, filter=True)
 
     try:
         n_offset = int(n_offset)
