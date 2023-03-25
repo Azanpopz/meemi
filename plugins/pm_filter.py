@@ -99,8 +99,8 @@ async def give_filter(client, message):
                         "JOIN CHANNEL", url=invite_link.invite_link
                     ),
                     InlineKeyboardButton(
-                        text="NEW MOVIES",
-                        url="https://t.me/+cACZdXU2LH8xOGE1"
+                        text="close",
+                        callback_data="close_data"
                     ),
                 ]
                 
@@ -111,7 +111,7 @@ async def give_filter(client, message):
         await m.delete()
         k = await client.send_message(
             chat_id=message.chat.id,
-            text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
+            text="**PLEASE JOIN MY UPDATES CHANNEL.AND REQUEST AGAIN!**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
