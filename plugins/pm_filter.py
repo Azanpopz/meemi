@@ -2513,6 +2513,64 @@ async def auto_filter(client, msg, spoll=False):
                         await asyncio.sleep(37)                   
                         await thega.delete()
                 except KeyError:
+       imdb and imdb.get('poster'):
+        try:
+            if message.chat.id == SUPPORT_CHAT_ID:
+                await message.reply_text(
+                    text=f"<b>Hᴇʏ {message.from_user.mention}\n\n{str(total_results)} Rᴇsᴜʟᴛs Aʀᴇ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ Bᴜᴛ I Cᴀɴ'ᴛ Gɪᴠᴇ Fɪʟᴇꜱ,\nBᴇᴄᴀᴜꜱᴇ Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ\nPʟᴇᴀꜱᴇ Rᴇǫᴜᴇꜱᴛ Oɴ Oᴜʀ Mᴏᴠɪᴇ Gʀᴏᴜᴘ</b>",
+                    reply_markup=InlineKeyboardMarkup(
+                        [[
+                            InlineKeyboardButton('📌 Rᴇǫᴜᴇꜱᴛ Hᴇʀᴇ', url ='https://t.me/at3movies')
+                        ]]
+                    )
+                )
+            else:
+                hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+                try:
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await hehe.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()                        
+                except KeyError:
+                    grpid = await active_connection(str(message.from_user.id))
+                    await save_group_settings(grpid, 'auto_delete', True)
+                    settings = await get_settings(message.chat.id)
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await hehe.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            if message.chat.id == SUPPORT_CHAT_ID:
+                await message.reply_text(
+                    text=f"<b>Hᴇʏ {message.from_user.mention}\n\n{str(total_results)} Rᴇsᴜʟᴛs Aʀᴇ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ Bᴜᴛ I Cᴀɴ'ᴛ Gɪᴠᴇ Fɪʟᴇꜱ,\nBᴇᴄᴀᴜꜱᴇ Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ\nPʟᴇᴀꜱᴇ Rᴇǫᴜᴇꜱᴛ Oɴ Oᴜʀ Mᴏᴠɪᴇ Gʀᴏᴜᴘ</b>",
+                    reply_markup=InlineKeyboardMarkup(
+                        [[
+                            InlineKeyboardButton('📌 Rᴇǫᴜᴇꜱᴛ Hᴇʀᴇ', url ='https://t.me/at3movies')
+                        ]]
+                    )
+                )
+            else:
+                pic = imdb.get('poster')
+                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+                try:
+                    if settings['auto_delete']:
+                        await asyncio.sleep(IMDB_DLT_TIME)
+                        await hmm.delete()
+                        thega=await message.reply_photo(
+                            photo=random.choice(CLOSE_IMG),
+                            caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
+                        await asyncio.sleep(37)                   
+                        await thega.delete()
+                except KeyError:
                     grpid = await active_connection(str(message.from_user.id))
                     await save_group_settings(grpid, 'auto_delete', True)
                     settings = await get_settings(message.chat.id)
@@ -2592,6 +2650,7 @@ async def auto_filter(client, msg, spoll=False):
                         caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️")
                     await asyncio.sleep(37)                   
                     await thega.delete()
+                                      
                                        
     if spoll:
         await msg.message.delete()
