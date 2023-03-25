@@ -2646,7 +2646,7 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="✘ ᴄʟᴏsᴇ ✘", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    spell_check_del = await msg.reply_photo(photo=imdb['poster'], caption=f"𝐒𝐞𝐥𝐞𝐜𝐭 𝐘𝐨𝐮𝐫 𝐌𝐨𝐯𝐢𝐞 𝐍𝐚𝐦𝐞....",
+    spell_check_del = await msg.reply_photo(photo=imdb['poster'],
                                 reply_markup=InlineKeyboardMarkup(btn))
     await msg.delete()
 
