@@ -1,6 +1,6 @@
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import AUTH_CHANNEL, MY_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORTLINK_URL, SHORTLINK_API, REQ_CHANNEL, ADMINS
+from info import AUTH_CHANNEL, LOGIN_CHANNEL, MY_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORTLINK_URL, SHORTLINK_API, REQ_CHANNEL, ADMINS
 from imdb import Cinemagoer
 import asyncio
 from pyrogram.types import Message, InlineKeyboardButton
@@ -63,6 +63,16 @@ async def is_subscribed(bot, query):
         if user.status != enums.ChatMemberStatus.BANNED:
             return True
 
+async def is_subscribed(bot, query):
+    try:
+        user = await bot.get_chat_member(LOGIN_CHANNEL, query.from_user.id)
+    except UserNotParticipant:
+        pass
+    except Exception as e:
+        logger.exception(e)
+    else:
+        if user.status != enums.ChatMemberStatus.BANNED:
+            return True
 
 
 
