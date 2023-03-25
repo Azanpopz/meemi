@@ -109,7 +109,7 @@ async def give_filter(client, message):
         m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
         await asyncio.sleep(1)
         await m.delete()
-        k = await message_rply_text(
+        k = await message_reply_text(
             chat_id=message.chat.id,
             text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
             reply_markup=InlineKeyboardMarkup(btn),
