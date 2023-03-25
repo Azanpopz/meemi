@@ -2627,15 +2627,6 @@ async def advantage_spell_chok(client, msg):
         return
     movielist = [movie.get('title') for movie in movies]
     SPELL_CHECK[mv_id] = movielist
-    mv_rqst = msg.text
-    mention = msg.from_user.mention
-    message = msg
-    search = message.text                 
-    reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(mv_rqst) if IMDB else None
-    message = msg
-    search = message.text
     btn = [
         [
             InlineKeyboardButton(
@@ -2646,8 +2637,11 @@ async def advantage_spell_chok(client, msg):
         for k, movie_name in enumerate(movielist)
     ]
     btn.append([InlineKeyboardButton(text="✘ ᴄʟᴏsᴇ ✘", callback_data=f'spol#{reqstr1}#close_spellcheck')])
-    spell_check_del = await msg.reply_photo(photo=SP,
-                                reply_markup=InlineKeyboardMarkup(btn))
+    spell_check_del = await msg.reply_text(
+        text=(script.CUDNT_FND.format(mv_rqst)),
+        reply_markup=InlineKeyboardMarkup(btn),
+        reply_to_message_id=msg.id
+    )
     await msg.delete()
 
     try:
