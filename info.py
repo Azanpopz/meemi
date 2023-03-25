@@ -52,7 +52,7 @@ class evamaria(Client):
             ":memory:",
             plugins=dict(root=f"{name}/plugins"),
             workdir=TMP_DOWNLOAD_DIRECTORY,
-            api_id=APP_ID,
+            api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
             parse_mode=enums.ParseMode.HTML,
@@ -105,6 +105,21 @@ my_channel = environ.get('MY_CHANNEL')
 MY_CHANNEL = int(my_channel) if my_channel and id_pattern.search(batch_group) else None
 batch_group = environ.get('BATCH_GROUP')
 BATCH_GROUP = int(batch_group) if batch_group and id_pattern.search(batch_group) else None
+
+
+
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '0').split()]
+auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
+AUTH_USERS = (auth_users + ADMINS) if auth_users else []
+login_channel = environ.get('LOGIN_CHANNEL')
+auth_grp = environ.get('AUTH_GROUP')
+LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
+AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
+
+
+
+
 
 
 # Command
