@@ -108,13 +108,15 @@ async def give_filter(client, message):
         m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
         await asyncio.sleep(1)
         await m.delete()
-        await client.send_message(
+        k = await client.send_message(
             chat_id=message.chat.id,
             text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
-        
+            await asyncio.sleep(60)
+            await k.delete()
+            await message.delete()
         return
     if message.chat.id != SUPPORT_CHAT_ID:
         await global_filters(client, message)
