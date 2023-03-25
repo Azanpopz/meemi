@@ -115,9 +115,9 @@ async def give_filter(client, message):
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
-            await asyncio.sleep(60)
-            await k.delete()
-            await message.delete()
+        await asyncio.sleep(60)
+        await k.delete()
+        await message.delete()
         return
     if message.chat.id != SUPPORT_CHAT_ID:
         await global_filters(client, message)
