@@ -61,17 +61,12 @@ async def start(client, message):
                 logger.error("Make sure Bot is admin in Forcesub channel")
                 return
             btn = [
-                    [
-                        InlineKeyboardButton(
-                            "JOIN CHANNEL", url=invite_link.invite_link
-                        ),
-                        InlineKeyboardButton(
-                            text="NEW MOVIES",
-                            url="https://t.me/+cACZdXU2LH8xOGE1"
-                        ),
-                    ]
-                
-                ]        
+                [
+                    InlineKeyboardButton(
+                        "📩𝐉𝐨𝐢𝐧 𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥📩", url=invite_link.invite_link
+                    )
+                ]
+            ]        
         
             m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
             await asyncio.sleep(1)
