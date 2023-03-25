@@ -86,6 +86,36 @@ async def fil_mod(client, message):
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
+        try:
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            return
+        btn = [
+                [
+                    InlineKeyboardButton(
+                        "JOIN CHANNEL", url=invite_link.invite_link
+                    ),
+                    InlineKeyboardButton(
+                        text="NEW MOVIES",
+                        url="https://t.me/+cACZdXU2LH8xOGE1"
+                    ),
+                ]
+                
+            ]
+        
+        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
+        await asyncio.sleep(1)
+        await m.delete()
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.MARKDOWN
+            )
+        
+        return
     if message.chat.id != SUPPORT_CHAT_ID:
         await global_filters(client, message)
     manual = await manual_filters(client, message)
