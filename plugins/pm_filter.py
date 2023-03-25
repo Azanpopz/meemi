@@ -13,7 +13,7 @@ from database.connections_mdb import active_connection, all_connections, delete_
 from info import ADMINS, AUTH_CHANNEL, MY_CHANNEL, FILE_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, NOR_IMG, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
     SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, TEMPLATE, SPELL_IMG, MSG_ALRT, FILE_FORWARD, MAIN_CHANNEL, LOG_CHANNEL, PICS, SUPPORT_CHAT_ID
 from info import LANGUAGES, MAX_BTN, ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, NOR_IMG, LOG_CHANNEL, SPELL_IMG, MAX_B_TN, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, REQ_CHANNEL, MVG_LNK, OWN_LNK, SELF_DELETE_SECONDS, SELF_DELETE, SP, DELETE_TIME, IMDB_DLT_TIME, CLOSE_IMG
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, REQ_CHANNEL, MVG_LNK, OWN_LNK, SELF_DELETE_SECONDS, SELF_DELETE, SP, DELETE_TIME, IMDB_DLT_TIME, CLOSE_IMG, MAX_B
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
@@ -22,7 +22,7 @@ from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_
 
 from database.users_chats_db import db
 
-from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files, max_results
+from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files, get_max_results
 
 from database.filters_mdb import (
     del_all,
@@ -144,6 +144,8 @@ async def next_page(bot, query):
         return
 
     files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=offset, filter=True)
+    files, n_offset, total = await get_max_results(query.message.chat.id, search, offset=offset, filter=True)
+
     try:
         n_offset = int(n_offset)
     except:
