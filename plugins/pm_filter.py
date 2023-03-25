@@ -86,6 +86,7 @@ async def fil_mod(client, message):
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
+    chat_id = message.chat.id
     if LOGIN_CHANNEL and not await is_subscribed(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
@@ -108,7 +109,7 @@ async def give_filter(client, message):
         m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
         await asyncio.sleep(1)
         await m.delete()
-        k = await client.send_message(
+        k = await message_rply_text(
             chat_id=message.chat.id,
             text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
             reply_markup=InlineKeyboardMarkup(btn),
