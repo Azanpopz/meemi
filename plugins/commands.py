@@ -11,7 +11,7 @@ from database.users_chats_db import db
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 
 
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, MSG_ALRT, MAIN_CHANNEL, MY_CHANNEL, BATCH_GROUP, IMDB_TEMPLATE, IMDB
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, MSG_ALRT, MAIN_CHANNEL, MY_CHANNEL, BATCH_GROUP, IMDB_TEMPLATE, IMDB, MAX_B
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, MAX_B_TN, VERIFY, MVG_LNK, OWN_LNK
 
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink
@@ -637,6 +637,16 @@ async def settings(client, message):
                 ),
                 InlineKeyboardButton(
                     '10' if settings["max_btn"] else f'{MAX_B_TN}',
+                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    'Mᴀx Bᴜᴛᴛᴏɴꜱ',
+                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '20' if settings["max_btn"] else f'{MAX_B}',
                     callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
                 ),
             ],
