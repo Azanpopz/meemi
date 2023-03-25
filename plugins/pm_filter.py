@@ -22,7 +22,7 @@ from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_
 
 from database.users_chats_db import db
 
-from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files, get_max_results
+from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files
 
 from database.filters_mdb import (
     del_all,
@@ -1279,16 +1279,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],
             [
                 InlineKeyboardButton(
-                    'Mᴀx Bᴜᴛᴛᴏɴꜱ',
-                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
-                ),
-                InlineKeyboardButton(
-                    '20' if settings["max_btn"] else f'{MAX_B}',
-                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
-                ),
-            ],
-            [
-                InlineKeyboardButton(
                     'SʜᴏʀᴛLɪɴᴋ',
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
@@ -1418,16 +1408,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ),
                 InlineKeyboardButton(
                     '10' if settings["max_btn"] else f'{MAX_B_TN}',
-                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    'Mᴀx Bᴜᴛᴛᴏɴꜱ',
-                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
-                ),
-                InlineKeyboardButton(
-                    '20' if settings["max_btn"] else f'{MAX_B}',
                     callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
                 ),
             ],
@@ -2282,16 +2262,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ),
                 InlineKeyboardButton(
                     '10' if settings["max_btn"] else f'{MAX_B_TN}',
-                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    'Mᴀx Bᴜᴛᴛᴏɴꜱ',
-                    callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
-                ),
-                InlineKeyboardButton(
-                    '20' if settings["max_btn"] else f'{MAX_B}',
                     callback_data=f'setgs#max_btn#{settings["max_btn"]}#{grp_id}',
                 ),
             ],
