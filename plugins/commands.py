@@ -54,7 +54,7 @@ async def start(client, message):
             chat_id=message.from_user.id,
             text="**Please Join Our Channel to Get Movies!**",
             reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode="markdown"
+            parse_mode=enums.ParseMode.MARKDOWN
             )
         return
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
