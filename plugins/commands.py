@@ -32,6 +32,31 @@ force_channel = "nasrani_batch_store"
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
+        try:
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            return
+        btn = [
+            [
+                InlineKeyboardButton(
+                    "📩𝐉𝐨𝐢𝐧 𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥📩", url=invite_link.invite_link
+                )
+            ]
+        ]
+
+        if message.command[1] != "subscribe":
+            kk, file_id = message.command[1].split("_", 1)
+            pre = 'checksubp' if kk == 'filep' else 'checksub'
+            btn.append([InlineKeyboardButton("❔ T R Y  N O W ❔", callback_data=f"{pre}#{file_id}")])
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="**Please Join Our Channel to Get Movies!**",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode="markdown"
+            )
+        return
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
             [
