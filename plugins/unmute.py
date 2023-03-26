@@ -4,7 +4,7 @@ from plugins.helper.extract import extract_time, extract_user
 
 
 
-@Client.on_message(filters.command(["unban", "unmute"]))
+@Client.on_message(filters.command("unmute"))
 async def un_ban_user(_, message):
     is_admin = await admin_check(message)
     if not is_admin:
