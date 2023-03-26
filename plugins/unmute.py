@@ -18,14 +18,9 @@ async def un_ban_user(_, message):
         if str(user_id).lower().startswith("@"):
             await message.reply_text(
                 "Okay, changed ... now "
-                f"{user_first_name} To "
-                " You can join the group!"
-            )
-        else:
-            await message.reply_text(
-                "Okay, changed ... now "
                 f"<a href='tg://user?id={user_id}'>"
                 f"{user_first_name}"
                 "</a> To "
                 " You can join the group!"
             )
+        
