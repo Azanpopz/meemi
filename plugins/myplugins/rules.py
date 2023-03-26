@@ -1,4 +1,4 @@
-from pyrogram import Client, filter
+
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram.types import CallbackQuery
 import randam
