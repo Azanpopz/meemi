@@ -46,7 +46,7 @@ async def start_message(client, message):
 
 
 @Client.on_callback_query()
-async def callback(client, msg: CallbackQuery)
+async def callback(bot: Client, quer_y: CallbackQuery):
     if msg.data == "rule":
         await message.message.edit(
             text=" hello {msg.from_user.mention}  Start Text"
