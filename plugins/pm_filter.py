@@ -87,13 +87,14 @@ async def fil_mod(client, message):
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
     settings = await get_settings(message.chat.id)
-    if settings["auto_ffilter"]:
-        userid = message.from_user.id if message.from_user else None
-        if not userid:
-            search = message.text
-            k = await message.reply(f"You'r anonymous admin! Sorry you can't get '{search}' from here.\nYou can get '{search}' from bot inline search.")
-            await asyncio.sleep(30)
-            await k.delete()
+    if settings['auto_ffilter']:
+        await auto_filter(client, message)
+    except KeyError:
+        grpid = await active_connection(str(message.from_user.id))
+        await save_group_settings(grpid, 'auto_ffilter', True)
+        settings = await get_settings(message.chat.id)
+        if settings['auto_ffilter']:
+            await auto_filter(client, message)
             try:
                 await message.delete()
             except:
