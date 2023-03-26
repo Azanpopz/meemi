@@ -94,7 +94,8 @@ async def fil_mod(client, message):
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-
+    content = message.text
+    settings = await get_settings(message.chat.id)
     is_admin = await admin_check(message)
     if not is_admin:
         return
@@ -103,8 +104,7 @@ async def give_filter(client, message):
         await client.restrict_chat_member(chat_id, user_id,
         ChatPermissions(can_send_messages=True))
     
-    content = message.text
-    settings = await get_settings(message.chat.id)
+
     if settings["auto_ffilter"]:
         userid = message.from_user.id if message.from_user else None
         if not userid:
