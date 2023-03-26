@@ -8,7 +8,7 @@ from Script import script
 import os
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from info import IMDB_TEMPLATE
+from info import IMDB_TEMPLATE, LOGIN_CHANNEL
 from utils import extract_user, get_file_id, get_poster, last_online
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
 
@@ -42,7 +42,7 @@ H𝙻𝙾 {} 𝙱𝚁𝙾𝙷
 
 
 
-@Client.on_message(filters.command("r")) 
+@Client.on_message(filters.command("r") & filters.chat(LOGIN_CHANNEL) & filters.private) 
 async def r_message(bot, message):
     await message.reply_photo(
         photo=random.choice(ALL_PIC),
