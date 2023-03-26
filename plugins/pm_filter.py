@@ -18,7 +18,8 @@ from info import LANGUAGES, MAX_BTN, ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_C
 from pyrogram.types import ChatPermissions
 from plugins.helper.admin_check import admin_check
 from plugins.helper.extract import extract_time, extract_user                               
-
+from datetime import datetime, timedelta
+from pyrogram.types import ChatPermissions
 
 
 
