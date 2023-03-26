@@ -3,8 +3,8 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import CallbackQuery
 import random
 import os
-from info import SP, RULES
-
+from info import SP
+from Script import script
 import os
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
