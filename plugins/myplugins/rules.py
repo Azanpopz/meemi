@@ -34,9 +34,9 @@ Muhammed = Client(
 
 @Client.on_message(filters.command("rule")) 
 async def start_message(client, message):
-    button = [[
-      InlineKeyboardButton("ʀᴜʟᴇꜱ", callback_data="start")
-      ]]
+    buttons = [[
+        InlineKeyboardButton("ʀᴜʟᴇꜱ", callback_data="start")
+    ]]
     await message.reply_photo(
         photo=random.choice(SP),
         text="Hello {message.from_user.mention}   Bro Sugamano",
