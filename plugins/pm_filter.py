@@ -103,7 +103,7 @@ async def give_filter(client, message):
     try:
         await client.restrict_chat_member(chat_id, user_id,
         ChatPermissions(can_send_messages=True))
-    return
+        return
 
     if settings["auto_ffilter"]:
         userid = message.from_user.id if message.from_user else None
