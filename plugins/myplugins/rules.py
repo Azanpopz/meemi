@@ -45,7 +45,7 @@ async def start_message(client, message):
 
 
 
-@Muhammad.on_callback_query()
+@Client.on_callback_query()
 async def callback(client, msg: CallbackQuery)
     if msg.data == "rule":
         await message.message.edit(
