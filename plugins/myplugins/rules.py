@@ -19,11 +19,19 @@ logger.setLevel(logging.ERROR)
 
 
 
-PHOTO_LINK = [
- "Photo Link",
- "photo Link"
+
+ALL_PIC = [
+ "https://telegra.ph/file/d6693066f82ed4079c528.jpg",
+ "https://telegra.ph/file/65a9972e351b02640d0f4.jpg"
  ]
 
+
+
+START_MESSAGE ="""
+H𝙻𝙾 {} 𝙱𝚁𝙾𝙷
+ᗰ𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 <a href='https://t.me/pyogram_bot'>ᴅᴀᴠᴏᴏᴅ ɪʙʀᴀʜɪᴍ⚡️</a>
+𝚃𝙷𝙸𝚂 𝙱𝙾𝚃 𝙸𝚂 𝙵𝙸𝚁𝚂𝚃 𝙾𝚆𝙽 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼 𝙱𝙾𝚃 𝙾𝙵 𝙼𝚈 𝙾𝚆𝙽𝙴𝚁 𝚂𝙾 𝚃𝙷𝙴 𝙱𝙾𝚃 𝙸𝚂 𝙾𝙽 𝚃𝙷𝙴 𝚆𝙾𝚁𝙺𝚂𝙷𝙾𝙿 𝙾𝙽 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼 𝙵𝙾𝚁 𝚄𝙿𝙳𝙰𝚃𝙸𝙽𝙶 𝙵𝙴𝙰𝚃𝚄𝚁𝙴𝚂 𝚂𝙾 𝙿𝙻𝙴𝙰𝚉𝙴 𝚆𝙰𝙸𝚃 𝙺𝙸𝙽𝙳𝙵𝚄𝙻𝙻𝚈...
+"""
 Muhammed = Client(
     "Pyrogram Bot",
     bot_token = os.environ["BOT_TOKEN"],
@@ -33,24 +41,27 @@ Muhammed = Client(
 
 
 @Client.on_message(filters.command("rule")) 
-async def start_message(client, message):
-    buttons = [[
-        InlineKeyboardButton("ʀᴜʟᴇꜱ", callback_data="start")
-    ]]
+async def start_message(bot, message):
     await message.reply_photo(
-        photo=random.choice(SP),
-        text=f"Hello {message.from_user.mention}   Bro Sugamano",
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
+        photo=random.choice(ALL_PIC),
+        caption=START_MESSAGE.format(message.from_user.mention),
+        reply_markup=InlineKeyboardMarkup( [[
+            InlineKeyboardButton("STARTES", callback_data="start")
+            ]]
+            )
+        )
+
 
 
 
 @Client.on_callback_query()
-async def callback(bot: Client, quer_y: CallbackQuery):
-    if msg.data == "rule":
-        await message.message.edit(
-            text=" hello {msg.from_user.mention}  Start Text"
+async def callback(bot: Doctor, query: CallbackQuery):
+    if query.data== "start":
+        await query.message.edit(
+            text=START_MESSAGE.format(query.from_user.mention)
         )
+
+
 
 
 
