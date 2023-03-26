@@ -540,7 +540,7 @@ async def settings(client, message):
                 chat = await client.get_chat(grpid)
                 title = chat.title
             except:
-                await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                await message.reply_text("Make sure i'm present in your group!", quote=True)
                 return
         else:
             await message.reply_text("I'm not connected to any groups!", quote=True)
@@ -559,6 +559,10 @@ async def settings(client, message):
             and st.status != enums.ChatMemberStatus.OWNER
             and str(userid) not in ADMINS
     ):
+        try:
+            await message.delete()
+        except:
+            pass
         return
     
     settings = await get_settings(grp_id)
@@ -687,23 +691,23 @@ async def settings(client, message):
                 InlineKeyboardButton("👥 Oᴘᴇɴ Hᴇʀᴇ", callback_data=f"opnsetgrp#{grp_id}")
               ]]
 
-        reply_markup = InlineKeyboardMarkup(buttons)
-        if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-            await message.reply_text(
-                text="<b>Wʜᴇʀᴇ Dᴏ Yᴏᴜ Wᴀɴᴛ Tᴏ Oᴘᴇɴ Tʜᴇ Sᴇᴛᴛɪɴɢꜱ Mᴇɴᴜ ⚙️</b>",
-                reply_markup=InlineKeyboardMarkup(btn),
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=message.id
-            )
-        else:
-            await message.reply_text(
-                text=f"<b>Cᴜʀʀᴇɴᴛ Sᴇᴛᴛɪɴɢs Fᴏʀ {title}\n\nYᴏᴜ Cᴀɴ Cʜᴀɴɢᴇ Sᴇᴛᴛɪɴɢs As Yᴏᴜʀ Wɪsʜ Bʏ Usɪɴɢ Bᴇʟᴏᴡ Bᴜᴛᴛᴏɴs.</b>",
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=message.id
-            )
+        k = await message.reply_text(
+            text="Where do you want to open the settings menu? ⚙️",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.HTML
+        )
+        await asyncio.sleep(300)
+        await k.delete()
+        try:
+            await message.delete()
+        except:
+            pass
+    else:
+        await message.reply_text(
+            text=f"Change your settings for <b>'{title}'</b> as your wish. ⚙",
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=enums.ParseMode.HTML
+        )
 
 
 
