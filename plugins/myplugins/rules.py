@@ -68,10 +68,10 @@ async def callback(bot: Client, query: CallbackQuery):
 @Client.on_message(filters.command("rules")) 
 async def start_message(client, message):
     chat_id = message.chat.id
-    mv_rqst = message.text
+#    mv_rqst = message.text
     searchh = message.text                 
-    reqstr1 = message.from_user.id if message.from_user else 0
-    reqstr = await client.get_users(reqstr1)   
+#    reqstr1 = message.from_user.id if message.from_user else 0
+#    reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(searchh) if IMDB else None    
     if imdb:
         cap = IMDB_TEMPLATE.format(
@@ -109,14 +109,14 @@ async def start_message(client, message):
         cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
-            await message.reply_photo(photo=imdb.get('poster'))
+            await message.reply_photo(photo=imdb.get('poster'), caption=START_MESSAGE)
                                       
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await message.reply_photo(photo=poster)
+            await message.reply_photo(photo=poster, caption=START_MESSAGE)
         except Exception as e:
             logger.exception(e)
-            await message.reply_text(f"😍😍😍")
+            await message.reply_text(START_MESSAGE)
     else:
-        await message.reply_text(f"ols😍")
+        await message.reply_text(START_MESSAGE)
