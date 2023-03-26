@@ -108,5 +108,5 @@ async def start_message(bot, message):
         )
     if imdb and imdb.get('poster'):
         try:
-        await message.reply_photo(photo=imdb.get('poster'), caption=f"okda",
-                                  reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_photo(photo=imdb.get('poster'), caption=f"okda",
+                                      reply_markup=InlineKeyboardMarkup(btn))
