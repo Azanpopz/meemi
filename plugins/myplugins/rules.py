@@ -1,7 +1,7 @@
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram.types import CallbackQuery
-import randam
+import random
 import os
 from info import SP, RULES
 
