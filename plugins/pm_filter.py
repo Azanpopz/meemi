@@ -86,6 +86,7 @@ async def fil_mod(client, message):
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
+    content = message.text
     settings = await get_settings(message.chat.id)
     if settings["auto_ffilter"]:
         userid = message.from_user.id if message.from_user else None
@@ -114,7 +115,7 @@ async def give_filter(client, message):
             reply_markup = InlineKeyboardMarkup(buttons)
             k = await message.reply_photo(
                 photo=random.choice(PICS),
-                caption=f"👋 Hello {message.from_user.mention},\n\nPlease join my 'Updates Channel' and request again. 😇",
+                caption=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{content} 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
@@ -127,7 +128,7 @@ async def give_filter(client, message):
         else:
             await auto_filter(client, message)
     else:
-        k = await message.reply_text('Auto Filter Off! ❌')
+        k = await message.reply_text('𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{content} 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!! \n\n𝐀𝐮𝐭𝐨 𝐅𝐢𝐥𝐭𝐞𝐫 𝐎𝐟𝐟..!!! 𝐏𝐥𝐞𝐚𝐬𝐞 𝐖𝐚𝐢𝐭..')
         await asyncio.sleep(5)
         await k.delete()
         try:
