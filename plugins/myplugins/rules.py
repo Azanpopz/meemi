@@ -67,11 +67,11 @@ async def callback(bot: Client, query: CallbackQuery):
 
 @Client.on_message(filters.command("rules")) 
 async def start_message(bot, message):
-    chat_id = msg.chat.id
-    mv_rqst = msg.text
+    chat_id = message.chat.id
+    mv_rqst = message.text
     message = msg
     searchh = message.text                 
-    reqstr1 = msg.from_user.id if msg.from_user else 0
+    reqstr1 = message.from_user.id if message.from_user else 0
     reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(searchh) if IMDB else None    
     if imdb:
