@@ -109,14 +109,14 @@ async def start_message(client, message):
         cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
-            await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
-                                      reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_photo(photo=imdb.get('poster'))
+                                      
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_photo(photo=poster)
         except Exception as e:
             logger.exception(e)
-            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_text(f"😍😍😍")
     else:
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+        await message.reply_text(f"ols😍")
