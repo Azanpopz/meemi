@@ -66,7 +66,7 @@ async def callback(bot: Client, query: CallbackQuery):
 
 
 @Client.on_message(filters.command("rules")) 
-async def start_message(bot, message):
+async def start_message(client, message):
     chat_id = message.chat.id
     mv_rqst = message.text
     searchh = message.text                 
