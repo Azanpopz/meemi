@@ -149,7 +149,10 @@ async def give_filter(client, message):
                 settings = await get_settings(message.chat.id)
                 if settings['auto_ffilter']:
                     await auto_filter(client, message) 
-
+                    try:
+                        await message.delete()
+                    except:
+                        pass
 
 
 
