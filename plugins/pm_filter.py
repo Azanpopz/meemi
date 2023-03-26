@@ -102,7 +102,7 @@ async def give_filter(client, message):
     try:
         await client.restrict_chat_member(chat_id, user_id,
         ChatPermissions(can_send_messages=True))
-    return
+    
     content = message.text
     settings = await get_settings(message.chat.id)
     if settings["auto_ffilter"]:
