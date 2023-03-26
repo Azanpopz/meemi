@@ -124,8 +124,8 @@ async def give_filter(client, message):
             " The mouth is closed! 🤐"
         )
     return
-        content = message.text
-        settings = await get_settings(message.chat.id)
+    content = message.text
+    settings = await get_settings(message.chat.id)
     if settings["auto_ffilter"]:
         userid = message.from_user.id if message.from_user else None
         if not userid:
