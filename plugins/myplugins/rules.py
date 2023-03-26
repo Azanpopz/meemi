@@ -39,7 +39,7 @@ async def start_message(client, message):
     ]]
     await message.reply_photo(
         photo=random.choice(SP),
-        text="Hello {message.from_user.mention}   Bro Sugamano",
+        text=f"Hello {message.from_user.mention}   Bro Sugamano",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
