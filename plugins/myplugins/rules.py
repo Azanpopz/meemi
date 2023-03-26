@@ -58,7 +58,7 @@ async def start_message(bot, message):
 async def callback(bot: Client, query: CallbackQuery):
     if query.data== "rule":
         await query.message.edit(
-            text=START_MESSAGE.format(query.from_user.mention)
+            text=f"ok da""
         )
 
 
