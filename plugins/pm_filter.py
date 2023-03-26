@@ -99,30 +99,8 @@ async def give_filter(client, message):
         return
     user_id, user_first_name = extract_user(message)
     try:
-        await message.chat.restrict_member(
-            user_id=user_id,
-            permissions=ChatPermissions(
-            )
-        )
-    except Exception as error:
-        await message.reply_text(
-            str(error)
-        )
-    else:
-        if str(user_id).lower().startswith("@"):
-            await message.reply_text(
-                "👍🏻 "
-                f"{user_first_name}"
-                " Lavender's mouth is shut! 🤐"
-            )
-        else:
-            await message.reply_text(
-            "👍🏻 "
-            f"<a href='tg://user?id={user_id}'>"
-            "Of lavender"
-            "</a>"
-            " The mouth is closed! 🤐"
-        )
+        await client.restrict_chat_member(chat_id, user_id,
+        ChatPermissions(can_send_messages=True))
     return
     content = message.text
     settings = await get_settings(message.chat.id)
