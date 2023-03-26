@@ -18,7 +18,7 @@ from info import LANGUAGES, MAX_BTN, ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_C
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
-from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink
+from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, mute_login
 
 from database.users_chats_db import db
 
@@ -86,53 +86,69 @@ async def fil_mod(client, message):
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-    chat_id = message.chat.id
-    if LOGIN_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
+    settings = await get_settings(message.chat.id)
+    if settings["auto_ffilter"]:
+        userid = message.from_user.id if message.from_user else None
+        if not userid:
+            search = message.text
+            k = await message.reply(f"You'r anonymous admin! Sorry you can't get '{search}' from here.\nYou can get '{search}' from bot inline search.")
+            await asyncio.sleep(30)
+            await k.delete()
+            try:
+                await message.delete()
+            except:
+                pass
             return
-        btn = [
-                [
-                    InlineKeyboardButton(
-                        "JOIN CHANNEL", url=invite_link.invite_link
-                    ),
-                    InlineKeyboardButton(
-                        text="close",
-                        callback_data="close_data"
-                    ),
-                ]
-                
-            ]
-        
-        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
-        await asyncio.sleep(1)
-        await m.delete()
-        k = await client.send_message(
-            chat_id=message.chat.id,
-            text="**PLEASE JOIN MY UPDATES CHANNEL.AND REQUEST AGAIN!**",
-            reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode=enums.ParseMode.MARKDOWN
+
+        if AUTH_CHANNEL and not await is_subscribed(client, message):
+            try:
+                invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+            except ChatAdminRequired:
+                logger.error("Make sure Bot is admin in Forcesub channel")
+                return
+            buttons = [[
+                InlineKeyboardButton("📢 Updates Channel 📢", url=invite_link.invite_link)
+            ],[
+                InlineKeyboardButton("🔁 Request Again 🔁", callback_data="grp_checksub")
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            k = await message.reply_photo(
+                photo=random.choice(PICS),
+                caption=f"👋 Hello {message.from_user.mention},\n\nPlease join my 'Updates Channel' and request again. 😇",
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
             )
-        await asyncio.sleep(60)
+            await asyncio.sleep(300)
+            await k.delete()
+            try:
+                await message.delete()
+            except:
+                pass
+        else:
+            await auto_filter(client, message)
+    else:
+        k = await message.reply_text('Auto Filter Off! ❌')
+        await asyncio.sleep(5)
         await k.delete()
-        await message.delete()
-        return
-    if message.chat.id != SUPPORT_CHAT_ID:
-        await global_filters(client, message)
-    manual = await manual_filters(client, message)
-    if manual == False:
-        settings = await get_settings(message.chat.id)
         try:
-            if settings['auto_ffilter']:
-                await auto_filter(client, message)
-        except KeyError:
-            grpid = await active_connection(str(message.from_user.id))
-            await save_group_settings(grpid, 'auto_ffilter', True)
+            await message.delete()
+        except:
+            pass
+            return
+        if message.chat.id != SUPPORT_CHAT_ID:
+            await global_filters(client, message)
+        manual = await manual_filters(client, message)
+        if manual == False:
             settings = await get_settings(message.chat.id)
-            if settings['auto_ffilter']:
-                await auto_filter(client, message) 
+            try:
+                if settings['auto_ffilter']:
+                    await auto_filter(client, message)
+            except KeyError:
+                grpid = await active_connection(str(message.from_user.id))
+                await save_group_settings(grpid, 'auto_ffilter', True)
+                settings = await get_settings(message.chat.id)
+                if settings['auto_ffilter']:
+                    await auto_filter(client, message) 
 
 
 
@@ -970,6 +986,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
+    elif query.data == "grp_checksub":
+        user = query.message.reply_to_message.from_user.id
+        if int(user) != 0 and query.from_user.id != int(user):
+            return await query.answer(f"Hello {query.from_user.first_name},\nThis Is Not For You!", show_alert=True)
+        if LOGIN_CHANNEL and not await mute_login(client, query):
+            await query.answer(f"Hello {query.from_user.first_name},\nPlease join my updates channel and request again.", show_alert=True)
+            return
+        await query.answer(f"Hello {query.from_user.first_name},\nGood, Can You Request Now!", show_alert=True)
+        await query.message.delete()
+        try:
+            await query.message.reply_to_message.delete()
+        except:
+            pass
 
 
 
