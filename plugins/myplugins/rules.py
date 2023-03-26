@@ -40,13 +40,13 @@ H𝙻𝙾 {} 𝙱𝚁𝙾𝙷
 
 
 
-@Client.on_message(filters.command("rule")) 
-async def start_message(bot, message):
+@Client.on_message(filters.command("r")) 
+async def r_message(bot, message):
     await message.reply_photo(
         photo=random.choice(ALL_PIC),
         caption=START_MESSAGE.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton("STARTES", callback_data="rule")
+            InlineKeyboardButton("STARTES", callback_data="r")
             ]]
             )
         )
@@ -56,7 +56,7 @@ async def start_message(bot, message):
 
 @Client.on_callback_query()
 async def callback(bot: Client, query: CallbackQuery):
-    if query.data== "rule":
+    if query.data== "r":
         await query.message.edit(
             text=f"ok da"
         )
@@ -109,12 +109,52 @@ async def start_message(client, message):
         cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
-            await message.reply_photo(photo=imdb.get('poster'), caption=START_MESSAGE)
+            buttons = [[
+                InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            ], [
+                    
+                InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', url='https://t.me/bigmoviesworld'),
+                InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
+            ], [
+                InlineKeyboardButton('𝐁𝐨𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬', url='http://telegra.ph/Minnal-murali-03-06-12')
+            ], [
+                InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_batch_store'),
+                InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+            ], [
+                InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+            ], [
+                InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await message.reply_photo(photo=imdb.get('poster'), caption=START_MESSAGE,
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
                                       
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await message.reply_photo(photo=poster, caption=START_MESSAGE)
+            buttons = [[
+                InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            ], [
+                    
+                InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', url='https://t.me/bigmoviesworld'),
+                InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
+            ], [
+                InlineKeyboardButton('𝐁𝐨𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬', url='http://telegra.ph/Minnal-murali-03-06-12')
+            ], [
+                InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_batch_store'),
+                InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+            ], [
+                InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+            ], [
+                InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await message.reply_photo(photo=poster, caption=START_MESSAGE,
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
         except Exception as e:
             logger.exception(e)
             await message.reply_text(START_MESSAGE)
