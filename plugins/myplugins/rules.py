@@ -56,12 +56,12 @@ async def r_message(bot, message):
 
 
 
-@Client.on_callback_query()
-async def callback(bot: Client, query: CallbackQuery):
-    if query.data== "r":
-        await query.message.edit(
-            text=f"ok da"
-        )
+# @Client.on_callback_query()
+# async def callback(bot: Client, query: CallbackQuery):
+#     if query.data== "r":
+#         await query.message.edit(
+#             text=f"ok da"
+#         )
 
 
 
@@ -75,40 +75,7 @@ async def start_message(client, message):
 #    reqstr1 = message.from_user.id if message.from_user else 0
 #    reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(searchh) if IMDB else None    
-    if imdb:
-        cap = IMDB_TEMPLATE.format(
-            query=searchh,            
-            title=imdb['title'],
-            votes=imdb['votes'],
-            aka=imdb["aka"],
-            seasons=imdb["seasons"],
-            box_office=imdb['box_office'],
-            localized_title=imdb['localized_title'],
-            kind=imdb['kind'],
-            imdb_id=imdb["imdb_id"],
-            cast=imdb["cast"],
-            runtime=imdb["runtime"],
-            countries=imdb["countries"],
-            certificates=imdb["certificates"],
-            languages=imdb["languages"],
-            director=imdb["director"],
-            writer=imdb["writer"],
-            producer=imdb["producer"],
-            composer=imdb["composer"],
-            cinematographer=imdb["cinematographer"],
-            music_team=imdb["music_team"],
-            distributors=imdb["distributors"],
-            release_date=imdb['release_date'],
-            year=imdb['year'],
-            genres=imdb['genres'],
-            poster=imdb['poster'],
-            plot=imdb['plot'],
-            rating=imdb['rating'],
-            url=imdb['url'],
-            **locals()
-        )
-    else:
-        cap = f"Here is what i found for your query {search}"
+            
     if imdb and imdb.get('poster'):
         try:
             buttons = [[
