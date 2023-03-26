@@ -46,7 +46,7 @@ async def start_message(bot, message):
         photo=random.choice(ALL_PIC),
         caption=START_MESSAGE.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton("STARTES", callback_data="start")
+            InlineKeyboardButton("STARTES", callback_data="rule")
             ]]
             )
         )
