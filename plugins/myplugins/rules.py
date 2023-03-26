@@ -69,7 +69,6 @@ async def callback(bot: Client, query: CallbackQuery):
 async def start_message(bot, message):
     chat_id = message.chat.id
     mv_rqst = message.text
-    message = msg
     searchh = message.text                 
     reqstr1 = message.from_user.id if message.from_user else 0
     reqstr = await client.get_users(reqstr1)   
