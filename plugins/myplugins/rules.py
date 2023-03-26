@@ -126,7 +126,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
         )
     else:
         caption = "No Results"
-    if imdb.imdb'poster'):
+    if imdb.get('poster'):
         try:
             await quer_y.message.reply_photo(photo=imdb['poster'], caption=RULES, reply_markup=InlineKeyboardMarkup(btn))
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
