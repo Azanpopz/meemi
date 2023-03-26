@@ -33,7 +33,7 @@ Muhammed = Client(
 
 
 @Client.on_message(filters.command("rule")) 
-async def start_message(bot, message)
+async def start_message(client, message):
     button = [[
       InlineKeyboardButton("ʀᴜʟᴇꜱ", callback_data="start")
       ]]
@@ -46,8 +46,8 @@ async def start_message(bot, message)
 
 
 @Muhammad.on_callback_query()
-async def callback(bot, msg: CallbackQuery)
-    if msg.data == "start":
+async def callback(client, msg: CallbackQuery)
+    if msg.data == "rule":
         await message.message.edit(
             text=" hello {msg.from_user.mention}  Start Text"
         )
