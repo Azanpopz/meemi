@@ -8,7 +8,7 @@ from Script import script
 import os
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from info import IMDB_TEMPLATE, LOGIN_CHANNEL
+from info import IMDB_TEMPLATE, LOGIN_CHANNEL, ADMIN
 from utils import extract_user, get_file_id, get_poster, last_online
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
 
@@ -96,7 +96,7 @@ async def r_message(bot, message):
 
 
 
-@Client.on_message(filters.command("rules") & (filters.private | filters.group) & filters.forwarded & filters.incoming)
+@Client.on_message(filters.command("rules") & (filters.chat(ADMIN) | filters.group) & filters.forwarded & filters.incoming)
 # @Client.on_message(filters.reply) 
 async def start_message(client, message):
     mention = message.from_user.mention
