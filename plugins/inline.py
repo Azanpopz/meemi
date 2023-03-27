@@ -25,7 +25,7 @@ async def inline_users(query: InlineQuery):
 @Client.on_inline_query()
 async def answer(bot, query, message):
     """Show search results for given inline query"""
-    username = query.message.from_user.first_name
+    
     chat_id = await active_connection(str(query.from_user.id))        
     if not await inline_users(query):
         await query.answer(results=[],
