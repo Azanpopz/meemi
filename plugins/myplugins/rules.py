@@ -35,13 +35,7 @@ ALL_PIC = [
 
 
 START_MESSAGE = """
-𝐇𝐞𝐥𝐥𝐨 <a href='tg://settings'>𝐓𝐡𝐚𝐧𝐤 𝐘𝐨𝐮⚡️</a> 
-
-**⭕️ Disclaimer: All The Content in this Channel is Taken From the Internet, We Don't Own Any Content.
-
-NB:  𝙰𝚕𝚕 𝙵𝚒𝚕𝚎𝚜 𝚒𝚗 𝚝𝚑𝚒𝚜 𝙲𝚑𝚊𝚗𝚗𝚎𝚕 𝚠𝚒𝚕𝚕 𝚋𝚎 𝚍𝚎𝚕𝚎𝚝𝚎𝚍 𝚒𝚗 3 𝚖𝚒𝚗𝚞𝚝𝚎𝚜**
-
-❗️𝐃𝐨𝐧𝐭 𝐅𝐨𝐫𝐠𝐞𝐭 𝐭𝐨 𝐅𝐨𝐫𝐰𝐚𝐫𝐝 𝐭𝐡𝐞 𝐅𝐢𝐥𝐞 𝐭𝐨 𝐒𝐚𝐯𝐞𝐝 𝐌𝐞𝐬𝐬𝐚𝐠𝐞 𝐛𝐞𝐟𝐨𝐫𝐞 𝐃𝐞𝐥𝐞𝐭𝐞..!❗️
+𝐇𝐞𝐥𝐥𝐨 <a href='tg://settings'>𝐓𝐡𝐚𝐧𝐤 𝐘𝐨𝐮⚡️</a>
 
 **📌ഏതു മൂവി ആണോ വേണ്ടത് അത് സ്പെല്ലിങ് തെറ്റാതെ ഗ്രൂപ്പിൽ ചോദിച്ചാൽ മാത്രമേ കിട്ടുകയുള്ളു...!!
 
