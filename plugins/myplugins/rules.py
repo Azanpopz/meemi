@@ -79,7 +79,7 @@ async def start_message(client, message):
 #    reqstr = await client.get_users(reqstr1)   
     imdb = await get_poster(searchh) if IMDB else None    
             
-    if imdb and imdb.get('poster'):
+#    if imdb and imdb.get('poster'):
         try:
             buttons = [[
                 InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
