@@ -8,9 +8,6 @@ from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, REQ_
 from database.connections_mdb import active_connection
 
 logger = logging.getLogger(__name__)
-from pyrogram import Client
-from pyrogram.types import (InlineQueryResultArticle, InputTextMessageContent,
-                            InlineKeyboardMarkup, InlineKeyboardButton)
 
 
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
@@ -30,7 +27,7 @@ async def answer(bot, query):
     """Show search results for given inline query"""
     chat_id = await active_connection(str(query.from_user.id))        
     if not await inline_users(query):
-        await inline_query.answer(results=[],
+        await query.answer(results=[],
                            cache_time=0,
                            switch_pm_text='okDa',
                            switch_pm_parameter="hehe")
