@@ -5,12 +5,13 @@ from database.users_chats_db import db
 from info import ADMINS
 from utils import broadcast_messages
 import asyncio
+
         
 @Client.on_message(filters.command("broadcast") & filters.user(ADMINS) & filters.reply)
 # https://t.me/GetTGLink/4178
 async def verupikkals(bot, message):
     users = await db.get_all_users()
-    name =  await bot.get_users(id).message.from_user.mention
+    mention = await db.add_user(message.from_user.id, message.from_user.first_name)
     b_msg = message.reply_to_message
     sts = await message.reply_text(
         text='Broadcasting your messages...'
@@ -24,7 +25,7 @@ async def verupikkals(bot, message):
 
     success = 0
     async for user in users:
-        pti, sh = await broadcast_messages(int(user['id']), b_msg, name)
+        pti, sh = await broadcast_messages(int(user['id']), b_msg, mention)
         if pti:
             success += 1
         elif pti == False:
