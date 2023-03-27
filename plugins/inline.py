@@ -29,7 +29,7 @@ async def inline_users(query: InlineQuery):
 async def answer(bot, query):
     """Show search results for given inline query"""
     chat_id = await active_connection(str(query.from_user.id))
-    await inline_query.answer(
+    await query.answer(
         results=[
             InlineQueryResultArticle(
                 title="Installation",
