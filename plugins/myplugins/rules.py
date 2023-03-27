@@ -34,7 +34,7 @@ ALL_PIC = [
 
 
 
-START_MESSAGE ="""
+START_MESSAGE =f"""
 H𝙻𝙾 {message.from_user.mention} 𝙱𝚁𝙾𝙷
 {message.chat.title}
 ᗰ𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 <a href='https://t.me/pyogram_bot'>ᴅᴀᴠᴏᴏᴅ ɪʙʀᴀʜɪᴍ⚡️</a>
