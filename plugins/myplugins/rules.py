@@ -8,7 +8,7 @@ from Script import script
 import os
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from info import IMDB_TEMPLATE, LOGIN_CHANNEL, ADMIN
+from info import IMDB_TEMPLATE, LOGIN_CHANNEL, ADMINS
 from utils import extract_user, get_file_id, get_poster, last_online
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
 
