@@ -2031,10 +2031,10 @@ async def auto_filter(client, msg, spoll=False):
     ])
 
 
-    btn.insert(1, [
-        InlineKeyboardButton(f'⚕️𝐅𝐢𝐥𝐞𝐬: {total_results}⚕️', 'autos'),
-        InlineKeyboardButton(f'♻️𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬♻️', url='https://t.me/nasrani_update')
-    ])
+#    btn.insert(1, [
+#        InlineKeyboardButton(f'⚕️𝐅𝐢𝐥𝐞𝐬: {total_results}⚕️', 'autos'),
+#        InlineKeyboardButton(f'♻️𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬♻️', url='https://t.me/nasrani_update')
+#    ])
 #    btn.insert(15, [
 #        InlineKeyboardButton(f"🎭{imdb.get('title')}🎭", url=imdb['url'])
 #    ])
@@ -2168,46 +2168,46 @@ async def auto_filter(client, msg, spoll=False):
         except Exception as e:
 
                 logger.exception(e)
-                fmsg = await message.reply_photo(
-                   caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
-                   photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
-                   parse_mode=enums.ParseMode.HTML,
-                   reply_markup=InlineKeyboardMarkup(btn))
+#                fmsg = await message.reply_photo(
+#                   caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
+#                   photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
+#                   parse_mode=enums.ParseMode.HTML,
+#                   reply_markup=InlineKeyboardMarkup(btn))
+#
+#    else:
+#        
+#        fmsg = await message.reply_photo(
+#               caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
+#               photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
+#               parse_mode=enums.ParseMode.HTML,
+#               reply_markup=InlineKeyboardMarkup(btn))
+#     
+#    await asyncio.sleep(180)
+#
+#    await fmsg.delete()
 
-    else:
-        
-        fmsg = await message.reply_photo(
-               caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
-               photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
-               parse_mode=enums.ParseMode.HTML,
-               reply_markup=InlineKeyboardMarkup(btn))
-     
-    await asyncio.sleep(180)
 
-    await fmsg.delete()
+#    buttons = [
 
+#            [
 
-    buttons = [
+#                InlineKeyboardButton(f"{message.from_user.first_name}", url=f"https://t.me/NasraniSeries"),
 
-            [
+#                InlineKeyboardButton('SUPPORT', url=f"https://t.me/NasraniChatGroup"),
 
-                InlineKeyboardButton(f"{message.from_user.first_name}", url=f"https://t.me/NasraniSeries"),
+#            ]
 
-                InlineKeyboardButton('SUPPORT', url=f"https://t.me/NasraniChatGroup"),
-
-            ]
-
-            ]
-    await message.reply_photo(
-    photo=random.choice(SP),
-    caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
-    reply_markup=InlineKeyboardMarkup(buttons)
-    )               
+#            ]
+#    await message.reply_photo(
+#    photo=random.choice(SP),
+#    caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+#    reply_markup=InlineKeyboardMarkup(buttons)
+#    )               
             
     
-    if spoll:
+                if spoll:
 
-        await msg.message.delete()
+                    await msg.message.delete()
 
         
 
