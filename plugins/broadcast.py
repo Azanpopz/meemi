@@ -11,7 +11,6 @@ import asyncio
 # https://t.me/GetTGLink/4178
 async def verupikkals(bot, message):
     users = await db.get_all_users()
-    username = message.from_user.first_name
     b_msg = message.reply_to_message
     sts = await message.reply_text(
         text='Broadcasting your messages...'
@@ -25,7 +24,7 @@ async def verupikkals(bot, message):
 
     success = 0
     async for user in users:
-        pti, sh = await broadcast_messages(int(user['id']), b_msg, username)
+        pti, sh = await broadcast_messages(int(user['id']), b_msg)
         if pti:
             success += 1
         elif pti == False:
