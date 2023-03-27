@@ -2168,47 +2168,47 @@ async def auto_filter(client, msg, spoll=False):
         except Exception as e:
 
                 logger.exception(e)
-                fek = await message.reply_photo(photo=NOR_IMG, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-                try:
-                    if settings['auto_delete']:
-                        await asyncio.sleep(300)
-                        await fek.delete()
-                        await message.delete()
-                except KeyError:
-                    grpid = await active_connection(str(message.from_user.id))
-                    await save_group_settings(grpid, 'auto_delete', True)
-                    settings = await get_settings(message.chat.id)
-                    if settings['auto_delete']:
-                        await asyncio.sleep(300)
-                        await fek.delete()
-                        await message.delete()
+                fmsg = await message.reply_photo(
+                   caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
+                   photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
+                   parse_mode="html",
+                   reply_markup=InlineKeyboardMarkup(btn))
+
     else:
+        
+        fmsg = await message.reply_photo(
+               caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
+               photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
+               parse_mode="html",
+               reply_markup=InlineKeyboardMarkup(btn))
+     
+    await asyncio.sleep(180)
 
-            fuk = await message.reply_photo(photo=NOR_IMG, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-            try:
-                if settings['auto_delete']:
-                    await asyncio.sleep(300)
-                    await fuk.delete()
-                    await message.delete()
-            except KeyError:
-                grpid = await active_connection(str(message.from_user.id))
-                await save_group_settings(grpid, 'auto_delete', True)
-                settings = await get_settings(message.chat.id)
-                if settings['auto_delete']:
-                    await asyncio.sleep(300)
-                    await fuk.delete()
-                    await message.delete()
-                k = await message.reply_photo(
-                    photo=random.choice(SP),
-                    caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                await asyncio.sleep(60)                   
-                await k.delete()
-                await message.delete() 
+    await fmsg.delete()
 
+
+    buttons = [
+
+            [
+
+                InlineKeyboardButton(f"{message.from_user.first_name}", url=f"https://t.me/NasraniSeries"),
+
+                InlineKeyboardButton('SUPPORT', url=f"https://t.me/NasraniChatGroup"),
+
+            ]
+
+            ]
+    await message.reply_photo(
+    photo=random.choice(SP),
+    caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+    reply_markup=InlineKeyboardMarkup(buttons)
+    )               
+            
+    
     if spoll:
+
         await msg.message.delete()
+
         
 
 
