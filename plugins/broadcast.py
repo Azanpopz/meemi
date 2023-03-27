@@ -77,12 +77,3 @@ async def grp_brodcst(bot, message):
 
 
 
-@Client.on_message(filters.command("br") & filters.user(ADMINS) & filters.reply)
-async def broadcast_messages(bot, message):
-    mention_users=True
-    if mention_users: 
-        idx = int(user['id'])
-        usern = await bot.get_chat(chat_id=idx)
-        usernamex = usern.username
-            print(usernamex)
-                await bot.send_message(chat_id=int(user['id']), text=b_msg.text+"\n" "@"+usernamex)
