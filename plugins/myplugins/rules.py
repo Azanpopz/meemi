@@ -63,25 +63,25 @@ START_MESSAGE = """
 𝐆𝐫𝐨𝐮𝐩 𝐍𝐚𝐦𝐞 :- {}
 """
 UP_MESSAGE = """
-{} 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝
-
-𝐎𝐰𝐧𝐞𝐫 𝐍𝐚𝐦𝐞 :- {}
-𝐆𝐫𝐨𝐮𝐩 𝐍𝐚𝐦𝐞 :- {}
+{} 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩
 """
 
 
 
-@Client.on_message(filters.command("r") & filters.chat(LOGIN_CHANNEL) & filters.private) 
-async def r_message(bot, message):
+
+
+@Client.on_message(filters.command("rules") & filters.group) 
+async def r_message(client, message):
     mention = message.from_user.mention
-    await message.reply_photo(
-        photo=random.choice(ALL_PIC),
-        caption=START_MESSAGE.format(message.from_user.mention, message.chat.user_name),
-        reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton("STARTES", callback_data="r")
-            ]]
-            )
-        )
+    buttons = [[
+        InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')
+    ]]
+    reply_markup = InlineKeyboardMarkup(buttons)
+    await message.reply_text(START_MESSAGE.format(message.from_user.mention, message.chat.title),
+    reply_markup=reply_markup, 
+    parse_mode=enums.ParseMode.HTML
+    )
+
 
 
 
@@ -96,66 +96,6 @@ async def r_message(bot, message):
 
 
 
-@Client.on_message(filters.group & filters.forwarded & filters.user(ADMINS))
-# @Client.on_message(filters.reply) 
-async def start_message(client, message):
-    mention = message.from_user.mention
-    chat_id = message.chat.id
-#    mv_rqst = message.text
-    searchh = message.text                 
-#    reqstr1 = message.from_user.id if message.from_user else 0
-#    reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(searchh) if IMDB else None    
-            
-    if imdb and imdb.get('poster'):
-        try:
-            buttons = [[
-                InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ], [
-                    
-                InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', url='https://t.me/bigmoviesworld'),
-                InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
-            ], [
-                InlineKeyboardButton('𝐁𝐨𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬', url='http://telegra.ph/Minnal-murali-03-06-12')
-            ], [
-                InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_batch_store'),
-                InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
-            ], [
-                InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
-            ], [
-                InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await message.reply_photo(photo=imdb.get('poster'), caption=START_MESSAGE.format(message.from_user.mention, message.chat.title),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-            )
-                                      
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            buttons = [[
-                InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ], [
-                    
-                InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', url='https://t.me/bigmoviesworld'),
-                InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
-            ], [
-                InlineKeyboardButton('𝐁𝐨𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬', url='http://telegra.ph/Minnal-murali-03-06-12')
-            ], [
-                InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_batch_store'),
-                InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
-            ], [
-                InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
-            ], [
-                InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
-            ]]
-            hmm = await message.reply_photo(photo=poster,  caption=START_MESSAGE.format(message.from_user.mention, message.chat.title),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-            )
-        except Exception as e:
-            logger.exception(e)
 
 
 
@@ -176,7 +116,7 @@ async def start_message(client, message):
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.from_user.mention, message.chat.title, message.text),
+            await message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.text),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
@@ -187,7 +127,7 @@ async def start_message(client, message):
             buttons = [[
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
-            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.from_user.mention, message.chat.title, message.text),
+            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.text),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
