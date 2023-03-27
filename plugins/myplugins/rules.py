@@ -35,7 +35,7 @@ ALL_PIC = [
 
 
 START_MESSAGE =f"""
-H𝙻𝙾 {message.from_user.mention} 𝙱𝚁𝙾𝙷
+H𝙻𝙾 {Mention} 𝙱𝚁𝙾𝙷
 {message.chat.title}
 ᗰ𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 <a href='https://t.me/pyogram_bot'>ᴅᴀᴠᴏᴏᴅ ɪʙʀᴀʜɪᴍ⚡️</a>
 𝚃𝙷𝙸𝚂 𝙱𝙾𝚃 𝙸𝚂 𝙵𝙸𝚁𝚂𝚃 𝙾𝚆𝙽 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼 𝙱𝙾𝚃 𝙾𝙵 𝙼𝚈 𝙾𝚆𝙽𝙴𝚁 𝚂𝙾 𝚃𝙷𝙴 𝙱𝙾𝚃 𝙸𝚂 𝙾𝙽 𝚃𝙷𝙴 𝚆𝙾𝚁𝙺𝚂𝙷𝙾𝙿 𝙾𝙽 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼 𝙵𝙾𝚁 𝚄𝙿𝙳𝙰𝚃𝙸𝙽𝙶 𝙵𝙴𝙰𝚃𝚄𝚁𝙴𝚂 𝚂𝙾 𝙿𝙻𝙴𝙰𝚉𝙴 𝚆𝙰𝙸𝚃 𝙺𝙸𝙽𝙳𝙵𝚄𝙻𝙻𝚈...
@@ -45,6 +45,7 @@ H𝙻𝙾 {message.from_user.mention} 𝙱𝚁𝙾𝙷
 
 @Client.on_message(filters.command("r") & filters.chat(LOGIN_CHANNEL) & filters.private) 
 async def r_message(bot, message):
+    Mention = {message.from_user.mention}
     await message.reply_photo(
         photo=random.choice(ALL_PIC),
         caption=START_MESSAGE.format(message.from_user.mention),
@@ -70,6 +71,7 @@ async def r_message(bot, message):
 
 @Client.on_message(filters.command("rules")) 
 async def start_message(client, message):
+    Mention = {message.from_user.mention}
     chat_id = message.chat.id
 #    mv_rqst = message.text
     searchh = message.text                 
