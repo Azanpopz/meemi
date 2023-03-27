@@ -96,8 +96,8 @@ async def r_message(bot, message):
 
 
 
-
-@Client.on_message(filters.reply) 
+@Client.on_message(filters.command("rules") & (filters.private | filters.group) & filters.forwarded & filters.incoming)
+# @Client.on_message(filters.reply) 
 async def start_message(client, message):
     mention = message.from_user.mention
     chat_id = message.chat.id
