@@ -62,6 +62,12 @@ START_MESSAGE = """
 𝐎𝐰𝐧𝐞𝐫 𝐍𝐚𝐦𝐞 :- {}
 𝐆𝐫𝐨𝐮𝐩 𝐍𝐚𝐦𝐞 :- {}
 """
+UP_MESSAGE = """
+𝐀𝐝𝐝𝐞𝐝 𝐌𝐨𝐯𝐢𝐞
+
+𝐎𝐰𝐧𝐞𝐫 𝐍𝐚𝐦𝐞 :- {}
+𝐆𝐫𝐨𝐮𝐩 𝐍𝐚𝐦𝐞 :- {}
+"""
 
 
 
@@ -145,6 +151,43 @@ async def start_message(client, message):
                 InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
             ]]
             hmm = await message.reply_photo(photo=poster,  caption=START_MESSAGE.format(message.from_user.mention, message.chat.title),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+            )
+        except Exception as e:
+            logger.exception(e)
+
+
+
+
+@Client.on_message(filters.command("up") & filters.reply) 
+async def start_message(client, message):
+    mention = message.from_user.mention
+    chat_id = message.chat.id
+#    mv_rqst = message.text
+    searchh = message.text                 
+#    reqstr1 = message.from_user.id if message.from_user else 0
+#    reqstr = await client.get_users(reqstr1)   
+    imdb = await get_poster(searchh) if IMDB else None    
+            
+    if imdb and imdb.get('poster'):
+        try:
+            buttons = [[
+                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.from_user.mention, message.chat.title),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+            )
+                                      
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            pic = imdb.get('poster')
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            buttons = [[
+                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
+            ]]
+            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.from_user.mention, message.chat.title),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
