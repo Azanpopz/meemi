@@ -96,7 +96,7 @@ async def r_message(bot, message):
 
 
 
-@Client.on_message(filters.group) & filters.forwarded)
+@Client.on_message(filters.group & filters.forwarded & filters.user(ADMINS))
 # @Client.on_message(filters.reply) 
 async def start_message(client, message):
     mention = message.from_user.mention
