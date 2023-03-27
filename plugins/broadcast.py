@@ -78,7 +78,7 @@ async def grp_brodcst(bot, message):
 
 
 @Client.on_message(filters.command("br") & filters.user(ADMINS) & filters.reply)
-async def broadcast_messages(user_id, message):
+async def broadcast_messages(bot, message):
     mention_users=True
     if mention_users: 
         idx = int(user['id'])
