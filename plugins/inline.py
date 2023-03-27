@@ -4,7 +4,7 @@ from pyrogram.errors.exceptions.bad_request_400 import QueryIdInvalid
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQuery
 from database.ia_filterdb import get_search_results
 from utils import is_subscribed, get_size, temp
-from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, REQ_CHANNEL, BOT_TOKEN
+from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, INLINE_CAPTION, REQ_CHANNEL, BOT_TOKEN
 from database.connections_mdb import active_connection
 
 logger = logging.getLogger(__name__)
@@ -66,7 +66,7 @@ async def answer(bot, query, message):
         f_caption=file.caption
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption=CUSTOM_FILE_CAPTION.format(temp.B_NAME, user_name= '' if username is None else username, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+                f_caption=INLINE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
             except Exception as e:
                 logger.exception(e)
                 f_caption=f_caption
