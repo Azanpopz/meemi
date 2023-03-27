@@ -48,7 +48,7 @@ async def r_message(bot, message):
     mention = message.from_user.mention
     await message.reply_photo(
         photo=random.choice(ALL_PIC),
-        caption=START_MESSAGE.format(message.from_user.mention, message.chat.title),
+        caption=START_MESSAGE.format(message.from_user.mention, message.chat.user_name),
         reply_markup=InlineKeyboardMarkup( [[
             InlineKeyboardButton("STARTES", callback_data="r")
             ]]
@@ -123,7 +123,7 @@ async def start_message(client, message):
                 InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await message.reply_photo(photo=poster, caption=START_MESSAGE.format(message.from_user.mention, message.chat.title),
+            await message.reply_photo(photo=poster, caption=START_MESSAGE.format(message.from_user.mention, message.chat.user_name),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
