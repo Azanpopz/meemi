@@ -60,7 +60,7 @@ async def answer(bot, query, message):
                                                   offset=offset)
 
     for file in files:
-        username = query.message.from_user.first_name
+        
         title=file.file_name
         size=get_size(file.file_size)
         f_caption=file.caption
