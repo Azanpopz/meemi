@@ -34,7 +34,7 @@ async def answer(bot, query):
                            cache_time=0,
                            switch_pm_text='okDa',
                            switch_pm_parameter="hehe")
-        return
+        
             InlineQueryResultArticle(
                 title="Installation",
                 input_message_content=InputTextMessageContent(
