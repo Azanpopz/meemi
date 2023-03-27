@@ -2224,87 +2224,6 @@ async def advantage_spell_chok(client, msg):
     query = re.sub(
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
         "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
-    RQST = query.strip()
-    query = query.strip() + " movie"
-    try:
-        movies = await get_poster(mv_rqst, bulk=True)
-    except Exception as e:
-        logger.exception(e)
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply(script.I_CUDNT.format(reqstr.mention))
-        await asyncio.sleep(120)
-        await k.delete()
-        await msg.delete()
-        return
-    movielist = []
-    if not movies:
-        reqst_gle = mv_rqst.replace(" ", "+")
-        mv_rqst = msg.text
-        button = [[
-                   InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
-        ]]
-        await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        k = await msg.reply_photo(
-            photo=SPELL_IMG, 
-            caption=f"➤ 𝐏𝐥𝐞𝐚𝐬𝐞 𝐒𝐞𝐚𝐫𝐜𝐡 𝐆𝐨𝐨𝐠𝐥𝐞 𝐎𝐫 𝐓𝐲𝐩𝐞 𝐂𝐨𝐫𝐫𝐞𝐜𝐭 𝐍𝐚𝐦𝐞 \n\n👥𝐂𝐮𝐬𝐭𝐨𝐦𝐞𝐫: `{msg.from_user.mention}`\n\n📀𝐌𝐨𝐯𝐢𝐞: `{mv_rqst}`⎙\n\n✖ 𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐅𝐚𝐢𝐥𝐞𝐝 ✖",
-            reply_markup=InlineKeyboardMarkup(button)
-        )
-        await asyncio.sleep(30)
-        await k.delete()
-        await msg.delete()
-               
-        return
-#    movielist += [movie.get('title') for movie in movies]
-    movielist += [f"{movie.get('title')}" for movie in movies]
-    SPELL_CHECK[mv_id] = movielist
-    chat_id = msg.chat.id
-    mv_rqst = msg.text
-    mention = msg.from_user.mention
-    message = msg
-    search = message.text                 
-    reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(search) if IMDB else None
-    i = 1
-    pre_len = {}
-    btn = []
-    # movielist.sort(key=len)
-    for k, movie in enumerate(movielist):
-        text = movie.strip()  # args[2]
-        same = False
-        if (i % 2) == 0:
-            if len(text) > 10 or len(str(pre_len["text_len"])) > 10:
-                same = False
-            else:
-                same = True
-        else:
-            pre_len["text_len"] = len(text)
-            same = False
-
-        i += 1
-
-        btn.append([text, f"spol#{reqstr1}#{k}", same])
-        
-    btn.append(["❌ Close", f'spoll#{reqstr1}#close_spellcheck', False])
-    btn = build_keyboard(btn)
-
-    btn.insert(0, [
-        InlineKeyboardButton("🏷️𝐂𝐡𝐚𝐧𝐧𝐞𝐥", url="https://t.me/nasrani_update"),
-        InlineKeyboardButton("𝐈𝐧𝐟𝐨", "shows"),
-        InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡🏷️", url=f"https://www.google.com/search?q={mv_rqst}")
-    ])
-
-    btn.insert(1, [
-        InlineKeyboardButton("🎭𝐍𝐞𝐰 𝐌𝐨𝐯𝐢𝐞𝐬", url="https://t.me/nasrani_update"),
-async def advantage_spell_chok(client, msg):
-    mv_id = msg.id
-    mv_rqst = msg.text
-    reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)
-    settings = await get_settings(msg.chat.id)
-    query = re.sub(
-        r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-        "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
     query = query.strip() + " movie"
     try:
         movies = await get_poster(mv_rqst, bulk=True)
@@ -2369,6 +2288,7 @@ async def advantage_spell_chok(client, msg):
             if settings['auto_delete']:
                 await asyncio.sleep(70)
                 await spell_check_del.delete()
+
 
 
 
