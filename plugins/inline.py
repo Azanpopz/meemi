@@ -35,41 +35,26 @@ async def answer(bot, query):
                            switch_pm_text='okDa',
                            switch_pm_parameter="hehe")
         
-            InlineQueryResultArticle(
-                title="Installation",
-                input_message_content=InputTextMessageContent(
-                    "Here's how to install **Pyrogram**"
-                ),
-                url="https://docs.pyrogram.org/intro/install",
-                description="How to install Pyrogram",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(
-                            "Open website",
-                            url="https://docs.pyrogram.org/intro/install"
-                        )]
-                    ]
+                        InlineQueryResultArticle(
+                            title="Installation",
+                            input_message_content=InputTextMessageContent(
+                                "Here's how to install **Pyrogram**"
+                            ),
+                            url="https://docs.pyrogram.org/intro/install",
+                            description="How to install Pyrogram",
+                            reply_markup=InlineKeyboardMarkup(
+                                [
+                                    [InlineKeyboardButton(
+                                        "Open website",
+                                        url="https://docs.pyrogram.org/intro/install"
+                                    ]
+                                ]
+                            )
+                        )
+                    ],
+                   cache_time=1
                 )
-            ),
-            InlineQueryResultArticle(
-                title="Usage",
-                input_message_content=InputTextMessageContent(
-                    "Here's how to use **Pyrogram**"
-                ),
-                url="https://docs.pyrogram.org/start/invoking",
-                description="How to use Pyrogram",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(
-                            "Open website",
-                            url="https://docs.pyrogram.org/start/invoking"
-                        )]
-                    ]
-                )
-            )
-        ],
-        cache_time=1
-    )
+            
     
     if not await inline_users(query):
         await query.answer(results=[],
