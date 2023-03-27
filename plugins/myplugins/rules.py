@@ -63,7 +63,7 @@ START_MESSAGE = """
 𝐆𝐫𝐨𝐮𝐩 𝐍𝐚𝐦𝐞 :- {}
 """
 UP_MESSAGE = """
-{searchh} 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝
+{} 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝
 
 𝐎𝐰𝐧𝐞𝐫 𝐍𝐚𝐦𝐞 :- {}
 𝐆𝐫𝐨𝐮𝐩 𝐍𝐚𝐦𝐞 :- {}
@@ -187,7 +187,7 @@ async def start_message(client, message):
             buttons = [[
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
-            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.from_user.mention, message.chat.title),
+            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.from_user.mention, message.chat.title, message.text),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
