@@ -160,7 +160,7 @@ async def start_message(client, message):
 
 
 
-@Client.on_message(filters.command(filters.reply) 
+@Client.on_message(filters.reply) 
 async def start_message(client, message):
     mention = message.from_user.mention
     chat_id = message.chat.id
