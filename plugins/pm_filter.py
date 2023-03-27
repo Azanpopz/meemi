@@ -1893,22 +1893,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 async def auto_filter(client, msg, spoll=False):
     reqstr1 = msg.from_user.id if msg.from_user else 0
-    reqstr = await client.get_users(reqstr1)
-
-#    chat_id = msg.chat.id
-#    mv_rqst = msg.text
-#    message = msg
-#    searchh = message.text                 
-#    reqstr1 = msg.from_user.id if msg.from_user else 0
-#    reqstr = await client.get_users(reqstr1)   
-#    imdb = await get_poster(searchh) if IMDB else None    
+    reqstr = await client.get_users(reqstr1)    
     if not spoll:
         message = msg        
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-  
-
+ 
             return
         if len(message.text) < 100:
             search = message.text
@@ -2309,11 +2300,11 @@ async def advantage_spell_chok(client, msg):
     ])
 
     
-    m=await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
-    await asyncio.sleep(2)
-    await m.delete()
+#    m=await msg.reply_sticker("CAACAgUAAx0CQTCW0gABB5EUYkx6-OZS7qCQC6kNGMagdQOqozoAAgQAA8EkMTGJ5R1uC7PIECME") 
+#    await asyncio.sleep(2)
+#    await m.delete()
     
-    await asyncio.sleep(1)
+#    await asyncio.sleep(1)
 
     spell_check_del = await msg.reply_photo(
         photo=imdb['poster'],
