@@ -28,36 +28,9 @@ async def inline_users(query: InlineQuery):
 @Client.on_inline_query()
 async def answer(bot, query):
     """Show search results for given inline query"""
-    chat_id = await active_connection(str(query.from_user.id))
+    chat_id = await active_connection(str(query.from_user.id))        
     if not await inline_users(query):
-        await query.answer(results=[],
-                           cache_time=0,
-                           switch_pm_text='okDa',
-                           switch_pm_parameter="hehe")
-        
-                        InlineQueryResultArticle(
-                            title="Installation",
-                            input_message_content=InputTextMessageContent(
-                                "Here's how to install **Pyrogram**"
-                            ),
-                            url="https://docs.pyrogram.org/intro/install",
-                            description="How to install Pyrogram",
-                            reply_markup=InlineKeyboardMarkup(
-                                [
-                                    [InlineKeyboardButton(
-                                        "Open website",
-                                        url="https://docs.pyrogram.org/intro/install"
-                                    ]
-                                ]
-                            )
-                        )
-                    ],
-                   cache_time=1
-                )
-            
-    
-    if not await inline_users(query):
-        await query.answer(results=[],
+        await inline_query.answer(results=[],
                            cache_time=0,
                            switch_pm_text='okDa',
                            switch_pm_parameter="hehe")
